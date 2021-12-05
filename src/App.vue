@@ -1,6 +1,6 @@
 <template>
   <div class="max-width-840 m-auto shadow-sm border">
-    <Navbar />
+    <Navbar @set-path-name="setPathName" />
     <div class="container-fluid border border-warning">
       <component :is="myComponent" />
     </div>
@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      pathname: JSON.parse(localStorage.getItem('pathname')) || 'calc'
+      pathname: localStorage.getItem('pathname') || 'calc'
     }
   },
   computed: {
@@ -41,6 +41,12 @@ export default {
       } else {
         return 'Login'
       }
+    }
+  },
+  methods: {
+    setPathName(name) {
+      this.pathname = name
+      localStorage.setItem('pathname', name)
     }
   }
 }

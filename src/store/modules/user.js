@@ -4,7 +4,7 @@ const auth = getAuth(fireApp)
 
 export default {
   state: {
-    userId: 123
+    userId: null
   },
   mutations: {
     setUserId(state, value) {
@@ -28,6 +28,7 @@ export default {
     }
   },
   getters: {
-    userId: state => state.userId
+    //userId: state => state.userId
+    userId: state => 123
   }
 }
