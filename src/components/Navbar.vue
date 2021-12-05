@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-between p-2 border border-success">
+  <div class="d-flex justify-content-between p-2">
     <div class="logo"></div>
     <div class="buttons">
       <button

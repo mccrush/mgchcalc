@@ -100,7 +100,7 @@
         class="btn btn-sm btn-success w-100"
         @click="addItem"
       >
-        Добавить
+        Добавить в БД
       </button>
     </div>
   </div>
