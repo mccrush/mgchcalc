@@ -1,12 +1,13 @@
-export default () => {
+export default (title, groupId, groupTitle, ed, price = '') => {
   const item = {
     id: Date.now().toString(),
     title,
-    groupTitle,
     groupId,
+    groupTitle,
     ed,
     price,
-    ostatok
+    ostatok: 0,
+    type: 'siryo'
   }
 
   return item
