@@ -1,6 +1,9 @@
 <template>
-  <div class="container">
-    <component :is="myComponent" />
+  <div class="max-width-840 m-auto border">
+    <Navbar />
+    <div class="container border border-warning">
+      <component :is="myComponent" />
+    </div>
   </div>
 </template>
 
@@ -51,5 +54,9 @@ export default {
 
 .my-h-100 {
   height: calc(100vh - 86px);
+}
+
+.max-width-840 {
+  max-width: 840px;
 }
 </style>
