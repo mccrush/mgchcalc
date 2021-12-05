@@ -9,6 +9,9 @@ export default {
     rabota: []
   },
   mutations: {
+    addItem(state, { item }) {
+      state[item.type].push(item)
+    },
     setItems(state, { type, items }) {
       state[type] = items
     }

@@ -5,9 +5,8 @@
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
         v-model="category"
-        @change="setCategoty"
+        @change="selectCategoty"
       >
-        <option selected>Категория</option>
         <option value="group">Категория Группы</option>
         <option value="siryo">Категория Сырье</option>
         <option value="rabota">Категория Работа</option>
@@ -18,9 +17,9 @@
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
-        @change="setMod('edit')"
+        @change="selectGroup"
+        v-model="groupId"
       >
-        <option selected>Группа сырья</option>
         <option v-for="gr in groups" :key="gr.id" :value="gr.id">
           {{ gr.title }}
         </option>
@@ -31,13 +30,13 @@
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select resourse"
-        @change="setMod('edit')"
+        @change="selectSiryo"
         :disabled="category === 'group'"
+        v-model="siryoId"
       >
-        <option selected>Сырье</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option v-for="sr in siryos" :key="sr.id" :value="sr.id">
+          {{ sr.title }}
+        </option>
       </select>
     </div>
     <div class="col-3">
@@ -62,11 +61,12 @@
         v-if="category === 'siryo'"
         class="form-select form-select-sm w-100"
         aria-label="Select resourse"
+        v-model="item.groupId"
       >
-        <option selected>Siryo</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option selected>Группа сырья</option>
+        <option v-for="gr in groups" :key="gr.id" :value="gr.id">
+          {{ gr.title }}
+        </option>
       </select>
     </div>
     <div class="col-1 pe-0">
@@ -74,13 +74,15 @@
         v-if="category === 'siryo'"
         type="text"
         class="form-control form-control-sm"
+        v-model.trim="item.ed"
       />
     </div>
     <div class="col-2">
       <input
         v-if="category === 'siryo'"
-        type="text"
+        type="number"
         class="form-control form-control-sm"
+        v-model.number="item.price"
       />
     </div>
   </div>
@@ -114,14 +116,19 @@ export default {
     return {
       mod: localStorage.getItem('mod') || 'add',
       category: localStorage.getItem('category') || 'siryo',
-      groupId: '',
-      siryoId: '',
-      item: {}
+      groupId: localStorage.getItem('groupId') || '',
+      siryoId: localStorage.getItem('siryoId') || '',
+      item: { groupId: '1638717649192' }
     }
   },
   computed: {
     groups() {
       return this.$store.getters.group
+    },
+    siryos() {
+      return this.$store.getters.siryo.filter(
+        item => item.groupId === this.groupId
+      )
     }
   },
   methods: {
@@ -130,12 +137,31 @@ export default {
       this.item = {}
       localStorage.setItem('mod', mod)
     },
-    setCategoty() {
+    selectSiryo() {
+      this.setMod('edit')
+      this.item = this.siryos.find(item => item.id === this.siryoId)
+      localStorage.setItem('siryoId', this.siryoId)
+    },
+    selectGroup() {
+      this.setMod('edit')
+      localStorage.setItem('groupId', this.groupId)
+    },
+    selectCategoty() {
       localStorage.setItem('category', this.category)
     },
     addItem() {
       if (this.item.title) {
         if (this.category === 'siryo') {
+          const item = createSiryo(
+            this.item.title,
+            this.groupId,
+            this.item.ed,
+            this.item.price
+          )
+          //console.log('item', item)
+          this.$store.commit('addItem', { item })
+          this.$store.dispatch('addItem', { item })
+          this.item = {}
         } else if (this.category === 'group') {
           const item = createGroup(this.item.title)
           this.$store.dispatch('addItem', { item })

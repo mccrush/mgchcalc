@@ -13,6 +13,7 @@ onAuthStateChanged(auth, (user) => {
   if (!app) {
     createApp(App).use(store).mount('#app')
     store.dispatch('getItems', { type: 'group' })
+    store.dispatch('getItems', { type: 'siryo' })
   }
 
   if (user) {
