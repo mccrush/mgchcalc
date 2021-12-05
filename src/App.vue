@@ -1,4 +1,8 @@
-<template></template>
+<template>
+  <div class="container">
+    <component :is="myComponent" />
+  </div>
+</template>
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -6,7 +10,27 @@ import { Dropdown, Modal, Tooltip } from 'bootstrap'
 
 export default {
   name: 'App',
-  components: {}
+  data() {
+    return {
+      pathname: JSON.parse(localStorage.getItem('pathname')) || 'calc'
+    }
+  },
+  computed: {
+    userId() {
+      return this.$store.getters.userId
+    },
+    myComponent() {
+      if (this.userId) {
+        if (this.pathname === 'admin') {
+          return 'Admin'
+        } else {
+          return 'Calc'
+        }
+      } else {
+        return 'Login'
+      }
+    }
+  }
 }
 </script>
 

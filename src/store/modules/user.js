@@ -3,7 +3,7 @@ const auth = getAuth()
 
 export default {
   state: {
-    userId: null
+    userId: 123
   },
   mutations: {
     setUserId(state, value) {
