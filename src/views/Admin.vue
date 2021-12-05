@@ -63,7 +63,6 @@
         aria-label="Select resourse"
         v-model="item.groupId"
       >
-        <option selected>Группа сырья</option>
         <option v-for="gr in groups" :key="gr.id" :value="gr.id">
           {{ gr.title }}
         </option>
@@ -118,7 +117,7 @@ export default {
       category: localStorage.getItem('category') || 'siryo',
       groupId: localStorage.getItem('groupId') || '',
       siryoId: localStorage.getItem('siryoId') || '',
-      item: { groupId: '1638717649192' }
+      item: { groupId: this.groupId }
     }
   },
   computed: {
@@ -134,7 +133,7 @@ export default {
   methods: {
     setMod(mod) {
       this.mod = mod
-      this.item = {}
+      this.item = { groupId: this.groupId }
       localStorage.setItem('mod', mod)
     },
     selectSiryo() {
@@ -143,7 +142,10 @@ export default {
       localStorage.setItem('siryoId', this.siryoId)
     },
     selectGroup() {
-      this.setMod('edit')
+      if (this.category === 'group') {
+        this.setMod('edit')
+        this.item = this.groups.find(item => item.id === this.groupId)
+      }
       localStorage.setItem('groupId', this.groupId)
     },
     selectCategoty() {
