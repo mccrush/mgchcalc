@@ -12,6 +12,7 @@ let app
 onAuthStateChanged(auth, (user) => {
   if (!app) {
     createApp(App).use(store).mount('#app')
+    store.dispatch('getItems', { type: 'group' })
   }
 
   if (user) {

@@ -21,9 +21,9 @@
         @change="setMod('edit')"
       >
         <option selected>Группа сырья</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option v-for="gr in groups" :key="gr.id" :value="gr.id">
+          {{ gr.title }}
+        </option>
       </select>
     </div>
     <!---->
@@ -54,7 +54,7 @@
       <input
         type="text"
         class="form-control form-control-sm"
-        v-model="item.title"
+        v-model.trim="item.title"
       />
     </div>
     <div class="col-3 pe-0">
@@ -63,7 +63,7 @@
         class="form-select form-select-sm w-100"
         aria-label="Select resourse"
       >
-        <option selected>Группа</option>
+        <option selected>Siryo</option>
         <option value="1">One</option>
         <option value="2">Two</option>
         <option value="3">Three</option>
@@ -114,9 +114,14 @@ export default {
     return {
       mod: localStorage.getItem('mod') || 'add',
       category: localStorage.getItem('category') || 'siryo',
-      group: '',
-      siryo: '',
+      groupId: '',
+      siryoId: '',
       item: {}
+    }
+  },
+  computed: {
+    groups() {
+      return this.$store.getters.group
     }
   },
   methods: {
@@ -129,11 +134,14 @@ export default {
       localStorage.setItem('category', this.category)
     },
     addItem() {
-      if (this.category === 'siryo') {
-      } else if (this.category === 'group') {
-        const item = createGroup(this.item.title)
-        console.log('item', item)
-      } else if (this.category === 'rabota') {
+      if (this.item.title) {
+        if (this.category === 'siryo') {
+        } else if (this.category === 'group') {
+          const item = createGroup(this.item.title)
+          this.$store.dispatch('addItem', { item })
+          this.item = {}
+        } else if (this.category === 'rabota') {
+        }
       }
     },
     saveItem() {}
