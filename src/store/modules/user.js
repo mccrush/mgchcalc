@@ -1,5 +1,6 @@
+import fireApp from '@/firebase'
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth'
-const auth = getAuth()
+const auth = getAuth(fireApp)
 
 export default {
   state: {

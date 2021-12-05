@@ -1,7 +1,7 @@
 <template>
-  <div class="max-width-840 m-auto border">
+  <div class="max-width-840 m-auto shadow-sm border">
     <Navbar />
-    <div class="container border border-warning">
+    <div class="container-fluid border border-warning">
       <component :is="myComponent" />
     </div>
   </div>
@@ -9,10 +9,19 @@
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Dropdown, Modal, Tooltip } from 'bootstrap'
+//import { Dropdown, Modal, Tooltip } from 'bootstrap'
+import Navbar from '@/components/Navbar'
+import Login from '@/views/Login'
+import Calc from '@/views/Calc'
+import Admin from '@/views/Admin'
 
 export default {
-  name: 'App',
+  components: {
+    Navbar,
+    Login,
+    Calc,
+    Admin
+  },
   data() {
     return {
       pathname: JSON.parse(localStorage.getItem('pathname')) || 'calc'
