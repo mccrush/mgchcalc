@@ -1,7 +1,7 @@
 <template>
   <div class="row pt-2">
     <div class="col-12 d-flex justify-content-between">
-      <h4 class="m-0">Стоимость сырья</h4>
+      <h5 class="m-0">Стоимость сырья</h5>
       <div class="form-check form-switch pt-1">
         <input
           class="form-check-input"
