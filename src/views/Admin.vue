@@ -90,7 +90,7 @@
       <button
         v-if="mod === 'edit'"
         class="btn btn-sm btn-success w-100"
-        @click="meth"
+        @click="saveItem"
       >
         Сохранить
       </button>
@@ -148,7 +148,10 @@ export default {
       localStorage.setItem('groupId', this.groupId)
     },
     selectCategoty() {
+      this.item = {}
+      this.siryoId = ''
       localStorage.setItem('category', this.category)
+      localStorage.setItem('siryoId', this.siryoId)
     },
     addItem() {
       if (this.item.title) {
@@ -170,7 +173,12 @@ export default {
         }
       }
     },
-    saveItem() {}
+    saveItem() {
+      if (this.item.title) {
+        this.$store.commit('updateItem', { item: this.item })
+        this.$store.dispatch('updateItem', { item: this.item })
+      }
+    }
   }
 }
 </script>
