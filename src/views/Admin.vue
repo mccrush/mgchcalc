@@ -43,7 +43,7 @@
     <div class="col-3">
       <button
         class="btn btn-sm btn-outline-success w-100"
-        @click="setMod('add')"
+        @click="selectCreateButton('add')"
       >
         Создать +
       </button>
@@ -81,6 +81,9 @@
       <input
         type="number"
         class="form-control form-control-sm"
+        min="0"
+        max="10000"
+        step="10"
         v-model.number="item.price"
       />
     </div>
@@ -170,6 +173,11 @@ export default {
       this.mod = mod
       this.item = { categoryId: this.categoryId }
       localStorage.setItem('mod', mod)
+    },
+    selectCreateButton() {
+      this.elementId = ''
+      localStorage.setItem('elementId', this.elementId)
+      this.setMod('add')
     },
     selectRazdel() {
       this.item = {}

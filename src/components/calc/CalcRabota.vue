@@ -7,7 +7,7 @@
   <div class="row pt-2 pb-2">
     <!---->
     <div class="col-3 pe-0">
-      <small>Группа работы</small><br />
+      <small class="text-muted">Группа работы</small><br />
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
@@ -21,7 +21,7 @@
     </div>
 
     <div class="col-3 pe-0">
-      <small>Работа (толщина)</small><br />
+      <small class="text-muted">Работа (толщина)</small><br />
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
@@ -34,7 +34,7 @@
       </select>
     </div>
     <div class="col-3 text-center ps-0 pe-0">
-      <small>Колич.</small><br />
+      <small class="text-muted">Колич.</small><br />
       <div class="btn-group btn-group-sm" role="group" aria-label="Kolich">
         <button
           type="button"
@@ -63,7 +63,7 @@
       </div>
     </div>
     <div class="col-1 ps-0 pe-0">
-      <small>Размеры</small><br />
+      <small class="text-muted">Размеры</small><br />
       <input
         type="text"
         class="form-control form-control-sm"
@@ -72,7 +72,7 @@
       />
     </div>
     <div class="col-2 text-end">
-      <small>Сумма</small><br />
+      <small class="text-muted">Сумма</small><br />
       {{ rabotaSumma }}
     </div>
     <!---->

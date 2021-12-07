@@ -17,7 +17,7 @@
   </div>
   <CalcSiryo v-show="siryoEnable" @siryo-price="siryoPrice" />
   <CalcRabota @rabota-price="rabotaPrice" />
-  <div class="row border-top">
+  <div class="row bg-light">
     <div class="col-8"></div>
     <div class="col-4 d-flex justify-content-between p-2 pe-2">
       <div></div>
@@ -26,7 +26,7 @@
       </div>
     </div>
   </div>
-  <div class="row border-top">
+  <div class="row">
     <div class="col-9 d-flex justify-content-between p-2">
       <div></div>
       <div class="w-100">
@@ -37,7 +37,7 @@
         ></textarea>
       </div>
     </div>
-    <div class="col-3 d-flex flex-column justify-content-end p-2">
+    <div class="col-3 d-flex flex-column justify-content-end p-2 ps-0">
       <button class="btn btn-outline-dark w-100" @click="copyInBuffer($event)">
         Копировать
       </button>
