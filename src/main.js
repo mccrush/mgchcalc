@@ -14,6 +14,8 @@ onAuthStateChanged(auth, (user) => {
     createApp(App).use(store).mount('#app')
     store.dispatch('getItems', { type: 'group' })
     store.dispatch('getItems', { type: 'siryo' })
+    store.dispatch('getItems', { type: 'frezer' })
+    store.dispatch('getItems', { type: 'rabota' })
   }
 
   if (user) {
