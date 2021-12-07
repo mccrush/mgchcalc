@@ -32,7 +32,7 @@
         class="form-select form-select-sm w-100"
         aria-label="Select resourse"
         @change="selectElement"
-        :disabled="category === 'group'"
+        :disabled="razdel === 'group' || razdel === 'frezer'"
         v-model="elementId"
       >
         <option v-for="elem in elements" :key="elem.id" :value="elem.id">
@@ -69,22 +69,44 @@
         </option>
       </select>
     </div>
-    <div class="col-1 pe-0">
+    <!-- -->
+    <div v-if="razdel === 'siryo'" class="col-1 pe-0">
       <input
-        v-if="razdel === 'siryo'"
         type="text"
         class="form-control form-control-sm"
         v-model.trim="item.ed"
       />
     </div>
-    <div class="col-2">
+    <div v-if="razdel === 'siryo'" class="col-2">
       <input
-        v-if="razdel === 'siryo'"
         type="number"
         class="form-control form-control-sm"
         v-model.number="item.price"
       />
     </div>
+    <!-- -->
+    <div v-if="razdel === 'rabota'" class="col-1 pe-0">
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        v-model.number="item.priceS"
+      />
+    </div>
+    <div v-if="razdel === 'rabota'" class="col-1 pe-0">
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        v-model.number="item.priceM"
+      />
+    </div>
+    <div v-if="razdel === 'rabota'" class="col-1">
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        v-model.number="item.priceL"
+      />
+    </div>
+    <!-- -->
   </div>
   <div class="row pt-2 pb-2">
     <div class="col-9 pe-0"></div>
@@ -120,14 +142,14 @@ export default {
       razdelId: localStorage.getItem('razdelId') || '',
       categoryId: localStorage.getItem('categoryId') || '',
       elementId: localStorage.getItem('elementId') || '',
-      item: { razdelId: this.razdelId }
+      item: { categoryId: this.categoryId }
     }
   },
   computed: {
     categorys() {
-      if (this.razdel === 'group') {
+      if (this.razdel === 'group' || this.razdel === 'siryo') {
         return this.$store.getters.group
-      } else if (this.razdel === 'frezer') {
+      } else if (this.razdel === 'frezer' || this.razdel === 'rabota') {
         return this.$store.getters.frezer
       }
     },
@@ -146,7 +168,7 @@ export default {
   methods: {
     setMod(mod) {
       this.mod = mod
-      this.item = { razdelId: this.razdelId }
+      this.item = { categoryId: this.categoryId }
       localStorage.setItem('mod', mod)
     },
     selectRazdel() {
@@ -160,7 +182,9 @@ export default {
     },
     selectCategory() {
       this.setMod('edit')
-      this.item = this.categorys.find(item => item.id === this.categoryId)
+      if (this.razdel === 'group' || this.razdel === 'frezer') {
+        this.item = this.categorys.find(item => item.id === this.categoryId)
+      }
       localStorage.setItem('categoryId', this.categoryId)
     },
     selectElement() {

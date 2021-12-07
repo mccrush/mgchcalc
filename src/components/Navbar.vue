@@ -14,7 +14,7 @@
         class="btn btn-sm btn-light me-2"
         @click="$emit('set-path-name', 'admin')"
       >
-        Сырье
+        Админка
       </button>
       <button class="btn btn-sm btn-light text-dark">Выйти</button>
     </div>
