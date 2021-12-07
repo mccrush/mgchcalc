@@ -17,10 +17,28 @@
   </div>
   <CalcSiryo v-show="siryoEnable" @siryo-price="siryoPrice" />
   <CalcRabota @rabota-price="rabotaPrice" />
-  <div class="row pt-2">
-    <div class="col-12 d-flex justify-content-between border-top p-3">
+  <div class="row border-top">
+    <div class="col-8"></div>
+    <div class="col-4 d-flex justify-content-between p-2 pe-3">
       <div></div>
       <div>Итого: {{ sumItogo }}</div>
+    </div>
+  </div>
+  <div class="row border-top">
+    <div class="col-9 d-flex justify-content-between p-2">
+      <div></div>
+      <div class="w-100">
+        <textarea
+          class="form-control w-100"
+          rows="3"
+          v-model="itogMessage"
+        ></textarea>
+      </div>
+    </div>
+    <div class="col-3 d-flex flex-column justify-content-end p-2">
+      <button class="btn btn-outline-dark w-100" @click="copyInBuffer($event)">
+        Копировать
+      </button>
     </div>
   </div>
 </template>
@@ -38,7 +56,9 @@ export default {
     return {
       siryoEnable: true,
       siryoSum: 0,
-      rabotaSum: 0
+      rabotaSum: 0,
+      siryoMessage: '',
+      rabotaMessage: ''
     }
   },
   computed: {
@@ -48,14 +68,33 @@ export default {
       } else {
         return this.rabotaSum
       }
+    },
+    itogMessage() {
+      return (
+        this.siryoMessage +
+        '\n' +
+        this.rabotaMessage +
+        '\nИтого ' +
+        this.sumItogo +
+        ' ₽'
+      )
     }
   },
   methods: {
-    siryoPrice({ sum }) {
+    siryoPrice({ sum, message }) {
       this.siryoSum = sum
+      this.siryoMessage = message
     },
-    rabotaPrice({ sum }) {
+    rabotaPrice({ sum, message }) {
       this.rabotaSum = sum
+      this.rabotaMessage = message
+    },
+    copyInBuffer(e) {
+      const el = e.target.parentNode.previousSibling.lastChild.lastChild
+      el.select()
+      if (document.execCommand('copy')) {
+        console.log('Результат скопирован в буфер')
+      }
     }
   }
 }

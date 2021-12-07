@@ -71,7 +71,7 @@
         @input="runCalc"
       />
     </div>
-    <div class="col-2 text-center pe-0">
+    <div class="col-2 text-end">
       Сумма<br />
       {{ rabotaSumma }}
     </div>
@@ -93,6 +93,11 @@ export default {
   computed: {
     categoryRabotas() {
       return this.$store.getters.frezer
+    },
+    categoryTitle() {
+      return this.categoryRabotas.find(
+        item => item.id === this.categoryRabotaId
+      ).title
     },
     rabotas() {
       return this.$store.getters.rabota.filter(
@@ -124,7 +129,16 @@ export default {
       this.runCalc()
     },
     runCalc() {
-      this.$emit('rabota-price', { sum: this.rabotaSumma })
+      const message =
+        this.categoryTitle +
+        ' ' +
+        this.rabotaSize +
+        ' мм ' +
+        ' x ' +
+        this.rabota[this.rabotaAmount] +
+        ' = ' +
+        this.rabotaSumma
+      this.$emit('rabota-price', { sum: this.rabotaSumma, message })
     }
   }
 }

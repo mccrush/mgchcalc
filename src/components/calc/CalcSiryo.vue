@@ -42,7 +42,7 @@
         @input="runCalc"
       />
     </div>
-    <div class="col-2 text-center pe-0">
+    <div class="col-2 text-end">
       Сумма<br />
       {{ siryoSumma }}
     </div>
@@ -88,7 +88,17 @@ export default {
       this.siryoSize = ''
     },
     runCalc() {
-      this.$emit('siryo-price', { sum: this.siryoSumma })
+      const message =
+        this.siryo.title +
+        ' ' +
+        this.siryoSize +
+        ' ' +
+        this.siryo.ed +
+        ' x ' +
+        this.siryo.price +
+        ' = ' +
+        this.siryoSumma
+      this.$emit('siryo-price', { sum: this.siryoSumma, message })
     }
   }
 }
