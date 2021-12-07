@@ -4,13 +4,13 @@
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
-        v-model="category"
-        @change="selectCategoty"
+        v-model="razdel"
+        @change="selectRazdel"
       >
-        <option value="group">Категория Группы сырья</option>
-        <option value="siryo">Категория Сырье</option>
-        <option value="rabota">Категория Вид работ</option>
-        <option value="rabotaPrice">Категория Стоимость работ</option>
+        <option value="group">Раздел Группы сырья</option>
+        <option value="siryo">Раздел Сырье</option>
+        <option value="frezer">Раздел Тип фрезеровки</option>
+        <option value="rabota">Раздел Стоимость работы</option>
       </select>
     </div>
     <!---->
@@ -18,11 +18,11 @@
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
-        @change="selectGroup"
-        v-model="groupId"
+        @change="selectCategory"
+        v-model="categoryId"
       >
-        <option v-for="gr in groups" :key="gr.id" :value="gr.id">
-          {{ gr.title }}
+        <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
+          {{ cat.title }}
         </option>
       </select>
     </div>
@@ -31,12 +31,12 @@
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select resourse"
-        @change="selectSiryo"
+        @change="selectElement"
         :disabled="category === 'group'"
-        v-model="siryoId"
+        v-model="elementId"
       >
-        <option v-for="sr in siryos" :key="sr.id" :value="sr.id">
-          {{ sr.title }}
+        <option v-for="elem in elements" :key="elem.id" :value="elem.id">
+          {{ elem.title }}
         </option>
       </select>
     </div>
@@ -59,19 +59,19 @@
     </div>
     <div class="col-3 pe-0">
       <select
-        v-if="category === 'siryo'"
+        v-if="razdel === 'siryo' || razdel === 'rabota'"
         class="form-select form-select-sm w-100"
         aria-label="Select resourse"
-        v-model="item.groupId"
+        v-model="item.categoryId"
       >
-        <option v-for="gr in groups" :key="gr.id" :value="gr.id">
-          {{ gr.title }}
+        <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
+          {{ cat.title }}
         </option>
       </select>
     </div>
     <div class="col-1 pe-0">
       <input
-        v-if="category === 'siryo'"
+        v-if="razdel === 'siryo'"
         type="text"
         class="form-control form-control-sm"
         v-model.trim="item.ed"
@@ -79,7 +79,7 @@
     </div>
     <div class="col-2">
       <input
-        v-if="category === 'siryo'"
+        v-if="razdel === 'siryo'"
         type="number"
         class="form-control form-control-sm"
         v-model.number="item.price"
@@ -108,37 +108,37 @@
 </template>
 
 <script>
-import createGroup from '@/scripts/createGroup'
+import createCategory from '@/scripts/createCategory'
 import createSiryo from '@/scripts/createSiryo'
+import createRabota from '@/scripts/createRabota'
 
 export default {
   data() {
     return {
       mod: localStorage.getItem('mod') || 'add',
-      category: localStorage.getItem('category') || 'siryo',
-      groupId: localStorage.getItem('groupId') || '',
-      siryoId: localStorage.getItem('siryoId') || '',
-      rabotaId: localStorage.getItem('rabotaId') || '',
-      rabotaPriceId: localStorage.getItem('rabotaPriceId') || '',
-      item: { groupId: this.groupId }
+      razdel: localStorage.getItem('razdel') || 'group',
+      razdelId: localStorage.getItem('razdelId') || '',
+      categoryId: localStorage.getItem('categoryId') || '',
+      elementId: localStorage.getItem('elementId') || '',
+      item: { razdelId: this.razdelId }
     }
   },
   computed: {
-    groups() {
-      if (this.category === 'group') {
+    categorys() {
+      if (this.razdel === 'group') {
         return this.$store.getters.group
-      } else if (this.category === 'rabota') {
-        return this.$store.getters.rabota
+      } else if (this.razdel === 'frezer') {
+        return this.$store.getters.frezer
       }
     },
-    siryos() {
-      if (this.category === 'siryo') {
+    elements() {
+      if (this.razdel === 'siryo') {
         return this.$store.getters.siryo.filter(
-          item => item.groupId === this.groupId
+          item => item.categoryId === this.categoryId
         )
-      } else if (this.category === 'rabotaPrice') {
-        return this.$store.getters.rabotaPrice.filter(
-          item => item.rabotaId === this.rabotaId
+      } else if (this.razdel === 'rabota') {
+        return this.$store.getters.rabota.filter(
+          item => item.categoryId === this.categoryId
         )
       }
     }
@@ -146,50 +146,56 @@ export default {
   methods: {
     setMod(mod) {
       this.mod = mod
-      this.item = { groupId: this.groupId }
+      this.item = { razdelId: this.razdelId }
       localStorage.setItem('mod', mod)
     },
-    selectSiryo() {
-      this.setMod('edit')
-      this.item = this.siryos.find(item => item.id === this.siryoId)
-      localStorage.setItem('siryoId', this.siryoId)
-    },
-    selectGroup() {
-      this.setMod('edit')
-      if (this.category === 'group') {
-        this.item = this.groups.find(item => item.id === this.groupId)
-        localStorage.setItem('groupId', this.groupId)
-      } else if (this.category === 'rabota') {
-        this.item = this.groups.find(item => item.id === this.rabotaId)
-        localStorage.setItem('rabotaId', this.rabotaId)
-      }
-    },
-    selectCategoty() {
+    selectRazdel() {
       this.item = {}
-      this.siryoId = ''
-      this.rabotaPriceId = ''
-      localStorage.setItem('category', this.category)
-      localStorage.setItem('siryoId', this.siryoId)
-      localStorage.setItem('rabotaPriceId', this.rabotaPriceId)
+      this.categoryId = ''
+      this.elementId = ''
+
+      localStorage.setItem('razdel', this.razdel)
+      localStorage.setItem('categoryId', this.categoryId)
+      localStorage.setItem('elementId', this.elementId)
     },
+    selectCategory() {
+      this.setMod('edit')
+      this.item = this.categorys.find(item => item.id === this.categoryId)
+      localStorage.setItem('categoryId', this.categoryId)
+    },
+    selectElement() {
+      this.setMod('edit')
+      this.item = this.elements.find(item => item.id === this.elementId)
+      localStorage.setItem('elementId', this.elementId)
+    },
+
     addItem() {
       if (this.item.title) {
-        if (this.category === 'siryo') {
-          const item = createSiryo(
+        let newItem
+        if (this.razdel === 'group') {
+          newItem = createCategory(this.item.title, 'group')
+        } else if (this.razdel === 'frezer') {
+          newItem = createCategory(this.item.title, 'frezer')
+        } else if (this.razdel === 'siryo') {
+          newItem = createSiryo(
             this.item.title,
-            this.groupId,
+            this.categoryId,
             this.item.ed,
             this.item.price
           )
-          //console.log('item', item)
-          this.$store.commit('addItem', { item })
-          this.$store.dispatch('addItem', { item })
-          this.item = {}
-        } else if (this.category === 'group') {
-          const item = createGroup(this.item.title)
-          this.$store.dispatch('addItem', { item })
-          this.item = {}
+        } else if (this.razdel === 'rabota') {
+          newItem = createRabota(
+            this.item.title,
+            this.categoryId,
+            this.item.priceS,
+            this.item.priceM,
+            this.item.priceL
+          )
         }
+
+        this.$store.commit('addItem', { item: newItem })
+        this.$store.dispatch('addItem', { item: newItem })
+        this.item = {}
       }
     },
     saveItem() {

@@ -1,9 +1,9 @@
-export default (title, groupId, ed = '', price = '') => {
+export default (title, categoryId, ed = '', price = '') => {
   const item = {
     id: Date.now().toString(),
     title,
-    groupId,
-    groupTitle: '',
+    categoryId,
+    categoryTitle: '',
     ed,
     price,
     ostatok: 0,

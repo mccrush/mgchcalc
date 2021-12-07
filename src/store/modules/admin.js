@@ -6,8 +6,8 @@ export default {
   state: {
     group: [],
     siryo: [],
+    frezer: [],
     rabota: [],
-    rabotaPrice: [],
     loading: false,
   },
   mutations: {
@@ -64,8 +64,8 @@ export default {
   getters: {
     group: state => state.group,
     siryo: state => state.siryo,
+    frezer: state => state.frezer,
     rabota: state => state.rabota,
-    rabotaPrice: state => state.rabotaPrice,
     loading: state => state.loading
   }
 }
