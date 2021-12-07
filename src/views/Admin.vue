@@ -9,7 +9,6 @@
       >
         <option value="group">Категория Группы</option>
         <option value="siryo">Категория Сырье</option>
-        <option value="rabota">Категория Работа</option>
       </select>
     </div>
     <!---->
@@ -168,7 +167,6 @@ export default {
           const item = createGroup(this.item.title)
           this.$store.dispatch('addItem', { item })
           this.item = {}
-        } else if (this.category === 'rabota') {
         }
       }
     },
