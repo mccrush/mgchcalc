@@ -1,5 +1,5 @@
 <template>
-  <div class="row pt-2 border">
+  <div class="row pt-2">
     <div class="col-12 d-flex justify-content-between">
       <h4 class="m-0">Стоимость сырья</h4>
       <div class="form-check form-switch pt-1">
@@ -15,8 +15,9 @@
       </div>
     </div>
   </div>
-  <CalcSiryo v-if="siryoEnable" @siryo-price="siryoPrice" />
-  <div class="row pt-2 pb-2 border">
+  <CalcSiryo v-show="siryoEnable" @siryo-price="siryoPrice" />
+  <CalcRabota @rabota-price="rabotaPrice" />
+  <div class="row pt-2 pb-2">
     <div class="col-12 d-flex justify-content-between">
       <div></div>
       <div>Итого: {{ sumItogo }}</div>
@@ -26,25 +27,35 @@
 
 <script>
 import CalcSiryo from '@/components/calc/CalcSiryo'
+import CalcRabota from '@/components/calc/CalcRabota'
 
 export default {
   components: {
-    CalcSiryo
+    CalcSiryo,
+    CalcRabota
   },
   data() {
     return {
       siryoEnable: true,
-      siryoSum: 0
+      siryoSum: 0,
+      rabotaSum: 0
     }
   },
   computed: {
     sumItogo() {
-      return this.siryoSum
+      if (this.siryoEnable) {
+        return this.siryoSum + this.rabotaSum
+      } else {
+        return this.rabotaSum
+      }
     }
   },
   methods: {
-    siryoPrice(sum) {
+    siryoPrice({ sum }) {
       this.siryoSum = sum
+    },
+    rabotaPrice({ sum }) {
+      this.rabotaSum = sum
     }
   }
 }

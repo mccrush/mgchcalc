@@ -1,5 +1,5 @@
 <template>
-  <div class="row pt-2 pb-2 border">
+  <div class="row pt-2 pb-2">
     <!---->
     <div class="col-3 pe-0">
       Группа сырья<br />
@@ -20,7 +20,7 @@
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
-        @change="selectSiryo"
+        @change="runCalc"
         v-model="siryoSelectId"
       >
         <option v-for="sir in siryos" :key="sir.id" :value="sir.id">
@@ -29,16 +29,17 @@
       </select>
     </div>
 
-    <div class="col-2 text-center pe-0">
+    <div class="col-3 text-center pe-0">
       Ед. / стоимость<br />
       <small>{{ siryo.ed }} / {{ siryo.price }}</small>
     </div>
-    <div class="col-2 pe-0">
+    <div class="col-1 ps-0 pe-0">
       Размеры<br />
       <input
         type="text"
         class="form-control form-control-sm"
         v-model="siryoSize"
+        @input="runCalc"
       />
     </div>
     <div class="col-2 text-center pe-0">
@@ -51,6 +52,7 @@
 
 <script>
 export default {
+  emits: ['siryo-price'],
   data() {
     return {
       categorySiryoId: '',
@@ -84,6 +86,9 @@ export default {
     selectCatSiryo() {
       this.siryoSelectId = ''
       this.siryoSize = ''
+    },
+    runCalc() {
+      this.$emit('siryo-price', { sum: this.siryoSumma })
     }
   }
 }

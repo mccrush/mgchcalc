@@ -1,5 +1,5 @@
 <template>
-  <div class="max-width-840 m-auto shadow-sm mt-3">
+  <div class="max-width-840 m-auto shadow-sm rounded-3 mt-3">
     <Navbar @set-path-name="setPathName" :pathname="pathname" />
     <div class="container-fluid">
       <component :is="myComponent" />

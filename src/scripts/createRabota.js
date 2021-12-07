@@ -1,4 +1,4 @@
-export default (title, categoryId, priceS, priceM, PriceL) => {
+export default (title, categoryId, priceS, priceM, priceL) => {
   const item = {
     id: Date.now().toString(),
     title,
@@ -6,7 +6,7 @@ export default (title, categoryId, priceS, priceM, PriceL) => {
     categoryTitle: '',
     priceS,
     priceM,
-    PriceL,
+    priceL,
     type: 'rabota'
   }
 
