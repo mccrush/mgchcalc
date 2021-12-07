@@ -9,7 +9,6 @@
           role="switch"
           id="siryoEnable"
           :checked="siryoEnable"
-          v-model="siryoEnable"
           @change="siryoEnable = !siryoEnable"
         />
         <label class="form-check-label" for="siryoEnable">Считать</label>
@@ -27,6 +26,7 @@
 
 <script>
 import CalcSiryo from '@/components/calc/CalcSiryo'
+
 export default {
   components: {
     CalcSiryo

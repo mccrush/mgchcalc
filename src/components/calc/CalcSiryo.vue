@@ -31,7 +31,7 @@
 
     <div class="col-2 text-center pe-0">
       Ед. / стоимость<br />
-      <small> </small>
+      <small>{{ siryo.ed }} / {{ siryo.price }}</small>
     </div>
     <div class="col-2 pe-0">
       Размеры<br />
@@ -51,9 +51,6 @@
 
 <script>
 export default {
-  components: {
-    ClacSiryo
-  },
   data() {
     return {
       categorySiryoId: '',
