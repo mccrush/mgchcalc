@@ -17,8 +17,8 @@
   </div>
   <CalcSiryo v-show="siryoEnable" @siryo-price="siryoPrice" />
   <CalcRabota @rabota-price="rabotaPrice" />
-  <div class="row pt-2 pb-2">
-    <div class="col-12 d-flex justify-content-between">
+  <div class="row pt-2">
+    <div class="col-12 d-flex justify-content-between border-top p-3">
       <div></div>
       <div>Итого: {{ sumItogo }}</div>
     </div>
