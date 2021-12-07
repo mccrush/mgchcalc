@@ -1,5 +1,5 @@
 <template>
-  <div class="row pt-2">
+  <div class="row pt-3">
     <div class="col-12 d-flex justify-content-between">
       <h5 class="m-0">Стоимость сырья</h5>
       <div class="form-check form-switch pt-1">
