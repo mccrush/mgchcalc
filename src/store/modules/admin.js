@@ -6,7 +6,8 @@ export default {
   state: {
     group: [],
     siryo: [],
-    rabota: []
+    rabota: [],
+    loading: false,
   },
   mutations: {
     updateItem(state, { item }) {
@@ -18,13 +19,18 @@ export default {
     },
     setItems(state, { type, items }) {
       state[type] = items
-    }
+    },
+    updateLoadingStatus(state, value) {
+      state.loading = value
+    },
   },
   actions: {
     async updateItem({ commit }, { item }) {
       try {
+        commit('updateLoadingStatus', true)
         const itemRef = doc(db, item.type, item.id)
         await updateDoc(itemRef, item)
+        commit('updateLoadingStatus', false)
         console.log('Данные обновлены')
       } catch (error) {
         console.log('error admin.js updateItem:', error)
@@ -34,13 +40,16 @@ export default {
     },
     async addItem({ commit }, { item }) {
       try {
+        commit('updateLoadingStatus', true)
         await setDoc(doc(db, item.type, item.id), item)
+        commit('updateLoadingStatus', false)
         console.log('Данные добавлены')
       } catch (error) {
         console.log('error admin.js addItem:', error)
       }
     },
     async getItems({ commit }, { type }) {
+      commit('updateLoadingStatus', true)
       let tempArray = []
       const q = query(collection(db, type))
       const querySnapshot = await getDocs(q)
@@ -48,11 +57,13 @@ export default {
         tempArray.push(doc.data())
       })
       commit('setItems', { type, items: tempArray })
+      commit('updateLoadingStatus', false)
     }
   },
   getters: {
     group: state => state.group,
     siryo: state => state.siryo,
-    rabota: state => state.rabota
+    rabota: state => state.rabota,
+    loading: state => state.loading
   }
 }

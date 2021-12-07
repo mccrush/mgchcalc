@@ -1,6 +1,8 @@
 <template>
   <div class="d-flex justify-content-between p-2">
-    <div class="logo"></div>
+    <div class="progressbar col-3 ps-2 pt-2 pe-2">
+      <Progressbar v-if="loading" />
+    </div>
     <div class="buttons">
       <button
         class="btn btn-sm btn-light me-2"
@@ -20,7 +22,16 @@
 </template>
 
 <script>
+import Progressbar from '@/components/Progressbar'
+
 export default {
-  methods: {}
+  components: {
+    Progressbar
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading
+    }
+  }
 }
 </script>
