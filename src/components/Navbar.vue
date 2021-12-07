@@ -5,12 +5,14 @@
     </div>
     <div class="buttons">
       <button
+        v-if="pathname === 'admin'"
         class="btn btn-sm btn-light me-2"
         @click="$emit('set-path-name', 'calc')"
       >
         Калькулятор
       </button>
       <button
+        v-if="pathname === 'calc'"
         class="btn btn-sm btn-light me-2"
         @click="$emit('set-path-name', 'admin')"
       >
@@ -28,6 +30,7 @@ export default {
   components: {
     Progressbar
   },
+  props: ['pathname'],
   computed: {
     loading() {
       return this.$store.getters.loading
