@@ -7,8 +7,10 @@
         v-model="category"
         @change="selectCategoty"
       >
-        <option value="group">Категория Группы</option>
+        <option value="group">Категория Группы сырья</option>
         <option value="siryo">Категория Сырье</option>
+        <option value="rabota">Категория Вид работ</option>
+        <option value="rabotaPrice">Категория Стоимость работ</option>
       </select>
     </div>
     <!---->
@@ -116,17 +118,29 @@ export default {
       category: localStorage.getItem('category') || 'siryo',
       groupId: localStorage.getItem('groupId') || '',
       siryoId: localStorage.getItem('siryoId') || '',
+      rabotaId: localStorage.getItem('rabotaId') || '',
+      rabotaPriceId: localStorage.getItem('rabotaPriceId') || '',
       item: { groupId: this.groupId }
     }
   },
   computed: {
     groups() {
-      return this.$store.getters.group
+      if (this.category === 'group') {
+        return this.$store.getters.group
+      } else if (this.category === 'rabota') {
+        return this.$store.getters.rabota
+      }
     },
     siryos() {
-      return this.$store.getters.siryo.filter(
-        item => item.groupId === this.groupId
-      )
+      if (this.category === 'siryo') {
+        return this.$store.getters.siryo.filter(
+          item => item.groupId === this.groupId
+        )
+      } else if (this.category === 'rabotaPrice') {
+        return this.$store.getters.rabotaPrice.filter(
+          item => item.rabotaId === this.rabotaId
+        )
+      }
     }
   },
   methods: {
@@ -141,17 +155,22 @@ export default {
       localStorage.setItem('siryoId', this.siryoId)
     },
     selectGroup() {
+      this.setMod('edit')
       if (this.category === 'group') {
-        this.setMod('edit')
         this.item = this.groups.find(item => item.id === this.groupId)
+        localStorage.setItem('groupId', this.groupId)
+      } else if (this.category === 'rabota') {
+        this.item = this.groups.find(item => item.id === this.rabotaId)
+        localStorage.setItem('rabotaId', this.rabotaId)
       }
-      localStorage.setItem('groupId', this.groupId)
     },
     selectCategoty() {
       this.item = {}
       this.siryoId = ''
+      this.rabotaPriceId = ''
       localStorage.setItem('category', this.category)
       localStorage.setItem('siryoId', this.siryoId)
+      localStorage.setItem('rabotaPriceId', this.rabotaPriceId)
     },
     addItem() {
       if (this.item.title) {

@@ -7,6 +7,7 @@ export default {
     group: [],
     siryo: [],
     rabota: [],
+    rabotaPrice: [],
     loading: false,
   },
   mutations: {
@@ -64,6 +65,7 @@ export default {
     group: state => state.group,
     siryo: state => state.siryo,
     rabota: state => state.rabota,
+    rabotaPrice: state => state.rabotaPrice,
     loading: state => state.loading
   }
 }
