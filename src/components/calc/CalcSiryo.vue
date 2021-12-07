@@ -2,7 +2,7 @@
   <div class="row pt-2 pb-2">
     <!---->
     <div class="col-3 pe-0">
-      Группа сырья<br />
+      <small>Группа сырья</small><br />
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-3 pe-0">
-      Сырье<br />
+      <small>Сырье</small><br />
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
@@ -30,11 +30,11 @@
     </div>
 
     <div class="col-3 text-center pe-0">
-      Ед. / стоимость<br />
+      <small>Ед. / стоимость</small><br />
       <small>{{ siryo.ed }} / {{ siryo.price }}</small>
     </div>
     <div class="col-1 ps-0 pe-0">
-      Размеры<br />
+      <small>Размеры</small><br />
       <input
         type="text"
         class="form-control form-control-sm"
@@ -43,7 +43,7 @@
       />
     </div>
     <div class="col-2 text-end">
-      Сумма<br />
+      <small>Сумма</small><br />
       {{ siryoSumma }}
     </div>
     <!---->

@@ -19,9 +19,11 @@
   <CalcRabota @rabota-price="rabotaPrice" />
   <div class="row border-top">
     <div class="col-8"></div>
-    <div class="col-4 d-flex justify-content-between p-2 pe-3">
+    <div class="col-4 d-flex justify-content-between p-2 pe-2">
       <div></div>
-      <div>Итого: {{ sumItogo }}</div>
+      <div>
+        Итого: <span class="fw-bold">{{ sumItogo }}</span>
+      </div>
     </div>
   </div>
   <div class="row border-top">
