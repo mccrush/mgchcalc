@@ -72,14 +72,18 @@ export default {
       }
     },
     itogMessage() {
-      return (
-        this.siryoMessage +
-        '\n' +
-        this.rabotaMessage +
-        '\nИтого ' +
-        this.sumItogo +
-        ' ₽'
-      )
+      if (this.siryoEnable) {
+        return (
+          this.siryoMessage +
+          '\n' +
+          this.rabotaMessage +
+          '\nИтого ' +
+          this.sumItogo +
+          ' ₽'
+        )
+      } else {
+        return this.rabotaMessage + '\nИтого ' + this.sumItogo + ' ₽'
+      }
     }
   },
   methods: {
