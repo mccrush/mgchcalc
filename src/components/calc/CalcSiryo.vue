@@ -33,16 +33,25 @@
       <small class="text-muted">Ед. / стоимость</small><br />
       <small>{{ siryo.ed }} / {{ siryo.price }}</small>
     </div>
-    <div class="col-1 ps-0 pe-0">
-      <small class="text-muted">Размеры</small><br />
+    <div class="col-1 text-center ps-0 pe-0">
+      <small class="text-muted">д</small><br />
       <input
         type="text"
         class="form-control form-control-sm"
-        v-model="siryoSize"
+        v-model="siryoDlina"
         @input="runCalc"
       />
     </div>
-    <div class="col-2 text-end">
+    <div class="col-1 text-center ps-0 pe-0">
+      <small class="text-muted">ш</small><br />
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        v-model="siryoShirina"
+        @input="runCalc"
+      />
+    </div>
+    <div class="col-1 text-end">
       <small class="text-muted">Сумма</small><br />
       {{ siryoSumma }}
     </div>
@@ -57,7 +66,9 @@ export default {
     return {
       categorySiryoId: '',
       siryoSelectId: '',
-      siryoSize: ''
+      siryoDlina: '',
+      siryoShirina: '',
+      siryoSize: 0
     }
   },
   computed: {
@@ -76,28 +87,37 @@ export default {
         ) || { ed: 'кв.м.', price: 0 }
       )
     },
+    // siryoSize() {
+    //   let dlina = this.siryoDlina.replace(/,/g, '.')
+    //   let shirina = this.siryoShirina.replace(/,/g, '.')
+    //   return dlina * shirina
+    // },
     siryoSumma() {
-      let size = this.siryoSize
-      size = size.replace(/,/g, '.')
-      return Math.ceil(this.siryo.price * size)
+      // let size = this.siryoSize
+      // size = size.replace(/,/g, '.')
+      let dlina = this.siryoDlina.replace(/,/g, '.')
+      let shirina = this.siryoShirina.replace(/,/g, '.')
+      this.siryoSize = (dlina * shirina).toFixed(1)
+      return Math.ceil(this.siryo.price * this.siryoSize)
     }
   },
   methods: {
     selectCatSiryo() {
       this.siryoSelectId = ''
-      this.siryoSize = ''
+      this.siryoSize = 0
     },
     runCalc() {
       const message =
         this.siryo.title +
-        ' ' +
+        ', ' +
         this.siryoSize +
         ' ' +
         this.siryo.ed +
         ' x ' +
         this.siryo.price +
-        ' = ' +
-        this.siryoSumma
+        ' ₽ = ' +
+        this.siryoSumma +
+        ' ₽'
       this.$emit('siryo-price', { sum: this.siryoSumma, message })
     }
   }

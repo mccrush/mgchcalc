@@ -33,7 +33,7 @@
         </option>
       </select>
     </div>
-    <div class="col-3 text-center ps-0 pe-0">
+    <div class="col-4 text-center ps-0 pe-0">
       <small class="text-muted">Колич.</small><br />
       <div class="btn-group btn-group-sm" role="group" aria-label="Kolich">
         <button
@@ -74,7 +74,7 @@
         @input="runCalc"
       />
     </div>
-    <div class="col-2 text-end">
+    <div class="col-1 text-end">
       <small class="text-muted">Сумма</small><br />
       {{ rabotaSumma }}
     </div>
@@ -135,12 +135,15 @@ export default {
       const message =
         this.categoryTitle +
         ' ' +
+        this.rabota.title +
+        ', ' +
         this.rabotaSize +
-        ' мм ' +
+        ' м.п.' +
         ' x ' +
         this.rabota[this.rabotaAmount] +
-        ' = ' +
-        this.rabotaSumma
+        ' ₽ = ' +
+        this.rabotaSumma +
+        ' ₽'
       this.$emit('rabota-price', { sum: this.rabotaSumma, message })
     }
   }
