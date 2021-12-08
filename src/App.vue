@@ -29,20 +29,16 @@ export default {
   },
   computed: {
     userId() {
-      console.log('UserId change in APP:', this.$store.getters.userId)
       return this.$store.getters.userId
     },
     myComponent() {
-      if (true) {
+      if (this.userId) {
         if (this.pathname === 'admin') {
-          console.log('myComponent in APP:', 'Admin')
-          return 'Login'
+          return 'Admin'
         } else {
-          console.log('myComponent in APP:', 'Calc')
           return 'Calc'
         }
       } else {
-        console.log('myComponent in APP:', 'Login')
         return 'Login'
       }
     }

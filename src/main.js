@@ -11,8 +11,7 @@ let app
 
 onAuthStateChanged(auth, (user) => {
   if (!app) {
-    createApp(App).use(store).mount('#app')
-
+    app = createApp(App).use(store).mount('#app')
   }
 
   if (user) {
@@ -23,7 +22,7 @@ onAuthStateChanged(auth, (user) => {
     store.dispatch('getItems', { type: 'frezer' })
     store.dispatch('getItems', { type: 'rabota' })
   } else {
-    store.commit('setUserId', '')
+    store.commit('setUserId', null)
     console.log('main.js: Пользователь не авторизован. user = ', user)
   }
 })

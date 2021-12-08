@@ -4,7 +4,7 @@ const auth = getAuth(fireApp)
 
 export default {
   state: {
-    userId: ''
+    userId: null
   },
   mutations: {
     setUserId(state, value) {
@@ -15,16 +15,14 @@ export default {
     async logIn({ commit }, { email, password }) {
       try {
         await signInWithEmailAndPassword(auth, email, password)
-        console.log('user.js logIn(): Пользователь авторизован')
       } catch (err) {
         console.log('user.js logIn(): Ошибка при входе в систему, err:', error)
         throw err
       }
     },
-    async logOut() {
+    async logOut({ commit }) {
       try {
         await signOut(auth)
-        console.log('user.js logOut(): Пользователь вышел из системы')
       } catch (error) {
         console.log('user.js logOut(): Ошибка при выходе из системы, err:', error)
       }
