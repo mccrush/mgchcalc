@@ -41,6 +41,7 @@
           class="btn btn-primary"
           :class="{ active: rabotaAmount === 'priceS' }"
           @click="setRabotaAmount('priceS')"
+          :disabled="!rabotaSelectId"
         >
           &lt;100
         </button>
@@ -49,6 +50,7 @@
           class="btn btn-primary"
           :class="{ active: rabotaAmount === 'priceM' }"
           @click="setRabotaAmount('priceM')"
+          :disabled="!rabotaSelectId"
         >
           &gt;100
         </button>
@@ -57,6 +59,7 @@
           class="btn btn-primary"
           :class="{ active: rabotaAmount === 'priceL' }"
           @click="setRabotaAmount('priceL')"
+          :disabled="!rabotaSelectId"
         >
           &gt;500
         </button>
