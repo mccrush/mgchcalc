@@ -119,6 +119,7 @@
           v-if="mod === 'edit'"
           class="btn btn-sm btn-success w-100"
           @click="saveItem"
+          :disabled="!elementId"
         >
           Сохранить
         </button>
@@ -229,7 +230,7 @@ export default {
 
         this.$store.commit('addItem', { item: newItem })
         this.$store.dispatch('addItem', { item: newItem })
-        this.item = {}
+        this.item = { categoryId: this.categoryId }
       }
     },
     saveItem() {

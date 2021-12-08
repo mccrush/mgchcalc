@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="col-1 ps-0 pe-0">
-      <small class="text-muted">Размеры</small><br />
+      <small class="text-muted">Разм. м.п.</small><br />
       <input
         type="text"
         class="form-control form-control-sm"
