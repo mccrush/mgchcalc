@@ -12,14 +12,16 @@ let app
 onAuthStateChanged(auth, (user) => {
   if (!app) {
     createApp(App).use(store).mount('#app')
+
+  }
+
+  if (user) {
+    console.log('main.js : Пользователь авторизован')
+    store.commit('setUserId', user.uid)
     store.dispatch('getItems', { type: 'group' })
     store.dispatch('getItems', { type: 'siryo' })
     store.dispatch('getItems', { type: 'frezer' })
     store.dispatch('getItems', { type: 'rabota' })
-  }
-
-  if (user) {
-    store.commit('setUserId', user.uid)
   } else {
     store.commit('setUserId', '')
     console.log('main.js: Пользователь не авторизован. user = ', user)

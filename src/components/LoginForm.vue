@@ -1,5 +1,5 @@
 <template>
-  <div class="col-4 m-auto border shadow-sm mt-4 p-2">
+  <div class="col-4 m-auto rounded-3 border shadow-sm mt-4 p-3">
     <h5 class="text-center">Авторизация</h5>
     <label for="email">Email</label>
     <br />
@@ -32,7 +32,7 @@
       >
         <img
           v-if="passType"
-          src="img/work_icons/eye-slash.svg"
+          src="images/work_icons/eye-slash.svg"
           width="24"
           height="24"
           alt="Show password"
@@ -40,7 +40,7 @@
         />
         <img
           v-else
-          src="img/work_icons/eye.svg"
+          src="images/work_icons/eye.svg"
           width="24"
           height="24"
           alt="Hide password"
@@ -49,7 +49,7 @@
       </button>
     </div>
 
-    <button class="btn btn-success w-100 mt-3" type="submit">Войти</button>
+    <button class="btn btn-success w-100 mt-3" @click="login">Войти</button>
   </div>
 </template>
 
@@ -63,14 +63,14 @@ export default {
     }
   },
   methods: {
-    login() {
+    async login() {
       const formData = {
         email: this.email,
         password: this.password
       }
 
       if (this.email && this.password) {
-        this.$store.dispatch('logIn', formData)
+        await this.$store.dispatch('logIn', formData)
         // this.$emit('log-in')
       }
     }

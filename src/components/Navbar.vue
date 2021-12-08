@@ -5,20 +5,26 @@
     </div>
     <div class="buttons">
       <button
-        v-if="pathname === 'admin'"
+        v-if="userId && pathname === 'admin'"
         class="btn btn-sm btn-light me-2"
         @click="$emit('set-path-name', 'calc')"
       >
         Калькулятор
       </button>
       <button
-        v-if="pathname === 'calc'"
+        v-if="userId && pathname === 'calc'"
         class="btn btn-sm btn-light me-2"
         @click="$emit('set-path-name', 'admin')"
       >
         Админка
       </button>
-      <button class="btn btn-sm btn-light text-dark">Выйти</button>
+      <button
+        v-if="userId"
+        class="btn btn-sm btn-light text-dark"
+        @click="logOut"
+      >
+        Выйти
+      </button>
     </div>
   </div>
 </template>
@@ -34,6 +40,14 @@ export default {
   computed: {
     loading() {
       return this.$store.getters.loading
+    },
+    userId() {
+      return this.$store.getters.userId
+    }
+  },
+  methods: {
+    async logOut() {
+      await this.$store.dispatch('logOut')
     }
   }
 }
