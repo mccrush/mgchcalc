@@ -1,133 +1,135 @@
 <template>
-  <div class="row pt-2">
-    <div class="col-3 pe-0">
-      <select
-        class="form-select form-select-sm w-100"
-        aria-label="Select group resourse"
-        v-model="razdel"
-        @change="selectRazdel"
-      >
-        <option value="group">Раздел Группы сырья</option>
-        <option value="siryo">Раздел Сырье</option>
-        <option value="frezer">Раздел Тип фрезеровки</option>
-        <option value="rabota">Раздел Стоимость работы</option>
-      </select>
+  <div>
+    <div class="row pt-2">
+      <div class="col-3 pe-0">
+        <select
+          class="form-select form-select-sm w-100"
+          aria-label="Select group resourse"
+          v-model="razdel"
+          @change="selectRazdel"
+        >
+          <option value="group">Раздел Группы сырья</option>
+          <option value="siryo">Раздел Сырье</option>
+          <option value="frezer">Раздел Тип фрезеровки</option>
+          <option value="rabota">Раздел Стоимость работы</option>
+        </select>
+      </div>
+      <!---->
+      <div class="col-3 pe-0">
+        <select
+          class="form-select form-select-sm w-100"
+          aria-label="Select group resourse"
+          @change="selectCategory"
+          v-model="categoryId"
+        >
+          <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
+            {{ cat.title }}
+          </option>
+        </select>
+      </div>
+      <!---->
+      <div class="col-3 pe-0">
+        <select
+          class="form-select form-select-sm w-100"
+          aria-label="Select resourse"
+          @change="selectElement"
+          :disabled="razdel === 'group' || razdel === 'frezer'"
+          v-model="elementId"
+        >
+          <option v-for="elem in elements" :key="elem.id" :value="elem.id">
+            {{ elem.title }}
+          </option>
+        </select>
+      </div>
+      <div class="col-3">
+        <button
+          class="btn btn-sm btn-outline-success w-100"
+          @click="selectCreateButton('add')"
+        >
+          Создать +
+        </button>
+      </div>
     </div>
-    <!---->
-    <div class="col-3 pe-0">
-      <select
-        class="form-select form-select-sm w-100"
-        aria-label="Select group resourse"
-        @change="selectCategory"
-        v-model="categoryId"
-      >
-        <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
-          {{ cat.title }}
-        </option>
-      </select>
+    <div class="row pt-2">
+      <div class="col-6 pe-0">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          v-model.trim="item.title"
+        />
+      </div>
+      <div class="col-3 pe-0">
+        <select
+          v-if="razdel === 'siryo' || razdel === 'rabota'"
+          class="form-select form-select-sm w-100"
+          aria-label="Select resourse"
+          v-model="item.categoryId"
+        >
+          <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
+            {{ cat.title }}
+          </option>
+        </select>
+      </div>
+      <!-- -->
+      <div v-if="razdel === 'siryo'" class="col-1 pe-0">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          v-model.trim="item.ed"
+        />
+      </div>
+      <div v-if="razdel === 'siryo'" class="col-2">
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          min="0"
+          max="10000"
+          step="10"
+          v-model.number="item.price"
+        />
+      </div>
+      <!-- -->
+      <div v-if="razdel === 'rabota'" class="col-1 pe-0">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          v-model.number="item.priceS"
+        />
+      </div>
+      <div v-if="razdel === 'rabota'" class="col-1 pe-0">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          v-model.number="item.priceM"
+        />
+      </div>
+      <div v-if="razdel === 'rabota'" class="col-1">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          v-model.number="item.priceL"
+        />
+      </div>
+      <!-- -->
     </div>
-    <!---->
-    <div class="col-3 pe-0">
-      <select
-        class="form-select form-select-sm w-100"
-        aria-label="Select resourse"
-        @change="selectElement"
-        :disabled="razdel === 'group' || razdel === 'frezer'"
-        v-model="elementId"
-      >
-        <option v-for="elem in elements" :key="elem.id" :value="elem.id">
-          {{ elem.title }}
-        </option>
-      </select>
-    </div>
-    <div class="col-3">
-      <button
-        class="btn btn-sm btn-outline-success w-100"
-        @click="selectCreateButton('add')"
-      >
-        Создать +
-      </button>
-    </div>
-  </div>
-  <div class="row pt-2">
-    <div class="col-6 pe-0">
-      <input
-        type="text"
-        class="form-control form-control-sm"
-        v-model.trim="item.title"
-      />
-    </div>
-    <div class="col-3 pe-0">
-      <select
-        v-if="razdel === 'siryo' || razdel === 'rabota'"
-        class="form-select form-select-sm w-100"
-        aria-label="Select resourse"
-        v-model="item.categoryId"
-      >
-        <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
-          {{ cat.title }}
-        </option>
-      </select>
-    </div>
-    <!-- -->
-    <div v-if="razdel === 'siryo'" class="col-1 pe-0">
-      <input
-        type="text"
-        class="form-control form-control-sm"
-        v-model.trim="item.ed"
-      />
-    </div>
-    <div v-if="razdel === 'siryo'" class="col-2">
-      <input
-        type="number"
-        class="form-control form-control-sm"
-        min="0"
-        max="10000"
-        step="10"
-        v-model.number="item.price"
-      />
-    </div>
-    <!-- -->
-    <div v-if="razdel === 'rabota'" class="col-1 pe-0">
-      <input
-        type="text"
-        class="form-control form-control-sm"
-        v-model.number="item.priceS"
-      />
-    </div>
-    <div v-if="razdel === 'rabota'" class="col-1 pe-0">
-      <input
-        type="text"
-        class="form-control form-control-sm"
-        v-model.number="item.priceM"
-      />
-    </div>
-    <div v-if="razdel === 'rabota'" class="col-1">
-      <input
-        type="text"
-        class="form-control form-control-sm"
-        v-model.number="item.priceL"
-      />
-    </div>
-    <!-- -->
-  </div>
-  <div class="row pt-2 pb-2">
-    <div class="col-9 pe-0"></div>
-    <div class="col-3">
-      <button
-        v-if="mod === 'edit'"
-        class="btn btn-sm btn-success w-100"
-        @click="saveItem"
-      >
-        Сохранить
-      </button>
-      <button
-        v-if="mod === 'add'"
-        class="btn btn-sm btn-success w-100"
-        @click="addItem"
-      >
-        Добавить в БД
-      </button>
+    <div class="row pt-2 pb-2">
+      <div class="col-9 pe-0"></div>
+      <div class="col-3">
+        <button
+          v-if="mod === 'edit'"
+          class="btn btn-sm btn-success w-100"
+          @click="saveItem"
+        >
+          Сохранить
+        </button>
+        <button
+          v-if="mod === 'add'"
+          class="btn btn-sm btn-success w-100"
+          @click="addItem"
+        >
+          Добавить в БД
+        </button>
+      </div>
     </div>
   </div>
 </template>

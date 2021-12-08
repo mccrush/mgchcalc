@@ -2,7 +2,9 @@
   <div class="max-width-840 m-auto shadow-sm rounded-3 mt-3">
     <Navbar @set-path-name="setPathName" :pathname="pathname" />
     <div class="container-fluid">
-      <component :is="myComponent" />
+      <transition name="fade" mode="out-in" appear>
+        <component :is="myComponent" />
+      </transition>
     </div>
   </div>
 </template>
@@ -73,5 +75,15 @@ export default {
 
 .max-width-840 {
   max-width: 840px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
