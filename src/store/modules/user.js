@@ -16,6 +16,7 @@ export default {
       try {
         await signInWithEmailAndPassword(auth, email, password)
       } catch (err) {
+        console.log('user.js logOut(): Ошибка при входе в систему, err:', error)
         throw err
       }
     },
