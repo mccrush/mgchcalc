@@ -132,12 +132,13 @@ export default {
       this.runCalc()
     },
     runCalc() {
+      const size = this.rabotaSize.replace('.', ',')
       const message =
         this.categoryTitle +
         ' ' +
         this.rabota.title +
         ', ' +
-        this.rabotaSize +
+        size +
         ' м.п.' +
         ' x ' +
         this.rabota[this.rabotaAmount] +

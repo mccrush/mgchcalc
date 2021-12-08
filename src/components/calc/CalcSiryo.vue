@@ -107,10 +107,11 @@ export default {
       this.siryoSize = 0
     },
     runCalc() {
+      const size = this.siryoSize.replace('.', ',')
       const message =
         this.siryo.title +
         ', ' +
-        this.siryoSize +
+        size +
         ' ' +
         this.siryo.ed +
         ' x ' +
