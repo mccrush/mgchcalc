@@ -4,10 +4,9 @@
       <h5 class="m-0">Стоимость работы</h5>
     </div>
   </div> -->
-  <div class="row pt-3 pb-2">
+  <div class="row pt-2">
     <!---->
     <div class="col-3 pe-0">
-      <small class="text-muted">Группа работы</small><br />
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
@@ -21,7 +20,6 @@
     </div>
 
     <div class="col-3 pe-0">
-      <small class="text-muted">Работа (толщина)</small><br />
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
@@ -33,58 +31,45 @@
         </option>
       </select>
     </div>
-    <div class="col-4 text-center ps-0 pe-0">
-      <small class="text-muted">Колич.</small><br />
-      <div class="btn-group btn-group-sm" role="group" aria-label="Kolich">
-        <button
-          type="button"
-          class="btn btn-primary"
-          :class="{ active: rabotaAmount === 'priceS' }"
-          @click="setRabotaAmount('priceS')"
-          :disabled="!rabotaSelectId"
-        >
-          &lt;100
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          :class="{ active: rabotaAmount === 'priceM' }"
-          @click="setRabotaAmount('priceM')"
-          :disabled="!rabotaSelectId"
-        >
-          &gt;100
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          :class="{ active: rabotaAmount === 'priceL' }"
-          @click="setRabotaAmount('priceL')"
-          :disabled="!rabotaSelectId"
-        >
-          &gt;500
-        </button>
+    <!-- <div class="col-4 text-center ps-0 pe-0">
+      
+    </div> -->
+    <div class="col-12 col-md-6">
+      <div class="row">
+        <div class="col-5">
+          <KolichBut :rabotaAmount="rabotaAmount" />
+        </div>
+        <div class="col-3">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            v-model="rabotaSize"
+            @input="runCalc"
+          />
+        </div>
+        <div class="col-2 text-end">
+          {{ rabotaSumma }}
+        </div>
+        <div class="col-2 text-end">
+          <ButtonTrash @click="$emit('remove-calc', id)" />
+        </div>
       </div>
-    </div>
-    <div class="col-1 ps-0 pe-0">
-      <small class="text-muted">Разм. м.п.</small><br />
-      <input
-        type="text"
-        class="form-control form-control-sm"
-        v-model="rabotaSize"
-        @input="runCalc"
-      />
-    </div>
-    <div class="col-1 text-end">
-      <small class="text-muted">Сумма</small><br />
-      {{ rabotaSumma }}
     </div>
     <!---->
   </div>
 </template>
 
 <script>
+import ButtonTrash from '@/components/buttons/ButtonTrash'
+import KolichBut from '@/components/buttons/KolichBut'
+
 export default {
-  emits: ['rabota-price'],
+  components: {
+    ButtonTrash,
+    KolichBut
+  },
+  props: ['id'],
+  emits: ['siryo-price', 'remove-calc'],
   data() {
     return {
       categoryRabotaId: '',

@@ -32,7 +32,7 @@
         <div class="col-4 text-center pe-0">
           <small>{{ siryo.ed }} / {{ siryo.price }}</small>
         </div>
-        <div class="col-4 d-flex justify-content-start text-center ps-0 pe-0">
+        <div class="col-4 d-flex justify-content-start text-center">
           <input
             type="text"
             class="form-control form-control-sm"
@@ -53,7 +53,7 @@
           {{ siryoSumma }}
         </div>
         <div class="col-2 text-end">
-          <ButtonTrash @click="$emit('remove-syryo', id)" />
+          <ButtonTrash @click="$emit('remove-calc', id)" />
         </div>
       </div>
     </div>
@@ -63,12 +63,13 @@
 
 <script>
 import ButtonTrash from '@/components/buttons/ButtonTrash'
+
 export default {
   components: {
     ButtonTrash
   },
   props: ['id'],
-  emits: ['siryo-price', 'remove-syryo'],
+  emits: ['siryo-price', 'remove-calc'],
   data() {
     return {
       categorySiryoId: '',

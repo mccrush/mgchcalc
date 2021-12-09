@@ -19,17 +19,21 @@
     <div class="row small text-center text-muted pt-2">
       <div class="col-3">Группа сырья</div>
       <div class="col-3">Сырье</div>
-      <div class="col-2">Ед. / стоим.</div>
-      <div class="col-2">Размеры</div>
-      <div class="col-1">Сумма</div>
-      <div class="col-1">Удалить</div>
+      <div class="col-12 col-md-6">
+        <div class="row">
+          <div class="col-4">Ед. / стоим.</div>
+          <div class="col-4">Размеры</div>
+          <div class="col-2">Сумма</div>
+          <div class="col-2">Удалить</div>
+        </div>
+      </div>
     </div>
     <CalcSiryo
       v-for="sir in siryoArray"
       :key="sir.id"
       :id="sir.id"
       @siryo-price="siryoPrice"
-      @remove-syryo="removeSiryo"
+      @remove-calc="removeSiryo"
     />
     <div class="row pt-2">
       <div class="col-12 d-flex justify-content-between">
@@ -46,7 +50,35 @@
         <h5 class="m-0">Стоимость работы</h5>
       </div>
     </div>
-    <CalcRabota @rabota-price="rabotaPrice" />
+    <div class="row small text-center text-muted pt-2">
+      <div class="col-3">Группа работы</div>
+      <div class="col-3">Работа (толщина)</div>
+      <div class="col-12 col-md-6">
+        <div class="row">
+          <div class="col-5">Колич.</div>
+          <div class="col-3">Разм. м.п.</div>
+          <div class="col-2">Сумма</div>
+          <div class="col-2">Удалить</div>
+        </div>
+      </div>
+    </div>
+    <CalcRabota
+      v-for="rab in rabotaArray"
+      :key="rab.id"
+      :id="rab.id"
+      @rabota-price="rabotaPrice"
+      @remove-calc="removeRabota"
+    />
+    <div class="row pt-2">
+      <div class="col-12 d-flex justify-content-between">
+        <button
+          class="btn btn-sm btn-outline-light text-muted"
+          @click="addRabotaCalc"
+        >
+          Добавить позицию
+        </button>
+      </div>
+    </div>
     <div class="row bg-light">
       <div class="col-8"></div>
       <div class="col-4 d-flex justify-content-between p-2 pe-2">
@@ -96,7 +128,8 @@ export default {
       rabotaSum: 0,
       siryoMessage: '',
       rabotaMessage: '',
-      siryoArray: [createCalc()]
+      siryoArray: [createCalc()],
+      rabotaArray: [createCalc()]
     }
   },
   computed: {
@@ -129,15 +162,16 @@ export default {
   },
   methods: {
     removeSiryo(id) {
-      console.log('indx:', id)
-      //const array = [...this.siryoArray]
-      console.log('this.siryoArray do:', this.siryoArray)
-
       this.siryoArray = this.siryoArray.filter(item => item.id !== id)
-      console.log('this.siryoArray posle:', this.siryoArray)
+    },
+    removeRabota(id) {
+      this.rabotaArray = this.rabotaArray.filter(item => item.id !== id)
     },
     addSiryoCalc() {
       this.siryoArray.push(createCalc())
+    },
+    addRabotaCalc() {
+      this.rabotaArray.push(createCalc())
     },
     siryoPrice({ index, sum, message }) {
       let item = {
