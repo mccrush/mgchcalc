@@ -1,7 +1,7 @@
 <template>
   <div class="row pt-2 pb-2">
     <!---->
-    <div class="col-3 pe-0">
+    <div class="col-12 col-sm-6 col-md-3 pe-0">
       <small class="text-muted">Группа сырья</small><br />
       <select
         class="form-select form-select-sm w-100"
@@ -15,7 +15,7 @@
       </select>
     </div>
 
-    <div class="col-3 pe-0">
+    <div class="col-12 col-sm-6 col-md-3 pe-0">
       <small class="text-muted">Сырье</small><br />
       <select
         class="form-select form-select-sm w-100"
@@ -29,31 +29,40 @@
       </select>
     </div>
 
-    <div class="col-3 text-center pe-0">
-      <small class="text-muted">Ед. / стоимость</small><br />
-      <small>{{ siryo.ed }} / {{ siryo.price }}</small>
-    </div>
-    <div class="col-1 text-center ps-0 pe-0">
-      <small class="text-muted">д</small><br />
-      <input
-        type="text"
-        class="form-control form-control-sm"
-        v-model="siryoDlina"
-        @input="runCalc"
-      />
-    </div>
-    <div class="col-1 text-center ps-0 pe-0">
-      <small class="text-muted">ш</small><br />
-      <input
-        type="text"
-        class="form-control form-control-sm"
-        v-model="siryoShirina"
-        @input="runCalc"
-      />
-    </div>
-    <div class="col-1 text-end">
-      <small class="text-muted">Сумма</small><br />
-      {{ siryoSumma }}
+    <div class="col-12 col-md-6">
+      <div class="row">
+        <div class="col-4 text-center pe-0">
+          <small class="text-muted">Ед. / стоимость</small><br />
+          <small>{{ siryo.ed }} / {{ siryo.price }}</small>
+        </div>
+        <div class="col-6 d-flex justify-content-start text-center ps-0 pe-0">
+          <div class="width-64px">
+            <small class="text-muted">д</small><br />
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              v-model="siryoDlina"
+              @input="runCalc"
+            />
+          </div>
+          <div class="width-64px">
+            <small class="text-muted">ш</small><br />
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              v-model="siryoShirina"
+              @input="runCalc"
+            />
+          </div>
+          <div class="align-self-end small pb-2">
+            {{ '&nbsp;= ' + siryoSize + ' кв.м.' }}
+          </div>
+        </div>
+        <div class="col-2 text-end">
+          <small class="text-muted">Сумма</small><br />
+          {{ siryoSumma }}
+        </div>
+      </div>
     </div>
     <!---->
   </div>
@@ -113,8 +122,18 @@ export default {
         ' ₽ = ' +
         this.siryoSumma +
         ' ₽'
-      this.$emit('siryo-price', { sum: this.siryoSumma, message })
+      this.$emit('siryo-price', {
+        index: this.index,
+        sum: this.siryoSumma,
+        message
+      })
     }
   }
 }
 </script>
+
+<style scoped>
+.width-64px {
+  width: 64px;
+}
+</style>

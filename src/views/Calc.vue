@@ -103,9 +103,14 @@ export default {
       }
     },
     itogMessage() {
+      let messageSiryo = ''
+      this.siryoArray.forEach(item => {
+        messageSiryo += item.message + '\n'
+      })
+
       if (this.siryoEnable) {
         return (
-          this.siryoMessage +
+          messageSiryo +
           '\n' +
           this.rabotaMessage +
           '\nИтого ' +
@@ -124,9 +129,14 @@ export default {
         message: ''
       })
     },
-    siryoPrice({ sum, message }) {
-      this.siryoSum = sum
-      this.siryoMessage = message
+    siryoPrice({ index, sum, message }) {
+      let item = {
+        sum,
+        message
+      }
+      this.siryoArray[index] = item
+      // this.siryoSum = sum
+      // this.siryoMessage = message
     },
     rabotaPrice({ sum, message }) {
       this.rabotaSum = sum
