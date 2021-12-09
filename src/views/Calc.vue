@@ -16,6 +16,14 @@
         </div> -->
       </div>
     </div>
+    <div class="row small text-center text-muted pt-2">
+      <div class="col-3">Группа сырья</div>
+      <div class="col-3">Сырье</div>
+      <div class="col-2">Ед. / стоим.</div>
+      <div class="col-2">Размеры</div>
+      <div class="col-1">Сумма</div>
+      <div class="col-1">Удалить</div>
+    </div>
     <CalcSiryo
       v-for="(sir, index) in siryoArray"
       :key="'sir' + index"
