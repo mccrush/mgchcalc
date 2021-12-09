@@ -69,12 +69,11 @@ export default {
     KolichBut
   },
   props: ['id'],
-  emits: ['siryo-price', 'remove-calc'],
+  emits: ['rabota-price', 'remove-calc'],
   data() {
     return {
       categoryRabotaId: '',
       rabotaSelectId: '',
-      rabotaAmount: 'priceS',
       rabotaSize: ''
     }
   },
@@ -99,12 +98,32 @@ export default {
         ) || { priceS: 0, priceM: 0, priceL: 0 }
       )
     },
+    rabotaAmount() {
+      if (+this.rabotaSize < 100) {
+        return 'priceS'
+      } else if (+this.rabotaSize >= 100 && +this.rabotaSize < 500) {
+        return 'priceM'
+      } else if (+this.rabotaSize >= 500) {
+        return 'priceL'
+      } else {
+        return 'priceS'
+      }
+    },
+    rabotaPrice() {
+      if (+this.rabotaSize < 100) {
+        return this.rabota.priceS
+      } else if (+this.rabotaSize >= 100 && +this.rabotaSize < 500) {
+        return this.rabota.priceM
+      } else if (+this.rabotaSize >= 500) {
+        return this.rabota.priceL
+      }
+    },
     rabotaSumma() {
       let size = this.rabotaSize
       size = size.replace(/,/g, '.')
       //const price = this.rabota[this.rabotaAmount] || 0
       //return Math.ceil(price * size)
-      return Math.ceil(this.rabota[this.rabotaAmount] * size)
+      return Math.ceil(this.rabotaPrice * size)
     }
   },
   methods: {
@@ -130,7 +149,11 @@ export default {
         ' ₽ = ' +
         this.rabotaSumma +
         ' ₽'
-      this.$emit('rabota-price', { sum: this.rabotaSumma, message })
+      this.$emit('rabota-price', {
+        id: this.id,
+        sum: this.rabotaSumma,
+        message
+      })
     }
   }
 }

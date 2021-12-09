@@ -69,7 +69,7 @@
       @rabota-price="rabotaPrice"
       @remove-calc="removeRabota"
     />
-    <div class="row pt-2">
+    <div class="row pt-2 pb-2">
       <div class="col-12 d-flex justify-content-between">
         <button
           class="btn btn-sm btn-outline-light text-muted"
@@ -94,7 +94,7 @@
         <div class="w-100">
           <textarea
             class="form-control w-100"
-            rows="3"
+            rows="8"
             v-model="itogMessage"
           ></textarea>
         </div>
@@ -146,11 +146,16 @@ export default {
         messageSiryo += item.message + '\n'
       })
 
+      let messageRabota = ''
+      this.rabotaArray.forEach(item => {
+        messageRabota += item.message + '\n'
+      })
+
       if (this.siryoEnable) {
         return (
           messageSiryo +
           '\n' +
-          this.rabotaMessage +
+          messageRabota +
           '\nИтого ' +
           this.sumItogo +
           ' ₽'
@@ -173,19 +178,27 @@ export default {
     addRabotaCalc() {
       this.rabotaArray.push(createCalc())
     },
-    siryoPrice({ index, sum, message }) {
+    siryoPrice({ id, sum, message }) {
       let item = {
-        id: new Date().getTime().toString(),
+        id,
         sum,
         message
       }
+      let index = this.siryoArray.findIndex(item => item.id === id)
       this.siryoArray[index] = item
       // this.siryoSum = sum
       // this.siryoMessage = message
     },
-    rabotaPrice({ sum, message }) {
-      this.rabotaSum = sum
-      this.rabotaMessage = message
+    rabotaPrice({ id, sum, message }) {
+      // this.rabotaSum = sum
+      // this.rabotaMessage = message
+      let item = {
+        id,
+        sum,
+        message
+      }
+      let index = this.rabotaArray.findIndex(item => item.id === id)
+      this.rabotaArray[index] = item
     },
     copyInBuffer(e) {
       const el = e.target.parentNode.previousSibling.lastChild.lastChild

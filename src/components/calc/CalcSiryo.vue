@@ -121,7 +121,7 @@ export default {
         this.siryoSumma +
         ' ₽'
       this.$emit('siryo-price', {
-        index: this.index,
+        id: this.id,
         sum: this.siryoSumma,
         message
       })
