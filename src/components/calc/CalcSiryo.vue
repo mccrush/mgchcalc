@@ -61,6 +61,7 @@
 
 <script>
 export default {
+  props: ['index'],
   emits: ['siryo-price'],
   data() {
     return {

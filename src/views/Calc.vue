@@ -3,7 +3,7 @@
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-between">
         <h5 class="m-0">Стоимость сырья</h5>
-        <div class="form-check form-switch pt-1">
+        <!-- <div class="form-check form-switch pt-1">
           <input
             class="form-check-input"
             type="checkbox"
@@ -13,10 +13,30 @@
             @change="siryoEnable = !siryoEnable"
           />
           <label class="form-check-label" for="siryoEnable">Считать</label>
-        </div>
+        </div> -->
       </div>
     </div>
-    <CalcSiryo v-show="siryoEnable" @siryo-price="siryoPrice" />
+    <CalcSiryo
+      v-for="(sir, index) in siryoArray"
+      :key="'sir' + index"
+      :index="index"
+      @siryo-price="siryoPrice"
+    />
+    <div class="row">
+      <div class="col-12 d-flex justify-content-between">
+        <button
+          class="btn btn-sm btn-outline-light text-muted"
+          @click="addSiryoCalc"
+        >
+          Добавить позицию
+        </button>
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-12 d-flex justify-content-between">
+        <h5 class="m-0">Стоимость работы</h5>
+      </div>
+    </div>
     <CalcRabota @rabota-price="rabotaPrice" />
     <div class="row bg-light">
       <div class="col-8"></div>
@@ -65,7 +85,13 @@ export default {
       siryoSum: 0,
       rabotaSum: 0,
       siryoMessage: '',
-      rabotaMessage: ''
+      rabotaMessage: '',
+      siryoArray: [
+        {
+          sum: 0,
+          message: ''
+        }
+      ]
     }
   },
   computed: {
@@ -92,6 +118,12 @@ export default {
     }
   },
   methods: {
+    addSiryoCalc() {
+      this.siryoArray.push({
+        sum: 0,
+        message: ''
+      })
+    },
     siryoPrice({ sum, message }) {
       this.siryoSum = sum
       this.siryoMessage = message

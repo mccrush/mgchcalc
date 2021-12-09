@@ -13,14 +13,14 @@
       </button>
       <button
         v-if="userId && pathname === 'calc'"
-        class="btn btn-sm btn-light me-2"
+        class="btn btn-sm btn-outline-light text-muted me-2"
         @click="$emit('set-path-name', 'admin')"
       >
         Админка
       </button>
       <button
         v-if="userId"
-        class="btn btn-sm btn-light text-dark"
+        class="btn btn-sm btn-outline-light text-muted"
         @click="logOut"
       >
         Выйти

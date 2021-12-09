@@ -1,10 +1,10 @@
 <template>
-  <div class="row pt-3">
+  <!-- <div class="row pt-3">
     <div class="col-12 d-flex justify-content-between">
       <h5 class="m-0">Стоимость работы</h5>
     </div>
-  </div>
-  <div class="row pt-2 pb-2">
+  </div> -->
+  <div class="row pt-3 pb-2">
     <!---->
     <div class="col-3 pe-0">
       <small class="text-muted">Группа работы</small><br />
