@@ -38,12 +38,14 @@
             class="form-control form-control-sm"
             v-model="siryoDlina"
             @input="runCalc"
+            :disabled="!categorySiryoId || !siryoSelectId"
           />
           <input
             type="text"
             class="form-control form-control-sm"
             v-model="siryoShirina"
             @input="runCalc"
+            :disabled="!categorySiryoId || !siryoSelectId"
           />
           <!-- <div class="align-self-end small pb-2">
             {{ '&nbsp;= ' + siryoSize }}

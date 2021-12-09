@@ -45,6 +45,7 @@
             class="form-control form-control-sm"
             v-model="rabotaSize"
             @input="runCalc"
+            :disabled="!categoryRabotaId || !rabotaSelectId"
           />
         </div>
         <div class="col-2 text-end">
@@ -129,7 +130,7 @@ export default {
   methods: {
     selectCatRabota() {
       this.rabotaSelectId = ''
-      this.rabotaSize = ''
+      //this.rabotaSize = ''
     },
     setRabotaAmount(priceType) {
       this.rabotaAmount = priceType
