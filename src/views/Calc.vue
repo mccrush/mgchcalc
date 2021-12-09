@@ -35,7 +35,7 @@
       @siryo-price="siryoPrice"
       @remove-calc="removeSiryo"
     />
-    <div class="row pt-2">
+    <div class="row pt-2 pb-2">
       <div class="col-12 d-flex justify-content-between">
         <button
           class="btn btn-sm btn-outline-light text-muted"
@@ -43,6 +43,15 @@
         >
           Добавить позицию
         </button>
+      </div>
+    </div>
+    <div class="row bg-light">
+      <div class="col-8"></div>
+      <div class="col-4 d-flex justify-content-between p-1 pe-2">
+        <div></div>
+        <div class="small">
+          Итого сырье: <span class="fw-bold">{{ siryoSum }}</span>
+        </div>
       </div>
     </div>
     <div class="row pt-3">
@@ -81,9 +90,18 @@
     </div>
     <div class="row bg-light">
       <div class="col-8"></div>
-      <div class="col-4 d-flex justify-content-between p-2 pe-2">
+      <div class="col-4 d-flex justify-content-between p-1 pe-2">
         <div></div>
-        <div>
+        <div class="small">
+          Итого работа: <span class="fw-bold">{{ rabotaSum }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="row bg-secondary">
+      <div class="col-8"></div>
+      <div class="col-4 d-flex justify-content-between p-1 pe-2">
+        <div></div>
+        <div class="small text-light">
           Итого: <span class="fw-bold">{{ sumItogo }}</span>
         </div>
       </div>
@@ -94,7 +112,7 @@
         <div class="w-100">
           <textarea
             class="form-control w-100"
-            rows="8"
+            rows="5"
             v-model="itogMessage"
           ></textarea>
         </div>
@@ -134,11 +152,21 @@ export default {
   },
   computed: {
     sumItogo() {
-      if (this.siryoEnable) {
-        return this.siryoSum + this.rabotaSum
-      } else {
-        return this.rabotaSum
-      }
+      let sumSiryo = 0
+      let sumRabota = 0
+
+      this.siryoArray.forEach(item => {
+        sumSiryo += item.sum
+      })
+
+      this.rabotaArray.forEach(item => {
+        sumRabota += item.sum
+      })
+
+      this.siryoSum = sumSiryo
+      this.rabotaSum = sumRabota
+
+      return sumSiryo + sumRabota
     },
     itogMessage() {
       let messageSiryo = ''
@@ -151,18 +179,9 @@ export default {
         messageRabota += item.message + '\n'
       })
 
-      if (this.siryoEnable) {
-        return (
-          messageSiryo +
-          '\n' +
-          messageRabota +
-          '\nИтого ' +
-          this.sumItogo +
-          ' ₽'
-        )
-      } else {
-        return this.rabotaMessage + '\nИтого ' + this.sumItogo + ' ₽'
-      }
+      return (
+        messageSiryo + '' + messageRabota + '\nИтого ' + this.sumItogo + ' ₽'
+      )
     }
   },
   methods: {
