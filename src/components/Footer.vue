@@ -6,7 +6,7 @@
         href="https://github.com/mccrush/mgchcalc/releases"
         target="_blank"
         title="Посмотреть историю изменений"
-        >v1.0.0</a
+        >Версия v1.1.0</a
       >
     </div>
   </div>
