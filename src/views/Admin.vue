@@ -132,6 +132,7 @@
         </button>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -139,8 +140,12 @@
 import createCategory from '@/scripts/createCategory'
 import createSiryo from '@/scripts/createSiryo'
 import createRabota from '@/scripts/createRabota'
+import Footer from '@/components/Footer'
 
 export default {
+  components: {
+    Footer
+  },
   data() {
     return {
       mod: localStorage.getItem('mod') || 'add',

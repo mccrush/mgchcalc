@@ -87,14 +87,7 @@ export default {
         ) || { ed: 'кв.м.', price: 0 }
       )
     },
-    // siryoSize() {
-    //   let dlina = this.siryoDlina.replace(/,/g, '.')
-    //   let shirina = this.siryoShirina.replace(/,/g, '.')
-    //   return dlina * shirina
-    // },
     siryoSumma() {
-      // let size = this.siryoSize
-      // size = size.replace(/,/g, '.')
       let dlina = this.siryoDlina.replace(/,/g, '.')
       let shirina = this.siryoShirina.replace(/,/g, '.')
       this.siryoSize = (dlina * shirina).toFixed(1)
