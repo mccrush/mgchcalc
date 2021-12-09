@@ -6,7 +6,7 @@
     <div class="buttons">
       <button
         v-if="userId && pathname === 'admin'"
-        class="btn btn-sm btn-light me-2"
+        class="btn btn-sm btn-outline-light text-muted me-2"
         @click="$emit('set-path-name', 'calc')"
       >
         Калькулятор

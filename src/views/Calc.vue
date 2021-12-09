@@ -25,12 +25,13 @@
       <div class="col-1">Удалить</div>
     </div>
     <CalcSiryo
-      v-for="(sir, index) in siryoArray"
-      :key="'sir' + index"
-      :index="index"
+      v-for="sir in siryoArray"
+      :key="sir.id"
+      :id="sir.id"
       @siryo-price="siryoPrice"
+      @remove-syryo="removeSiryo"
     />
-    <div class="row">
+    <div class="row pt-2">
       <div class="col-12 d-flex justify-content-between">
         <button
           class="btn btn-sm btn-outline-light text-muted"
@@ -79,6 +80,7 @@
 </template>
 
 <script>
+import createCalc from '@/scripts/createCalc'
 import CalcSiryo from '@/components/calc/CalcSiryo'
 import CalcRabota from '@/components/calc/CalcRabota'
 
@@ -94,12 +96,7 @@ export default {
       rabotaSum: 0,
       siryoMessage: '',
       rabotaMessage: '',
-      siryoArray: [
-        {
-          sum: 0,
-          message: ''
-        }
-      ]
+      siryoArray: [createCalc()]
     }
   },
   computed: {
@@ -131,14 +128,20 @@ export default {
     }
   },
   methods: {
+    removeSiryo(id) {
+      console.log('indx:', id)
+      //const array = [...this.siryoArray]
+      console.log('this.siryoArray do:', this.siryoArray)
+
+      this.siryoArray = this.siryoArray.filter(item => item.id !== id)
+      console.log('this.siryoArray posle:', this.siryoArray)
+    },
     addSiryoCalc() {
-      this.siryoArray.push({
-        sum: 0,
-        message: ''
-      })
+      this.siryoArray.push(createCalc())
     },
     siryoPrice({ index, sum, message }) {
       let item = {
+        id: new Date().getTime().toString(),
         sum,
         message
       }

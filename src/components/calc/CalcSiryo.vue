@@ -1,5 +1,5 @@
 <template>
-  <div class="row pt-2 pb-2">
+  <div class="row pt-2">
     <!---->
     <div class="col-12 col-sm-6 col-md-3 pe-0">
       <select
@@ -53,7 +53,7 @@
           {{ siryoSumma }}
         </div>
         <div class="col-2 text-end">
-          <ButtonTrash />
+          <ButtonTrash @click="$emit('remove-syryo', id)" />
         </div>
       </div>
     </div>
@@ -67,8 +67,8 @@ export default {
   components: {
     ButtonTrash
   },
-  props: ['index'],
-  emits: ['siryo-price'],
+  props: ['id'],
+  emits: ['siryo-price', 'remove-syryo'],
   data() {
     return {
       categorySiryoId: '',
