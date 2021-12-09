@@ -119,7 +119,10 @@
           v-if="mod === 'edit'"
           class="btn btn-sm btn-success w-100"
           @click="saveItem"
-          :disabled="!elementId"
+          :disabled="
+            (razdel === 'rabota' && !elementId) ||
+            (razdel === 'siryo' && !elementId)
+          "
         >
           Сохранить
         </button>
@@ -150,7 +153,6 @@ export default {
     return {
       mod: localStorage.getItem('mod') || 'add',
       razdel: localStorage.getItem('razdel') || 'group',
-      razdelId: localStorage.getItem('razdelId') || '',
       categoryId: localStorage.getItem('categoryId') || '',
       elementId: localStorage.getItem('elementId') || '',
       item: { categoryId: this.categoryId }
