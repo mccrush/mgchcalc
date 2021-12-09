@@ -2,22 +2,22 @@
   <div class="btn-group btn-group-sm" role="group" aria-label="Kolich">
     <button
       type="button"
-      class="btn btn-primary"
-      :class="{ active: rabotaAmount === 'priceS' }"
+      class="btn btn-light disabled"
+      :class="{ 'btn-dark': rabotaAmount === 'priceS' }"
     >
       &lt;100
     </button>
     <button
       type="button"
-      class="btn btn-primary"
-      :class="{ active: rabotaAmount === 'priceM' }"
+      class="btn btn-light disabled"
+      :class="{ 'btn-dark': rabotaAmount === 'priceM' }"
     >
       &gt;100
     </button>
     <button
       type="button"
-      class="btn btn-primary"
-      :class="{ active: rabotaAmount === 'priceL' }"
+      class="btn btn-light disabled"
+      :class="{ 'btn-dark': rabotaAmount === 'priceL' }"
     >
       &gt;500
     </button>
