@@ -30,7 +30,7 @@
     <div class="col-12 col-md-6">
       <div class="row">
         <div class="col-4 text-center pe-0">
-          <small>{{ siryo.ed }} / {{ siryo.price }}</small>
+          <small>{{ siryo.ed }} / {{ siryo.price + ' ₽' }}</small>
         </div>
         <div class="col-4 d-flex justify-content-start text-center">
           <input

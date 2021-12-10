@@ -56,7 +56,7 @@
     <BlockAddCalc @add-new-calc="addNewCalc" type="rabotaArray" />
     <BlockShowSum title="работа" :sum="rabotaSum" />
     <!-- -->
-    <div class="bg-success bg-opacity-10">
+    <div>
       <div class="row pt-3">
         <div class="col-12 d-flex justify-content-between">
           <h5 class="m-0">Дополнительные услуги</h5>
@@ -67,8 +67,8 @@
         <div class="col-3">--</div>
         <div class="col-12 col-md-6">
           <div class="row">
-            <div class="col-5">--</div>
-            <div class="col-3">--</div>
+            <div class="col-5">Ед. / стоим.</div>
+            <div class="col-3">Размер</div>
             <div class="col-2">Сумма</div>
             <div class="col-2">Удалить</div>
           </div>
@@ -151,6 +151,8 @@ export default {
     sumItogo() {
       let sumSiryo = 0
       let sumRabota = 0
+      let sumDopuslug = 0
+      let x2 = false
 
       this.siryoArray.forEach(item => {
         sumSiryo += item.sum
@@ -160,10 +162,23 @@ export default {
         sumRabota += item.sum
       })
 
+      this.dopuslugArray.forEach(item => {
+        if (item.sum === 'x2') {
+          x2 = true
+        } else {
+          sumDopuslug += item.sum
+        }
+      })
+
       this.siryoSum = sumSiryo
       this.rabotaSum = sumRabota
+      this.dopuslugSum = sumDopuslug
 
-      return sumSiryo + sumRabota
+      if (x2) {
+        return (sumSiryo + sumRabota + sumDopuslug) * 2
+      } else {
+        return sumSiryo + sumRabota + sumDopuslug
+      }
     },
     itogMessage() {
       let messageSiryo = ''
@@ -176,8 +191,19 @@ export default {
         messageRabota += item.message + '\n'
       })
 
+      let messageDopuslug = ''
+      this.dopuslugArray.forEach(item => {
+        messageDopuslug += item.message + '\n'
+      })
+
       return (
-        messageSiryo + '' + messageRabota + '\nИтого ' + this.sumItogo + ' ₽'
+        messageSiryo +
+        '' +
+        messageRabota +
+        messageDopuslug +
+        '\nИтого ' +
+        this.sumItogo +
+        ' ₽'
       )
     }
   },
