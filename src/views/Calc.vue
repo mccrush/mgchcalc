@@ -39,7 +39,7 @@
       <div class="col-12 d-flex justify-content-between">
         <button
           class="btn btn-sm btn-outline-light text-muted"
-          @click="addSiryoCalc"
+          @click="addNewCalc({ type: 'siryoArray' })"
         >
           Добавить позицию
         </button>
@@ -82,7 +82,7 @@
       <div class="col-12 d-flex justify-content-between">
         <button
           class="btn btn-sm btn-outline-light text-muted"
-          @click="addRabotaCalc"
+          @click="addNewCalc({ type: 'rabotaArray' })"
         >
           Добавить позицию
         </button>
@@ -191,11 +191,8 @@ export default {
     removeRabota(id) {
       this.rabotaArray = this.rabotaArray.filter(item => item.id !== id)
     },
-    addSiryoCalc() {
-      this.siryoArray.push(createCalc())
-    },
-    addRabotaCalc() {
-      this.rabotaArray.push(createCalc())
+    addNewCalc({ type }) {
+      this[type].push(createCalc())
     },
     calculationPrice({ type, id, sum, message }) {
       let item = {
