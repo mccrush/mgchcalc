@@ -14,18 +14,7 @@
       </select>
     </div>
 
-    <div class="col-3 pe-0">
-      <!-- <select
-        class="form-select form-select-sm w-100"
-        aria-label="Select group resourse"
-        @change="runCalc"
-        v-model="rabotaSelectId"
-      >
-        <option v-for="sir in rabotas" :key="sir.id" :value="sir.id">
-          {{ sir.title }}
-        </option>
-      </select> -->
-    </div>
+    <div class="col-3 pe-0"></div>
 
     <div class="col-12 col-md-6">
       <div class="row">
