@@ -3,17 +3,6 @@
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-between">
         <h5 class="m-0">Стоимость сырья</h5>
-        <!-- <div class="form-check form-switch pt-1">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            role="switch"
-            id="siryoEnable"
-            :checked="siryoEnable"
-            @change="siryoEnable = !siryoEnable"
-          />
-          <label class="form-check-label" for="siryoEnable">Считать</label>
-        </div> -->
       </div>
     </div>
     <div class="row small text-center text-muted pt-2">
@@ -54,6 +43,7 @@
         </div>
       </div>
     </div>
+    <!-- -->
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-between">
         <h5 class="m-0">Стоимость работы</h5>
@@ -97,6 +87,7 @@
         </div>
       </div>
     </div>
+    <!-- -->
     <div class="row bg-secondary">
       <div class="col-8"></div>
       <div class="col-4 d-flex justify-content-between p-1 pe-2">

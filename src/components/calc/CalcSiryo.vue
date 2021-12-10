@@ -47,9 +47,6 @@
             @input="runCalc"
             :disabled="!categorySiryoId || !siryoSelectId"
           />
-          <!-- <div class="align-self-end small pb-2">
-            {{ '&nbsp;= ' + siryoSize }}
-          </div> -->
         </div>
         <div class="col-2 text-end">
           {{ siryoSumma }}
@@ -134,9 +131,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.width-64px {
-  width: 48px;
-}
-</style>

@@ -1,9 +1,4 @@
 <template>
-  <!-- <div class="row pt-3">
-    <div class="col-12 d-flex justify-content-between">
-      <h5 class="m-0">Стоимость работы</h5>
-    </div>
-  </div> -->
   <div class="row pt-2">
     <!---->
     <div class="col-3 pe-0">
@@ -31,9 +26,7 @@
         </option>
       </select>
     </div>
-    <!-- <div class="col-4 text-center ps-0 pe-0">
-      
-    </div> -->
+
     <div class="col-12 col-md-6">
       <div class="row">
         <div class="col-5">
@@ -124,15 +117,12 @@ export default {
     rabotaSumma() {
       let size = this.rabotaSize
       size = size.replace(/,/g, '.')
-      //const price = this.rabota[this.rabotaAmount] || 0
-      //return Math.ceil(price * size)
       return Math.ceil(this.rabotaPrice * size)
     }
   },
   methods: {
     selectCatRabota() {
       this.rabotaSelectId = ''
-      //this.rabotaSize = ''
     },
     setRabotaAmount(priceType) {
       this.rabotaAmount = priceType
