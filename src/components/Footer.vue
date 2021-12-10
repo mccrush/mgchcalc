@@ -6,11 +6,22 @@
         href="https://github.com/mccrush/mgchcalc/releases"
         target="_blank"
         title="Посмотреть историю изменений"
-        >Версия v1.1.0</a
+        >Версия v{{ version }}</a
       >
     </div>
   </div>
 </template>
+
+<script>
+import { version } from '@/../package.json'
+export default {
+  data() {
+    return {
+      version
+    }
+  }
+}
+</script>
 
 <style scoped>
 a {
