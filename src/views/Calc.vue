@@ -124,21 +124,25 @@
 import createCalc from '@/scripts/createCalc'
 import CalcSiryo from '@/components/calc/CalcSiryo'
 import CalcRabota from '@/components/calc/CalcRabota'
+import CalcDopuslug from '@/components/calc/CalcDopuslug'
 
 export default {
   components: {
     CalcSiryo,
-    CalcRabota
+    CalcRabota,
+    CalcDopuslug
   },
   data() {
     return {
-      siryoEnable: true,
       siryoSum: 0,
       rabotaSum: 0,
+      dopuslugSum: 0,
       siryoMessage: '',
       rabotaMessage: '',
+      dopuslugMessage: '',
       siryoArray: [createCalc()],
-      rabotaArray: [createCalc()]
+      rabotaArray: [createCalc()],
+      dopuslugArray: [createCalc()]
     }
   },
   computed: {
