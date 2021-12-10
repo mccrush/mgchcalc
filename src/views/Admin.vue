@@ -8,10 +8,13 @@
           v-model="razdel"
           @change="selectRazdel"
         >
-          <option value="group">Раздел Группы сырья</option>
-          <option value="siryo">Раздел Сырье</option>
-          <option value="frezer">Раздел Тип фрезеровки</option>
-          <option value="rabota">Раздел Стоимость работы</option>
+          <option
+            v-for="razdel in razdels"
+            :key="razdel.alias"
+            :value="razdel.alias"
+          >
+            {{ razdel.title }}
+          </option>
         </select>
       </div>
       <!---->
@@ -33,7 +36,9 @@
           class="form-select form-select-sm w-100"
           aria-label="Select resourse"
           @change="selectElement"
-          :disabled="razdel === 'group' || razdel === 'frezer'"
+          :disabled="
+            razdel === 'group' || razdel === 'frezer' || razdel === 'dopuslug'
+          "
           v-model="elementId"
         >
           <option v-for="elem in elements" :key="elem.id" :value="elem.id">
@@ -69,16 +74,27 @@
             {{ cat.title }}
           </option>
         </select>
+        <input
+          v-if="razdel === 'dopuslug'"
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="alias uslugi"
+          v-model.trim="item.alias"
+        />
       </div>
       <!-- -->
-      <div v-if="razdel === 'siryo'" class="col-1 pe-0">
+      <div
+        v-if="razdel === 'siryo' || razdel === 'dopuslug'"
+        class="col-1 pe-0"
+      >
         <input
           type="text"
           class="form-control form-control-sm"
+          placeholder="ed.izm"
           v-model.trim="item.ed"
         />
       </div>
-      <div v-if="razdel === 'siryo'" class="col-2">
+      <div v-if="razdel === 'siryo' || razdel === 'dopuslug'" class="col-2">
         <input
           type="number"
           class="form-control form-control-sm"
@@ -121,7 +137,8 @@
           @click="saveItem"
           :disabled="
             (razdel === 'rabota' && !elementId) ||
-            (razdel === 'siryo' && !elementId)
+            (razdel === 'siryo' && !elementId) ||
+            (razdel === 'dopuslug' && !categoryId)
           "
         >
           Сохранить
@@ -140,9 +157,11 @@
 </template>
 
 <script>
+import razdels from '@/data/razdels'
 import createCategory from '@/scripts/createCategory'
 import createSiryo from '@/scripts/createSiryo'
 import createRabota from '@/scripts/createRabota'
+import createDopuslug from '@/scripts/createDopuslug'
 import Footer from '@/components/Footer'
 
 export default {
@@ -151,6 +170,7 @@ export default {
   },
   data() {
     return {
+      razdels,
       mod: localStorage.getItem('mod') || 'add',
       razdel: localStorage.getItem('razdel') || 'group',
       categoryId: localStorage.getItem('categoryId') || '',
@@ -164,6 +184,8 @@ export default {
         return this.$store.getters.group
       } else if (this.razdel === 'frezer' || this.razdel === 'rabota') {
         return this.$store.getters.frezer
+      } else if (this.razdel === 'dopuslug') {
+        return this.$store.getters.dopuslug
       }
     },
     elements() {
@@ -200,7 +222,11 @@ export default {
     },
     selectCategory() {
       this.setMod('edit')
-      if (this.razdel === 'group' || this.razdel === 'frezer') {
+      if (
+        this.razdel === 'group' ||
+        this.razdel === 'frezer' ||
+        this.razdel === 'dopuslug'
+      ) {
         this.item = this.categorys.find(item => item.id === this.categoryId)
       }
       localStorage.setItem('categoryId', this.categoryId)
@@ -218,6 +244,14 @@ export default {
           newItem = createCategory(this.item.title, 'group')
         } else if (this.razdel === 'frezer') {
           newItem = createCategory(this.item.title, 'frezer')
+        } else if (this.razdel === 'dopuslug') {
+          newItem = createDopuslug(
+            this.item.title,
+            'dopuslug',
+            this.item.alias,
+            this.item.ed,
+            this.item.price
+          )
         } else if (this.razdel === 'siryo') {
           newItem = createSiryo(
             this.item.title,

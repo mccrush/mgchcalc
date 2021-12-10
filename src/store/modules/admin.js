@@ -8,6 +8,7 @@ export default {
     siryo: [],
     frezer: [],
     rabota: [],
+    dopuslug: [],
     loading: false,
   },
   mutations: {
@@ -66,6 +67,7 @@ export default {
     siryo: state => state.siryo,
     frezer: state => state.frezer,
     rabota: state => state.rabota,
+    dopuslug: state => state.dopuslug,
     loading: state => state.loading
   }
 }
