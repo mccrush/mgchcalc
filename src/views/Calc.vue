@@ -21,28 +21,12 @@
       v-for="sir in siryoArray"
       :key="sir.id"
       :id="sir.id"
+      type="siryoArray"
       @calc-price="calculationPrice"
       @remove-calc="removeCalc"
     />
-    <div class="row pt-2 pb-2">
-      <div class="col-12 d-flex justify-content-between">
-        <button
-          class="btn btn-sm btn-outline-light text-muted"
-          @click="addNewCalc({ type: 'siryoArray' })"
-        >
-          Добавить позицию
-        </button>
-      </div>
-    </div>
-    <div class="row bg-light">
-      <div class="col-8"></div>
-      <div class="col-4 d-flex justify-content-between p-1 pe-2">
-        <div></div>
-        <div class="small">
-          Итого сырье: <span class="fw-bold">{{ siryoSum }}</span>
-        </div>
-      </div>
-    </div>
+    <BlockAddCalc @add-new-calc="addNewCalc" type="siryoArray" />
+    <BlockShowSum title="сырье" :sum="siryoSum" />
     <!-- -->
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-between">
@@ -65,27 +49,41 @@
       v-for="rab in rabotaArray"
       :key="rab.id"
       :id="rab.id"
+      type="rabotaArray"
       @calc-price="calculationPrice"
       @remove-calc="removeCalc"
     />
-    <div class="row pt-2 pb-2">
-      <div class="col-12 d-flex justify-content-between">
-        <button
-          class="btn btn-sm btn-outline-light text-muted"
-          @click="addNewCalc({ type: 'rabotaArray' })"
-        >
-          Добавить позицию
-        </button>
-      </div>
-    </div>
-    <div class="row bg-light">
-      <div class="col-8"></div>
-      <div class="col-4 d-flex justify-content-between p-1 pe-2">
-        <div></div>
-        <div class="small">
-          Итого работа: <span class="fw-bold">{{ rabotaSum }}</span>
+    <BlockAddCalc @add-new-calc="addNewCalc" type="rabotaArray" />
+    <BlockShowSum title="работа" :sum="rabotaSum" />
+    <!-- -->
+    <div class="bg-success bg-opacity-10">
+      <div class="row pt-3">
+        <div class="col-12 d-flex justify-content-between">
+          <h5 class="m-0">Дополнительные услуги</h5>
         </div>
       </div>
+      <div class="row small text-center text-muted pt-2">
+        <div class="col-3">Группа услуги</div>
+        <div class="col-3">--</div>
+        <div class="col-12 col-md-6">
+          <div class="row">
+            <div class="col-5">--</div>
+            <div class="col-3">--</div>
+            <div class="col-2">Сумма</div>
+            <div class="col-2">Удалить</div>
+          </div>
+        </div>
+      </div>
+      <CalcDopuslug
+        v-for="rab in dopuslugArray"
+        :key="rab.id"
+        :id="rab.id"
+        type="dopuslugArray"
+        @calc-price="calculationPrice"
+        @remove-calc="removeCalc"
+      />
+      <BlockAddCalc @add-new-calc="addNewCalc" type="dopuslugArray" />
+      <BlockShowSum title="допуслуги" :sum="dopuslugSum" />
     </div>
     <!-- -->
     <div class="row bg-secondary">
@@ -125,12 +123,16 @@ import createCalc from '@/scripts/createCalc'
 import CalcSiryo from '@/components/calc/CalcSiryo'
 import CalcRabota from '@/components/calc/CalcRabota'
 import CalcDopuslug from '@/components/calc/CalcDopuslug'
+import BlockAddCalc from '@/components/calc/BlockAddCalc'
+import BlockShowSum from '@/components/calc/BlockShowSum'
 
 export default {
   components: {
     CalcSiryo,
     CalcRabota,
-    CalcDopuslug
+    CalcDopuslug,
+    BlockAddCalc,
+    BlockShowSum
   },
   data() {
     return {

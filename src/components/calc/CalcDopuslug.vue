@@ -45,9 +45,7 @@
           {{ rabotaSumma }}
         </div>
         <div class="col-2 text-end">
-          <ButtonTrash
-            @click="$emit('remove-calc', { type: 'siryoArray', id })"
-          />
+          <ButtonTrash @click="$emit('remove-calc', { type, id })" />
         </div>
       </div>
     </div>
@@ -64,7 +62,7 @@ export default {
     ButtonTrash,
     KolichBut
   },
-  props: ['id'],
+  props: ['type', 'id'],
   emits: ['calc-price', 'remove-calc'],
   data() {
     return {
@@ -143,7 +141,7 @@ export default {
         this.rabotaSumma +
         ' ₽'
       this.$emit('calc-price', {
-        type: 'rabotaArray',
+        type: this.type,
         id: this.id,
         sum: this.rabotaSumma,
         message
