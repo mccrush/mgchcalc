@@ -33,7 +33,7 @@
       :key="sir.id"
       :id="sir.id"
       @calc-price="calculationPrice"
-      @remove-calc="removeSiryo"
+      @remove-calc="removeCalc"
     />
     <div class="row pt-2 pb-2">
       <div class="col-12 d-flex justify-content-between">
@@ -76,7 +76,7 @@
       :key="rab.id"
       :id="rab.id"
       @calc-price="calculationPrice"
-      @remove-calc="removeRabota"
+      @remove-calc="removeCalc"
     />
     <div class="row pt-2 pb-2">
       <div class="col-12 d-flex justify-content-between">
@@ -185,11 +185,8 @@ export default {
     }
   },
   methods: {
-    removeSiryo(id) {
-      this.siryoArray = this.siryoArray.filter(item => item.id !== id)
-    },
-    removeRabota(id) {
-      this.rabotaArray = this.rabotaArray.filter(item => item.id !== id)
+    removeCalc({ type, id }) {
+      this[type] = this[type].filter(item => item.id !== id)
     },
     addNewCalc({ type }) {
       this[type].push(createCalc())

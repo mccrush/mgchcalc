@@ -55,7 +55,9 @@
           {{ siryoSumma }}
         </div>
         <div class="col-2 text-end">
-          <ButtonTrash @click="$emit('remove-calc', id)" />
+          <ButtonTrash
+            @click="$emit('remove-calc', { type: 'siryoArray', id })"
+          />
         </div>
       </div>
     </div>
