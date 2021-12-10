@@ -32,7 +32,7 @@
       v-for="sir in siryoArray"
       :key="sir.id"
       :id="sir.id"
-      @siryo-price="siryoPrice"
+      @calc-price="calculationPrice"
       @remove-calc="removeSiryo"
     />
     <div class="row pt-2 pb-2">
@@ -75,7 +75,7 @@
       v-for="rab in rabotaArray"
       :key="rab.id"
       :id="rab.id"
-      @rabota-price="rabotaPrice"
+      @calc-price="calculationPrice"
       @remove-calc="removeRabota"
     />
     <div class="row pt-2 pb-2">
@@ -197,27 +197,14 @@ export default {
     addRabotaCalc() {
       this.rabotaArray.push(createCalc())
     },
-    siryoPrice({ id, sum, message }) {
+    calculationPrice({ type, id, sum, message }) {
       let item = {
         id,
         sum,
         message
       }
-      let index = this.siryoArray.findIndex(item => item.id === id)
-      this.siryoArray[index] = item
-      // this.siryoSum = sum
-      // this.siryoMessage = message
-    },
-    rabotaPrice({ id, sum, message }) {
-      // this.rabotaSum = sum
-      // this.rabotaMessage = message
-      let item = {
-        id,
-        sum,
-        message
-      }
-      let index = this.rabotaArray.findIndex(item => item.id === id)
-      this.rabotaArray[index] = item
+      let index = this[type].findIndex(item => item.id === id)
+      this[type][index] = item
     },
     copyInBuffer(e) {
       const el = e.target.parentNode.previousSibling.lastChild.lastChild

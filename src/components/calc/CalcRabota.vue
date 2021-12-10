@@ -70,7 +70,7 @@ export default {
     KolichBut
   },
   props: ['id'],
-  emits: ['rabota-price', 'remove-calc'],
+  emits: ['calc-price', 'remove-calc'],
   data() {
     return {
       categoryRabotaId: '',
@@ -150,7 +150,8 @@ export default {
         ' ₽ = ' +
         this.rabotaSumma +
         ' ₽'
-      this.$emit('rabota-price', {
+      this.$emit('calc-price', {
+        type: 'rabotaArray',
         id: this.id,
         sum: this.rabotaSumma,
         message

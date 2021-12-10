@@ -71,7 +71,7 @@ export default {
     ButtonTrash
   },
   props: ['id'],
-  emits: ['siryo-price', 'remove-calc'],
+  emits: ['calc-price', 'remove-calc'],
   data() {
     return {
       categorySiryoId: '',
@@ -122,7 +122,8 @@ export default {
         ' ₽ = ' +
         this.siryoSumma +
         ' ₽'
-      this.$emit('siryo-price', {
+      this.$emit('calc-price', {
+        type: 'siryoArray',
         id: this.id,
         sum: this.siryoSumma,
         message
