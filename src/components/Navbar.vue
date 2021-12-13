@@ -5,15 +5,35 @@
     </div>
     <div class="buttons">
       <button
-        v-if="userId && pathname === 'admin'"
+        v-if="userId"
         class="btn btn-sm btn-outline-light text-muted me-2"
+        :class="{ active: pathname === 'making' }"
+        @click="$emit('set-path-name', 'making')"
+        disabled
+      >
+        Производство
+      </button>
+      <button
+        v-if="userId"
+        class="btn btn-sm btn-outline-light text-muted me-2"
+        :class="{ active: pathname === 'order' }"
+        @click="$emit('set-path-name', 'order')"
+        disabled
+      >
+        Заказы
+      </button>
+      <button
+        v-if="userId"
+        class="btn btn-sm btn-outline-light text-muted me-2"
+        :class="{ active: pathname === 'calc' }"
         @click="$emit('set-path-name', 'calc')"
       >
         Калькулятор
       </button>
       <button
-        v-if="userId && pathname === 'calc'"
+        v-if="userId"
         class="btn btn-sm btn-outline-light text-muted me-2"
+        :class="{ active: pathname === 'admin' }"
         @click="$emit('set-path-name', 'admin')"
       >
         Админка

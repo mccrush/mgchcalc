@@ -107,7 +107,11 @@
         </div>
       </div>
       <div class="col-3 d-flex flex-column justify-content-end p-2 ps-0">
-        <button class="btn btn-sm btn-success w-100 mb-2" @click="saveOrder">
+        <button
+          class="btn btn-sm btn-success w-100 mb-2"
+          @click="saveOrder"
+          disabled
+        >
           Сохранить заказ
         </button>
         <button
