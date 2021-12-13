@@ -1,5 +1,6 @@
 <template>
-  <div class="max-width-840 m-auto shadow rounded-3 mt-3">
+  <ChangeBG />
+  <div class="max-width-840 m-auto shadow bg-white rounded-3 mt-3">
     <Navbar @set-path-name="setPathName" :pathname="pathname" />
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>
@@ -16,13 +17,15 @@ import Navbar from '@/components/Navbar'
 import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
+import ChangeBG from '@/components/ChangeBG'
 
 export default {
   components: {
     Navbar,
     Login,
     Calc,
-    Admin
+    Admin,
+    ChangeBG
   },
   data() {
     return {
