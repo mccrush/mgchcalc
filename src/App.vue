@@ -1,5 +1,5 @@
 <template>
-  <div class="max-width-840 m-auto shadow-sm rounded-3 mt-3">
+  <div class="max-width-840 m-auto shadow rounded-3 mt-3">
     <Navbar @set-path-name="setPathName" :pathname="pathname" />
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>

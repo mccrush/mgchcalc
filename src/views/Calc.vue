@@ -107,8 +107,11 @@
         </div>
       </div>
       <div class="col-3 d-flex flex-column justify-content-end p-2 ps-0">
+        <button class="btn btn-sm btn-success w-100 mb-2" @click="saveOrder">
+          Сохранить заказ
+        </button>
         <button
-          class="btn btn-outline-dark w-100"
+          class="btn btn-sm btn-outline-dark w-100"
           @click="copyInBuffer($event)"
         >
           Копировать
@@ -208,6 +211,7 @@ export default {
     }
   },
   methods: {
+    saveOrder() {},
     removeCalc({ type, id }) {
       this[type] = this[type].filter(item => item.id !== id)
     },
