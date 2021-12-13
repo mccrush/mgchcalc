@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      pathname: localStorage.getItem('pathname') || 'calc'
+      pathname: localStorage.getItem('cl-pathname') || 'calc'
     }
   },
   computed: {
@@ -48,7 +48,7 @@ export default {
   methods: {
     setPathName(name) {
       this.pathname = name
-      localStorage.setItem('pathname', name)
+      localStorage.setItem('cl-pathname', name)
     }
   }
 }

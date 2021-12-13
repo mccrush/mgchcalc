@@ -171,10 +171,10 @@ export default {
   data() {
     return {
       razdels,
-      mod: localStorage.getItem('mod') || 'add',
-      razdel: localStorage.getItem('razdel') || 'group',
-      categoryId: localStorage.getItem('categoryId') || '',
-      elementId: localStorage.getItem('elementId') || '',
+      mod: localStorage.getItem('cl-mod') || 'add',
+      razdel: localStorage.getItem('cl-razdel') || 'group',
+      categoryId: localStorage.getItem('cl-categoryId') || '',
+      elementId: localStorage.getItem('cl-elementId') || '',
       item: { categoryId: this.categoryId }
     }
   },
@@ -204,11 +204,11 @@ export default {
     setMod(mod) {
       this.mod = mod
       this.item = { categoryId: this.categoryId }
-      localStorage.setItem('mod', mod)
+      localStorage.setItem('cl-mod', mod)
     },
     selectCreateButton() {
       this.elementId = ''
-      localStorage.setItem('elementId', this.elementId)
+      localStorage.setItem('cl-elementId', this.elementId)
       this.setMod('add')
     },
     selectRazdel() {
@@ -216,9 +216,9 @@ export default {
       this.categoryId = ''
       this.elementId = ''
 
-      localStorage.setItem('razdel', this.razdel)
-      localStorage.setItem('categoryId', this.categoryId)
-      localStorage.setItem('elementId', this.elementId)
+      localStorage.setItem('cl-razdel', this.razdel)
+      localStorage.setItem('cl-categoryId', this.categoryId)
+      localStorage.setItem('cl-elementId', this.elementId)
     },
     selectCategory() {
       this.setMod('edit')
@@ -229,12 +229,12 @@ export default {
       ) {
         this.item = this.categorys.find(item => item.id === this.categoryId)
       }
-      localStorage.setItem('categoryId', this.categoryId)
+      localStorage.setItem('cl-categoryId', this.categoryId)
     },
     selectElement() {
       this.setMod('edit')
       this.item = this.elements.find(item => item.id === this.elementId)
-      localStorage.setItem('elementId', this.elementId)
+      localStorage.setItem('cl-elementId', this.elementId)
     },
 
     addItem() {
