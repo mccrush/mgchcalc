@@ -75,7 +75,8 @@ export default {
       siryoSelectId: '',
       siryoDlina: '',
       siryoShirina: '',
-      siryoSize: 0
+      siryoSize: 0,
+      siryoSize10: 0
     }
   },
   computed: {
@@ -97,7 +98,7 @@ export default {
     siryoSumma() {
       let dlina = this.siryoDlina.replace(/,/g, '.')
       let shirina = this.siryoShirina.replace(/,/g, '.')
-      this.siryoSize = (dlina * shirina).toFixed(1)
+      this.siryoSize = (dlina * shirina + dlina * shirina * 0.1).toFixed(1)
       return Math.ceil(this.siryo.price * this.siryoSize)
     }
   },
