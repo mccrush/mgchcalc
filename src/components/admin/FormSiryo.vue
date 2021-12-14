@@ -14,7 +14,7 @@
           </select>
         </div>
         <div class="col-3 pe-0">
-          <ButtonSort />
+          <ButtonSort @sort="sortStart" />
         </div>
         <div class="col-3 pe-0">
           <InputSearch @search="searchStart" />
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="col-12 pt-2">
-      <div v-for="item in searchFilter" :key="item.id" class="row mt-1">
+      <div v-for="item in sortFilter" :key="item.id" class="row mt-1">
         <div class="col-6 pe-0">
           <input
             type="text"
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import sortMethod from '@/scripts/sortMethod'
 import InputSearch from '@/components/inputs/InputSearch'
 import ButtonSort from '@/components/buttons/ButtonSort'
 import ButtonAdd from '@/components/buttons/ButtonAdd'
@@ -85,6 +86,7 @@ export default {
   data() {
     return {
       searchText: '',
+      sortType: 'asc',
       categoryId: localStorage.getItem('cl-categoryId') || ''
     }
   },
@@ -103,11 +105,17 @@ export default {
       } else {
         return this.items
       }
+    },
+    sortFilter() {
+      return sortMethod(this.searchFilter, this.sortType, 'title')
     }
   },
   methods: {
     searchStart(search) {
       this.searchText = search
+    },
+    sortStart(sort) {
+      this.sortType = sort
     }
   }
 }
