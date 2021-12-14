@@ -1,17 +1,21 @@
 import fireApp from '@/firebase'
-import { getFirestore, doc, setDoc, updateDoc, collection, query, getDocs } from "firebase/firestore"
+import { getFirestore, doc, setDoc, updateDoc, deleteDoc, collection, query, getDocs } from "firebase/firestore"
 const db = getFirestore(fireApp)
 
 export default {
   state: {
+    loading: false,
     group: [],
     siryo: [],
     frezer: [],
     rabota: [],
     dopuslug: [],
-    loading: false,
+    zakaz: []
   },
   mutations: {
+    removeItem(state, { type, id }) {
+      state[type] = state[type].filter(item => item.id !== id)
+    },
     updateItem(state, { item }) {
       const index = state[item.type].findIndex(el => el.id === item.id)
       state[item.type][index] = item
@@ -27,6 +31,16 @@ export default {
     },
   },
   actions: {
+    async removeItem({ commit }, { type, id }) {
+      try {
+        commit('updateLoadingStatus', true)
+        await deleteDoc(doc(db, type, id))
+        commit('updateLoadingStatus', false)
+        console.log('Данные удалены')
+      } catch (error) {
+        console.log('error admin.js removeItem:', error)
+      }
+    },
     async updateItem({ commit }, { item }) {
       try {
         commit('updateLoadingStatus', true)
@@ -37,8 +51,6 @@ export default {
       } catch (error) {
         console.log('error admin.js updateItem:', error)
       }
-
-
     },
     async addItem({ commit }, { item }) {
       try {

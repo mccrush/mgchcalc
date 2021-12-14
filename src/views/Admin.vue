@@ -51,6 +51,7 @@
       :searchText="searchText"
       :sortType="sortType"
       @save-item="saveItem"
+      @remove-item="removeItem"
     />
     <Footer />
   </div>
@@ -138,6 +139,10 @@ export default {
         this.$store.commit('updateItem', { item })
         this.$store.dispatch('updateItem', { item })
       }
+    },
+    removeItem(id) {
+      this.$store.commit('removeItem', { type: this.razdel, id })
+      this.$store.dispatch('removeItem', { type: this.razdel, id })
     },
     sortStart(sort) {
       this.sortType = sort

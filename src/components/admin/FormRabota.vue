@@ -45,7 +45,9 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-1 text-end"><ButtonTrash /></div>
+      <div class="col-1 text-end">
+        <ButtonTrash @click="$emit('remove-item', item.id)" />
+      </div>
     </div>
   </div>
 </template>
@@ -59,9 +61,7 @@ export default {
     ButtonTrash
   },
   props: ['type', 'categoryId', 'searchText', 'sortType'],
-  data() {
-    return {}
-  },
+  emits: ['save-item', 'remove-item'],
   computed: {
     items() {
       return this.$store.getters[this.type].filter(
