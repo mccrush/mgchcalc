@@ -1,11 +1,10 @@
 <template>
   <div class="position-relative">
-    <div class="position-absolute top-0 end-0">
+    <div class="position-absolute bottom-0 end-0">
       <input
         type="color"
-        class="form-control form-control-color"
-        id="exampleColorInput"
-        title="Choose your color"
+        class="form-control form-control-sm form-control-color"
+        title="Изменить цвет фона"
         v-model="bgColor"
         @change="setBG"
       />
