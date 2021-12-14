@@ -55,7 +55,8 @@
         </button>
       </div>
     </div>
-    <div class="row pt-2">
+    <component :is="myForm" :type="razdel" />
+    <!-- <div class="row pt-2">
       <div class="col-6 pe-0">
         <input
           type="text"
@@ -82,7 +83,7 @@
           v-model.trim="item.alias"
         />
       </div>
-      <!-- -->
+     
       <div
         v-if="razdel === 'siryo' || razdel === 'dopuslug'"
         class="col-1 pe-0"
@@ -104,7 +105,7 @@
           v-model.number="item.price"
         />
       </div>
-      <!-- -->
+      
       <div v-if="razdel === 'rabota'" class="col-1 pe-0">
         <input
           type="text"
@@ -126,9 +127,9 @@
           v-model.number="item.priceL"
         />
       </div>
-      <!-- -->
-    </div>
-    <div class="row pt-2 pb-2">
+      
+    </div> -->
+    <!-- <div class="row pt-2 pb-2">
       <div class="col-9 pe-0"></div>
       <div class="col-3">
         <button
@@ -151,7 +152,7 @@
           Добавить в БД
         </button>
       </div>
-    </div>
+    </div> -->
     <Footer />
   </div>
 </template>
@@ -162,10 +163,12 @@ import createCategory from '@/scripts/createCategory'
 import createSiryo from '@/scripts/createSiryo'
 import createRabota from '@/scripts/createRabota'
 import createDopuslug from '@/scripts/createDopuslug'
+import FormGroup from '@/components/admin/FormGroup'
 import Footer from '@/components/Footer'
 
 export default {
   components: {
+    FormGroup,
     Footer
   },
   data() {
@@ -179,6 +182,18 @@ export default {
     }
   },
   computed: {
+    myForm() {
+      switch (this.razdel) {
+        case 'group':
+          return 'FormGroup'
+
+        case 'siryo':
+          return 'FormSiryo'
+
+        default:
+          return 'group'
+      }
+    },
     categorys() {
       if (this.razdel === 'group' || this.razdel === 'siryo') {
         return this.$store.getters.group
