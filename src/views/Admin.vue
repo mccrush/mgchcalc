@@ -41,7 +41,7 @@
         <InputSearch v-model:search="searchText" />
       </div>
       <div class="col-2">
-        <ButtonAdd />
+        <ButtonAdd @click="addItem" />
       </div>
     </div>
     <component
@@ -58,10 +58,7 @@
 
 <script>
 import razdels from '@/data/razdels'
-import createCategory from '@/scripts/createCategory'
-import createSiryo from '@/scripts/createSiryo'
-import createRabota from '@/scripts/createRabota'
-import createDopuslug from '@/scripts/createDopuslug'
+import createItem from '@/scripts/createItem'
 
 import InputSearch from '@/components/inputs/InputSearch'
 import ButtonSort from '@/components/buttons/ButtonSort'
@@ -91,10 +88,8 @@ export default {
       razdels,
       searchText: '',
       sortType: 'asc',
-      mod: localStorage.getItem('cl-mod') || 'add',
       razdel: localStorage.getItem('cl-razdel') || 'group',
-      categoryId: localStorage.getItem('cl-categoryId') || '',
-      elementId: localStorage.getItem('cl-elementId') || ''
+      categoryId: localStorage.getItem('cl-categoryId') || ''
     }
   },
   computed: {
@@ -102,19 +97,14 @@ export default {
       switch (this.razdel) {
         case 'group':
           return 'FormGroup'
-
         case 'siryo':
           return 'FormSiryo'
-
         case 'frezer':
           return 'FormFrezer'
-
         case 'rabota':
           return 'FormRabota'
-
         case 'dopuslug':
           return 'FormDopuslug'
-
         default:
           return 'group'
       }
@@ -127,103 +117,28 @@ export default {
       } else if (this.razdel === 'dopuslug') {
         return this.$store.getters.dopuslug
       }
-    },
-    elements() {
-      if (this.razdel === 'siryo') {
-        return this.$store.getters.siryo.filter(
-          item => item.categoryId === this.categoryId
-        )
-      } else if (this.razdel === 'rabota') {
-        return this.$store.getters.rabota.filter(
-          item => item.categoryId === this.categoryId
-        )
-      }
     }
   },
   methods: {
-    setMod(mod) {
-      this.mod = mod
-      this.item = { categoryId: this.categoryId }
-      localStorage.setItem('cl-mod', mod)
-    },
-    selectCreateButton() {
-      this.elementId = ''
-      localStorage.setItem('cl-elementId', this.elementId)
-      this.setMod('add')
-    },
     selectRazdel() {
-      this.item = {}
       this.categoryId = ''
-      this.elementId = ''
-
       localStorage.setItem('cl-razdel', this.razdel)
       localStorage.setItem('cl-categoryId', this.categoryId)
-      localStorage.setItem('cl-elementId', this.elementId)
     },
     selectCategory() {
-      this.setMod('edit')
-      // if (
-      //   this.razdel === 'group' ||
-      //   this.razdel === 'frezer' ||
-      //   this.razdel === 'dopuslug'
-      // ) {
-      //   this.item = this.categorys.find(item => item.id === this.categoryId)
-      // }
       localStorage.setItem('cl-categoryId', this.categoryId)
     },
-    selectElement() {
-      this.setMod('edit')
-      this.item = this.elements.find(item => item.id === this.elementId)
-      localStorage.setItem('cl-elementId', this.elementId)
-    },
-
     addItem() {
-      if (this.item.title) {
-        let newItem
-        if (this.razdel === 'group') {
-          newItem = createCategory(this.item.title, 'group')
-        } else if (this.razdel === 'frezer') {
-          newItem = createCategory(this.item.title, 'frezer')
-        } else if (this.razdel === 'dopuslug') {
-          newItem = createDopuslug(
-            this.item.title,
-            'dopuslug',
-            this.item.alias,
-            this.item.ed,
-            this.item.price
-          )
-        } else if (this.razdel === 'siryo') {
-          newItem = createSiryo(
-            this.item.title,
-            this.categoryId,
-            this.item.ed,
-            this.item.price
-          )
-        } else if (this.razdel === 'rabota') {
-          newItem = createRabota(
-            this.item.title,
-            this.categoryId,
-            this.item.priceS,
-            this.item.priceM,
-            this.item.priceL
-          )
-        }
-
-        this.$store.commit('addItem', { item: newItem })
-        this.$store.dispatch('addItem', { item: newItem })
-        this.item = { categoryId: this.categoryId }
-      }
+      const newItem = createItem(this.razdel, this.categoryId)
+      this.$store.commit('addItem', { item: newItem })
+      this.$store.dispatch('addItem', { item: newItem })
     },
     saveItem({ item }) {
-      console.log('item:', item)
       if (item.title) {
         this.$store.commit('updateItem', { item })
         this.$store.dispatch('updateItem', { item })
       }
     },
-    // searchStart(search) {
-    //   this.searchText = search
-    // },
     sortStart(sort) {
       this.sortType = sort
     }

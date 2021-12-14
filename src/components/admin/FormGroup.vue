@@ -17,6 +17,7 @@
 
 
 <script>
+import createCategory from '@/scripts/createCategory'
 import sortMethod from '@/scripts/sortMethod'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
 

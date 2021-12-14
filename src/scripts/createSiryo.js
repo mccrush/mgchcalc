@@ -1,11 +1,11 @@
-export default (title, categoryId, ed = '', price = '') => {
+export default (categoryId) => {
   const item = {
     id: Date.now().toString(),
-    title,
+    title: '[]',
     categoryId,
     categoryTitle: '',
-    ed,
-    price,
+    ed: '',
+    price: 0,
     ostatok: 0,
     type: 'siryo'
   }

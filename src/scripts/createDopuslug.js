@@ -1,11 +1,11 @@
-export default (title, type, alias, ed = '', price = '') => {
+export default (type) => {
   const item = {
     id: Date.now().toString(),
-    title,
+    title: '[]',
     type,
-    alias,
-    ed,
-    price
+    alias: '',
+    ed: '',
+    price: 0
   }
 
   return item

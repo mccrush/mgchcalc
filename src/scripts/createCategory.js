@@ -1,7 +1,7 @@
-export default (title, type) => {
+export default (type) => {
   const item = {
     id: Date.now().toString(),
-    title,
+    title: '[]',
     type
   }
 
