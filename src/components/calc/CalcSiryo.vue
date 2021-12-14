@@ -81,7 +81,9 @@ export default {
   },
   computed: {
     siryoProcent() {
-      return this.$store.getters.procent[0].value / 100
+      if (this.$store.getters.procent.length) {
+        return this.$store.getters.procent[0].value / 100
+      }
     },
     categorySiryos() {
       return this.$store.getters.group

@@ -181,6 +181,10 @@ export default {
       this.rabotaSum = sumRabota
       this.dopuslugSum = sumDopuslug
 
+      if (sumRabota > 0 && sumRabota < 500) {
+        sumRabota = 500
+      }
+
       if (x2) {
         return (sumSiryo + sumRabota + sumDopuslug) * 2
       } else {
@@ -197,6 +201,11 @@ export default {
       this.rabotaArray.forEach(item => {
         messageRabota += item.message + '\n'
       })
+      if (this.rabotaSum > 0 && this.rabotaSum < 500) {
+        const raznost = 500 - this.rabotaSum
+        messageRabota += 'Плюс до минимальной стоимости ' + raznost + ' ₽'
+        this.rabotaSum = 500
+      }
 
       let messageDopuslug = ''
       this.dopuslugArray.forEach(item => {
