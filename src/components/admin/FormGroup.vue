@@ -23,13 +23,9 @@ export default {
   components: {
     ButtonTrash
   },
-  props: ['type'],
+  props: ['type', 'categoryId', 'searchText', 'sortType'],
   data() {
-    return {
-      searchText: '',
-      sortType: 'asc',
-      procent: 20
-    }
+    return {}
   },
   computed: {
     items() {

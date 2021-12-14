@@ -22,7 +22,11 @@
         <select
           class="form-select form-select-sm w-100"
           aria-label="Select group resourse"
+          @change="selectCategory"
           v-model="categoryId"
+          :disabled="
+            razdel === 'group' || razdel === 'frezer' || razdel === 'dopuslug'
+          "
         >
           <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
             {{ cat.title }}
@@ -32,131 +36,21 @@
       <!---->
       <div class="col-1 pe-0">
         <ButtonSort @sort="sortStart" />
-        <!-- <select
-          class="form-select form-select-sm w-100"
-          aria-label="Select resourse"
-          @change="selectElement"
-          :disabled="
-            razdel === 'group' || razdel === 'frezer' || razdel === 'dopuslug'
-          "
-          v-model="elementId"
-        >
-          <option v-for="elem in elements" :key="elem.id" :value="elem.id">
-            {{ elem.title }}
-          </option>
-        </select> -->
       </div>
-      <div class="col-3">
+      <div class="col-3 pe-0">
         <InputSearch @search="searchStart" />
-        <!-- <button
-          class="btn btn-sm btn-outline-success w-100"
-          @click="selectCreateButton('add')"
-        >
-          Создать +
-        </button> -->
       </div>
-      <div class="col-2 ps-0">
+      <div class="col-2">
         <ButtonAdd />
       </div>
     </div>
-    <component :is="myForm" :type="razdel" />
-    <!-- <div class="row pt-2">
-      <div class="col-6 pe-0">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          v-model.trim="item.title"
-        />
-      </div>
-      <div class="col-3 pe-0">
-        <select
-          v-if="razdel === 'siryo' || razdel === 'rabota'"
-          class="form-select form-select-sm w-100"
-          aria-label="Select resourse"
-          v-model="item.categoryId"
-        >
-          <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
-            {{ cat.title }}
-          </option>
-        </select>
-        <input
-          v-if="razdel === 'dopuslug'"
-          type="text"
-          class="form-control form-control-sm"
-          placeholder="alias uslugi"
-          v-model.trim="item.alias"
-        />
-      </div>
-     
-      <div
-        v-if="razdel === 'siryo' || razdel === 'dopuslug'"
-        class="col-1 pe-0"
-      >
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          placeholder="ed.izm"
-          v-model.trim="item.ed"
-        />
-      </div>
-      <div v-if="razdel === 'siryo' || razdel === 'dopuslug'" class="col-2">
-        <input
-          type="number"
-          class="form-control form-control-sm"
-          min="0"
-          max="10000"
-          step="10"
-          v-model.number="item.price"
-        />
-      </div>
-      
-      <div v-if="razdel === 'rabota'" class="col-1 pe-0">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          v-model.number="item.priceS"
-        />
-      </div>
-      <div v-if="razdel === 'rabota'" class="col-1 pe-0">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          v-model.number="item.priceM"
-        />
-      </div>
-      <div v-if="razdel === 'rabota'" class="col-1">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          v-model.number="item.priceL"
-        />
-      </div>
-      
-    </div> -->
-    <!-- <div class="row pt-2 pb-2">
-      <div class="col-9 pe-0"></div>
-      <div class="col-3">
-        <button
-          v-if="mod === 'edit'"
-          class="btn btn-sm btn-success w-100"
-          @click="saveItem"
-          :disabled="
-            (razdel === 'rabota' && !elementId) ||
-            (razdel === 'siryo' && !elementId) ||
-            (razdel === 'dopuslug' && !categoryId)
-          "
-        >
-          Сохранить
-        </button>
-        <button
-          v-if="mod === 'add'"
-          class="btn btn-sm btn-success w-100"
-          @click="addItem"
-        >
-          Добавить в БД
-        </button>
-      </div>
-    </div> -->
+    <component
+      :is="myForm"
+      :type="razdel"
+      :categoryId="categoryId"
+      :searchText="searchText"
+      :sortType="sortType"
+    />
     <Footer />
   </div>
 </template>
@@ -194,6 +88,8 @@ export default {
   data() {
     return {
       razdels,
+      searchText: '',
+      sortType: 'asc',
       mod: localStorage.getItem('cl-mod') || 'add',
       razdel: localStorage.getItem('cl-razdel') || 'group',
       categoryId: localStorage.getItem('cl-categoryId') || '',
@@ -266,13 +162,13 @@ export default {
     },
     selectCategory() {
       this.setMod('edit')
-      if (
-        this.razdel === 'group' ||
-        this.razdel === 'frezer' ||
-        this.razdel === 'dopuslug'
-      ) {
-        this.item = this.categorys.find(item => item.id === this.categoryId)
-      }
+      // if (
+      //   this.razdel === 'group' ||
+      //   this.razdel === 'frezer' ||
+      //   this.razdel === 'dopuslug'
+      // ) {
+      //   this.item = this.categorys.find(item => item.id === this.categoryId)
+      // }
       localStorage.setItem('cl-categoryId', this.categoryId)
     },
     selectElement() {
@@ -323,6 +219,12 @@ export default {
         this.$store.commit('updateItem', { item: this.item })
         this.$store.dispatch('updateItem', { item: this.item })
       }
+    },
+    searchStart(search) {
+      this.searchText = search
+    },
+    sortStart(sort) {
+      this.sortType = sort
     }
   }
 }

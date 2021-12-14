@@ -50,13 +50,9 @@ export default {
   components: {
     ButtonTrash
   },
-  props: ['type'],
+  props: ['type', 'categoryId', 'searchText', 'sortType'],
   data() {
-    return {
-      searchText: '',
-      sortType: 'asc',
-      categoryId: localStorage.getItem('cl-categoryId') || ''
-    }
+    return {}
   },
   computed: {
     items() {
