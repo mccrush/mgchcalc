@@ -6,6 +6,7 @@
           type="text"
           class="form-control form-control-sm"
           v-model.trim="item.title"
+          @change="saveItem(item)"
         />
       </div>
       <div class="col-1 text-end"><ButtonTrash /></div>
@@ -40,6 +41,11 @@ export default {
     },
     sortFilter() {
       return sortMethod(this.searchFilter, this.sortType, 'title')
+    }
+  },
+  methods: {
+    saveItem(item) {
+      this.$emit('save-item', { item })
     }
   }
 }

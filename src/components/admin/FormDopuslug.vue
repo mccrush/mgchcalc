@@ -6,6 +6,7 @@
           type="text"
           class="form-control form-control-sm"
           v-model.trim="item.title"
+          @change="saveItem(item)"
         />
       </div>
       <div class="col-3 pe-0">
@@ -14,6 +15,7 @@
           class="form-control form-control-sm"
           placeholder="alias uslugi"
           v-model.trim="item.alias"
+          @change="saveItem(item)"
         />
       </div>
       <div class="col-1 pe-0">
@@ -22,6 +24,7 @@
           class="form-control form-control-sm"
           placeholder="ед. изм."
           v-model.trim="item.ed"
+          @change="saveItem(item)"
         />
       </div>
       <div class="col-1 pe-0">
@@ -32,6 +35,7 @@
           max="10000"
           step="10"
           v-model.number="item.price"
+          @change="saveItem(item)"
         />
       </div>
       <div class="col-1 text-end"><ButtonTrash /></div>
@@ -65,6 +69,11 @@ export default {
     },
     sortFilter() {
       return sortMethod(this.searchFilter, this.sortType, 'title')
+    }
+  },
+  methods: {
+    saveItem(item) {
+      this.$emit('save-item', { item })
     }
   }
 }

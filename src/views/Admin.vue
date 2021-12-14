@@ -38,7 +38,7 @@
         <ButtonSort @sort="sortStart" />
       </div>
       <div class="col-3 pe-0">
-        <InputSearch @search="searchStart" />
+        <InputSearch v-model:search="searchText" />
       </div>
       <div class="col-2">
         <ButtonAdd />
@@ -50,6 +50,7 @@
       :categoryId="categoryId"
       :searchText="searchText"
       :sortType="sortType"
+      @save-item="saveItem"
     />
     <Footer />
   </div>
@@ -93,8 +94,7 @@ export default {
       mod: localStorage.getItem('cl-mod') || 'add',
       razdel: localStorage.getItem('cl-razdel') || 'group',
       categoryId: localStorage.getItem('cl-categoryId') || '',
-      elementId: localStorage.getItem('cl-elementId') || '',
-      item: { categoryId: this.categoryId }
+      elementId: localStorage.getItem('cl-elementId') || ''
     }
   },
   computed: {
@@ -214,15 +214,16 @@ export default {
         this.item = { categoryId: this.categoryId }
       }
     },
-    saveItem() {
-      if (this.item.title) {
-        this.$store.commit('updateItem', { item: this.item })
-        this.$store.dispatch('updateItem', { item: this.item })
+    saveItem({ item }) {
+      console.log('item:', item)
+      if (item.title) {
+        this.$store.commit('updateItem', { item })
+        this.$store.dispatch('updateItem', { item })
       }
     },
-    searchStart(search) {
-      this.searchText = search
-    },
+    // searchStart(search) {
+    //   this.searchText = search
+    // },
     sortStart(sort) {
       this.sortType = sort
     }

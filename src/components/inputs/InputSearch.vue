@@ -3,17 +3,22 @@
     type="text"
     class="form-control form-control-sm"
     placeholder="Поиск"
-    v-model.trim="search"
-    @input="$emit('search', search)"
+    :value="search"
+    @input="$emit('update:search', $event.target.value)"
   />
 </template>
 
 <script>
 export default {
+  props: ['search'],
+  emits: ['update:search'],
   data() {
     return {
-      search: ''
+      //search: ''
     }
   }
 }
+
+// v-model.trim="search"
+//    @input="$emit('search', search)"
 </script>
