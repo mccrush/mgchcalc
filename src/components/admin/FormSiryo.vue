@@ -1,11 +1,101 @@
 <template>
-  <div class="row pt-2">
-    <div class="col-6 pe-0">
-      <input
-        type="text"
-        class="form-control form-control-sm"
-        v-model.trim="item.title"
-      />
+  <div class="row pt-2 pb-2">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-3 pe-0">
+          <select
+            class="form-select form-select-sm w-100"
+            aria-label="Select group resourse"
+            v-model="categoryId"
+          >
+            <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
+              {{ cat.title }}
+            </option>
+          </select>
+        </div>
+        <div class="col-3 pe-0">
+          <ButtonSort />
+        </div>
+        <div class="col-3 pe-0">
+          <InputSearch />
+        </div>
+        <div class="col-3">
+          <ButtonAdd />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 pt-2">
+      <div v-for="item in items" :key="item.id" class="row mt-1">
+        <div class="col-6 pe-0">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            v-model.trim="item.title"
+          />
+        </div>
+        <div class="col-3 pe-0">
+          <select
+            class="form-select form-select-sm w-100"
+            aria-label="Select resourse"
+            v-model="item.categoryId"
+          >
+            <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
+              {{ cat.title }}
+            </option>
+          </select>
+        </div>
+        <div class="col-1 pe-0">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="ed.izm"
+            v-model.trim="item.ed"
+          />
+        </div>
+        <div class="col-1 pe-0">
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            min="0"
+            max="10000"
+            step="10"
+            v-model.number="item.price"
+          />
+        </div>
+        <div class="col-1 text-end"><ButtonTrash /></div>
+      </div>
     </div>
   </div>
 </template>
+
+<script>
+import InputSearch from '@/components/inputs/InputSearch'
+import ButtonSort from '@/components/buttons/ButtonSort'
+import ButtonAdd from '@/components/buttons/ButtonAdd'
+import ButtonTrash from '@/components/buttons/ButtonTrash'
+
+export default {
+  components: {
+    InputSearch,
+    ButtonSort,
+    ButtonAdd,
+    ButtonTrash
+  },
+  props: ['type'],
+  data() {
+    return {
+      categoryId: localStorage.getItem('cl-categoryId') || ''
+    }
+  },
+  computed: {
+    items() {
+      return this.$store.getters[this.type].filter(
+        item => item.categoryId === this.categoryId
+      )
+    },
+    categorys() {
+      return this.$store.getters.group
+    }
+  }
+}
+</script>

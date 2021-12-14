@@ -4,43 +4,19 @@
       <div class="row">
         <div class="col-3">---</div>
         <div class="col-3 pe-0">
-          <div
-            class="btn-group btn-group-sm w-100"
-            role="group"
-            aria-label="..."
-          >
-            <button type="button" class="btn btn-outline-light text-muted">
-              Left
-            </button>
-            <button type="button" class="btn btn-outline-light text-muted">
-              Middle
-            </button>
-            <button type="button" class="btn btn-outline-light text-muted">
-              Right
-            </button>
-            <button type="button" class="btn btn-outline-light text-muted">
-              Right
-            </button>
-          </div>
+          <ButtonSort />
         </div>
         <div class="col-3 pe-0">
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            v-model.trim="search"
-            placeholder="Поиск"
-          />
+          <InputSearch />
         </div>
         <div class="col-3">
-          <button class="btn btn-sm btn-outline-success w-100">
-            Создать +
-          </button>
+          <ButtonAdd />
         </div>
       </div>
     </div>
     <div class="col-12 pt-2">
       <div v-for="item in items" :key="item.id" class="row mt-1">
-        <div class="col-6">
+        <div class="col-6 pe-0">
           <input
             type="text"
             class="form-control form-control-sm"
@@ -56,10 +32,16 @@
 
 
 <script>
+import InputSearch from '@/components/inputs/InputSearch'
+import ButtonSort from '@/components/buttons/ButtonSort'
+import ButtonAdd from '@/components/buttons/ButtonAdd'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
 
 export default {
   components: {
+    InputSearch,
+    ButtonSort,
+    ButtonAdd,
     ButtonTrash
   },
   props: ['type'],
