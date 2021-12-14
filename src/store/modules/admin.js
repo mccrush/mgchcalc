@@ -75,11 +75,12 @@ export default {
     }
   },
   getters: {
+    loading: state => state.loading,
     group: state => state.group,
     siryo: state => state.siryo,
     frezer: state => state.frezer,
     rabota: state => state.rabota,
     dopuslug: state => state.dopuslug,
-    loading: state => state.loading
+    zakaz: state => state.zakaz,
   }
 }

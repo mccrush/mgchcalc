@@ -112,7 +112,7 @@
           @click="saveOrder"
           disabled
         >
-          Сохранить заказ
+          Создать заказ
         </button>
         <button
           class="btn btn-sm btn-outline-dark w-100"
