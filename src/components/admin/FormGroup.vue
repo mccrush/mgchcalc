@@ -7,7 +7,7 @@
           <ButtonSort />
         </div>
         <div class="col-3 pe-0">
-          <InputSearch />
+          <InputSearch @search="searchStart" />
         </div>
         <div class="col-3">
           <ButtonAdd />
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="col-12 pt-2">
-      <div v-for="item in items" :key="item.id" class="row mt-1">
+      <div v-for="item in searchFilter" :key="item.id" class="row mt-1">
         <div class="col-6 pe-0">
           <input
             type="text"
@@ -45,9 +45,26 @@ export default {
     ButtonTrash
   },
   props: ['type'],
+  data() {
+    return {
+      searchText: ''
+    }
+  },
   computed: {
     items() {
       return this.$store.getters[this.type]
+    },
+    searchFilter() {
+      if (this.searchText) {
+        return this.items.filter(item => item.title.includes(this.searchText))
+      } else {
+        return this.items
+      }
+    }
+  },
+  methods: {
+    searchStart(search) {
+      this.searchText = search
     }
   }
 }

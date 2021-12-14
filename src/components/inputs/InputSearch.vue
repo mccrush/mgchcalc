@@ -2,7 +2,18 @@
   <input
     type="text"
     class="form-control form-control-sm"
-    v-model.trim="search"
     placeholder="Поиск"
+    v-model.trim="search"
+    @input="$emit('search', search)"
   />
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      search: ''
+    }
+  }
+}
+</script>
