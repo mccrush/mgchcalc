@@ -23,8 +23,8 @@
             v-model.trim="item.title"
           />
         </div>
-        <div class="col-5">---</div>
         <div class="col-1 text-end"><ButtonTrash /></div>
+        <div class="col-5"></div>
       </div>
     </div>
   </div>

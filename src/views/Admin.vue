@@ -19,7 +19,7 @@
       </div>
       <!---->
       <div class="col-3 pe-0">
-        <select
+        <!-- <select
           class="form-select form-select-sm w-100"
           aria-label="Select group resourse"
           @change="selectCategory"
@@ -28,11 +28,11 @@
           <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
             {{ cat.title }}
           </option>
-        </select>
+        </select> -->
       </div>
       <!---->
       <div class="col-3 pe-0">
-        <select
+        <!-- <select
           class="form-select form-select-sm w-100"
           aria-label="Select resourse"
           @change="selectElement"
@@ -44,15 +44,15 @@
           <option v-for="elem in elements" :key="elem.id" :value="elem.id">
             {{ elem.title }}
           </option>
-        </select>
+        </select> -->
       </div>
       <div class="col-3">
-        <button
+        <!-- <button
           class="btn btn-sm btn-outline-success w-100"
           @click="selectCreateButton('add')"
         >
           Создать +
-        </button>
+        </button> -->
       </div>
     </div>
     <component :is="myForm" :type="razdel" />
@@ -167,6 +167,7 @@ import FormGroup from '@/components/admin/FormGroup'
 import FormSiryo from '@/components/admin/FormSiryo'
 import FormFrezer from '@/components/admin/FormFrezer'
 import FormRabota from '@/components/admin/FormRabota'
+import FormDopuslug from '@/components/admin/FormDopuslug'
 import Footer from '@/components/Footer'
 
 export default {
@@ -175,6 +176,7 @@ export default {
     FormSiryo,
     FormFrezer,
     FormRabota,
+    FormDopuslug,
     Footer
   },
   data() {
@@ -201,6 +203,9 @@ export default {
 
         case 'rabota':
           return 'FormRabota'
+
+        case 'dopuslug':
+          return 'FormDopuslug'
 
         default:
           return 'group'

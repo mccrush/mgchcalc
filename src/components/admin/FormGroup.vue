@@ -2,7 +2,17 @@
   <div class="row pt-2 pb-2">
     <div class="col-12">
       <div class="row">
-        <div class="col-3">---</div>
+        <div class="col-2 text-end pt-1">Наценка в %</div>
+        <div class="col-1 ps-0 pe-0">
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            min="0"
+            max="500"
+            step="5"
+            v-model.number="procent"
+          />
+        </div>
         <div class="col-3 pe-0">
           <ButtonSort @sort="sortStart" />
         </div>
@@ -23,8 +33,8 @@
             v-model.trim="item.title"
           />
         </div>
-        <div class="col-5">---</div>
         <div class="col-1 text-end"><ButtonTrash /></div>
+        <div class="col-5"></div>
       </div>
     </div>
   </div>
@@ -49,7 +59,8 @@ export default {
   data() {
     return {
       searchText: '',
-      sortType: 'asc'
+      sortType: 'asc',
+      procent: 20
     }
   },
   computed: {
