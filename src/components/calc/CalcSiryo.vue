@@ -80,6 +80,9 @@ export default {
     }
   },
   computed: {
+    siryoProcent() {
+      return this.$store.getters.procent[0].value / 100
+    },
     categorySiryos() {
       return this.$store.getters.group
     },
@@ -99,7 +102,10 @@ export default {
       let dlina = this.siryoDlina.replace(/,/g, '.')
       let shirina = this.siryoShirina.replace(/,/g, '.')
       this.siryoSize = (dlina * shirina + dlina * shirina * 0.1).toFixed(1)
-      return Math.ceil(this.siryo.price * this.siryoSize)
+      return Math.ceil(
+        this.siryo.price * this.siryoSize +
+          this.siryo.price * this.siryoSize * this.siryoProcent
+      )
     }
   },
   methods: {

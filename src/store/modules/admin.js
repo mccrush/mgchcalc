@@ -5,6 +5,7 @@ const db = getFirestore(fireApp)
 export default {
   state: {
     loading: false,
+    procent: [],
     group: [],
     siryo: [],
     frezer: [],
@@ -76,6 +77,7 @@ export default {
   },
   getters: {
     loading: state => state.loading,
+    procent: state => state.procent,
     group: state => state.group,
     siryo: state => state.siryo,
     frezer: state => state.frezer,

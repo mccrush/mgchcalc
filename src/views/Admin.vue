@@ -20,18 +20,30 @@
       <!---->
       <div class="col-3 pe-0">
         <select
+          v-if="razdel === 'siryo' || razdel === 'rabota'"
           class="form-select form-select-sm w-100"
           aria-label="Select group resourse"
           @change="selectCategory"
           v-model="categoryId"
-          :disabled="
-            razdel === 'group' || razdel === 'frezer' || razdel === 'dopuslug'
-          "
         >
           <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
             {{ cat.title }}
           </option>
         </select>
+        <div class="d-flex">
+          <div class="small text-end w-75 me-2 pt-1">Процент наценки</div>
+          <div class="w-25">
+            <input
+              type="number"
+              min="0"
+              max="200"
+              step="5"
+              class="form-control form-control-sm"
+              v-model.number="procent"
+              @change="saveProcent"
+            />
+          </div>
+        </div>
       </div>
       <!---->
       <div class="col-1 pe-0">
@@ -90,7 +102,8 @@ export default {
       searchText: '',
       sortType: 'asc',
       razdel: localStorage.getItem('cl-razdel') || 'group',
-      categoryId: localStorage.getItem('cl-categoryId') || ''
+      categoryId: localStorage.getItem('cl-categoryId') || '',
+      procent: 0
     }
   },
   computed: {
@@ -118,7 +131,13 @@ export default {
       } else if (this.razdel === 'dopuslug') {
         return this.$store.getters.dopuslug
       }
+    },
+    siryoProcent() {
+      return this.$store.getters.procent[0].value
     }
+  },
+  mounted() {
+    this.procent = this.siryoProcent
   },
   methods: {
     selectRazdel() {
@@ -146,6 +165,11 @@ export default {
     },
     sortStart(sort) {
       this.sortType = sort
+    },
+    saveProcent() {
+      const item = { type: 'procent', id: '1639495120848', value: this.procent }
+      this.$store.commit('updateItem', { item })
+      this.$store.dispatch('updateItem', { item })
     }
   }
 }

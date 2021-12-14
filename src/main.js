@@ -22,6 +22,7 @@ onAuthStateChanged(auth, (user) => {
     store.dispatch('getItems', { type: 'frezer' })
     store.dispatch('getItems', { type: 'rabota' })
     store.dispatch('getItems', { type: 'dopuslug' })
+    store.dispatch('getItems', { type: 'procent' })
   } else {
     store.commit('setUserId', null)
     console.log('main.js: Пользователь не авторизован. user = ', user)
