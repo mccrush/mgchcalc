@@ -19,19 +19,19 @@
       </div>
       <!---->
       <div class="col-3 pe-0">
-        <!-- <select
+        <select
           class="form-select form-select-sm w-100"
           aria-label="Select group resourse"
-          @change="selectCategory"
           v-model="categoryId"
         >
           <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
             {{ cat.title }}
           </option>
-        </select> -->
+        </select>
       </div>
       <!---->
-      <div class="col-3 pe-0">
+      <div class="col-1 pe-0">
+        <ButtonSort @sort="sortStart" />
         <!-- <select
           class="form-select form-select-sm w-100"
           aria-label="Select resourse"
@@ -47,12 +47,16 @@
         </select> -->
       </div>
       <div class="col-3">
+        <InputSearch @search="searchStart" />
         <!-- <button
           class="btn btn-sm btn-outline-success w-100"
           @click="selectCreateButton('add')"
         >
           Создать +
         </button> -->
+      </div>
+      <div class="col-2 ps-0">
+        <ButtonAdd />
       </div>
     </div>
     <component :is="myForm" :type="razdel" />
@@ -163,6 +167,11 @@ import createCategory from '@/scripts/createCategory'
 import createSiryo from '@/scripts/createSiryo'
 import createRabota from '@/scripts/createRabota'
 import createDopuslug from '@/scripts/createDopuslug'
+
+import InputSearch from '@/components/inputs/InputSearch'
+import ButtonSort from '@/components/buttons/ButtonSort'
+import ButtonAdd from '@/components/buttons/ButtonAdd'
+
 import FormGroup from '@/components/admin/FormGroup'
 import FormSiryo from '@/components/admin/FormSiryo'
 import FormFrezer from '@/components/admin/FormFrezer'
@@ -172,6 +181,9 @@ import Footer from '@/components/Footer'
 
 export default {
   components: {
+    InputSearch,
+    ButtonSort,
+    ButtonAdd,
     FormGroup,
     FormSiryo,
     FormFrezer,

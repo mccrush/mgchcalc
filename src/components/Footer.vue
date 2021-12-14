@@ -1,5 +1,5 @@
 <template>
-  <div class="row bg-light pt-1 pb-1">
+  <div class="row bg-light mt-2 pt-1 pb-1">
     <div class="col-12 text-end">
       <a
         class="text-muted small"
