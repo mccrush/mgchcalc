@@ -30,7 +30,7 @@
             {{ cat.title }}
           </option>
         </select>
-        <div class="d-flex">
+        <div v-if="razdel === 'group'" class="d-flex">
           <div class="small text-end w-75 me-2 pt-1">Процент наценки</div>
           <div class="w-25">
             <input
