@@ -165,12 +165,16 @@ import createRabota from '@/scripts/createRabota'
 import createDopuslug from '@/scripts/createDopuslug'
 import FormGroup from '@/components/admin/FormGroup'
 import FormSiryo from '@/components/admin/FormSiryo'
+import FormFrezer from '@/components/admin/FormFrezer'
+import FormRabota from '@/components/admin/FormRabota'
 import Footer from '@/components/Footer'
 
 export default {
   components: {
     FormGroup,
     FormSiryo,
+    FormFrezer,
+    FormRabota,
     Footer
   },
   data() {
@@ -191,6 +195,12 @@ export default {
 
         case 'siryo':
           return 'FormSiryo'
+
+        case 'frezer':
+          return 'FormFrezer'
+
+        case 'rabota':
+          return 'FormRabota'
 
         default:
           return 'group'
