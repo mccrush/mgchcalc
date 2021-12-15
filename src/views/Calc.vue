@@ -204,7 +204,7 @@ export default {
       })
       if (this.rabotaSum > 0 && this.rabotaSum < 500) {
         const raznost = 500 - this.rabotaSum
-        messageRabota += 'Плюс до минимальной стоимости ' + raznost + ' ₽'
+        messageRabota += 'Плюс до минимальной стоимости ' + raznost + ' ₽\n'
         this.rabotaSum = 500
       }
 

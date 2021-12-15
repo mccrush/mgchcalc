@@ -101,7 +101,7 @@ export default {
       )
     },
     siryoPrice() {
-      return this.siryo.price + this.siryo.price * this.siryoProcent
+      return Math.ceil(this.siryo.price + this.siryo.price * this.siryoProcent)
     },
     siryoSumma() {
       let dlina = this.siryoDlina.replace(/,/g, '.')
