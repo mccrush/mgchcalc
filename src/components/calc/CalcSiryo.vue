@@ -105,8 +105,8 @@ export default {
       let shirina = this.siryoShirina.replace(/,/g, '.')
       this.siryoSize = (dlina * shirina + dlina * shirina * 0.1).toFixed(1)
       return Math.ceil(
-        this.siryo.price * this.siryoSize +
-          this.siryo.price * this.siryoSize * this.siryoProcent
+        (this.siryo.price + this.siryo.price * this.siryoProcent) *
+          this.siryoSize
       )
     }
   },
