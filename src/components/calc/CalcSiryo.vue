@@ -30,7 +30,7 @@
     <div class="col-12 col-md-6">
       <div class="row">
         <div class="col-4 text-center pe-0">
-          <small>{{ siryo.ed }} / {{ siryo.price + ' ₽' }}</small>
+          <small>{{ siryo.ed }} / {{ siryoPrice + ' ₽' }}</small>
         </div>
         <div class="col-4 d-flex justify-content-start text-center">
           <input
@@ -100,14 +100,14 @@ export default {
         ) || { ed: 'кв.м.', price: 0 }
       )
     },
+    siryoPrice() {
+      return this.siryo.price + this.siryo.price * this.siryoProcent
+    },
     siryoSumma() {
       let dlina = this.siryoDlina.replace(/,/g, '.')
       let shirina = this.siryoShirina.replace(/,/g, '.')
       this.siryoSize = (dlina * shirina + dlina * shirina * 0.1).toFixed(1)
-      return Math.ceil(
-        (this.siryo.price + this.siryo.price * this.siryoProcent) *
-          this.siryoSize
-      )
+      return Math.ceil(this.siryoPrice * this.siryoSize)
     }
   },
   methods: {
@@ -124,7 +124,7 @@ export default {
         ' ' +
         this.siryo.ed +
         ' x ' +
-        this.siryo.price +
+        this.siryoPrice +
         ' ₽ = ' +
         this.siryoSumma +
         ' ₽'
