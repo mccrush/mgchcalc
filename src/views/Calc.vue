@@ -151,7 +151,8 @@ export default {
       dopuslugMessage: '',
       siryoArray: [createCalc()],
       rabotaArray: [createCalc()],
-      dopuslugArray: [createCalc()]
+      dopuslugArray: [createCalc()],
+      zakazArray: []
     }
   },
   computed: {

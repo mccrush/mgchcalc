@@ -134,6 +134,8 @@ export default {
         sum: this.siryoSumma,
         message
       })
+
+      // Данные для формирования заказа
     }
   }
 }
