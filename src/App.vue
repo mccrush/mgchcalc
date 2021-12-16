@@ -1,4 +1,5 @@
 <template>
+  <ButtonSettings />
   <div class="max-width-840 m-auto shadow bg-white rounded-3 mt-3">
     <Navbar @set-path-name="setPathName" :pathname="pathname" />
     <div class="container-fluid">
@@ -16,7 +17,7 @@ import Navbar from '@/components/Navbar'
 import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
-import ChangeBG from '@/components/ChangeBG'
+import ButtonSettings from '@/components/buttons/ButtonSettings'
 
 export default {
   components: {
@@ -24,7 +25,7 @@ export default {
     Login,
     Calc,
     Admin,
-    ChangeBG
+    ButtonSettings
   },
   data() {
     return {
