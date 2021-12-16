@@ -5,7 +5,6 @@
         <h5 class="m-0">Стоимость сырья</h5>
         <div class="form-check form-switch ms-3">
           <input
-            v-model="enableProcent"
             class="form-check-input"
             type="checkbox"
             role="switch"
@@ -49,7 +48,6 @@
         <h5 class="m-0">Стоимость работы</h5>
         <div class="form-check form-switch ms-2">
           <input
-            v-model="enableMinPrice"
             class="form-check-input"
             type="checkbox"
             role="switch"
