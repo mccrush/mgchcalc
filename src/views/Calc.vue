@@ -56,7 +56,7 @@
             @change="enableMinPrice = !enableMinPrice"
           />
           <label class="form-check-label" for="enableMinPrice"
-            >Мин. стоиомсть
+            >Мин. стоимость
             {{ enableMinPrice ? 'включена' : 'отключена' }}</label
           >
         </div>
