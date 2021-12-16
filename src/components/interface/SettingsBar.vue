@@ -21,7 +21,7 @@
         <button
           v-for="color in colors"
           :key="color.name"
-          class="btn btn-sm border me-2 p-1"
+          class="btn btn-sm border rounded-3 me-2 p-1"
           @click="getBG(color.color)"
         >
           <div :class="color.name" class="rounded-3 p-1 ps-2 pe-2">
