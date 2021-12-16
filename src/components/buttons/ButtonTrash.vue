@@ -1,8 +1,5 @@
 <template>
-  <button
-    class="btn btn-sm btn-outline-light text-muted w-100"
-    title="Удалить расчет"
-  >
+  <button class="btn btn-sm btn-outline-light text-muted w-100" title="Удалить">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
