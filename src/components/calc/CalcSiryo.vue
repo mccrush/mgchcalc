@@ -67,7 +67,7 @@ export default {
   components: {
     ButtonTrash
   },
-  props: ['type', 'id'],
+  props: ['type', 'id', 'enableProcent'],
   emits: ['calc-price', 'remove-calc'],
   data() {
     return {
@@ -101,7 +101,13 @@ export default {
       )
     },
     siryoPrice() {
-      return Math.ceil(this.siryo.price + this.siryo.price * this.siryoProcent)
+      if (this.enableProcent) {
+        return Math.ceil(
+          this.siryo.price + this.siryo.price * this.siryoProcent
+        )
+      } else {
+        return Math.ceil(this.siryo.price)
+      }
     },
     siryoSumma() {
       let dlina = this.siryoDlina.replace(/,/g, '.')

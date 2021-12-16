@@ -36,6 +36,7 @@
       v-for="sir in siryoArray"
       :key="sir.id"
       :id="sir.id"
+      :enableProcent="enableProcent"
       type="siryoArray"
       @calc-price="calculationPrice"
       @remove-calc="removeCalc"
