@@ -72,6 +72,12 @@ export default {
   box-shadow: none !important;
 }
 
+.form-check-input:focus {
+  border-color: rgba(0, 0, 0, 0.25);
+  outline: 0;
+  box-shadow: none;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

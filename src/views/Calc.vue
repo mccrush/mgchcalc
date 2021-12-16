@@ -1,8 +1,23 @@
 <template>
   <div>
     <div class="row pt-3">
-      <div class="col-12 d-flex justify-content-between">
+      <div class="col-12 d-flex justify-content-start">
         <h5 class="m-0">Стоимость сырья</h5>
+        <div class="form-check form-switch ms-3">
+          <input
+            v-model="enableProcent"
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="enableProcent"
+            :checked="!enableProcent"
+            @change="enableProcent = !enableProcent"
+          />
+          <label class="form-check-label" for="enableProcent"
+            >Наценка
+            {{ enableProcent ? 'включена' : 'отключена' }}
+          </label>
+        </div>
       </div>
     </div>
     <div class="row small text-center text-muted pt-2">
@@ -29,8 +44,23 @@
     <BlockShowSum title="сырье" :sum="siryoSum" />
     <!-- -->
     <div class="row pt-3">
-      <div class="col-12 d-flex justify-content-between">
+      <div class="col-12 d-flex justify-content-start">
         <h5 class="m-0">Стоимость работы</h5>
+        <div class="form-check form-switch ms-2">
+          <input
+            v-model="enableMinPrice"
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="enableMinPrice"
+            :checked="!enableMinPrice"
+            @change="enableMinPrice = !enableMinPrice"
+          />
+          <label class="form-check-label" for="enableMinPrice"
+            >Мин. стоиомсть
+            {{ enableMinPrice ? 'включена' : 'отключена' }}</label
+          >
+        </div>
       </div>
     </div>
     <div class="row small text-center text-muted pt-2">
@@ -152,7 +182,9 @@ export default {
       siryoArray: [createCalc()],
       rabotaArray: [createCalc()],
       dopuslugArray: [createCalc()],
-      zakazArray: []
+      zakazArray: [],
+      enableProcent: true,
+      enableMinPrice: true
     }
   },
   computed: {
@@ -251,3 +283,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.form-check-input:checked {
+  background-color: #fd0d5f;
+  border-color: #fd0d5f;
+}
+</style>
