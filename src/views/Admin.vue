@@ -139,7 +139,9 @@ export default {
     }
   },
   mounted() {
-    this.procent = this.siryoProcent
+    setTimeout(() => {
+      this.procent = this.siryoProcent
+    }, 1000)
   },
   methods: {
     selectRazdel() {
