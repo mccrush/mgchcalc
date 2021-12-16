@@ -133,7 +133,9 @@ export default {
       }
     },
     siryoProcent() {
-      return this.$store.getters.procent[0].value
+      if (this.$store.getters.procent.length) {
+        return this.$store.getters.procent[0].value
+      }
     }
   },
   mounted() {
