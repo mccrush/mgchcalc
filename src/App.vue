@@ -1,5 +1,5 @@
 <template>
-  <ButtonSettings />
+  <ButtonSettings data-bs-toggle="offcanvas" href="#settingsBar" />
   <div class="max-width-840 m-auto shadow bg-white rounded-3 mt-3">
     <Navbar @set-path-name="setPathName" :pathname="pathname" />
     <div class="container-fluid">
@@ -8,16 +8,19 @@
       </transition>
     </div>
   </div>
+  <SettingsBar />
 </template>
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 //import { Dropdown, Modal, Tooltip } from 'bootstrap'
+import { Offcanvas } from 'bootstrap'
 import Navbar from '@/components/Navbar'
 import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
+import SettingsBar from '@/components/interface/SettingsBar'
 
 export default {
   components: {
@@ -25,7 +28,8 @@ export default {
     Login,
     Calc,
     Admin,
-    ButtonSettings
+    ButtonSettings,
+    SettingsBar
   },
   data() {
     return {
