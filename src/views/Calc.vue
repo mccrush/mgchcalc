@@ -213,7 +213,7 @@ export default {
       this.rabotaSum = sumRabota
       this.dopuslugSum = sumDopuslug
 
-      if (sumRabota > 0 && sumRabota < 500) {
+      if (this.enableMinPrice && sumRabota > 0 && sumRabota < 500) {
         sumRabota = 500
       }
 
@@ -233,7 +233,7 @@ export default {
       this.rabotaArray.forEach(item => {
         messageRabota += item.message + '\n'
       })
-      if (this.rabotaSum > 0 && this.rabotaSum < 500) {
+      if (this.enableMinPrice && this.rabotaSum > 0 && this.rabotaSum < 500) {
         const raznost = 500 - this.rabotaSum
         messageRabota += 'Плюс до минимальной стоимости ' + raznost + ' ₽\n'
         this.rabotaSum = 500
