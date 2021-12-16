@@ -82,7 +82,7 @@ import FormSiryo from '@/components/admin/FormSiryo'
 import FormFrezer from '@/components/admin/FormFrezer'
 import FormRabota from '@/components/admin/FormRabota'
 import FormDopuslug from '@/components/admin/FormDopuslug'
-import Footer from '@/components/Footer'
+import Footer from '@/components/interface/Footer'
 
 export default {
   components: {

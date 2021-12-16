@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import Progressbar from '@/components/Progressbar'
+import Progressbar from '@/components/interface/Progressbar'
 
 export default {
   components: {

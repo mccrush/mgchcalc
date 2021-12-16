@@ -15,7 +15,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 //import { Dropdown, Modal, Tooltip } from 'bootstrap'
 import { Offcanvas } from 'bootstrap'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/interface/Navbar'
 import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
