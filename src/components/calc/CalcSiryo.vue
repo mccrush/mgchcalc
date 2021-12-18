@@ -75,7 +75,6 @@ export default {
       siryoSelectId: '',
       siryoDlina: '',
       siryoShirina: '',
-      siryoSize: 0,
       siryoSize10: 0
     }
   },
@@ -100,6 +99,14 @@ export default {
         ) || { ed: 'кв.м.', price: 0 }
       )
     },
+    siryoDlina10() {
+      let dlina = this.siryoDlina.replace(/,/g, '.')
+      return (+dlina + dlina * 0.1).toFixed(1)
+    },
+    siryoShirina10() {
+      let shirina = this.siryoShirina.replace(/,/g, '.')
+      return (+shirina + shirina * 0.1).toFixed(1)
+    },
     siryoPrice() {
       if (this.enableProcent) {
         return Math.ceil(
@@ -110,19 +117,23 @@ export default {
       }
     },
     siryoSumma() {
-      let dlina = this.siryoDlina.replace(/,/g, '.')
-      let shirina = this.siryoShirina.replace(/,/g, '.')
-      this.siryoSize = (dlina * shirina + dlina * shirina * 0.1).toFixed(1)
-      return Math.ceil(this.siryoPrice * this.siryoSize)
+      // let dlina = this.siryoDlina.replace(/,/g, '.')
+      // let shirina = this.siryoShirina.replace(/,/g, '.')
+      //this.siryoSize = (dlina * shirina + dlina * shirina * 0.1).toFixed(1)
+      //console.log('this.siryoDlina10:', this.siryoDlina10)
+      //console.log('this.siryoShirina10:', this.siryoShirina10)
+      this.siryoSize10 = (this.siryoDlina10 * this.siryoShirina10).toFixed(1)
+      //console.log('this.siryoSize10:', this.siryoSize10)
+      return Math.ceil(this.siryoPrice * this.siryoSize10)
     }
   },
   methods: {
     selectCatSiryo() {
       this.siryoSelectId = ''
-      this.siryoSize = 0
+      this.siryoSize10 = 0
     },
     runCalc() {
-      const size = this.siryoSize.replace('.', ',')
+      const size = this.siryoSize10.replace('.', ',')
       const message =
         this.siryo.title +
         ', ' +
@@ -137,6 +148,15 @@ export default {
       this.$emit('calc-price', {
         type: this.type,
         id: this.id,
+        title: this.siryo.title,
+        size:
+          this.siryoDlina10 +
+          ' x ' +
+          this.siryoShirina10 +
+          ' = ' +
+          size +
+          ' ' +
+          this.siryo.ed,
         sum: this.siryoSumma,
         message
       })

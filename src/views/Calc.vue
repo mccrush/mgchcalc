@@ -138,8 +138,7 @@
       <div class="col-3 d-flex flex-column justify-content-end p-2 ps-0">
         <button
           class="btn btn-sm btn-success w-100 mb-2"
-          @click="saveOrder"
-          disabled
+          @click="createNewOrder"
         >
           Создать заказ
         </button>
@@ -156,6 +155,7 @@
 
 <script>
 import createCalc from '@/scripts/createCalc'
+import createOrder from '@/scripts/createOrder'
 import CalcSiryo from '@/components/calc/CalcSiryo'
 import CalcRabota from '@/components/calc/CalcRabota'
 import CalcDopuslug from '@/components/calc/CalcDopuslug'
@@ -256,16 +256,21 @@ export default {
     }
   },
   methods: {
-    saveOrder() {},
+    createNewOrder() {
+      const order = createOrder(this.siryoArray, this.rabotaArray)
+      console.log('order:', order)
+    },
     removeCalc({ type, id }) {
       this[type] = this[type].filter(item => item.id !== id)
     },
     addNewCalc({ type }) {
       this[type].push(createCalc())
     },
-    calculationPrice({ type, id, sum, message }) {
+    calculationPrice({ type, id, title, size, sum, message }) {
       let item = {
         id,
+        title,
+        size,
         sum,
         message
       }

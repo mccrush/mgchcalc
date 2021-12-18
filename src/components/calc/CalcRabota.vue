@@ -143,6 +143,8 @@ export default {
       this.$emit('calc-price', {
         type: this.type,
         id: this.id,
+        title: this.categoryTitle + ' ' + this.rabota.title,
+        size: this.rabotaSize + ' м.п.',
         sum: this.rabotaSumma,
         message
       })

@@ -1,6 +1,6 @@
 export default () => {
   return {
-    id: new Date().getTime().toString(),
+    id: Date.now().toString(),
     sum: 0,
     message: ''
   }
