@@ -139,6 +139,8 @@
         <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
         >
           Создать заказ
         </button>
@@ -150,6 +152,7 @@
         </button>
       </div>
     </div>
+    <ModalOrder v-if="order" :order="order" />
   </div>
 </template>
 
@@ -161,6 +164,7 @@ import CalcRabota from '@/components/calc/CalcRabota'
 import CalcDopuslug from '@/components/calc/CalcDopuslug'
 import BlockAddCalc from '@/components/calc/BlockAddCalc'
 import BlockShowSum from '@/components/calc/BlockShowSum'
+import ModalOrder from '@/components/interface/ModalOrder'
 
 export default {
   components: {
@@ -168,7 +172,8 @@ export default {
     CalcRabota,
     CalcDopuslug,
     BlockAddCalc,
-    BlockShowSum
+    BlockShowSum,
+    ModalOrder
   },
   data() {
     return {
@@ -183,7 +188,8 @@ export default {
       dopuslugArray: [createCalc()],
       zakazArray: [],
       enableProcent: true,
-      enableMinPrice: true
+      enableMinPrice: true,
+      order: {}
     }
   },
   computed: {
@@ -258,7 +264,8 @@ export default {
   methods: {
     createNewOrder() {
       const order = createOrder(this.siryoArray, this.rabotaArray)
-      console.log('order:', order)
+      this.order = order
+      console.log('this.order:', this.order)
     },
     removeCalc({ type, id }) {
       this[type] = this[type].filter(item => item.id !== id)
