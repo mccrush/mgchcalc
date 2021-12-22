@@ -31,7 +31,10 @@
         Калькулятор
       </button>
       <button
-        v-if="userId"
+        v-if="
+          userId === 'uNOE7SInyGQbRptYJq7OiQtG7Ol2' ||
+          userId === 'rNl0ejcTSIhMycVqx4XhTqVVhAv1'
+        "
         class="btn btn-sm btn-outline-light text-muted me-2"
         :class="{ active: pathname === 'admin' }"
         @click="$emit('set-path-name', 'admin')"
