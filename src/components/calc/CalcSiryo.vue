@@ -122,7 +122,7 @@ export default {
       //this.siryoSize = (dlina * shirina + dlina * shirina * 0.1).toFixed(1)
       //console.log('this.siryoDlina10:', this.siryoDlina10)
       //console.log('this.siryoShirina10:', this.siryoShirina10)
-      this.siryoSize10 = (this.siryoDlina10 * this.siryoShirina10).toFixed(1)
+      this.siryoSize10 = (this.siryoDlina10 * this.siryoShirina10).toFixed(2)
       //console.log('this.siryoSize10:', this.siryoSize10)
       return Math.ceil(this.siryoPrice * this.siryoSize10)
     }
