@@ -1,5 +1,5 @@
 <template>
-  <div class="col-4 m-auto rounded-3 border shadow-sm mt-4 p-3">
+  <div class="col-10 col-md-4 m-auto rounded-3 border shadow-sm mt-4 p-3">
     <h5 class="text-center">Авторизация</h5>
     <label for="email">Email</label>
     <br />

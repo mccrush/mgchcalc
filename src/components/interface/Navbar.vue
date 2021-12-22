@@ -1,11 +1,11 @@
 <template>
-  <div class="row">
-    <div class="progressbar col-12">
+  <div class="row m-0">
+    <div class="progressbar col-12 p-0">
       <Progressbar v-if="loading" />
       <ProgressbarOff v-else />
     </div>
     <div class="col-12 pt-2">
-      <div class="buttons d-flex justify-content-end pe-2">
+      <div class="buttons d-flex justify-content-end">
         <!-- <button
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"

@@ -117,7 +117,7 @@
     <!-- -->
     <div class="row bg-secondary">
       <div class="col-8"></div>
-      <div class="col-4 d-flex justify-content-between p-1 pe-2">
+      <div class="col-4 d-flex justify-content-between p-1 pe-3 pe-md-2">
         <div></div>
         <div class="small text-light">
           Итого: <span class="fw-bold">{{ sumItogo }}</span>
@@ -125,7 +125,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-9 d-flex justify-content-between p-2">
+      <div class="col-12 col-md-9 d-flex justify-content-between p-2">
         <div></div>
         <div class="w-100">
           <textarea
@@ -135,7 +135,16 @@
           ></textarea>
         </div>
       </div>
-      <div class="col-3 d-flex flex-column justify-content-end p-2 ps-0">
+      <div
+        class="
+          col-12 col-md-3
+          d-flex
+          flex-column
+          justify-content-end
+          p-2
+          ps-md-0
+        "
+      >
         <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
