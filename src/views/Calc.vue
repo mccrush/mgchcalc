@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="row small text-center text-muted pt-2">
+    <div class="row d-none d-md-flex small text-center text-muted pt-2">
       <div class="col-3">Группа сырья</div>
       <div class="col-3">Сырье</div>
       <div class="col-12 col-md-6">
