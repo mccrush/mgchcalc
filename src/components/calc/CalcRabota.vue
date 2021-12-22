@@ -93,22 +93,26 @@ export default {
       )
     },
     rabotaAmount() {
-      if (+this.rabotaSize < 100) {
+      let size = this.rabotaSize
+      size = size.replace(/,/g, '.')
+      if (+size < 100) {
         return 'priceS'
-      } else if (+this.rabotaSize >= 100 && +this.rabotaSize < 500) {
+      } else if (+size >= 100 && +size < 500) {
         return 'priceM'
-      } else if (+this.rabotaSize >= 500) {
+      } else if (+size >= 500) {
         return 'priceL'
       } else {
         return 'priceS'
       }
     },
     rabotaPrice() {
-      if (+this.rabotaSize < 100) {
+      let size = this.rabotaSize
+      size = size.replace(/,/g, '.')
+      if (+size < 100) {
         return this.rabota.priceS
-      } else if (+this.rabotaSize >= 100 && +this.rabotaSize < 500) {
+      } else if (+size >= 100 && +size < 500) {
         return this.rabota.priceM
-      } else if (+this.rabotaSize >= 500) {
+      } else if (+size >= 500) {
         return this.rabota.priceL
       }
     },
