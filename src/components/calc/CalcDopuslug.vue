@@ -1,7 +1,7 @@
 <template>
   <div class="row pt-2">
     <!---->
-    <div class="col-3 pe-0">
+    <div class="col-12 col-sm-6 col-md-3 pe-sm-0">
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
@@ -14,13 +14,13 @@
       </select>
     </div>
 
-    <div class="col-3 pe-0"></div>
+    <div class="d-none d-md-block col-3 pe-0"></div>
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 mt-2 mt-md-0">
       <div class="row">
         <div class="col-5">
           <input
-            v-if="element.alias === 'prefiles'"
+            v-if="element.alias === 'prefiles' || element.alias === 'sborizdel'"
             type="text"
             class="form-control form-control-sm"
             v-model.number="element.price"
@@ -31,7 +31,7 @@
             v-if="
               element.alias === 'shlifaner' || element.alias === 'obrabottorcov'
             "
-            class="text-center"
+            class="text-center pt-1"
           >
             <small>{{ element.ed }} / {{ element.price + ' ₽' }}</small>
           </div>
@@ -48,7 +48,7 @@
             :disabled="!categoryId"
           />
         </div>
-        <div class="col-2 text-end">
+        <div class="col-2 text-center small pt-1">
           {{ elementSumma }}
         </div>
         <div class="col-2 text-end">
@@ -92,7 +92,10 @@ export default {
       )
     },
     elementSumma() {
-      if (this.element.alias === 'prefiles') {
+      if (
+        this.element.alias === 'prefiles' ||
+        this.element.alias === 'sborizdel'
+      ) {
         return this.element.price
       } else if (
         this.element.alias === 'shlifaner' ||
@@ -110,7 +113,10 @@ export default {
     runCalc() {
       const size = this.elementSize.replace('.', ',')
       let message = ''
-      if (this.element.alias === 'prefiles') {
+      if (
+        this.element.alias === 'prefiles' ||
+        this.element.alias === 'sborizdel'
+      ) {
         message = this.categoryTitle + ', ' + this.elementSumma + ' ₽'
       } else if (
         this.element.alias === 'shlifaner' ||

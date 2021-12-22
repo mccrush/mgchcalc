@@ -29,7 +29,7 @@
 
     <div class="col-12 col-md-6 mt-2 mt-md-0">
       <div class="row">
-        <div class="col-4 text-center pe-0">
+        <div class="col-4 text-center pt-1 pe-0">
           <small>{{ siryo.ed }} / {{ siryoPrice + ' ₽' }}</small>
         </div>
         <div class="col-4 d-flex justify-content-start text-center">
@@ -48,7 +48,7 @@
             :disabled="!categorySiryoId || !siryoSelectId"
           />
         </div>
-        <div class="col-2 text-end">
+        <div class="col-2 text-center small pt-1">
           {{ siryoSumma }}
         </div>
         <div class="col-2 text-end">

@@ -62,7 +62,7 @@
         </div>
       </div>
     </div>
-    <div class="row small text-center text-muted pt-2">
+    <div class="row d-none d-md-flex small text-center text-muted pt-2">
       <div class="col-3">Группа работы</div>
       <div class="col-3">Работа (толщина)</div>
       <div class="col-12 col-md-6">
@@ -91,7 +91,7 @@
           <h5 class="lh-1 m-0">Дополнительные услуги</h5>
         </div>
       </div>
-      <div class="row small text-center text-muted pt-2">
+      <div class="row d-none d-md-flex small text-center text-muted pt-2">
         <div class="col-3">Группа услуги</div>
         <div class="col-3">--</div>
         <div class="col-12 col-md-6">
