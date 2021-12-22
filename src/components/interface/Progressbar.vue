@@ -1,5 +1,5 @@
 <template>
-  <div class="progress">
+  <div class="progress bg-transparent">
     <div
       class="progress-bar progress-bar-striped bg-warning progress-bar-animated"
       role="progressbar"

@@ -36,6 +36,10 @@ export default {
       pathname: localStorage.getItem('cl-pathname') || 'calc'
     }
   },
+  mounted() {
+    let body = document.getElementsByTagName('body')[0]
+    body.style.backgroundColor = '#f8f9fa'
+  },
   computed: {
     userId() {
       return this.$store.getters.userId
