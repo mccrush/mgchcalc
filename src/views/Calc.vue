@@ -141,6 +141,7 @@
           @click="createNewOrder"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdrop"
+          disabled
         >
           Создать заказ
         </button>
@@ -152,7 +153,7 @@
         </button>
       </div>
     </div>
-    <ModalOrder v-if="order" :order="order" />
+    <!-- <ModalOrder v-if="order" :order="order" /> -->
   </div>
 </template>
 
