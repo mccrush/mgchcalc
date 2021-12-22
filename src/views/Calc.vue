@@ -2,7 +2,7 @@
   <div>
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-start">
-        <h5 class="m-0">Стоимость сырья</h5>
+        <h5 class="lh-1 m-0">Стоимость сырья</h5>
         <div class="form-check form-switch ms-3">
           <input
             class="form-check-input"
@@ -12,7 +12,7 @@
             :checked="!enableProcent"
             @change="enableProcent = !enableProcent"
           />
-          <label class="form-check-label" for="enableProcent"
+          <label class="form-check-label lh-1" for="enableProcent"
             >Наценка
             {{ enableProcent ? 'включена' : 'отключена' }}
           </label>
@@ -45,7 +45,7 @@
     <!-- -->
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-start">
-        <h5 class="m-0">Стоимость работы</h5>
+        <h5 class="lh-1 m-0">Стоимость работы</h5>
         <div class="form-check form-switch ms-2">
           <input
             class="form-check-input"
@@ -55,7 +55,7 @@
             :checked="!enableMinPrice"
             @change="enableMinPrice = !enableMinPrice"
           />
-          <label class="form-check-label" for="enableMinPrice"
+          <label class="form-check-label lh-1" for="enableMinPrice"
             >Мин. стоимость
             {{ enableMinPrice ? 'включена' : 'отключена' }}</label
           >
@@ -88,7 +88,7 @@
     <div>
       <div class="row pt-3">
         <div class="col-12 d-flex justify-content-between">
-          <h5 class="m-0">Дополнительные услуги</h5>
+          <h5 class="lh-1 m-0">Дополнительные услуги</h5>
         </div>
       </div>
       <div class="row small text-center text-muted pt-2">
