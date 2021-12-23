@@ -156,6 +156,7 @@
         <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
+          disabled
         >
           Создать заказ
         </button>
@@ -167,7 +168,7 @@
         </button>
       </div>
     </div>
-    <ModalOrder v-if="order" :order="order" />
+    <!-- <ModalOrder v-if="order" :order="order" /> -->
   </div>
 </template>
 
