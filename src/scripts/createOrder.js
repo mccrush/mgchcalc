@@ -1,12 +1,11 @@
 import getDateNow from './getDateNow'
 
-export default (siryoArray, rabotaArray) => {
+export default () => {
   const item = {
     id: Date.now().toString(),
     title: '',
     date: getDateNow,
-    siryoArray,
-    rabotaArray
+    type: 'order'
   }
   return item
 }

@@ -145,11 +145,17 @@
           ps-md-0
         "
       >
-        <button
+        <!-- <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdrop"
+        >
+          Создать заказ
+        </button> -->
+        <button
+          class="btn btn-sm btn-success w-100 mb-2"
+          @click="createNewOrder"
         >
           Создать заказ
         </button>
@@ -272,9 +278,29 @@ export default {
   },
   methods: {
     createNewOrder() {
-      const order = createOrder(this.siryoArray, this.rabotaArray)
+      let order = createOrder()
       this.order = order
       console.log('this.order:', this.order)
+
+      // Всем элементам массивов присвоить orderId
+      const listOfTypes = ['siryoArray', 'rabotaArray', 'dopuslugArray']
+
+      for (let i = 0; i < listOfTypes.length; i++) {
+        if (this[listOfTypes[i]].length) {
+          this[listOfTypes[i]].forEach((item, idx, array) => {
+            array[idx].orderId = order.id
+          })
+        }
+      }
+
+      // console.log('this.siryoArray:', this.siryoArray)
+      // console.log('this.rabotaArray:', this.rabotaArray)
+      // console.log('this.dopuslugArray:', this.dopuslugArray)
+
+      // Каждую задачу (каждый элемент массива) сохранить в БД
+      // Заказ сохранить в БД
+      // А в модальном окне Заказа, данные уже брать из Vuex (из БД)
+      // В модалке Задачи можно изменять, обновляя уже в БД
     },
     removeCalc({ type, id }) {
       this[type] = this[type].filter(item => item.id !== id)
@@ -284,11 +310,13 @@ export default {
     },
     calculationPrice({ type, id, title, size, sum, message }) {
       let item = {
+        type: 'task',
         id,
         title,
         size,
         sum,
-        message
+        message,
+        orderId: ''
       }
       let index = this[type].findIndex(item => item.id === id)
       this[type][index] = item
