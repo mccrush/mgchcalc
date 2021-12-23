@@ -208,6 +208,12 @@ export default {
     }
   },
   computed: {
+    sumSiryoFrom() {
+      this.siryoArray.forEach(elem => {
+        const obj = this.$store.getters.siryo.find(item => item.id === elem.id)
+        console.log('elem:', obj) /////////////
+      })
+    },
     sumItogo() {
       let sumSiryo = 0
       let sumRabota = 0
