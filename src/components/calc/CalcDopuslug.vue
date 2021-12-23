@@ -137,14 +137,32 @@ export default {
         message = this.categoryTitle + ' стоимость всех услуг X 2'
       }
 
-      this.$emit('calc-price', {
-        type: this.type,
+      // this.$emit('calc-price', {
+      //   type: this.type,
+      //   id: this.id,
+      //   title: this.categoryTitle,
+      //   size: this.elementSize,
+      //   sum: this.elementSumma,
+      //   message
+      // })
+
+      const item = {
+        type: 'task',
         id: this.id,
-        title: this.categoryTitle,
-        size: this.elementSize,
-        sum: this.elementSumma,
-        message
-      })
+        groupId: '',
+        elemId: this.categoryId,
+        elemType: this.type,
+        elemSize1: +this.elementSize.replace(/,/g, '.'),
+        elemSize2: 0,
+        orderId: ''
+      }
+
+      this.$emit('calc-price', item)
+    }
+  },
+  watch: {
+    categoryId() {
+      this.elementSize = ''
     }
   }
 }

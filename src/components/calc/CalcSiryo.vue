@@ -145,23 +145,34 @@ export default {
         ' ₽ = ' +
         this.siryoSumma +
         ' ₽'
-      this.$emit('calc-price', {
-        type: this.type,
-        id: this.id,
-        title: this.siryo.title,
-        size:
-          this.siryoDlina10 +
-          ' x ' +
-          this.siryoShirina10 +
-          ' = ' +
-          size +
-          ' ' +
-          this.siryo.ed,
-        sum: this.siryoSumma,
-        message
-      })
+      // this.$emit('calc-price', {
+      //   type: this.type,
+      //   id: this.id,
+      //   title: this.siryo.title,
+      //   size:
+      //     this.siryoDlina10 +
+      //     ' x ' +
+      //     this.siryoShirina10 +
+      //     ' = ' +
+      //     size +
+      //     ' ' +
+      //     this.siryo.ed,
+      //   sum: this.siryoSumma,
+      //   message
+      // })
 
-      // Данные для формирования заказа
+      const item = {
+        type: 'task',
+        id: this.id,
+        groupId: this.categorySiryoId,
+        elemId: this.siryoSelectId,
+        elemType: this.type,
+        elemSize1: +this.siryoDlina.replace(/,/g, '.'),
+        elemSize2: +this.siryoShirina.replace(/,/g, '.'),
+        orderId: ''
+      }
+
+      this.$emit('calc-price', item)
     }
   }
 }

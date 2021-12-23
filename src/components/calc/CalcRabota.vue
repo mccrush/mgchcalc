@@ -144,14 +144,27 @@ export default {
         ' ₽ = ' +
         this.rabotaSumma +
         ' ₽'
-      this.$emit('calc-price', {
-        type: this.type,
+      // this.$emit('calc-price', {
+      //   type: this.type,
+      //   id: this.id,
+      //   title: this.categoryTitle + ' ' + this.rabota.title,
+      //   size: this.rabotaSize + ' м.п.',
+      //   sum: this.rabotaSumma,
+      //   message
+      // })
+
+      const item = {
+        type: 'task',
         id: this.id,
-        title: this.categoryTitle + ' ' + this.rabota.title,
-        size: this.rabotaSize + ' м.п.',
-        sum: this.rabotaSumma,
-        message
-      })
+        groupId: this.categoryRabotaId,
+        elemId: this.rabotaSelectId,
+        elemType: this.type,
+        elemSize1: +this.rabotaSize.replace(/,/g, '.'),
+        elemSize2: 0,
+        orderId: ''
+      }
+
+      this.$emit('calc-price', item)
     }
   }
 }

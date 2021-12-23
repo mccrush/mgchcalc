@@ -156,7 +156,6 @@
         <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
-          disabled
         >
           Создать заказ
         </button>
@@ -173,7 +172,8 @@
 </template>
 
 <script>
-import createCalc from '@/scripts/createCalc'
+//import createCalc from '@/scripts/createCalc'
+import createCalc from '@/scripts/createCalc_2'
 import createOrder from '@/scripts/createOrder'
 import CalcSiryo from '@/components/calc/CalcSiryo'
 import CalcRabota from '@/components/calc/CalcRabota'
@@ -202,7 +202,6 @@ export default {
       siryoArray: [createCalc()],
       rabotaArray: [createCalc()],
       dopuslugArray: [createCalc()],
-      zakazArray: [],
       enableProcent: true,
       enableMinPrice: true,
       order: {}
@@ -294,9 +293,9 @@ export default {
         }
       }
 
-      // console.log('this.siryoArray:', this.siryoArray)
-      // console.log('this.rabotaArray:', this.rabotaArray)
-      // console.log('this.dopuslugArray:', this.dopuslugArray)
+      console.log('this.siryoArray:', this.siryoArray)
+      console.log('this.rabotaArray:', this.rabotaArray)
+      console.log('this.dopuslugArray:', this.dopuslugArray)
 
       // Каждую задачу (каждый элемент массива) сохранить в БД
       // Заказ сохранить в БД
@@ -309,18 +308,24 @@ export default {
     addNewCalc({ type }) {
       this[type].push(createCalc())
     },
-    calculationPrice({ type, id, title, size, sum, message }) {
-      let item = {
-        type: 'task',
-        id,
-        title,
-        size,
-        sum,
-        message,
-        orderId: ''
-      }
-      let index = this[type].findIndex(item => item.id === id)
-      this[type][index] = item
+    // calculationPrice({ type, id, title, size, sum, message }) {
+    //   let item = {
+    //     type: 'task',
+    //     id,
+    //     title,
+    //     size,
+    //     sum,
+    //     message,
+    //     orderId: ''
+    //   }
+    //   let index = this[type].findIndex(item => item.id === id)
+    //   this[type][index] = item
+    // },
+    calculationPrice(item) {
+      console.log('item in calculationPrice:', item)
+      let index = this[item.elemType].findIndex(elem => elem.id === item.id)
+      this[item.elemType][index] = item
+      //this[item.type][index] = { ...this[item.type][index], item }
     },
     copyInBuffer(e) {
       const el = e.target.parentNode.previousSibling.lastChild.lastChild
