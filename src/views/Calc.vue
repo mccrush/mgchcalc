@@ -148,17 +148,9 @@
         <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
-          data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop"
         >
           Создать заказ
         </button>
-        <!-- <button
-          class="btn btn-sm btn-success w-100 mb-2"
-          @click="createNewOrder"
-        >
-          Создать заказ
-        </button> -->
         <button
           class="btn btn-sm btn-outline-dark w-100"
           @click="copyInBuffer($event)"
@@ -167,21 +159,18 @@
         </button>
       </div>
     </div>
-    <!-- <ModalOrder v-if="order" :order="order" mod="create" /> -->
   </div>
 </template>
 
 <script>
 import createCalc from '@/scripts/createCalc_2'
 import createOrder from '@/scripts/createOrder'
-//import getElemSize from '@/scripts/getElemSize'
 
 import CalcSiryo from '@/components/calc/CalcSiryo'
 import CalcRabota from '@/components/calc/CalcRabota'
 import CalcDopuslug from '@/components/calc/CalcDopuslug'
 import BlockAddCalc from '@/components/calc/BlockAddCalc'
 import BlockShowSum from '@/components/calc/BlockShowSum'
-//import ModalOrder from '@/components/interface/ModalOrder'
 
 export default {
   components: {
@@ -318,9 +307,6 @@ export default {
         this.rabotaArray,
         this.dopuslugArray
       )
-
-      //this.order = order
-      console.log('create order:', order)
 
       this.$emit('edit-order', { order, mod: 'create' })
 
