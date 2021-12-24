@@ -11,7 +11,7 @@ export default {
     frezer: [],
     rabota: [],
     dopuslug: [],
-    zakaz: []
+    order: []
   },
   mutations: {
     removeItem(state, { type, id }) {
@@ -83,6 +83,6 @@ export default {
     frezer: state => state.frezer,
     rabota: state => state.rabota,
     dopuslug: state => state.dopuslug,
-    zakaz: state => state.zakaz,
+    order: state => state.order,
   }
 }

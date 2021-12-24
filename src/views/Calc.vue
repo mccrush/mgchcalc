@@ -145,20 +145,20 @@
           ps-md-0
         "
       >
-        <!-- <button
+        <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdrop"
         >
           Создать заказ
-        </button> -->
-        <button
+        </button>
+        <!-- <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
         >
           Создать заказ
-        </button>
+        </button> -->
         <button
           class="btn btn-sm btn-outline-dark w-100"
           @click="copyInBuffer($event)"
@@ -167,14 +167,14 @@
         </button>
       </div>
     </div>
-    <!-- <ModalOrder v-if="order" :order="order" /> -->
+    <ModalOrder v-if="order" :order="order" />
   </div>
 </template>
 
 <script>
 import createCalc from '@/scripts/createCalc_2'
 import createOrder from '@/scripts/createOrder'
-import getElemSize from '@/scripts/getElemSize'
+//import getElemSize from '@/scripts/getElemSize'
 
 import CalcSiryo from '@/components/calc/CalcSiryo'
 import CalcRabota from '@/components/calc/CalcRabota'
@@ -313,24 +313,29 @@ export default {
       )
     },
     createNewOrder() {
-      let order = createOrder()
+      let order = createOrder(
+        this.siryoArray,
+        this.rabotaArray,
+        this.dopuslugArray
+      )
+
       this.order = order
-      console.log('this.order:', this.order)
+      console.log('create this.order:', this.order)
 
       // Всем элементам массивов присвоить orderId
-      const listOfTypes = ['siryoArray', 'rabotaArray', 'dopuslugArray']
+      // const listOfTypes = ['siryoArray', 'rabotaArray', 'dopuslugArray']
 
-      for (let i = 0; i < listOfTypes.length; i++) {
-        if (this[listOfTypes[i]].length) {
-          this[listOfTypes[i]].forEach((item, idx, array) => {
-            array[idx].orderId = order.id
-          })
-        }
-      }
+      // for (let i = 0; i < listOfTypes.length; i++) {
+      //   if (this[listOfTypes[i]].length) {
+      //     this[listOfTypes[i]].forEach((item, idx, array) => {
+      //       array[idx].orderId = order.id
+      //     })
+      //   }
+      // }
 
-      console.log('this.siryoArray:', this.siryoArray)
-      console.log('this.rabotaArray:', this.rabotaArray)
-      console.log('this.dopuslugArray:', this.dopuslugArray)
+      // console.log('this.siryoArray:', this.siryoArray)
+      // console.log('this.rabotaArray:', this.rabotaArray)
+      // console.log('this.dopuslugArray:', this.dopuslugArray)
 
       // Каждую задачу (каждый элемент массива) сохранить в БД
       // Заказ сохранить в БД

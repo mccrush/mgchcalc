@@ -30,19 +30,20 @@
           <input
             type="text"
             class="form-control form-control-sm"
-            v-model="order.title"
+            v-model.trim="order.title"
             placeholder="Название заказа"
           />
+          <!-- -->
           <h6 class="mt-3">Задачи Сырье</h6>
           <div
-            v-for="siryo in order.siryoArray"
-            :key="siryo.id"
+            v-for="elem in order.siryoArray"
+            :key="elem.id"
             class="row border mt-1 p-1"
           >
             <div class="col-12 col-md-8 col-lg-9">
-              {{ siryo.title }} - {{ siryo.size }}
+              {{ elem.elemTitle }} - {{ elem.elemSize }}
             </div>
-            <div class="col-8 col-md-3 col-lg-2">
+            <!-- <div class="col-8 col-md-3 col-lg-2">
               <select class="form-select form-select-sm">
                 <option value="new">Новая</option>
                 <option value="process">В работе</option>
@@ -51,19 +52,19 @@
             </div>
             <div class="col-4 col-md-1">
               <ButtonTrash />
-            </div>
+            </div> -->
           </div>
           <!-- -->
           <h6 class="mt-3">Задачи Работы</h6>
           <div
-            v-for="siryo in order.rabotaArray"
-            :key="siryo.id"
+            v-for="elem in order.rabotaArray"
+            :key="elem.id"
             class="row border mt-1 p-1"
           >
             <div class="col-12 col-md-8 col-lg-9">
-              {{ siryo.title }} - {{ siryo.size }}
+              {{ elem.elemTitle }} - {{ elem.elemSize }}
             </div>
-            <div class="col-8 col-md-3 col-lg-2">
+            <!-- <div class="col-8 col-md-3 col-lg-2">
               <select class="form-select form-select-sm">
                 <option value="new">Новая</option>
                 <option value="process">В работе</option>
@@ -72,19 +73,45 @@
             </div>
             <div class="col-4 col-md-1">
               <ButtonTrash />
+            </div> -->
+          </div>
+          <!-- -->
+          <h6 class="mt-3">Задачи Допуслуг</h6>
+          <div
+            v-for="elem in order.dopuslugArray"
+            :key="elem.id"
+            class="row border mt-1 p-1"
+          >
+            <div class="col-12 col-md-8 col-lg-9">
+              {{ elem.elemTitle }} - {{ elem.elemSize }}
             </div>
+            <!-- <div class="col-8 col-md-3 col-lg-2">
+              <select class="form-select form-select-sm">
+                <option value="new">Новая</option>
+                <option value="process">В работе</option>
+                <option value="done">Готово</option>
+              </select>
+            </div>
+            <div class="col-4 col-md-1">
+              <ButtonTrash />
+            </div> -->
           </div>
         </div>
         <div class="modal-footer p-2">
           <button
             type="button"
-            class="btn btn-outline-danger"
+            class="btn btn-secondary"
             data-bs-dismiss="modal"
           >
-            Удалить заказ
+            Отмена
           </button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-            Закрыть окно
+          <button
+            type="button"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            @click="saveItem"
+          >
+            Сохранить заказ и закрыть окно
           </button>
         </div>
       </div>
@@ -99,6 +126,19 @@ export default {
   components: {
     ButtonTrash
   },
-  props: ['order']
+  props: ['order'],
+  methods: {
+    saveItem() {
+      if (this.order.title) {
+        console.log('save order:', this.order)
+        this.$store.commit('addItem', { item: order })
+        this.$store.dispatch('addItem', { item: order })
+      }
+    },
+    removeItem(id) {
+      this.$store.commit('removeItem', { type: this.razdel, id })
+      this.$store.dispatch('removeItem', { type: this.razdel, id })
+    }
+  }
 }
 </script>
