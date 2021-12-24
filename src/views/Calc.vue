@@ -153,6 +153,7 @@
         >
           Создать заказ
         </button> -->
+        <div>{{ sumSiryoFrom }}</div>
         <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
@@ -175,6 +176,8 @@
 //import createCalc from '@/scripts/createCalc'
 import createCalc from '@/scripts/createCalc_2'
 import createOrder from '@/scripts/createOrder'
+import getElemSize from '@/scripts/getElemSize'
+
 import CalcSiryo from '@/components/calc/CalcSiryo'
 import CalcRabota from '@/components/calc/CalcRabota'
 import CalcDopuslug from '@/components/calc/CalcDopuslug'
@@ -208,11 +211,34 @@ export default {
     }
   },
   computed: {
+    siryoProcent() {
+      if (this.$store.getters.procent.length) {
+        return this.$store.getters.procent[0].value / 100
+      }
+    },
     sumSiryoFrom() {
+      let sumElem = 0
       this.siryoArray.forEach(elem => {
+        console.log('this.$store.getters.siryo:', this.$store.getters.siryo) /////////////
         const obj = this.$store.getters.siryo.find(item => item.id === elem.id)
-        console.log('elem:', obj) /////////////
+        console.log('obj:', obj) /////////////
+        const size = getElemSize(obj.elemSize1, obj.elemSize2)
+
+        let price
+
+        if (this.enableProcent) {
+          price = Math.ceil(obj.price + obj.price * this.siryoProcent)
+        } else {
+          price = Math.ceil(obj.price)
+        }
+
+        const sum = Math.ceil(price * size)
+
+        sumElem += sum
       })
+
+      console.log('sumElem:', sumElem) /////////////
+      return sumElem || 0
     },
     sumItogo() {
       let sumSiryo = 0
