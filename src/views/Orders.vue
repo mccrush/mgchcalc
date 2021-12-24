@@ -16,6 +16,7 @@
 
 <script>
 import OrderList from '@/components/orders/OrderList'
+
 export default {
   components: {
     OrderList
@@ -28,7 +29,7 @@ export default {
       return this.orders.filter(item => item.status === 'new')
     },
     ordersProgress() {
-      return this.orders.filter(item => item.status === 'progress')
+      return this.orders.filter(item => item.status === 'inprogress')
     },
     ordersDone() {
       return this.orders.filter(item => item.status === 'done')

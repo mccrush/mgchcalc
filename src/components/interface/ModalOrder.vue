@@ -1,7 +1,6 @@
 <template>
   <div
     class="modal fade"
-    id="staticBackdrop"
     data-bs-backdrop="static"
     data-bs-keyboard="false"
     tabindex="-1"
@@ -27,12 +26,34 @@
           ></button>
         </div>
         <div class="modal-body pt-2">
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            v-model.trim="order.title"
-            placeholder="Название заказа"
-          />
+          <div class="row">
+            <div class="col-10 pe-0">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                v-model.trim="order.title"
+                placeholder="Название заказа"
+                @change="updateItem(order)"
+              />
+            </div>
+            <div class="col-2">
+              <select
+                v-model="order.status"
+                @change="updateItem(order)"
+                class="form-select form-select-sm text-white"
+                :class="{
+                  'bg-info': order.status === 'new',
+                  'bg-warning': order.status === 'inprogress',
+                  'bg-success': order.status === 'done'
+                }"
+              >
+                <option value="new">Новый</option>
+                <option value="inprogress">В работе</option>
+                <option value="done">Выполнен</option>
+              </select>
+            </div>
+          </div>
+
           <!-- -->
           <h6 class="mt-3">Задачи Сырье</h6>
           <div
@@ -99,6 +120,14 @@
         </div>
         <div class="modal-footer p-2">
           <button
+            v-if="mod === 'edit'"
+            type="button"
+            class="btn btn-outline-danger"
+            @click="removeItem(order.id)"
+          >
+            Удалить заказ
+          </button>
+          <button
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
@@ -106,6 +135,7 @@
             Отмена
           </button>
           <button
+            v-if="mod === 'create'"
             type="button"
             class="btn btn-success"
             data-bs-dismiss="modal"
@@ -126,18 +156,26 @@ export default {
   components: {
     ButtonTrash
   },
-  props: ['order'],
+  props: ['order', 'mod'],
   methods: {
     saveItem() {
       if (this.order.title) {
         console.log('save order:', this.order)
-        this.$store.commit('addItem', { item: order })
-        this.$store.dispatch('addItem', { item: order })
+        this.$store.commit('addItem', { item: this.order })
+        this.$store.dispatch('addItem', { item: this.order })
+      }
+    },
+    updateItem({ item }) {
+      if (item.title) {
+        this.$store.commit('updateItem', { item })
+        this.$store.dispatch('updateItem', { item })
       }
     },
     removeItem(id) {
-      this.$store.commit('removeItem', { type: this.razdel, id })
-      this.$store.dispatch('removeItem', { type: this.razdel, id })
+      if (confirm('Действительно удалить заказ?')) {
+        this.$store.commit('removeItem', { type: 'order', id })
+        this.$store.dispatch('removeItem', { type: 'order', id })
+      }
     }
   }
 }

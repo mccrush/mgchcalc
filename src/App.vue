@@ -13,8 +13,8 @@
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
-//import { Dropdown, Modal, Tooltip } from 'bootstrap'
-import { Offcanvas, Modal } from 'bootstrap'
+//import {Offcanvas, Dropdown, Modal, Tooltip } from 'bootstrap'
+import { Modal } from 'bootstrap'
 import Navbar from '@/components/interface/Navbar'
 import Login from '@/views/Login'
 import Calc from '@/views/Calc'

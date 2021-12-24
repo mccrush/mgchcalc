@@ -167,7 +167,7 @@
         </button>
       </div>
     </div>
-    <ModalOrder v-if="order" :order="order" />
+    <ModalOrder v-if="order" :order="order" mod="create" />
   </div>
 </template>
 
