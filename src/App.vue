@@ -19,6 +19,7 @@ import Navbar from '@/components/interface/Navbar'
 import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
+import Orders from '@/views/Orders'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 import SettingsBar from '@/components/interface/SettingsBar'
 
@@ -28,6 +29,7 @@ export default {
     Login,
     Calc,
     Admin,
+    Orders,
     ButtonSettings,
     SettingsBar
   },
@@ -48,8 +50,10 @@ export default {
       if (this.userId) {
         if (this.pathname === 'admin') {
           return 'Admin'
-        } else {
+        } else if (this.pathname === 'calc') {
           return 'Calc'
+        } else if (this.pathname === 'orders') {
+          return 'Orders'
         }
       } else {
         return 'Login'

@@ -14,16 +14,15 @@
           disabled
         >
           Производство
-        </button>
+        </button> -->
         <button
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
-          :class="{ active: pathname === 'order' }"
-          @click="$emit('set-path-name', 'order')"
-          disabled
+          :class="{ active: pathname === 'orders' }"
+          @click="$emit('set-path-name', 'orders')"
         >
           Заказы
-        </button> -->
+        </button>
         <button
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
