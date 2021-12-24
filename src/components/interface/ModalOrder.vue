@@ -56,39 +56,25 @@
           <!-- -->
           <h6 class="mt-3">Задачи Сырье</h6>
           <ul class="list-group ist-group-numbered">
-            <li
-              v-for="elem in order.siryoArray"
-              :key="elem.id"
-              class="list-group-item d-flex"
-            >
-              <input class="form-check-input me-2" type="checkbox" value="" />
-              <div>
-                {{ elem.elemTitle }} - {{ elem.elemSize }} {{ elem.elemEd }}
-              </div>
-            </li>
+            <ModalOrderList v-for="elem in order.siryoArray" :key="elem.id">
+              {{ elem.elemTitle }}, {{ elem.elemDlina }} x
+              {{ elem.elemShirina }} = {{ elem.elemSize }} {{ elem.elemEd }}
+            </ModalOrderList>
           </ul>
           <!-- -->
           <h6 class="mt-3">Задачи Работы</h6>
-          <div
-            v-for="elem in order.rabotaArray"
-            :key="elem.id"
-            class="row mt-1 p-1"
-          >
-            <div class="col-12 col-md-8 col-lg-9">
-              {{ elem.elemTitle }} - {{ elem.elemSize }}
-            </div>
-          </div>
+          <ul class="list-group ist-group-numbered">
+            <ModalOrderList v-for="elem in order.rabotaArray" :key="elem.id">
+              {{ elem.elemTitle }}, {{ elem.elemSize }} {{ elem.elemEd }}
+            </ModalOrderList>
+          </ul>
           <!-- -->
           <h6 class="mt-3">Задачи Допуслуг</h6>
-          <div
-            v-for="elem in order.dopuslugArray"
-            :key="elem.id"
-            class="row mt-1 p-1"
-          >
-            <div class="col-12 col-md-8 col-lg-9">
-              {{ elem.elemTitle }} - {{ elem.elemSize }}
-            </div>
-          </div>
+          <ul class="list-group ist-group-numbered">
+            <ModalOrderList v-for="elem in order.dopuslugArray" :key="elem.id">
+              {{ elem.elemTitle }}, {{ elem.elemSize }} {{ elem.elemEd }}
+            </ModalOrderList>
+          </ul>
         </div>
         <div class="modal-footer p-2">
           <button
@@ -96,6 +82,7 @@
             type="button"
             class="btn btn-outline-danger"
             @click="removeItem(order.id)"
+            data-bs-dismiss="modal"
           >
             Удалить заказ
           </button>
@@ -122,17 +109,17 @@
 </template>
 
 <script>
-import ButtonTrash from '@/components/buttons/ButtonTrash'
+import ModalOrderList from '@/components/interface/ModalOrderList'
 
 export default {
   components: {
-    ButtonTrash
+    ModalOrderList
   },
   props: ['order', 'mod'],
   methods: {
     saveItem() {
       if (this.order.title) {
-        console.log('save order:', this.order)
+        //console.log('save order:', this.order)
         this.$store.commit('addItem', { item: this.order })
         this.$store.dispatch('addItem', { item: this.order })
       }

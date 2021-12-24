@@ -10,7 +10,15 @@
         class="item bg-white shadow-sm rounded lh-1 mt-2 p-2"
         @dblclick="editItem(item.id)"
       >
-        <span class="">{{ item.title }}</span>
+        <span class="small">{{ item.title }}</span>
+        <div class="text-muted small border-top mt-2 pt-2">
+          {{
+            new Date(item.date).toLocaleDateString('ru-RU', {
+              hour: '2-digit',
+              minute: '2-digit'
+            })
+          }}
+        </div>
       </div>
     </div>
   </div>

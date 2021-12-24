@@ -193,8 +193,7 @@ export default {
       rabotaArray: [createCalc()],
       dopuslugArray: [createCalc()],
       enableProcent: true,
-      enableMinPrice: true,
-      order: {}
+      enableMinPrice: true
     }
   },
   computed: {

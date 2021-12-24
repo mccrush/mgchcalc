@@ -1,6 +1,6 @@
 <template>
   <!-- <ButtonSettings data-bs-toggle="offcanvas" href="#settingsBar" /> -->
-  <div class="max-width-840 m-auto shadow bg-white rounded-3 mt-3">
+  <div class="max-width-840 m-auto shadow-sm bg-white rounded-3 mt-3">
     <Navbar @set-path-name="setPathName" :pathname="pathname" />
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>
