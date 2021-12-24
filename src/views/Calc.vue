@@ -167,7 +167,7 @@
         </button>
       </div>
     </div>
-    <ModalOrder v-if="order" :order="order" mod="create" />
+    <!-- <ModalOrder v-if="order" :order="order" mod="create" /> -->
   </div>
 </template>
 
@@ -181,7 +181,7 @@ import CalcRabota from '@/components/calc/CalcRabota'
 import CalcDopuslug from '@/components/calc/CalcDopuslug'
 import BlockAddCalc from '@/components/calc/BlockAddCalc'
 import BlockShowSum from '@/components/calc/BlockShowSum'
-import ModalOrder from '@/components/interface/ModalOrder'
+//import ModalOrder from '@/components/interface/ModalOrder'
 
 export default {
   components: {
@@ -189,9 +189,9 @@ export default {
     CalcRabota,
     CalcDopuslug,
     BlockAddCalc,
-    BlockShowSum,
-    ModalOrder
+    BlockShowSum
   },
+  emits: ['edit-order'],
   data() {
     return {
       siryoSum: 0,
@@ -319,8 +319,10 @@ export default {
         this.dopuslugArray
       )
 
-      this.order = order
-      console.log('create this.order:', this.order)
+      //this.order = order
+      console.log('create order:', order)
+
+      this.$emit('edit-order', { order, mod: 'create' })
 
       // Всем элементам массивов присвоить orderId
       // const listOfTypes = ['siryoArray', 'rabotaArray', 'dopuslugArray']

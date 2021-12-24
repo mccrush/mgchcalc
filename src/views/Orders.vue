@@ -2,13 +2,21 @@
   <div>
     <div class="row pt-2 ps-2 pe-2 pb-3">
       <div class="col-4">
-        <OrderList title="Новые" :array="ordersNew" />
+        <OrderList title="Новые" :array="ordersNew" @edit-order="editOrder" />
       </div>
       <div class="col-4">
-        <OrderList title="В работе" :array="ordersProgress" />
+        <OrderList
+          title="В работе"
+          :array="ordersProgress"
+          @edit-order="editOrder"
+        />
       </div>
       <div class="col-4">
-        <OrderList title="Выполненные" :array="ordersDone" />
+        <OrderList
+          title="Выполненные"
+          :array="ordersDone"
+          @edit-order="editOrder"
+        />
       </div>
     </div>
   </div>
@@ -33,6 +41,11 @@ export default {
     },
     ordersDone() {
       return this.orders.filter(item => item.status === 'done')
+    }
+  },
+  methods: {
+    editOrder(order) {
+      this.$emit('edit-order', { order, mod: 'edit' })
     }
   }
 }

@@ -4,10 +4,11 @@
     <Navbar @set-path-name="setPathName" :pathname="pathname" />
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>
-        <component :is="myComponent" />
+        <component :is="myComponent" @edit-order="editOrder" />
       </transition>
     </div>
   </div>
+  <ModalOrder v-if="order" :order="order" :mod="mod" id="staticBackdrop" />
   <!-- <SettingsBar /> -->
 </template>
 
@@ -21,7 +22,8 @@ import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
 import Orders from '@/views/Orders'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
-import SettingsBar from '@/components/interface/SettingsBar'
+//import SettingsBar from '@/components/interface/SettingsBar'
+import ModalOrder from '@/components/interface/ModalOrder'
 
 export default {
   components: {
@@ -31,11 +33,13 @@ export default {
     Admin,
     Orders,
     ButtonSettings,
-    SettingsBar
+    ModalOrder
   },
   data() {
     return {
-      pathname: localStorage.getItem('cl-pathname') || 'calc'
+      pathname: localStorage.getItem('cl-pathname') || 'calc',
+      order: {},
+      mod: ''
     }
   },
   mounted() {
@@ -64,6 +68,12 @@ export default {
     setPathName(name) {
       this.pathname = name
       localStorage.setItem('cl-pathname', name)
+    },
+    editOrder({ order, mod }) {
+      this.order = order
+      this.mod = mod
+      var myModal = new Modal(document.getElementById('staticBackdrop'))
+      myModal.show()
     }
   }
 }

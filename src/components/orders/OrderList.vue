@@ -13,23 +13,31 @@
         <span class="">{{ item.title }}</span>
       </div>
     </div>
-    <ModalOrder :order="order" mod="edit" id="staticBackdrop" />
   </div>
 </template>
 
 <script>
-import { Modal } from 'bootstrap'
-import ModalOrder from '@/components/interface/ModalOrder'
+// import { Modal } from 'bootstrap'
+// import ModalOrder from '@/components/interface/ModalOrder'
 
 export default {
-  components: {
-    ModalOrder
-  },
+  // components: {
+  //   ModalOrder
+  // },
   props: ['title', 'array'],
+  emits: ['edit-order'],
   data() {
     return {
       order: {}
     }
+  },
+  mounted() {
+    // var myModalEl = document.getElementById('staticBackdrop')
+    // myModalEl.addEventListener('hidden.bs.modal', function (event) {
+    //   console.log('moda lhide')
+    //   this.order = {}
+    //   console.log('this.order hide:', this.order)
+    // })
   },
   // computed: {
   //   order(id) {
@@ -38,10 +46,12 @@ export default {
   // },
   methods: {
     editItem(id) {
-      this.order = {}
-      this.order = this.array.find(item => item.id === id)
-      var myModal = new Modal(document.getElementById('staticBackdrop'))
-      myModal.show()
+      //this.order = {}
+      const order = this.array.find(item => item.id === id)
+      console.log('this.order edit:', order)
+      // var myModal = new Modal(document.getElementById('staticBackdrop'))
+      // myModal.show()
+      this.$emit('edit-order', order)
     }
   }
 }

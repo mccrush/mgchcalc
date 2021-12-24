@@ -165,8 +165,8 @@ export default {
         this.$store.dispatch('addItem', { item: this.order })
       }
     },
-    updateItem({ item }) {
-      if (item.title) {
+    updateItem(item) {
+      if (item.title && this.mod === 'edit') {
         this.$store.commit('updateItem', { item })
         this.$store.dispatch('updateItem', { item })
       }

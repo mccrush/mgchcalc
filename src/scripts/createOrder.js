@@ -1,6 +1,6 @@
 import getDateNow from './getDateNow'
 
-let titleFormar = 'Заказ от ' + new Date(getDateNow).getDate() + '.' + (new Date(getDateNow).getMonth() + 1) + '.' + new Date(getDateNow).getFullYear() + ',' + new Date(getDateNow).getHours() + ':' + new Date(getDateNow).getMinutes()
+let titleFormar = 'Заказ от ' + new Date(getDateNow).getDate() + '.' + (new Date(getDateNow).getMonth() + 1) + '.' + new Date(getDateNow).getFullYear() + ', ' + new Date(getDateNow).getHours() + ':' + new Date(getDateNow).getMinutes()
 
 export default (siryoArray, rabotaArray, dopuslugArray) => {
   const item = {
