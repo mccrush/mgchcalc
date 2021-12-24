@@ -8,6 +8,7 @@ export default (siryoArray, rabotaArray, dopuslugArray) => {
     title: titleFormar,
     date: getDateNow,
     type: 'order',
+    status: 'new',
     siryoArray,
     rabotaArray,
     dopuslugArray
