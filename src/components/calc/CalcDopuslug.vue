@@ -111,31 +111,31 @@ export default {
   },
   methods: {
     runCalc() {
-      const size = this.elementSize.replace('.', ',')
-      let message = ''
-      if (
-        this.element.alias === 'prefiles' ||
-        this.element.alias === 'sborizdel'
-      ) {
-        message = this.categoryTitle + ', ' + this.elementSumma + ' ₽'
-      } else if (
-        this.element.alias === 'shlifaner' ||
-        this.element.alias === 'obrabottorcov'
-      ) {
-        message =
-          this.categoryTitle +
-          ', ' +
-          size +
-          ' ' +
-          this.element.ed +
-          ' x ' +
-          this.element.price +
-          ' ₽ = ' +
-          this.elementSumma +
-          ' ₽'
-      } else if (this.element.alias === 'vneochered') {
-        message = this.categoryTitle + ' стоимость всех услуг X 2'
-      }
+      // const size = this.elementSize.replace('.', ',')
+      // let message = ''
+      // if (
+      //   this.element.alias === 'prefiles' ||
+      //   this.element.alias === 'sborizdel'
+      // ) {
+      //   message = this.categoryTitle + ', ' + this.elementSumma + ' ₽'
+      // } else if (
+      //   this.element.alias === 'shlifaner' ||
+      //   this.element.alias === 'obrabottorcov'
+      // ) {
+      //   message =
+      //     this.categoryTitle +
+      //     ', ' +
+      //     size +
+      //     ' ' +
+      //     this.element.ed +
+      //     ' x ' +
+      //     this.element.price +
+      //     ' ₽ = ' +
+      //     this.elementSumma +
+      //     ' ₽'
+      // } else if (this.element.alias === 'vneochered') {
+      //   message = this.categoryTitle + ' стоимость всех услуг X 2'
+      // }
 
       // this.$emit('calc-price', {
       //   type: this.type,
@@ -152,8 +152,11 @@ export default {
         groupId: '',
         elemId: this.categoryId,
         elemType: this.type,
-        elemSize1: +this.elementSize.replace(/,/g, '.'),
-        elemSize2: 0,
+        elemDlina: 0,
+        elemShirina: 0,
+        elemSize: +this.elementSize.replace(/,/g, '.'),
+        elemEd: this.element.ed,
+        elemSumma: this.elementSumma,
         orderId: ''
       }
 

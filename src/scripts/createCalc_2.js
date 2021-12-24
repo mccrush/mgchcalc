@@ -5,8 +5,11 @@ export default () => {
     groupId: '',
     elemId: '',
     elemType: '',
-    elemSize1: 0,
-    elemSize2: 0,
+    elemDlina: 0,
+    elemShirina: 0,
+    elemSize: 0,
+    elemEd: '',
+    elemSumma: 0,
     orderId: ''
   }
 }

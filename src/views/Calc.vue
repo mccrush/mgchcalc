@@ -153,7 +153,6 @@
         >
           Создать заказ
         </button> -->
-        <div>{{ sumSiryoFrom }}</div>
         <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
@@ -211,56 +210,33 @@ export default {
     }
   },
   computed: {
-    siryoProcent() {
-      if (this.$store.getters.procent.length) {
-        return this.$store.getters.procent[0].value / 100
-      }
-    },
-    sumSiryoFrom() {
-      let sumElem = 0
-      this.siryoArray.forEach(elem => {
-        console.log('this.$store.getters.siryo:', this.$store.getters.siryo) /////////////
-        const obj = this.$store.getters.siryo.find(item => item.id === elem.id)
-        console.log('obj:', obj) /////////////
-        const size = getElemSize(obj.elemSize1, obj.elemSize2)
-
-        let price
-
-        if (this.enableProcent) {
-          price = Math.ceil(obj.price + obj.price * this.siryoProcent)
-        } else {
-          price = Math.ceil(obj.price)
-        }
-
-        const sum = Math.ceil(price * size)
-
-        sumElem += sum
-      })
-
-      console.log('sumElem:', sumElem) /////////////
-      return sumElem || 0
-    },
     sumItogo() {
       let sumSiryo = 0
       let sumRabota = 0
       let sumDopuslug = 0
       let x2 = false
 
-      this.siryoArray.forEach(item => {
-        sumSiryo += item.sum
-      })
+      if (this.siryoArray.length) {
+        this.siryoArray.forEach(item => {
+          sumSiryo += item.elemSumma
+        })
+      }
 
-      this.rabotaArray.forEach(item => {
-        sumRabota += item.sum
-      })
+      if (this.rabotaArray.length) {
+        this.rabotaArray.forEach(item => {
+          sumRabota += item.elemSumma
+        })
+      }
 
-      this.dopuslugArray.forEach(item => {
-        if (item.sum === 'x2') {
-          x2 = true
-        } else {
-          sumDopuslug += item.sum
-        }
-      })
+      if (this.dopuslugArray.length) {
+        this.dopuslugArray.forEach(item => {
+          if (item.elemSumma === 'x2') {
+            x2 = true
+          } else {
+            sumDopuslug += item.elemSumma
+          }
+        })
+      }
 
       this.siryoSum = sumSiryo
       this.rabotaSum = sumRabota
@@ -277,6 +253,7 @@ export default {
       }
     },
     itogMessage() {
+      return 'msg me'
       let messageSiryo = ''
       this.siryoArray.forEach(item => {
         messageSiryo += item.message + '\n'

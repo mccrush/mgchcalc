@@ -101,11 +101,11 @@ export default {
     },
     siryoDlina10() {
       let dlina = this.siryoDlina.replace(/,/g, '.')
-      return (+dlina + dlina * 0.1).toFixed(1)
+      return +(+dlina + dlina * 0.1).toFixed(2)
     },
     siryoShirina10() {
       let shirina = this.siryoShirina.replace(/,/g, '.')
-      return (+shirina + shirina * 0.1).toFixed(1)
+      return +(+shirina + shirina * 0.1).toFixed(2)
     },
     siryoPrice() {
       if (this.enableProcent) {
@@ -117,13 +117,7 @@ export default {
       }
     },
     siryoSumma() {
-      // let dlina = this.siryoDlina.replace(/,/g, '.')
-      // let shirina = this.siryoShirina.replace(/,/g, '.')
-      //this.siryoSize = (dlina * shirina + dlina * shirina * 0.1).toFixed(1)
-      //console.log('this.siryoDlina10:', this.siryoDlina10)
-      //console.log('this.siryoShirina10:', this.siryoShirina10)
-      this.siryoSize10 = (this.siryoDlina10 * this.siryoShirina10).toFixed(2)
-      //console.log('this.siryoSize10:', this.siryoSize10)
+      this.siryoSize10 = +(this.siryoDlina10 * this.siryoShirina10).toFixed(2)
       return Math.ceil(this.siryoPrice * this.siryoSize10)
     }
   },
@@ -133,18 +127,19 @@ export default {
       this.siryoSize10 = 0
     },
     runCalc() {
-      const size = this.siryoSize10.replace('.', ',')
-      const message =
-        this.siryo.title +
-        ', ' +
-        size +
-        ' ' +
-        this.siryo.ed +
-        ' x ' +
-        this.siryoPrice +
-        ' ₽ = ' +
-        this.siryoSumma +
-        ' ₽'
+      //const size = this.siryoSize10.replace('.', ',')
+      // const message =
+      //   this.siryo.title +
+      //   ', ' +
+      //   size +
+      //   ' ' +
+      //   this.siryo.ed +
+      //   ' x ' +
+      //   this.siryoPrice +
+      //   ' ₽ = ' +
+      //   this.siryoSumma +
+      //   ' ₽'
+
       // this.$emit('calc-price', {
       //   type: this.type,
       //   id: this.id,
@@ -167,12 +162,20 @@ export default {
         groupId: this.categorySiryoId,
         elemId: this.siryoSelectId,
         elemType: this.type,
-        elemSize1: +this.siryoDlina.replace(/,/g, '.'),
-        elemSize2: +this.siryoShirina.replace(/,/g, '.'),
+        elemDlina: this.siryoDlina10,
+        elemShirina: this.siryoShirina10,
+        elemSize: this.siryoSize10,
+        elemEd: this.siryo.ed,
+        elemSumma: this.siryoSumma,
         orderId: ''
       }
 
       this.$emit('calc-price', item)
+    }
+  },
+  watch: {
+    enableProcent() {
+      this.runCalc()
     }
   }
 }

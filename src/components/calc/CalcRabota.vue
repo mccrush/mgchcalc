@@ -36,7 +36,7 @@
           <input
             type="text"
             class="form-control form-control-sm"
-            v-model="rabotaSize"
+            v-model="rabotaSizeOrigin"
             @input="runCalc"
             :disabled="!categoryRabotaId || !rabotaSelectId"
           />
@@ -68,7 +68,7 @@ export default {
     return {
       categoryRabotaId: '',
       rabotaSelectId: '',
-      rabotaSize: ''
+      rabotaSizeOrigin: ''
     }
   },
   computed: {
@@ -92,14 +92,16 @@ export default {
         ) || { priceS: 0, priceM: 0, priceL: 0 }
       )
     },
+    rabotaSize() {
+      return +this.rabotaSizeOrigin.replace(/,/g, '.')
+    },
     rabotaAmount() {
       let size = this.rabotaSize
-      size = size.replace(/,/g, '.')
-      if (+size < 100) {
+      if (size < 100) {
         return 'priceS'
-      } else if (+size >= 100 && +size < 500) {
+      } else if (size >= 100 && +size < 500) {
         return 'priceM'
-      } else if (+size >= 500) {
+      } else if (size >= 500) {
         return 'priceL'
       } else {
         return 'priceS'
@@ -107,19 +109,16 @@ export default {
     },
     rabotaPrice() {
       let size = this.rabotaSize
-      size = size.replace(/,/g, '.')
-      if (+size < 100) {
+      if (size < 100) {
         return this.rabota.priceS
-      } else if (+size >= 100 && +size < 500) {
+      } else if (size >= 100 && size < 500) {
         return this.rabota.priceM
-      } else if (+size >= 500) {
+      } else if (size >= 500) {
         return this.rabota.priceL
       }
     },
     rabotaSumma() {
-      let size = this.rabotaSize
-      size = size.replace(/,/g, '.')
-      return Math.ceil(this.rabotaPrice * size)
+      return Math.ceil(this.rabotaPrice * this.rabotaSize)
     }
   },
   methods: {
@@ -131,19 +130,20 @@ export default {
       this.runCalc()
     },
     runCalc() {
-      const size = this.rabotaSize.replace('.', ',')
-      const message =
-        this.categoryTitle +
-        ' ' +
-        this.rabota.title +
-        ', ' +
-        size +
-        ' м.п.' +
-        ' x ' +
-        this.rabota[this.rabotaAmount] +
-        ' ₽ = ' +
-        this.rabotaSumma +
-        ' ₽'
+      // const size = this.rabotaSize.replace('.', ',')
+      // const message =
+      //   this.categoryTitle +
+      //   ' ' +
+      //   this.rabota.title +
+      //   ', ' +
+      //   size +
+      //   ' м.п.' +
+      //   ' x ' +
+      //   this.rabota[this.rabotaAmount] +
+      //   ' ₽ = ' +
+      //   this.rabotaSumma +
+      //   ' ₽'
+
       // this.$emit('calc-price', {
       //   type: this.type,
       //   id: this.id,
@@ -159,8 +159,11 @@ export default {
         groupId: this.categoryRabotaId,
         elemId: this.rabotaSelectId,
         elemType: this.type,
-        elemSize1: +this.rabotaSize.replace(/,/g, '.'),
-        elemSize2: 0,
+        elemDlina: 0,
+        elemShirina: 0,
+        elemSize: this.rabotaSize,
+        elemEd: 'м.п.',
+        elemSumma: this.rabotaSumma,
         orderId: ''
       }
 
