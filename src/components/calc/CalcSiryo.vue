@@ -127,35 +127,6 @@ export default {
       this.siryoSize10 = 0
     },
     runCalc() {
-      //const size = this.siryoSize10.replace('.', ',')
-      // const message =
-      //   this.siryo.title +
-      //   ', ' +
-      //   size +
-      //   ' ' +
-      //   this.siryo.ed +
-      //   ' x ' +
-      //   this.siryoPrice +
-      //   ' ₽ = ' +
-      //   this.siryoSumma +
-      //   ' ₽'
-
-      // this.$emit('calc-price', {
-      //   type: this.type,
-      //   id: this.id,
-      //   title: this.siryo.title,
-      //   size:
-      //     this.siryoDlina10 +
-      //     ' x ' +
-      //     this.siryoShirina10 +
-      //     ' = ' +
-      //     size +
-      //     ' ' +
-      //     this.siryo.ed,
-      //   sum: this.siryoSumma,
-      //   message
-      // })
-
       const item = {
         type: 'task',
         id: this.id,

@@ -172,7 +172,6 @@
 </template>
 
 <script>
-//import createCalc from '@/scripts/createCalc'
 import createCalc from '@/scripts/createCalc_2'
 import createOrder from '@/scripts/createOrder'
 import getElemSize from '@/scripts/getElemSize'
@@ -344,19 +343,6 @@ export default {
     addNewCalc({ type }) {
       this[type].push(createCalc())
     },
-    // calculationPrice({ type, id, title, size, sum, message }) {
-    //   let item = {
-    //     type: 'task',
-    //     id,
-    //     title,
-    //     size,
-    //     sum,
-    //     message,
-    //     orderId: ''
-    //   }
-    //   let index = this[type].findIndex(item => item.id === id)
-    //   this[type][index] = item
-    // },
     calculationPrice(item) {
       let index = this[item.elemType].findIndex(elem => elem.id === item.id)
       this[item.elemType][index] = item

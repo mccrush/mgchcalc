@@ -111,41 +111,6 @@ export default {
   },
   methods: {
     runCalc() {
-      // const size = this.elementSize.replace('.', ',')
-      // let message = ''
-      // if (
-      //   this.element.alias === 'prefiles' ||
-      //   this.element.alias === 'sborizdel'
-      // ) {
-      //   message = this.categoryTitle + ', ' + this.elementSumma + ' ₽'
-      // } else if (
-      //   this.element.alias === 'shlifaner' ||
-      //   this.element.alias === 'obrabottorcov'
-      // ) {
-      //   message =
-      //     this.categoryTitle +
-      //     ', ' +
-      //     size +
-      //     ' ' +
-      //     this.element.ed +
-      //     ' x ' +
-      //     this.element.price +
-      //     ' ₽ = ' +
-      //     this.elementSumma +
-      //     ' ₽'
-      // } else if (this.element.alias === 'vneochered') {
-      //   message = this.categoryTitle + ' стоимость всех услуг X 2'
-      // }
-
-      // this.$emit('calc-price', {
-      //   type: this.type,
-      //   id: this.id,
-      //   title: this.categoryTitle,
-      //   size: this.elementSize,
-      //   sum: this.elementSumma,
-      //   message
-      // })
-
       const item = {
         type: 'task',
         id: this.id,
