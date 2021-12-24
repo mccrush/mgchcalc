@@ -5,6 +5,8 @@ export default () => {
     groupId: '',
     elemId: '',
     elemType: '',
+    elemTitle: '',
+    elemPrice: 0,
     elemDlina: 0,
     elemShirina: 0,
     elemSize: 0,

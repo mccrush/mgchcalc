@@ -162,6 +162,8 @@ export default {
         groupId: this.categorySiryoId,
         elemId: this.siryoSelectId,
         elemType: this.type,
+        elemTitle: this.siryo.title,
+        elemPrice: this.siryoPrice,
         elemDlina: this.siryoDlina10,
         elemShirina: this.siryoShirina10,
         elemSize: this.siryoSize10,

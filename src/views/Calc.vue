@@ -41,7 +41,7 @@
       @remove-calc="removeCalc"
     />
     <BlockAddCalc @add-new-calc="addNewCalc" type="siryoArray" />
-    <BlockShowSum title="сырье" :sum="siryoSum" />
+    <BlockShowSum title="сырье" :sum="formattingSum(siryoSum)" />
     <!-- -->
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-start">
@@ -83,7 +83,7 @@
       @remove-calc="removeCalc"
     />
     <BlockAddCalc @add-new-calc="addNewCalc" type="rabotaArray" />
-    <BlockShowSum title="работа" :sum="rabotaSum" />
+    <BlockShowSum title="работа" :sum="formattingSum(rabotaSum)" />
     <!-- -->
     <div>
       <div class="row pt-3">
@@ -112,7 +112,7 @@
         @remove-calc="removeCalc"
       />
       <BlockAddCalc @add-new-calc="addNewCalc" type="dopuslugArray" />
-      <BlockShowSum title="допуслуги" :sum="dopuslugSum" />
+      <BlockShowSum title="допуслуги" :sum="formattingSum(dopuslugSum)" />
     </div>
     <!-- -->
     <div class="row bg-secondary">
@@ -120,7 +120,7 @@
       <div class="col-4 d-flex justify-content-between p-1 pe-3 pe-md-2">
         <div></div>
         <div class="small text-light">
-          Итого: <span class="fw-bold">{{ sumItogo }}</span>
+          Итого: <span class="fw-bold">{{ formattingSum(sumItogo) }}</span>
         </div>
       </div>
     </div>
@@ -253,16 +253,16 @@ export default {
       }
     },
     itogMessage() {
-      return 'msg me'
       let messageSiryo = ''
       this.siryoArray.forEach(item => {
-        messageSiryo += item.message + '\n'
+        messageSiryo += this.formattingMessage(item)
       })
 
       let messageRabota = ''
       this.rabotaArray.forEach(item => {
-        messageRabota += item.message + '\n'
+        messageRabota += this.formattingMessage(item)
       })
+
       if (this.enableMinPrice && this.rabotaSum > 0 && this.rabotaSum < 500) {
         const raznost = 500 - this.rabotaSum
         messageRabota += 'Плюс до минимальной стоимости ' + raznost + ' ₽\n'
@@ -271,21 +271,48 @@ export default {
 
       let messageDopuslug = ''
       this.dopuslugArray.forEach(item => {
-        messageDopuslug += item.message + '\n'
+        if (item.elemSumma === 'x2') {
+          messageDopuslug +=
+            'Внеочередная резка (подвинуть всех), итоговая сумма x2\n'
+        } else {
+          messageDopuslug += this.formattingMessage(item)
+        }
       })
 
       return (
         messageSiryo +
-        '' +
         messageRabota +
         messageDopuslug +
         '\nИтого ' +
-        this.sumItogo +
-        ' ₽'
+        this.formattingSum(this.sumItogo)
       )
     }
   },
   methods: {
+    formattingSum(sum) {
+      sum += ''
+      if (sum.length > 4) {
+        return (
+          sum.slice(0, sum.length - 3) + ' ' + sum.slice(sum.length - 3) + ' ₽'
+        )
+      } else {
+        return sum + ' ₽'
+      }
+    },
+    formattingMessage(item) {
+      return (
+        item.elemTitle +
+        ', ' +
+        item.elemSize +
+        ' ' +
+        item.elemEd +
+        ' x ' +
+        item.elemPrice +
+        ' ₽ = ' +
+        this.formattingSum(item.elemSumma) +
+        '\n'
+      )
+    },
     createNewOrder() {
       let order = createOrder()
       this.order = order
@@ -309,7 +336,7 @@ export default {
       // Каждую задачу (каждый элемент массива) сохранить в БД
       // Заказ сохранить в БД
       // А в модальном окне Заказа, данные уже брать из Vuex (из БД)
-      // В модалке Задачи можно изменять, обновляя уже в БД
+      // В модалке Задачи можно изменять, обновляя уже в БД????????????
     },
     removeCalc({ type, id }) {
       this[type] = this[type].filter(item => item.id !== id)
@@ -331,10 +358,8 @@ export default {
     //   this[type][index] = item
     // },
     calculationPrice(item) {
-      console.log('item in calculationPrice:', item)
       let index = this[item.elemType].findIndex(elem => elem.id === item.id)
       this[item.elemType][index] = item
-      //this[item.type][index] = { ...this[item.type][index], item }
     },
     copyInBuffer(e) {
       const el = e.target.parentNode.previousSibling.lastChild.lastChild

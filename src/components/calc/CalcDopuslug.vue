@@ -152,6 +152,8 @@ export default {
         groupId: '',
         elemId: this.categoryId,
         elemType: this.type,
+        elemTitle: this.categoryTitle,
+        elemPrice: this.element.price,
         elemDlina: 0,
         elemShirina: 0,
         elemSize: +this.elementSize.replace(/,/g, '.'),

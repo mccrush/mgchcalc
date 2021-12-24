@@ -159,6 +159,8 @@ export default {
         groupId: this.categoryRabotaId,
         elemId: this.rabotaSelectId,
         elemType: this.type,
+        elemTitle: this.categoryTitle + ' ' + this.rabota.title,
+        elemPrice: this.rabota[this.rabotaAmount],
         elemDlina: 0,
         elemShirina: 0,
         elemSize: this.rabotaSize,
