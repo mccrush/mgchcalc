@@ -11,14 +11,6 @@
 <script>
 export default {
   props: ['search'],
-  emits: ['update:search'],
-  data() {
-    return {
-      //search: ''
-    }
-  }
+  emits: ['update:search']
 }
-
-// v-model.trim="search"
-//    @input="$emit('search', search)"
 </script>
