@@ -73,7 +73,12 @@
                 {{ elem.elemEd }}</template
               >
               <template v-slot:button>
-                <button class="btn btn-sm btn-outline-info">На фрезер</button>
+                <button
+                  class="btn btn-sm btn-outline-info"
+                  @click="addFrezer(elem)"
+                >
+                  На фрезер
+                </button>
               </template>
             </ModalOrderList>
           </ul>
@@ -129,6 +134,10 @@ export default {
   },
   props: ['order', 'mod'],
   methods: {
+    addFrezer(item) {
+      this.$store.commit('addItem', { item })
+      this.$store.dispatch('addItem', { item })
+    },
     saveItem() {
       if (this.order.title) {
         //console.log('save order:', this.order)

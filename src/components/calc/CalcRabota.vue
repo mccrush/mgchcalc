@@ -131,7 +131,7 @@ export default {
     },
     runCalc() {
       const item = {
-        type: 'task',
+        type: 'nafrezer',
         id: this.id,
         groupId: this.categoryRabotaId,
         elemId: this.rabotaSelectId,

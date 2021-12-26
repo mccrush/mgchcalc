@@ -21,6 +21,7 @@ import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
 import Orders from '@/views/Orders'
+import NaFrezer from '@/views/NaFrezer'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
 import ModalOrder from '@/components/interface/ModalOrder'
@@ -32,6 +33,7 @@ export default {
     Calc,
     Admin,
     Orders,
+    NaFrezer,
     ButtonSettings,
     ModalOrder
   },
@@ -58,6 +60,8 @@ export default {
           return 'Calc'
         } else if (this.pathname === 'orders') {
           return 'Orders'
+        } else if (this.pathname === 'nafrezer') {
+          return 'NaFrezer'
         }
       } else {
         return 'Login'

@@ -18,6 +18,14 @@
         <button
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
+          :class="{ active: pathname === 'nafrezer' }"
+          @click="$emit('set-path-name', 'nafrezer')"
+        >
+          На Фрезер
+        </button>
+        <button
+          v-if="userId"
+          class="btn btn-sm btn-outline-light text-muted me-2"
           :class="{ active: pathname === 'orders' }"
           @click="$emit('set-path-name', 'orders')"
         >
