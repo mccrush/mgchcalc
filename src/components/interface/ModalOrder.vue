@@ -57,22 +57,34 @@
           <h6 class="mt-3">Задачи Сырье</h6>
           <ul class="list-group ist-group-numbered">
             <ModalOrderList v-for="elem in order.siryoArray" :key="elem.id">
-              {{ elem.elemTitle }}, {{ elem.elemDlina }} x
-              {{ elem.elemShirina }} = {{ elem.elemSize }} {{ elem.elemEd }}
+              <template v-slot:title
+                >{{ elem.elemTitle }}, {{ elem.elemDlina }} x
+                {{ elem.elemShirina }} = {{ elem.elemSize }}
+                {{ elem.elemEd }}</template
+              >
             </ModalOrderList>
           </ul>
           <!-- -->
           <h6 class="mt-3">Задачи Работы</h6>
           <ul class="list-group ist-group-numbered">
             <ModalOrderList v-for="elem in order.rabotaArray" :key="elem.id">
-              {{ elem.elemTitle }}, {{ elem.elemSize }} {{ elem.elemEd }}
+              <template v-slot:title
+                >{{ elem.elemTitle }}, {{ elem.elemSize }}
+                {{ elem.elemEd }}</template
+              >
+              <template v-slot:button>
+                <button class="btn btn-sm btn-outline-info">На фрезер</button>
+              </template>
             </ModalOrderList>
           </ul>
           <!-- -->
           <h6 class="mt-3">Задачи Допуслуг</h6>
           <ul class="list-group ist-group-numbered">
             <ModalOrderList v-for="elem in order.dopuslugArray" :key="elem.id">
-              {{ elem.elemTitle }}, {{ elem.elemSize }} {{ elem.elemEd }}
+              <template v-slot:title
+                >{{ elem.elemTitle }}, {{ elem.elemSize }}
+                {{ elem.elemEd }}</template
+              >
             </ModalOrderList>
           </ul>
         </div>
