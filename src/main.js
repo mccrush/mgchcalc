@@ -17,12 +17,8 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log('main.js : Пользователь авторизован')
     store.commit('setUserId', user.uid)
-    // store.dispatch('getItems', { type: 'group' })
-    // store.dispatch('getItems', { type: 'siryo' })
     store.dispatch('getItems', { type: 'materialvid' })
     store.dispatch('getItems', { type: 'material' })
-    // store.dispatch('getItems', { type: 'frezer' })
-    // store.dispatch('getItems', { type: 'rabota' })
     store.dispatch('getItems', { type: 'obrabotkavid' })
     store.dispatch('getItems', { type: 'obrabotkatolshina' })
     store.dispatch('getItems', { type: 'dopuslug' })

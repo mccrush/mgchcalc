@@ -20,12 +20,7 @@
       <!---->
       <div class="col-3 pe-0">
         <select
-          v-if="
-            razdel === 'siryo' ||
-            razdel === 'rabota' ||
-            razdel === 'material' ||
-            razdel === 'obrabotkatolshina'
-          "
+          v-if="razdel === 'material' || razdel === 'obrabotkatolshina'"
           class="form-select form-select-sm w-100"
           aria-label="Select group resourse"
           @change="selectCategory"
@@ -35,10 +30,7 @@
             {{ cat.title }}
           </option>
         </select>
-        <div
-          v-if="razdel === 'group' || razdel === 'materialvid'"
-          class="d-flex"
-        >
+        <div v-if="razdel === 'materialvid'" class="d-flex">
           <div class="small text-end w-75 me-2 pt-1">Процент наценки</div>
           <div class="w-25">
             <input
@@ -85,12 +77,8 @@ import InputSearch from '@/components/inputs/InputSearch'
 import ButtonSort from '@/components/buttons/ButtonSort'
 import ButtonAdd from '@/components/buttons/ButtonAdd'
 
-import FormGroup from '@/components/admin/FormGroup'
 import FormMaterialVid from '@/components/admin/FormMaterialVid'
 import FormMaterial from '@/components/admin/FormMaterial'
-import FormSiryo from '@/components/admin/FormSiryo'
-import FormFrezer from '@/components/admin/FormFrezer'
-import FormRabota from '@/components/admin/FormRabota'
 import FormObrabotkaVid from '@/components/admin/FormObrabotkaVid'
 import FormObrabotkaTolshina from '@/components/admin/FormObrabotkaTolshina'
 import FormDopuslug from '@/components/admin/FormDopuslug'
@@ -101,12 +89,8 @@ export default {
     InputSearch,
     ButtonSort,
     ButtonAdd,
-    FormGroup,
     FormMaterialVid,
     FormMaterial,
-    FormSiryo,
-    FormFrezer,
-    FormRabota,
     FormObrabotkaVid,
     FormObrabotkaTolshina,
     FormDopuslug,
@@ -125,20 +109,12 @@ export default {
   computed: {
     myForm() {
       switch (this.razdel) {
-        case 'group':
-          return 'FormGroup'
         case 'materialvid':
           return 'FormMaterialVid'
-        case 'siryo':
-          return 'FormSiryo'
         case 'material':
           return 'FormMaterial'
-        case 'frezer':
-          return 'FormFrezer'
         case 'obrabotkavid':
           return 'FormObrabotkaVid'
-        case 'rabota':
-          return 'FormRabota'
         case 'obrabotkatolshina':
           return 'FormObrabotkaTolshina'
         case 'dopuslug':
@@ -148,12 +124,8 @@ export default {
       }
     },
     categorys() {
-      if (this.razdel === 'group' || this.razdel === 'siryo') {
-        return this.$store.getters.group
-      } else if (this.razdel === 'materialvid' || this.razdel === 'material') {
+      if (this.razdel === 'materialvid' || this.razdel === 'material') {
         return this.$store.getters.materialvid
-      } else if (this.razdel === 'frezer' || this.razdel === 'rabota') {
-        return this.$store.getters.frezer
       } else if (
         this.razdel === 'obrabotkavid' ||
         this.razdel === 'obrabotkatolshina'

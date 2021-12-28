@@ -6,12 +6,8 @@ export default {
   state: {
     loading: false,
     procent: [{ value: 0 }],
-    group: [],
-    siryo: [],
     materialvid: [],
     material: [],
-    frezer: [],
-    rabota: [],
     obrabotkavid: [],
     obrabotkatolshina: [],
     dopuslug: [],
