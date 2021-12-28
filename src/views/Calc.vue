@@ -2,7 +2,7 @@
   <div>
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-start">
-        <h5 class="lh-1 m-0">Стоимость сырья</h5>
+        <h5 class="lh-1 m-0">Материалы</h5>
         <div class="form-check form-switch ms-3">
           <input
             class="form-check-input"
@@ -20,8 +20,8 @@
       </div>
     </div>
     <div class="row d-none d-md-flex small text-center text-muted pt-2">
-      <div class="col-3">Группа сырья</div>
-      <div class="col-3">Сырье</div>
+      <div class="col-3">Группа материала</div>
+      <div class="col-3">Материал</div>
       <div class="col-12 col-md-6">
         <div class="row">
           <div class="col-4">Ед. / стоим.</div>
@@ -45,7 +45,7 @@
     <!-- -->
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-start">
-        <h5 class="lh-1 m-0">Стоимость работы</h5>
+        <h5 class="lh-1 m-0">Услуги обработки</h5>
         <div class="form-check form-switch ms-2">
           <input
             class="form-check-input"
@@ -63,8 +63,8 @@
       </div>
     </div>
     <div class="row d-none d-md-flex small text-center text-muted pt-2">
-      <div class="col-3">Группа работы</div>
-      <div class="col-3">Работа (толщина)</div>
+      <div class="col-3">Вид обработки</div>
+      <div class="col-3">Толщина материала</div>
       <div class="col-12 col-md-6">
         <div class="row">
           <div class="col-5">Колич.</div>
