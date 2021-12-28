@@ -78,6 +78,7 @@ import ButtonSort from '@/components/buttons/ButtonSort'
 import ButtonAdd from '@/components/buttons/ButtonAdd'
 
 import FormGroup from '@/components/admin/FormGroup'
+import FormMaterialVid from '@/components/admin/FormMaterialVid'
 import FormSiryo from '@/components/admin/FormSiryo'
 import FormFrezer from '@/components/admin/FormFrezer'
 import FormRabota from '@/components/admin/FormRabota'
@@ -90,6 +91,7 @@ export default {
     ButtonSort,
     ButtonAdd,
     FormGroup,
+    FormMaterialVid,
     FormSiryo,
     FormFrezer,
     FormRabota,
@@ -101,7 +103,7 @@ export default {
       razdels,
       searchText: '',
       sortType: 'asc',
-      razdel: localStorage.getItem('cl-razdel') || 'group',
+      razdel: localStorage.getItem('cl-razdel') || 'materialvid',
       categoryId: localStorage.getItem('cl-categoryId') || '',
       procent: 0
     }
@@ -111,16 +113,24 @@ export default {
       switch (this.razdel) {
         case 'group':
           return 'FormGroup'
+        case 'materialvid':
+          return 'FormMaterialVid'
         case 'siryo':
           return 'FormSiryo'
+        case 'material':
+          return 'FormMaterial'
         case 'frezer':
           return 'FormFrezer'
+        case 'obrabotkavid':
+          return 'FormObrabotkaVid'
         case 'rabota':
           return 'FormRabota'
+        case 'obrabotkatolshina':
+          return 'FormObrabotkaTolshina'
         case 'dopuslug':
           return 'FormDopuslug'
         default:
-          return 'group'
+          return 'materialvid'
       }
     },
     categorys() {
