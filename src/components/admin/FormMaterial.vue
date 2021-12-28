@@ -1,7 +1,7 @@
 <template>
   <div class="col-12 pt-2">
     <div v-for="item in sortFilter" :key="item.id" class="row mt-1">
-      <div class="col-6 pe-0">
+      <div class="col-5 pe-0">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -21,14 +21,17 @@
           </option>
         </select>
       </div>
-      <div class="col-1 pe-0">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          placeholder="ed.izm"
-          v-model.trim="item.ed"
+      <div class="col-2 pe-0">
+        <select
+          class="form-select form-select-sm w-100"
+          aria-label="Select Ed"
+          v-model="item.ed"
           @change="saveItem(item)"
-        />
+        >
+          <option v-for="(e, idx) in ed" :key="'e' + idx" :value="e">
+            {{ e }}
+          </option>
+        </select>
       </div>
       <div class="col-1 pe-0">
         <input
@@ -49,6 +52,7 @@
 </template>
 
 <script>
+import ed from '@/data/ed'
 import sortMethod from '@/scripts/sortMethod'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
 
@@ -58,6 +62,11 @@ export default {
   },
   props: ['type', 'categoryId', 'searchText', 'sortType'],
   emits: ['save-item', 'remove-item'],
+  data() {
+    return {
+      ed
+    }
+  },
   computed: {
     items() {
       return this.$store.getters[this.type].filter(

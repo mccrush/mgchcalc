@@ -9,7 +9,7 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-3 pe-0">
+      <div class="col-2 pe-0">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -18,14 +18,17 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-1 pe-0">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          placeholder="ед. изм."
-          v-model.trim="item.ed"
+      <div class="col-2 pe-0">
+        <select
+          class="form-select form-select-sm w-100"
+          aria-label="Select Ed"
+          v-model="item.ed"
           @change="saveItem(item)"
-        />
+        >
+          <option v-for="(e, idx) in ed" :key="'e' + idx" :value="e">
+            {{ e }}
+          </option>
+        </select>
       </div>
       <div class="col-1 pe-0">
         <input
