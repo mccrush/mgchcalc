@@ -9,15 +9,6 @@
         <!-- <button
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
-          :class="{ active: pathname === 'making' }"
-          @click="$emit('set-path-name', 'making')"
-          disabled
-        >
-          Производство
-        </button> -->
-        <button
-          v-if="userId"
-          class="btn btn-sm btn-outline-light text-muted me-2"
           :class="{ active: pathname === 'nafrezer' }"
           @click="$emit('set-path-name', 'nafrezer')"
         >
@@ -30,7 +21,7 @@
           @click="$emit('set-path-name', 'orders')"
         >
           Заказы
-        </button>
+        </button> -->
         <button
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
