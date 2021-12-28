@@ -85,16 +85,16 @@ export default {
       }
     },
     categorySiryos() {
-      return this.$store.getters.group
+      return this.$store.getters.materialvid
     },
     siryos() {
-      return this.$store.getters.siryo.filter(
+      return this.$store.getters.material.filter(
         item => item.categoryId === this.categorySiryoId
       )
     },
     siryo() {
       return (
-        this.$store.getters.siryo.find(
+        this.$store.getters.material.find(
           item => item.id === this.siryoSelectId
         ) || { ed: 'кв.м.', price: 0 }
       )

@@ -73,7 +73,7 @@ export default {
   },
   computed: {
     categoryRabotas() {
-      return this.$store.getters.frezer
+      return this.$store.getters.obrabotkavid
     },
     categoryTitle() {
       return this.categoryRabotas.find(
@@ -81,13 +81,13 @@ export default {
       ).title
     },
     rabotas() {
-      return this.$store.getters.rabota.filter(
+      return this.$store.getters.obrabotkatolshina.filter(
         item => item.categoryId === this.categoryRabotaId
       )
     },
     rabota() {
       return (
-        this.$store.getters.rabota.find(
+        this.$store.getters.obrabotkatolshina.find(
           item => item.id === this.rabotaSelectId
         ) || { priceS: 0, priceM: 0, priceL: 0 }
       )
