@@ -1,5 +1,6 @@
 export default Date.prototype.getWeek = function () {
-  var date = new Date(this.getTime());
+  //var date = new Date(this.getTime());
+  var date = new Date(Date.now());
   date.setHours(0, 0, 0, 0);
   // Thursday in current week decides the year.
   date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);

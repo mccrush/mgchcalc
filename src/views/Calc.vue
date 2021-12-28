@@ -273,6 +273,15 @@ export default {
         '\nИтого ' +
         this.formattingSum(this.sumItogo)
       )
+    },
+    orderNumber() {
+      const num = this.$store.getters.orderNumber
+      if (num < 10) {
+        return '00' + num
+      } else if (num < 100) {
+        return '0' + num
+      }
+      return num
     }
   },
   methods: {
@@ -306,6 +315,7 @@ export default {
     },
     createNewOrder() {
       let order = createOrder(
+        this.orderNumber,
         this.siryoArray,
         this.rabotaArray,
         this.dopuslugArray

@@ -26,7 +26,7 @@
         </div>
         <div class="modal-body pt-2">
           <div class="row">
-            <div class="col-10 pe-0">
+            <div class="col-7 pe-0">
               <input
                 type="text"
                 class="form-control form-control-sm"
@@ -34,6 +34,21 @@
                 placeholder="Название заказа"
                 @change="updateItem(order)"
               />
+            </div>
+            <div class="col-3">
+              <select
+                v-model="client"
+                @change="updateOrderTile"
+                class="form-select form-select-sm"
+              >
+                <option
+                  v-for="client in clients"
+                  :key="client.id"
+                  :value="client.title"
+                >
+                  {{ client.title }}
+                </option>
+              </select>
             </div>
             <div class="col-2">
               <select
@@ -126,6 +141,7 @@
 </template>
 
 <script>
+import clients from '@/data/clients'
 import ModalOrderList from '@/components/interface/ModalOrderList'
 
 export default {
@@ -133,7 +149,18 @@ export default {
     ModalOrderList
   },
   props: ['order', 'mod'],
+  data() {
+    return {
+      clients,
+      client: ''
+    }
+  },
   methods: {
+    updateOrderTile() {
+      const startPos = this.order.title.indexOf('_')
+      const subStr = this.order.title.slice(startPos)
+      this.order.title = this.client.toUpperCase() + subStr
+    },
     addFrezer(item) {
       this.$store.commit('addItem', { item })
       this.$store.dispatch('addItem', { item })

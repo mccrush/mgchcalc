@@ -1,6 +1,7 @@
 import fireApp from '@/firebase'
 import { getFirestore, doc, setDoc, updateDoc, deleteDoc, collection, query, getDocs } from "firebase/firestore"
 const db = getFirestore(fireApp)
+import getWeek from '@/scripts/getWeek'
 
 export default {
   state: {
@@ -86,5 +87,6 @@ export default {
     dopuslug: state => state.dopuslug,
     order: state => state.order,
     nafrezer: state => state.nafrezer,
+    orderNumber: state => +state.order.filter(item => item.dateCreateWeek == getWeek()).length + 1 || 1
   }
 }
