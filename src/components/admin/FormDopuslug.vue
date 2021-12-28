@@ -47,6 +47,7 @@
 
 
 <script>
+import ed from '@/data/ed'
 import sortMethod from '@/scripts/sortMethod'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
 
@@ -56,6 +57,11 @@ export default {
   },
   props: ['type', 'categoryId', 'searchText', 'sortType'],
   emits: ['save-item', 'remove-item'],
+  data() {
+    return {
+      ed
+    }
+  },
   computed: {
     items() {
       return this.$store.getters[this.type]
