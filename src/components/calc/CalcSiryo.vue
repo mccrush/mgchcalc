@@ -20,6 +20,7 @@
         aria-label="Select group resourse"
         @change="runCalc"
         v-model="siryoSelectId"
+        :disabled="!categorySiryoId"
       >
         <option v-for="sir in siryos" :key="sir.id" :value="sir.id">
           {{ sir.title }}

@@ -163,7 +163,7 @@
 </template>
 
 <script>
-import createCalc from '@/scripts/createCalc_2'
+import createCalc from '@/scripts/createCalc'
 import createOrder from '@/scripts/createOrder'
 
 import CalcSiryo from '@/components/calc/CalcSiryo'
