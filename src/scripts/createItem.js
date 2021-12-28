@@ -8,11 +8,23 @@ export default (type, categoryId = '') => {
       title,
       type: 'group'
     }
+  } else if (type === 'materialvid') {
+    return {
+      id,
+      title,
+      type: 'materialvid'
+    }
   } else if (type === 'frezer') {
     return {
       id,
       title,
       type: 'frezer'
+    }
+  } else if (type === 'obrabotkavid') {
+    return {
+      id,
+      title,
+      type: 'obrabotkavid'
     }
   } else if (type === 'dopuslug') {
     return {
@@ -34,6 +46,17 @@ export default (type, categoryId = '') => {
       ostatok: 0,
       type: 'siryo'
     }
+  } else if (type === 'material') {
+    return {
+      id,
+      title,
+      categoryId,
+      categoryTitle: '',
+      ed: '',
+      price: 0,
+      ostatok: 0,
+      type: 'material'
+    }
   } else if (type === 'rabota') {
     return {
       id,
@@ -44,6 +67,17 @@ export default (type, categoryId = '') => {
       priceM: 0,
       priceL: 0,
       type: 'rabota'
+    }
+  } else if (type === 'obrabotkatolshina') {
+    return {
+      id,
+      title,
+      categoryId,
+      categoryTitle: '',
+      priceS: 0,
+      priceM: 0,
+      priceL: 0,
+      type: 'obrabotkatolshina'
     }
   }
 }

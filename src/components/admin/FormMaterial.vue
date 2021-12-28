@@ -65,7 +65,7 @@ export default {
       )
     },
     categorys() {
-      return this.$store.getters.group
+      return this.$store.getters.materialvid
     },
     searchFilter() {
       if (this.searchText) {
