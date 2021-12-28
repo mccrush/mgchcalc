@@ -41,7 +41,7 @@
       @remove-calc="removeCalc"
     />
     <BlockAddCalc @add-new-calc="addNewCalc" type="siryoArray" />
-    <BlockShowSum title="сырье" :sum="formattingSum(siryoSum)" />
+    <BlockShowSum title="материал" :sum="formattingSum(siryoSum)" />
     <!-- -->
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-start">
@@ -83,7 +83,7 @@
       @remove-calc="removeCalc"
     />
     <BlockAddCalc @add-new-calc="addNewCalc" type="rabotaArray" />
-    <BlockShowSum title="работа" :sum="formattingSum(rabotaSum)" />
+    <BlockShowSum title="обработка" :sum="formattingSum(rabotaSum)" />
     <!-- -->
     <div>
       <div class="row pt-3">
