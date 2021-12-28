@@ -287,18 +287,22 @@ export default {
       }
     },
     formattingMessage(item) {
-      return (
-        item.elemTitle +
-        ', ' +
-        item.elemSize +
-        ' ' +
-        item.elemEd +
-        ' x ' +
-        item.elemPrice +
-        ' ₽ = ' +
-        this.formattingSum(item.elemSumma) +
-        '\n'
-      )
+      if (item.elemTitle) {
+        return (
+          item.elemTitle +
+          ', ' +
+          item.elemSize +
+          ' ' +
+          item.elemEd +
+          ' x ' +
+          item.elemPrice +
+          ' ₽ = ' +
+          this.formattingSum(item.elemSumma) +
+          '\n'
+        )
+      } else {
+        return ''
+      }
     },
     createNewOrder() {
       let order = createOrder(
