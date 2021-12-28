@@ -79,12 +79,8 @@ export default {
   getters: {
     loading: state => state.loading,
     procent: state => state.procent,
-    group: state => state.group,
-    siryo: state => state.siryo,
     materialvid: state => state.materialvid,
     material: state => state.material,
-    frezer: state => state.frezer,
-    rabota: state => state.rabota,
     obrabotkavid: state => state.obrabotkavid,
     obrabotkatolshina: state => state.obrabotkatolshina,
     dopuslug: state => state.dopuslug,
