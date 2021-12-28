@@ -69,7 +69,7 @@ export default {
       )
     },
     categorys() {
-      return this.$store.getters.frezer
+      return this.$store.getters.obrabotkavid
     },
     searchFilter() {
       if (this.searchText) {
