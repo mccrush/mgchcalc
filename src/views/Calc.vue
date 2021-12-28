@@ -145,12 +145,12 @@
           ps-md-0
         "
       >
-        <!-- <button
+        <button
           class="btn btn-sm btn-success w-100 mb-2"
           @click="createNewOrder"
         >
           Создать заказ
-        </button> -->
+        </button>
         <button
           class="btn btn-sm btn-outline-dark w-100"
           @click="copyInBuffer($event)"
@@ -164,7 +164,7 @@
 
 <script>
 import createCalc from '@/scripts/createCalc'
-//import createOrder from '@/scripts/createOrder'
+import createOrder from '@/scripts/createOrder'
 
 import CalcSiryo from '@/components/calc/CalcSiryo'
 import CalcRabota from '@/components/calc/CalcRabota'
