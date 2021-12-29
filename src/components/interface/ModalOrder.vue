@@ -35,7 +35,7 @@
                 @change="updateItem(order)"
               />
             </div>
-            <div class="col-3">
+            <div class="col-3 pe-0">
               <select
                 v-model="client"
                 @change="updateOrderTile"
@@ -65,6 +65,45 @@
                 <option value="inprogress">В работе</option>
                 <option value="done">Выполнен</option>
               </select>
+            </div>
+          </div>
+
+          <div class="row pt-2">
+            <div class="col-4 pe-0">
+              <div class="form-floating">
+                <input
+                  @change="updateItem(order)"
+                  type="datetime-local"
+                  id="date"
+                  class="form-control form-control-sm"
+                  v-model="order.dateCreate"
+                />
+                <label for="date">Создан</label>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-floating">
+                <input
+                  @change="updateItem(order)"
+                  type="datetime-local"
+                  id="date"
+                  class="form-control form-control-sm"
+                  v-model="order.dateForReady"
+                />
+                <label for="date">Срок сдачи</label>
+              </div>
+            </div>
+            <div class="col-4 ps-0">
+              <div class="form-floating">
+                <input
+                  @change="updateItem(order)"
+                  type="datetime-local"
+                  id="date"
+                  class="form-control form-control-sm"
+                  v-model="order.dateFinish"
+                />
+                <label for="date">Завершен</label>
+              </div>
             </div>
           </div>
 
