@@ -38,7 +38,7 @@
             <div class="col-3 pe-0">
               <select
                 v-model="client"
-                @change="updateOrderTile"
+                @change="updateOrderTitle"
                 class="form-select form-select-sm"
               >
                 <option
@@ -53,7 +53,7 @@
             <div class="col-2">
               <select
                 v-model="order.status"
-                @change="updateItem(order)"
+                @change="updateOrderStatus(order)"
                 class="form-select form-select-sm text-white"
                 :class="{
                   'bg-info': order.status === 'new',
@@ -181,6 +181,7 @@
 
 <script>
 import clients from '@/data/clients'
+import getDateNow from '@/scripts/getDateNow'
 import ModalOrderList from '@/components/interface/ModalOrderList'
 
 export default {
@@ -195,10 +196,19 @@ export default {
     }
   },
   methods: {
-    updateOrderTile() {
+    updateOrderTitle() {
       const startPos = this.order.title.indexOf('_')
       const subStr = this.order.title.slice(startPos)
       this.order.title = this.client.toUpperCase() + subStr
+    },
+    updateOrderStatus(order) {
+      if (order.status === 'done') {
+        order.dateFinish = getDateNow
+        this.updateItem(order)
+      } else {
+        order.dateFinish = ''
+        this.updateItem(order)
+      }
     },
     addFrezer(item) {
       this.$store.commit('addItem', { item })
