@@ -39,7 +39,7 @@
             type="checkbox"
             role="switch"
             :checked="elemOur"
-            @change="elemOur = !elemOur"
+            @change="setElemOur"
           />
           <button
             class="btn btn-sm btn-outline-light text-muted dropdown-toggle"
@@ -59,6 +59,7 @@
               type="datetime-local"
               class="form-control form-control-sm"
               v-model="elemDateDelivery"
+              @change="runCalc"
             />
           </div>
         </div>
@@ -163,6 +164,10 @@ export default {
     }
   },
   methods: {
+    setElemOur() {
+      this.elemOur = !this.elemOur
+      this.runCalc()
+    },
     selectCatSiryo() {
       this.siryoSelectId = ''
       this.siryoSize10 = 0

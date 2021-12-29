@@ -108,14 +108,24 @@
           </div>
 
           <!-- -->
-          <h6 class="mt-3">Задачи Сырье</h6>
+          <h6 class="mt-3">Материалы</h6>
           <ul class="list-group ist-group-numbered">
             <ModalOrderList v-for="elem in order.siryoArray" :key="elem.id">
               <template v-slot:title
                 >{{ elem.elemTitle }}, {{ elem.elemDlina }} x
                 {{ elem.elemShirina }} = {{ elem.elemSize }}
-                {{ elem.elemEd }}</template
+                {{ elem.elemEd }} === {{ elem.elemOur }}</template
               >
+              <template v-slot:badge>
+                <span
+                  v-if="!elem.elemOur"
+                  class="badge bg-warning text-dark align-self-center me-2 p-2"
+                  >Дата поставки:
+                  {{
+                    new Date(elem.elemDateDelivery).toLocaleDateString('ru-RU')
+                  }}</span
+                >
+              </template>
               <template v-slot:button>
                 <ButtonTrash
                   @click="
@@ -129,7 +139,7 @@
             </ModalOrderList>
           </ul>
           <!-- -->
-          <h6 class="mt-3">Задачи Работы</h6>
+          <h6 class="mt-3">Услуги обработки</h6>
           <ul class="list-group ist-group-numbered">
             <ModalOrderList v-for="elem in order.rabotaArray" :key="elem.id">
               <template v-slot:title
@@ -155,7 +165,7 @@
             </ModalOrderList>
           </ul>
           <!-- -->
-          <h6 class="mt-3">Задачи Допуслуг</h6>
+          <h6 class="mt-3">Дополнительные услуги</h6>
           <ul class="list-group ist-group-numbered">
             <ModalOrderList v-for="elem in order.dopuslugArray" :key="elem.id">
               <template v-slot:title
