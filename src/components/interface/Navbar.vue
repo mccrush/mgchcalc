@@ -13,7 +13,7 @@
           @click="$emit('set-path-name', 'nafrezer')"
         >
           На Фрезер
-        </button>
+        </button> -->
         <button
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
@@ -21,7 +21,7 @@
           @click="$emit('set-path-name', 'orders')"
         >
           Заказы
-        </button> -->
+        </button>
         <button
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
