@@ -12,6 +12,8 @@ export default () => {
     elemSize: 0,
     elemEd: '',
     elemSumma: 0,
+    elemOur: true,
+    elemDateDelivery: '',
     orderId: ''
   }
 }

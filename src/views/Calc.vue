@@ -24,8 +24,9 @@
       <div class="col-3">Материал</div>
       <div class="col-12 col-md-6">
         <div class="row">
-          <div class="col-4">Ед. / стоим.</div>
-          <div class="col-4">Размеры</div>
+          <div class="col-3">Ед. / стоим.</div>
+          <div class="col-2">Наш</div>
+          <div class="col-3">Размеры</div>
           <div class="col-2">Сумма</div>
           <div class="col-2">Удалить</div>
         </div>

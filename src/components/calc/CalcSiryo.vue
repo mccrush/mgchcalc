@@ -30,10 +30,48 @@
 
     <div class="col-12 col-md-6 mt-2 mt-md-0">
       <div class="row">
-        <div class="col-4 text-center pt-1 pe-0">
-          <small>{{ siryo.ed }} / {{ siryoPrice + ' ₽' }}</small>
+        <div class="col-4 col-sm-3 text-center pt-1 pe-0">
+          <small>{{ siryo.ed }} / {{ siryoPrice }}</small>
         </div>
-        <div class="col-4 d-flex justify-content-start text-center">
+        <div class="col-4 col-sm-3 col-md-2 text-center small ps-1 pe-0">
+          <input
+            class="form-check-input mt-2 me-2"
+            type="checkbox"
+            role="switch"
+            :checked="elemOur"
+            @change="elemOur = !elemOur"
+          />
+          <button
+            class="btn btn-sm btn-outline-light text-muted dropdown-toggle"
+            id="dropdownSelectDate"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="outside"
+            aria-expanded="false"
+            :disabled="elemOur"
+          >
+            D
+          </button>
+          <div
+            class="dropdown-menu border-0 shadow-sm ps-2 pe-2"
+            aria-labelledby="dropdownSelectDate"
+          >
+            <input
+              type="datetime-local"
+              class="form-control form-control-sm"
+              v-model="elemDateDelivery"
+            />
+          </div>
+        </div>
+        <div
+          class="
+            col-4 col-sm-3
+            d-flex
+            justify-content-start
+            text-center
+            ps-1
+            pe-md-0
+          "
+        >
           <input
             type="text"
             class="form-control form-control-sm"
@@ -49,10 +87,10 @@
             :disabled="!categorySiryoId || !siryoSelectId"
           />
         </div>
-        <div class="col-2 text-center small pt-1">
+        <div class="col-6 col-sm-1 col-md-2 text-center small pt-2 pt-sm-1">
           {{ siryoSumma }}
         </div>
-        <div class="col-2 text-end">
+        <div class="col-6 col-sm-2 text-end pt-2 pt-sm-0">
           <ButtonTrash @click="$emit('remove-calc', { type, id })" />
         </div>
       </div>
@@ -76,7 +114,9 @@ export default {
       siryoSelectId: '',
       siryoDlina: '',
       siryoShirina: '',
-      siryoSize10: 0
+      siryoSize10: 0,
+      elemOur: true,
+      elemDateDelivery: ''
     }
   },
   computed: {
@@ -141,6 +181,8 @@ export default {
         elemSize: this.siryoSize10,
         elemEd: this.siryo.ed,
         elemSumma: this.siryoSumma,
+        elemOur: this.elemOur,
+        elemDateDelivery: this.elemDateDelivery,
         orderId: ''
       }
 
