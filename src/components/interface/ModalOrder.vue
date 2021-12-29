@@ -116,6 +116,16 @@
                 {{ elem.elemShirina }} = {{ elem.elemSize }}
                 {{ elem.elemEd }}</template
               >
+              <template v-slot:button>
+                <ButtonTrash
+                  @click="
+                    removeElement({
+                      array: 'siryoArray',
+                      id: elem.id
+                    })
+                  "
+                />
+              </template>
             </ModalOrderList>
           </ul>
           <!-- -->
@@ -127,12 +137,20 @@
                 {{ elem.elemEd }}</template
               >
               <template v-slot:button>
-                <button
+                <ButtonTrash
+                  @click="
+                    removeElement({
+                      array: 'rabotaArray',
+                      id: elem.id
+                    })
+                  "
+                />
+                <!-- <button
                   class="btn btn-sm btn-outline-info"
                   @click="addFrezer(elem)"
                 >
                   На фрезер
-                </button>
+                </button> -->
               </template>
             </ModalOrderList>
           </ul>
@@ -143,7 +161,16 @@
               <template v-slot:title
                 >{{ elem.elemTitle }}, {{ elem.elemSize }}
                 {{ elem.elemEd }}</template
-              >
+              ><template v-slot:button>
+                <ButtonTrash
+                  @click="
+                    removeElement({
+                      array: 'dopuslugArray',
+                      id: elem.id
+                    })
+                  "
+                />
+              </template>
             </ModalOrderList>
           </ul>
         </div>
@@ -182,10 +209,12 @@
 <script>
 import clients from '@/data/clients'
 import getDateNow from '@/scripts/getDateNow'
+import ButtonTrash from '@/components/buttons/ButtonTrash'
 import ModalOrderList from '@/components/interface/ModalOrderList'
 
 export default {
   components: {
+    ButtonTrash,
     ModalOrderList
   },
   props: ['order', 'mod'],
@@ -196,6 +225,9 @@ export default {
     }
   },
   methods: {
+    removeElement({ array, id }) {
+      this.order[array] = this.order[array].filter(item => item.id !== id)
+    },
     updateOrderTitle() {
       const startPos = this.order.title.indexOf('_')
       const subStr = this.order.title.slice(startPos)
