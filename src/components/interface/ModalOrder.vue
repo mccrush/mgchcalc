@@ -115,11 +115,16 @@
                 <template v-slot:title
                   >{{ elem.elemTitle }}, {{ elem.elemDlina }} x
                   {{ elem.elemShirina }} = {{ elem.elemSize }}
-                  {{ elem.elemEd }} === {{ elem.elemOur }}</template
+                  {{ elem.elemEd }}</template
                 >
                 <template v-slot:badge>
                   <span
-                    v-if="!elem.elemOur"
+                    v-if="elem.elemOur"
+                    class="badge bg-light text-dark align-self-center me-2 p-2"
+                    >{{ elem.elemSumma }} ₽</span
+                  >
+                  <span
+                    v-else
                     class="
                       badge
                       bg-warning
@@ -149,14 +154,26 @@
                   >{{ elem.elemTitle }}, {{ elem.elemSize }}
                   {{ elem.elemEd }}</template
                 >
+                <template v-slot:badge>
+                  <span
+                    class="badge bg-light text-dark align-self-center me-2 p-2"
+                    >{{ elem.elemSumma }} ₽</span
+                  >
+                  <!-- <span
+                    v-if="elem.elemSumma < 500"
+                    class="badge bg-light text-dark align-self-center me-2 p-2"
+                    >+ {{ 500 - elem.elemSumma }} ₽</span
+                  > -->
+                </template>
                 <template v-slot:button>
                   <select
                     v-if="mod === 'edit'"
-                    v-model="elemStatus"
+                    :value="elem.status"
                     @change="
                       updateElemStatus({
                         array: 'rabotaArray',
-                        id: elem.id
+                        id: elem.id,
+                        status: $event
                       })
                     "
                     class="form-select form-select-sm text-white"
@@ -166,9 +183,9 @@
                       'bg-success': elem.status === 'done'
                     }"
                   >
-                    <option value="new">Новый</option>
+                    <option value="new">Новая</option>
                     <option value="inprogress">В работе</option>
-                    <option value="done">Выполнен</option>
+                    <option value="done">Выполнена</option>
                   </select>
                 </template>
               </ModalOrderList>
@@ -185,7 +202,14 @@
                 <template v-slot:title
                   >{{ elem.elemTitle }}, {{ elem.elemSize }}
                   {{ elem.elemEd }}</template
-                ><template v-slot:button> </template>
+                >
+                <template v-slot:badge>
+                  <span
+                    class="badge bg-light text-dark align-self-center me-2 p-2"
+                    >{{ elem.elemSumma }} ₽</span
+                  >
+                </template>
+                <template v-slot:button> </template>
               </ModalOrderList>
             </ul>
           </div>
@@ -240,17 +264,13 @@ export default {
   data() {
     return {
       clients,
-      client: '',
-      elemStatus: 'new'
+      client: ''
     }
   },
   methods: {
-    // removeElement({ array, id }) {
-    //   this.order[array] = this.order[array].filter(item => item.id !== id)
-    // },
-    updateElemStatus({ array, id }) {
+    updateElemStatus({ array, id, status }) {
       const index = this.order[array].findIndex(item => item.id === id)
-      this.order[array][index].status = this.elemStatus
+      this.order[array][index].status = status.target.value
       const item = this.order[array][index]
       this.$store.commit('addItem', { item })
       this.$store.dispatch('addItem', { item })
@@ -273,16 +293,6 @@ export default {
         this.updateItem(order)
       }
     },
-    addFrezer({ array, id }) {
-      // Сначала обновляем статус в текущем элементе
-      // const index = this.order[array].findIndex(item => item.id === id)
-      // console.log('this.order[array][index]:', this.order[array][index])
-      // this.order[array][index].status = 'inprogress'
-      // const item = this.order[array][index]
-      // Затем добавляем его как задачу в БД
-      //this.$store.commit('addItem', { item })
-      //this.$store.dispatch('addItem', { item })
-    },
     saveItem() {
       if (this.order.title) {
         console.log('save order:', this.order)
@@ -292,7 +302,6 @@ export default {
     },
     updateItem(item) {
       if (item.title && this.mod === 'edit') {
-        // Сначала переприсвоить массивы, и лишь потом оновлять
         this.$store.commit('updateItem', { item })
         this.$store.dispatch('updateItem', { item })
       }
