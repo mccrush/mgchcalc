@@ -108,44 +108,40 @@
           </div>
 
           <!-- -->
-
-          <div v-if="order">
-            {{ order.siryoArray }}
-            <div v-if="order.siryoArray">
-              <h6 class="mt-3">Материалы</h6>
-              <ul class="list-group ist-group-numbered">
-                <ModalOrderList v-for="elem in order.siryoArray" :key="elem.id">
-                  <template v-slot:title
-                    >{{ elem.elemTitle }}, {{ elem.elemDlina }} x
-                    {{ elem.elemShirina }} = {{ elem.elemSize }}
-                    {{ elem.elemEd }} === {{ elem.elemOur }}</template
+          <div v-if="order.siryoArray.length">
+            <h6 class="mt-3">Материалы</h6>
+            <ul class="list-group ist-group-numbered">
+              <ModalOrderList v-for="elem in order.siryoArray" :key="elem.id">
+                <template v-slot:title
+                  >{{ elem.elemTitle }}, {{ elem.elemDlina }} x
+                  {{ elem.elemShirina }} = {{ elem.elemSize }}
+                  {{ elem.elemEd }} === {{ elem.elemOur }}</template
+                >
+                <template v-slot:badge>
+                  <span
+                    v-if="!elem.elemOur"
+                    class="
+                      badge
+                      bg-warning
+                      text-dark
+                      align-self-center
+                      me-2
+                      p-2
+                    "
+                    >Дата поставки:
+                    {{
+                      new Date(elem.elemDateDelivery).toLocaleDateString(
+                        'ru-RU'
+                      )
+                    }}</span
                   >
-                  <template v-slot:badge>
-                    <span
-                      v-if="!elem.elemOur"
-                      class="
-                        badge
-                        bg-warning
-                        text-dark
-                        align-self-center
-                        me-2
-                        p-2
-                      "
-                      >Дата поставки:
-                      {{
-                        new Date(elem.elemDateDelivery).toLocaleDateString(
-                          'ru-RU'
-                        )
-                      }}</span
-                    >
-                  </template>
-                  <template v-slot:button> </template>
-                </ModalOrderList>
-              </ul>
-            </div>
+                </template>
+                <template v-slot:button> </template>
+              </ModalOrderList>
+            </ul>
           </div>
           <!-- -->
-          <div>
+          <div v-if="order.rabotaArray.length">
             <h6 class="mt-3">Услуги обработки</h6>
             <ul class="list-group ist-group-numbered">
               <ModalOrderList v-for="elem in order.rabotaArray" :key="elem.id">
@@ -154,29 +150,32 @@
                   {{ elem.elemEd }}</template
                 >
                 <template v-slot:button>
-                  <button
+                  <select
                     v-if="mod === 'edit'"
-                    class="btn btn-sm text-white"
+                    v-model="elemStatus"
+                    @change="
+                      updateElemStatus({
+                        array: 'rabotaArray',
+                        id: elem.id
+                      })
+                    "
+                    class="form-select form-select-sm text-white"
                     :class="{
                       'bg-info': elem.status === 'new',
                       'bg-warning': elem.status === 'inprogress',
                       'bg-success': elem.status === 'done'
                     }"
-                    @click="
-                      addFrezer({
-                        array: 'rabotaArray',
-                        id: elem.id
-                      })
-                    "
                   >
-                    На фрезер: {{ elem.status }}
-                  </button>
+                    <option value="new">Новый</option>
+                    <option value="inprogress">В работе</option>
+                    <option value="done">Выполнен</option>
+                  </select>
                 </template>
               </ModalOrderList>
             </ul>
           </div>
           <!-- -->
-          <div>
+          <div v-if="order.dopuslugArray.length">
             <h6 class="mt-3">Дополнительные услуги</h6>
             <ul class="list-group ist-group-numbered">
               <ModalOrderList
@@ -241,17 +240,29 @@ export default {
   data() {
     return {
       clients,
-      client: ''
+      client: '',
+      elemStatus: 'new'
     }
   },
   methods: {
     // removeElement({ array, id }) {
     //   this.order[array] = this.order[array].filter(item => item.id !== id)
     // },
+    updateElemStatus({ array, id }) {
+      const index = this.order[array].findIndex(item => item.id === id)
+      this.order[array][index].status = this.elemStatus
+      const item = this.order[array][index]
+      this.$store.commit('addItem', { item })
+      this.$store.dispatch('addItem', { item })
+      this.updateItem(this.order)
+    },
     updateOrderTitle() {
       const startPos = this.order.title.indexOf('_')
       const subStr = this.order.title.slice(startPos)
       this.order.title = this.client.toUpperCase() + subStr
+      if (this.order.title && this.mod === 'edit') {
+        this.updateItem(this.order)
+      }
     },
     updateOrderStatus(order) {
       if (order.status === 'done') {
@@ -264,10 +275,10 @@ export default {
     },
     addFrezer({ array, id }) {
       // Сначала обновляем статус в текущем элементе
-      const index = this.order[array].findIndex(item => item.id === id)
-      console.log('this.order[array][index]:', this.order[array][index])
-      this.order[array][index].status = 'inprogress'
-      const item = this.order[array][index]
+      // const index = this.order[array].findIndex(item => item.id === id)
+      // console.log('this.order[array][index]:', this.order[array][index])
+      // this.order[array][index].status = 'inprogress'
+      // const item = this.order[array][index]
       // Затем добавляем его как задачу в БД
       //this.$store.commit('addItem', { item })
       //this.$store.dispatch('addItem', { item })

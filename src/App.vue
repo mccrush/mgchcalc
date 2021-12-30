@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       pathname: localStorage.getItem('cl-pathname') || 'calc',
-      order: {},
+      order: { siryoArray: [], rabotaArray: [], dopuslugArray: [] },
       mod: ''
     }
   },
