@@ -1,7 +1,7 @@
 export default () => {
   return {
     id: Date.now().toString(),
-    type: 'task',
+    type: 'nafrezer',
     groupId: '',
     elemId: '',
     elemType: '',
@@ -14,7 +14,8 @@ export default () => {
     elemSumma: 0,
     elemOur: true,
     elemDateDelivery: '',
-    orderId: ''
+    orderId: '',
+    status: 'new'
   }
 }
 

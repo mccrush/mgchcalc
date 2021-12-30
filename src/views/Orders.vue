@@ -29,9 +29,9 @@ export default {
   components: {
     OrderList
   },
-  beforeCreate() {
-    this.$store.dispatch('getItems', { type: 'order' })
-  },
+  // beforeCreate() {
+  //   this.$store.dispatch('getItems', { type: 'order' })
+  // },
   computed: {
     orders() {
       return this.$store.getters.order

@@ -144,7 +144,8 @@ export default {
         elemSize: this.rabotaSize,
         elemEd: 'м.п.',
         elemSumma: this.rabotaSumma,
-        orderId: ''
+        orderId: '',
+        status: 'new'
       }
 
       this.$emit('calc-price', item)

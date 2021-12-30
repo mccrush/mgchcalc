@@ -108,81 +108,88 @@
           </div>
 
           <!-- -->
-          <h6 class="mt-3">Материалы</h6>
-          <ul class="list-group ist-group-numbered">
-            <ModalOrderList v-for="elem in order.siryoArray" :key="elem.id">
-              <template v-slot:title
-                >{{ elem.elemTitle }}, {{ elem.elemDlina }} x
-                {{ elem.elemShirina }} = {{ elem.elemSize }}
-                {{ elem.elemEd }} === {{ elem.elemOur }}</template
-              >
-              <template v-slot:badge>
-                <span
-                  v-if="!elem.elemOur"
-                  class="badge bg-warning text-dark align-self-center me-2 p-2"
-                  >Дата поставки:
-                  {{
-                    new Date(elem.elemDateDelivery).toLocaleDateString('ru-RU')
-                  }}</span
-                >
-              </template>
-              <template v-slot:button>
-                <ButtonTrash
-                  @click="
-                    removeElement({
-                      array: 'siryoArray',
-                      id: elem.id
-                    })
-                  "
-                />
-              </template>
-            </ModalOrderList>
-          </ul>
+
+          <div v-if="order">
+            {{ order.siryoArray }}
+            <div v-if="order.siryoArray">
+              <h6 class="mt-3">Материалы</h6>
+              <ul class="list-group ist-group-numbered">
+                <ModalOrderList v-for="elem in order.siryoArray" :key="elem.id">
+                  <template v-slot:title
+                    >{{ elem.elemTitle }}, {{ elem.elemDlina }} x
+                    {{ elem.elemShirina }} = {{ elem.elemSize }}
+                    {{ elem.elemEd }} === {{ elem.elemOur }}</template
+                  >
+                  <template v-slot:badge>
+                    <span
+                      v-if="!elem.elemOur"
+                      class="
+                        badge
+                        bg-warning
+                        text-dark
+                        align-self-center
+                        me-2
+                        p-2
+                      "
+                      >Дата поставки:
+                      {{
+                        new Date(elem.elemDateDelivery).toLocaleDateString(
+                          'ru-RU'
+                        )
+                      }}</span
+                    >
+                  </template>
+                  <template v-slot:button> </template>
+                </ModalOrderList>
+              </ul>
+            </div>
+          </div>
           <!-- -->
-          <h6 class="mt-3">Услуги обработки</h6>
-          <ul class="list-group ist-group-numbered">
-            <ModalOrderList v-for="elem in order.rabotaArray" :key="elem.id">
-              <template v-slot:title
-                >{{ elem.elemTitle }}, {{ elem.elemSize }}
-                {{ elem.elemEd }}</template
-              >
-              <template v-slot:button>
-                <ButtonTrash
-                  @click="
-                    removeElement({
-                      array: 'rabotaArray',
-                      id: elem.id
-                    })
-                  "
-                />
-                <!-- <button
-                  class="btn btn-sm btn-outline-info"
-                  @click="addFrezer(elem)"
+          <div>
+            <h6 class="mt-3">Услуги обработки</h6>
+            <ul class="list-group ist-group-numbered">
+              <ModalOrderList v-for="elem in order.rabotaArray" :key="elem.id">
+                <template v-slot:title
+                  >{{ elem.elemTitle }}, {{ elem.elemSize }}
+                  {{ elem.elemEd }}</template
                 >
-                  На фрезер
-                </button> -->
-              </template>
-            </ModalOrderList>
-          </ul>
+                <template v-slot:button>
+                  <button
+                    v-if="mod === 'edit'"
+                    class="btn btn-sm text-white"
+                    :class="{
+                      'bg-info': elem.status === 'new',
+                      'bg-warning': elem.status === 'inprogress',
+                      'bg-success': elem.status === 'done'
+                    }"
+                    @click="
+                      addFrezer({
+                        array: 'rabotaArray',
+                        id: elem.id
+                      })
+                    "
+                  >
+                    На фрезер: {{ elem.status }}
+                  </button>
+                </template>
+              </ModalOrderList>
+            </ul>
+          </div>
           <!-- -->
-          <h6 class="mt-3">Дополнительные услуги</h6>
-          <ul class="list-group ist-group-numbered">
-            <ModalOrderList v-for="elem in order.dopuslugArray" :key="elem.id">
-              <template v-slot:title
-                >{{ elem.elemTitle }}, {{ elem.elemSize }}
-                {{ elem.elemEd }}</template
-              ><template v-slot:button>
-                <ButtonTrash
-                  @click="
-                    removeElement({
-                      array: 'dopuslugArray',
-                      id: elem.id
-                    })
-                  "
-                />
-              </template>
-            </ModalOrderList>
-          </ul>
+          <div>
+            <h6 class="mt-3">Дополнительные услуги</h6>
+            <ul class="list-group ist-group-numbered">
+              <ModalOrderList
+                v-for="elem in order.dopuslugArray"
+                :key="elem.id"
+              >
+                <template v-slot:title
+                  >{{ elem.elemTitle }}, {{ elem.elemSize }}
+                  {{ elem.elemEd }}</template
+                ><template v-slot:button> </template>
+              </ModalOrderList>
+            </ul>
+          </div>
         </div>
         <div class="modal-footer p-2">
           <button
@@ -227,7 +234,10 @@ export default {
     ButtonTrash,
     ModalOrderList
   },
-  props: ['order', 'mod'],
+  props: {
+    order: Object,
+    mod: String
+  },
   data() {
     return {
       clients,
@@ -235,9 +245,9 @@ export default {
     }
   },
   methods: {
-    removeElement({ array, id }) {
-      this.order[array] = this.order[array].filter(item => item.id !== id)
-    },
+    // removeElement({ array, id }) {
+    //   this.order[array] = this.order[array].filter(item => item.id !== id)
+    // },
     updateOrderTitle() {
       const startPos = this.order.title.indexOf('_')
       const subStr = this.order.title.slice(startPos)
@@ -252,19 +262,26 @@ export default {
         this.updateItem(order)
       }
     },
-    addFrezer(item) {
-      this.$store.commit('addItem', { item })
-      this.$store.dispatch('addItem', { item })
+    addFrezer({ array, id }) {
+      // Сначала обновляем статус в текущем элементе
+      const index = this.order[array].findIndex(item => item.id === id)
+      console.log('this.order[array][index]:', this.order[array][index])
+      this.order[array][index].status = 'inprogress'
+      const item = this.order[array][index]
+      // Затем добавляем его как задачу в БД
+      //this.$store.commit('addItem', { item })
+      //this.$store.dispatch('addItem', { item })
     },
     saveItem() {
       if (this.order.title) {
-        //console.log('save order:', this.order)
+        console.log('save order:', this.order)
         this.$store.commit('addItem', { item: this.order })
         this.$store.dispatch('addItem', { item: this.order })
       }
     },
     updateItem(item) {
       if (item.title && this.mod === 'edit') {
+        // Сначала переприсвоить массивы, и лишь потом оновлять
         this.$store.commit('updateItem', { item })
         this.$store.dispatch('updateItem', { item })
       }

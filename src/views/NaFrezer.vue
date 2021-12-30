@@ -29,9 +29,9 @@ export default {
   components: {
     OrderList
   },
-  beforeCreate() {
-    this.$store.dispatch('getItems', { type: 'nafrezer' })
-  },
+  // beforeCreate() {
+  //   this.$store.dispatch('getItems', { type: 'nafrezer' })
+  // },
   computed: {
     nafrezer() {
       return this.$store.getters.nafrezer
