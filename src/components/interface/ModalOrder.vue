@@ -54,16 +54,18 @@
               <select
                 v-model="order.status"
                 @change="updateOrderStatus(order)"
-                class="form-select form-select-sm text-white"
-                :class="{
-                  'bg-info': order.status === 'new',
-                  'bg-warning': order.status === 'inprogress',
-                  'bg-success': order.status === 'done'
-                }"
+                class="form-select form-select-sm"
               >
-                <option value="new">Новый</option>
+                <option
+                  v-for="status in voronkaOrders"
+                  :key="status.id"
+                  :value="status.alias"
+                >
+                  {{ status.title }}
+                </option>
+                <!-- <option value="new">Новый</option>
                 <option value="inprogress">В работе</option>
-                <option value="done">Выполнен</option>
+                <option value="done">Выполнен</option> -->
               </select>
             </div>
           </div>
@@ -247,6 +249,7 @@
 </template>
 
 <script>
+import voronkaOrders from '@/data/voronkaOrders'
 import clients from '@/data/clients'
 import getDateNow from '@/scripts/getDateNow'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
@@ -263,6 +266,7 @@ export default {
   },
   data() {
     return {
+      voronkaOrders,
       clients,
       client: ''
     }
