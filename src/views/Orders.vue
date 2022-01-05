@@ -4,7 +4,7 @@
       class="kanban row flex-nowrap overflow-auto pt-2 ps-2 pe-2 pb-3"
       id="rowScroll"
     >
-      <div v-for="etap in voronkaOrders" :key="etap.id" class="col-4">
+      <div v-for="etap in voronkaOrders" :key="etap.id" class="wrap-order-list">
         <OrderList
           :title="etap.title"
           :array="getArray(etap.alias)"
@@ -77,6 +77,10 @@ export default {
 .kanban {
   height: calc(100vh - 87px);
   overflow-x: auto;
+}
+
+.wrap-order-list {
+  width: 280px;
 }
 
 .active {
