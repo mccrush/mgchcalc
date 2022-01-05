@@ -38,6 +38,12 @@ export default {
 </script>
 
 <style scoped>
+.list-items {
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .item {
   user-select: none;
   cursor: default;
