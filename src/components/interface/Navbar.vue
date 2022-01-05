@@ -10,7 +10,7 @@
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
           :class="{ active: pathname === 'nafrezer' }"
-          @click="$emit('set-path-name', 'nafrezer')"
+          @click="setPathName('nafrezer')"
         >
           На Фрезер
         </button>
@@ -18,7 +18,7 @@
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
           :class="{ active: pathname === 'order' }"
-          @click="$emit('set-path-name', 'order')"
+          @click="setPathName('order')"
         >
           Заказы
         </button>
@@ -26,7 +26,7 @@
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
           :class="{ active: pathname === 'calc' }"
-          @click="$emit('set-path-name', 'calc')"
+          @click="setPathName('calc')"
         >
           Калькулятор
         </button>
@@ -37,7 +37,7 @@
           "
           class="btn btn-sm btn-outline-light text-muted me-2"
           :class="{ active: pathname === 'admin' }"
-          @click="$emit('set-path-name', 'admin')"
+          @click="setPathName('admin')"
         >
           Админка
         </button>
@@ -62,8 +62,10 @@ export default {
     Progressbar,
     ProgressbarOff
   },
-  props: ['pathname'],
   computed: {
+    pathname() {
+      return this.$store.getters.pathname
+    },
     loading() {
       return this.$store.getters.loading
     },
@@ -72,6 +74,9 @@ export default {
     }
   },
   methods: {
+    setPathName(path) {
+      this.$store.commit('setPath', path)
+    },
     async logOut() {
       await this.$store.dispatch('logOut')
     }

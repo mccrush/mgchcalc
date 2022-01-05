@@ -1,7 +1,7 @@
 <template>
   <!-- <ButtonSettings data-bs-toggle="offcanvas" href="#settingsBar" /> -->
   <div class="m-auto shadow-sm bg-white rounded-3 mt-3" :class="widthBlock">
-    <Navbar @set-path-name="setPathName" :pathname="pathname" />
+    <Navbar />
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>
         <component :is="myComponent" @edit-order="editOrder" />
@@ -21,8 +21,6 @@ import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
 import KanbanBoard from '@/views/KanbanBoard'
-import Orders from '@/views/Orders'
-import NaFrezer from '@/views/NaFrezer'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
 import ModalOrder from '@/components/interface/ModalOrder'
@@ -34,14 +32,11 @@ export default {
     Calc,
     Admin,
     KanbanBoard,
-    Orders,
-    NaFrezer,
     ButtonSettings,
     ModalOrder
   },
   data() {
     return {
-      pathname: localStorage.getItem('cl-pathname') || 'calc',
       order: { siryoArray: [], rabotaArray: [], dopuslugArray: [] },
       mod: ''
     }
@@ -51,8 +46,12 @@ export default {
     body.style.backgroundColor = '#f8f9fa'
   },
   computed: {
+    pathname() {
+      return this.$store.getters.pathname
+    },
     widthBlock() {
-      if (this.pathname === 'orders') return 'max-width-100'
+      if (this.pathname === 'order' || this.pathname === 'nafrezer')
+        return 'max-width-100'
       return 'max-width-900'
     },
     userId() {
@@ -66,21 +65,13 @@ export default {
           return 'Calc'
         } else if (this.pathname === 'order' || this.pathname === 'nafrezer') {
           return 'KanbanBoard'
-          //return 'Orders'
         }
-        // else if (this.pathname === 'nafrezer') {
-        //   return 'NaFrezer'
-        // }
       } else {
         return 'Login'
       }
     }
   },
   methods: {
-    setPathName(name) {
-      this.pathname = name
-      localStorage.setItem('cl-pathname', name)
-    },
     editOrder({ order, mod }) {
       this.order = order
       this.mod = mod

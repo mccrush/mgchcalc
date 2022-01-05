@@ -24,12 +24,10 @@ export default {
   components: {
     OrderList
   },
-  data() {
-    return {
-      pathname: localStorage.getItem('cl-pathname') || 'order'
-    }
-  },
   computed: {
+    pathname() {
+      return this.$store.getters.pathname
+    },
     etaps() {
       console.log('this.pathname change:', this.pathname)
       if (this.pathname === 'order') return voronkaOrders
