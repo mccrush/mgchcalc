@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="row flex-nowrap overflow-auto pt-2 ps-2 pe-2 pb-3"
+      class="kanban row flex-nowrap overflow-auto pt-2 ps-2 pe-2 pb-3"
       id="rowScroll"
     >
       <div v-for="etap in voronkaOrders" :key="etap.id" class="col-4">
@@ -74,6 +74,11 @@ export default {
 </script>
 
 <style scoped>
+.kanban {
+  height: calc(100vh - 87px);
+  overflow-x: auto;
+}
+
 .active {
   cursor: grabbing;
 }
