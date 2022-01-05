@@ -117,7 +117,7 @@ export default {
 }
 
 .max-width-100 {
-  max-width: 100%;
+  max-width: 1870px;
 }
 
 .fade-enter-active,
