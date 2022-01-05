@@ -1,7 +1,8 @@
 import getWeek from './getWeek'
 import getDateNow from './getDateNow'
 
-let titleFormar = '_' + getWeek() + '_'
+const weekFormat = getWeek() < 10 ? '0' + getWeek() : getWeek()
+const titleFormar = '_' + weekFormat + '_'
 
 export default (orderNumber, siryoArray, rabotaArray, dopuslugArray) => {
   const item = {

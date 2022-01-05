@@ -63,9 +63,6 @@
                 >
                   {{ status.title }}
                 </option>
-                <!-- <option value="new">Новый</option>
-                <option value="inprogress">В работе</option>
-                <option value="done">Выполнен</option> -->
               </select>
             </div>
           </div>
