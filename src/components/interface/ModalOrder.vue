@@ -26,7 +26,7 @@
         </div>
         <div class="modal-body pt-2">
           <div class="row">
-            <div class="col-7 pe-0">
+            <div class="col-6 pe-0">
               <input
                 type="text"
                 class="form-control form-control-sm"
@@ -50,7 +50,7 @@
                 </option>
               </select>
             </div>
-            <div class="col-2">
+            <div class="col-3">
               <select
                 v-model="order.status"
                 @change="updateOrderStatus(order)"
