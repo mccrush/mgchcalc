@@ -1,6 +1,6 @@
 <template>
   <!-- <ButtonSettings data-bs-toggle="offcanvas" href="#settingsBar" /> -->
-  <div class="max-width-840 m-auto shadow-sm bg-white rounded-3 mt-3">
+  <div class="m-auto shadow-sm bg-white rounded-3 mt-3" :class="widthBlock">
     <Navbar @set-path-name="setPathName" :pathname="pathname" />
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>
@@ -49,6 +49,10 @@ export default {
     body.style.backgroundColor = '#f8f9fa'
   },
   computed: {
+    widthBlock() {
+      if (this.pathname === 'orders') return 'max-width-100'
+      return 'max-width-900'
+    },
     userId() {
       return this.$store.getters.userId
     },
@@ -108,8 +112,12 @@ export default {
   height: calc(100vh - 86px);
 }
 
-.max-width-840 {
+.max-width-900 {
   max-width: 900px;
+}
+
+.max-width-100 {
+  max-width: 100%;
 }
 
 .fade-enter-active,
