@@ -120,7 +120,7 @@ export default {
         case 'dopuslug':
           return 'FormDopuslug'
         default:
-          return 'materialvid'
+          return 'FormMaterialVid'
       }
     },
     categorys() {
