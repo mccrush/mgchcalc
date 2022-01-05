@@ -29,7 +29,6 @@ export default {
       return this.$store.getters.pathname
     },
     etaps() {
-      console.log('this.pathname change:', this.pathname)
       if (this.pathname === 'order') return voronkaOrders
       return voronkaNafrezer
     },
