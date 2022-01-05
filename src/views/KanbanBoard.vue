@@ -4,7 +4,7 @@
       class="kanban row flex-nowrap overflow-auto pt-2 ps-2 pe-2 pb-3"
       id="rowScroll"
     >
-      <div v-for="etap in voronkaOrders" :key="etap.id" class="wrap-order-list">
+      <div v-for="etap in etaps" :key="etap.id" class="wrap-order-list">
         <OrderList
           :title="etap.title"
           :array="getArray(etap.alias)"
@@ -16,11 +16,36 @@
 </template>
 
 <script>
+import voronkaOrders from '@/data/voronkaOrders'
+import voronkaNafrezer from '@/data/voronkaNafrezer'
 import OrderList from '@/components/orders/OrderList'
 
 export default {
   components: {
     OrderList
+  },
+  data() {
+    return {
+      pathname: localStorage.getItem('cl-pathname') || 'order'
+    }
+  },
+  computed: {
+    etaps() {
+      console.log('this.pathname change:', this.pathname)
+      if (this.pathname === 'order') return voronkaOrders
+      return voronkaNafrezer
+    },
+    items() {
+      return this.$store.getters[this.pathname]
+    }
+  },
+  methods: {
+    getArray(alias) {
+      return this.items.filter(item => item.status === alias)
+    },
+    editOrder(order) {
+      this.$emit('edit-order', { order, mod: 'edit' })
+    }
   },
   mounted() {
     const slider = document.querySelector('#rowScroll')
@@ -50,29 +75,6 @@ export default {
       const walk = (x - startX) * 1 //scroll-fast
       slider.scrollLeft = scrollLeft - walk
     })
-  },
-  computed: {
-    orders() {
-      return this.$store.getters.nafrezer
-    }
-    // ordersNew() {
-    //   return this.nafrezer
-    //   return this.nafrezer.filter(item => item.status === 'new')
-    // },
-    // ordersProgress() {
-    //   return this.nafrezer.filter(item => item.status === 'inprogress')
-    // },
-    // ordersDone() {
-    //   return this.nafrezer.filter(item => item.status === 'done')
-    // }
-  },
-  methods: {
-    getArray(alias) {
-      return this.orders.filter(item => item.status === alias)
-    },
-    editOrder(order) {
-      this.$emit('edit-order', { order, mod: 'edit' })
-    }
   }
 }
 </script>

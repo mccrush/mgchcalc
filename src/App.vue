@@ -20,6 +20,7 @@ import Navbar from '@/components/interface/Navbar'
 import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
+import KanbanBoard from '@/views/KanbanBoard'
 import Orders from '@/views/Orders'
 import NaFrezer from '@/views/NaFrezer'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
@@ -32,6 +33,7 @@ export default {
     Login,
     Calc,
     Admin,
+    KanbanBoard,
     Orders,
     NaFrezer,
     ButtonSettings,
@@ -62,11 +64,13 @@ export default {
           return 'Admin'
         } else if (this.pathname === 'calc') {
           return 'Calc'
-        } else if (this.pathname === 'orders') {
-          return 'Orders'
-        } else if (this.pathname === 'nafrezer') {
-          return 'NaFrezer'
+        } else if (this.pathname === 'order' || this.pathname === 'nafrezer') {
+          return 'KanbanBoard'
+          //return 'Orders'
         }
+        // else if (this.pathname === 'nafrezer') {
+        //   return 'NaFrezer'
+        // }
       } else {
         return 'Login'
       }

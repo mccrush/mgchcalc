@@ -6,19 +6,19 @@
     </div>
     <div class="col-12 pt-2">
       <div class="buttons d-flex justify-content-end">
-        <!-- <button
+        <button
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
           :class="{ active: pathname === 'nafrezer' }"
           @click="$emit('set-path-name', 'nafrezer')"
         >
           На Фрезер
-        </button> -->
+        </button>
         <button
           v-if="userId"
           class="btn btn-sm btn-outline-light text-muted me-2"
-          :class="{ active: pathname === 'orders' }"
-          @click="$emit('set-path-name', 'orders')"
+          :class="{ active: pathname === 'order' }"
+          @click="$emit('set-path-name', 'order')"
         >
           Заказы
         </button>
