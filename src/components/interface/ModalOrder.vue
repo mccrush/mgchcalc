@@ -165,7 +165,7 @@
                   > -->
                 </template>
                 <template v-slot:button>
-                  <select
+                  <!-- <select
                     v-if="mod === 'edit'"
                     :value="elem.status"
                     @change="
@@ -185,7 +185,7 @@
                     <option value="new">Новая</option>
                     <option value="inprogress">В работе</option>
                     <option value="done">Выполнена</option>
-                  </select>
+                  </select> -->
                 </template>
               </ModalOrderList>
             </ul>
@@ -222,7 +222,7 @@
                 v-model.number="order.polka"
                 @change="updateOrderPolka"
               >
-                <option v-for="num in 10" :key="'id' + num" value="num">
+                <option v-for="num in 10" :key="'id' + num" :value="num">
                   {{ num }}
                 </option>
               </select>
@@ -318,6 +318,7 @@ export default {
     updateOrderStatus(order) {
       if (order.status === 'success' || order.status === 'failorder') {
         order.dateFinish = getDateNow
+        order.polka = ''
         this.updateItem(order)
       } else {
         order.dateFinish = ''
