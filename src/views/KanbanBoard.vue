@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import orderStatus from '@/data/orderStatus'
 import voronkaOrders from '@/data/voronkaOrders'
 import voronkaNafrezer from '@/data/voronkaNafrezer'
 import OrderList from '@/components/orders/OrderList'
@@ -33,12 +34,27 @@ export default {
       return voronkaNafrezer
     },
     items() {
-      return this.$store.getters[this.pathname]
+      return this.$store.getters.order
+      //return this.$store.getters[this.pathname]
     }
   },
   methods: {
     getArray(alias) {
-      return this.items.filter(item => item.status === alias)
+      if (this.pathname === 'order') {
+        if (alias === 'nafrezer') {
+          return this.items.filter(
+            item =>
+              item.status === 'nafrezer' ||
+              item.status === 'newfrezer' ||
+              item.status === 'prinyat' ||
+              item.status === 'inprogress'
+          )
+        } else {
+          return this.items.filter(item => item.status === alias)
+        }
+      } else {
+        return this.items.filter(item => item.status === alias)
+      }
     },
     editOrder(order) {
       this.$emit('edit-order', { order, mod: 'edit' })

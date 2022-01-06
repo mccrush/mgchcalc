@@ -57,7 +57,7 @@
                 class="form-select form-select-sm"
               >
                 <option
-                  v-for="status in voronkaOrders"
+                  v-for="status in etaps"
                   :key="status.id"
                   :value="status.alias"
                 >
@@ -212,6 +212,22 @@
               </ModalOrderList>
             </ul>
           </div>
+          <div class="row mt-2">
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+            <div class="col-2 text-end">Лежит на полке:</div>
+            <div class="col-2">
+              <select
+                class="form-select form-select-sm"
+                v-model.number="order.polka"
+                @change="updateOrderPolka"
+              >
+                <option v-for="num in 10" :key="'id' + num" value="num">
+                  {{ num }}
+                </option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="modal-footer p-2">
           <button
@@ -246,7 +262,9 @@
 </template>
 
 <script>
+import orderStatus from '@/data/orderStatus'
 import voronkaOrders from '@/data/voronkaOrders'
+import voronkaNafrezer from '@/data/voronkaNafrezer'
 import clients from '@/data/clients'
 import getDateNow from '@/scripts/getDateNow'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
@@ -263,12 +281,24 @@ export default {
   },
   data() {
     return {
-      voronkaOrders,
       clients,
       client: ''
     }
   },
+  computed: {
+    pathname() {
+      return this.$store.getters.pathname
+    },
+    etaps() {
+      if (this.pathname === 'order') return orderStatus
+      return voronkaNafrezer
+    }
+  },
   methods: {
+    updateOrderPolka() {
+      this.order.status = 'donefrezer'
+      this.updateItem(this.order)
+    },
     updateElemStatus({ array, id, status }) {
       const index = this.order[array].findIndex(item => item.id === id)
       this.order[array][index].status = status.target.value
@@ -286,7 +316,7 @@ export default {
       }
     },
     updateOrderStatus(order) {
-      if (order.status === 'done') {
+      if (order.status === 'success' || order.status === 'failorder') {
         order.dateFinish = getDateNow
         this.updateItem(order)
       } else {

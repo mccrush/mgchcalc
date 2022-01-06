@@ -13,7 +13,8 @@ export default (orderNumber, siryoArray, rabotaArray, dopuslugArray) => {
     dateForReady: '',
     dateFinish: '',
     type: 'order',
-    status: 'new',
+    status: 'neworder',
+    polka: '',
     siryoArray,
     rabotaArray,
     dopuslugArray
