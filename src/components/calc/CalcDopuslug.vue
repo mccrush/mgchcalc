@@ -116,14 +116,14 @@ export default {
         id: this.id,
         groupId: '',
         elemId: this.categoryId,
-        elemType: this.type,
-        elemTitle: this.categoryTitle,
-        elemPrice: this.element.price,
-        elemDlina: 0,
-        elemShirina: 0,
-        elemSize: +this.elementSize.replace(/,/g, '.'),
-        elemEd: this.element.ed,
-        elemSumma: this.elementSumma,
+        typeArray: this.type,
+        title: this.categoryTitle,
+        price: this.element.price,
+        dlina: 0,
+        shirina: 0,
+        size: +this.elementSize.replace(/,/g, '.'),
+        ed: this.element.ed,
+        summa: this.elementSumma,
         orderId: ''
       }
 
