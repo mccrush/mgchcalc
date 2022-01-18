@@ -302,8 +302,10 @@ export default {
     }
   },
   methods: {
-    createTZ(elem) {
-      console.log('elem:', elem)
+    createTZ(item) {
+      console.log('createTZ elem:', item)
+      this.$store.commit('addItem', { item })
+      this.$store.dispatch('addItem', { item })
     },
     updateOrderPolka() {
       this.order.status = 'donefrezer'

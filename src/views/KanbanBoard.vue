@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import orderStatus from '@/data/orderStatus'
+//import orderStatus from '@/data/orderStatus'
 import voronkaOrders from '@/data/voronkaOrders'
 import voronkaNafrezer from '@/data/voronkaNafrezer'
 import OrderList from '@/components/orders/OrderList'
@@ -34,8 +34,8 @@ export default {
       return voronkaNafrezer
     },
     items() {
-      return this.$store.getters.order
-      //return this.$store.getters[this.pathname]
+      //return this.$store.getters.order
+      return this.$store.getters[this.pathname]
     }
   },
   methods: {
