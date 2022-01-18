@@ -186,11 +186,17 @@
                     <option value="done">Выполнена</option>
                   </select> -->
                   <button
-                    v-if="mod === 'edit'"
+                    v-if="mod === 'edit' && !elem.status"
                     class="btn btn-sm btn-info"
                     @click="createTZ(elem)"
                   >
                     Создать ТЗ
+                  </button>
+                  <button
+                    v-if="mod === 'edit' && elem.status"
+                    class="btn btn-sm btn-info disabled"
+                  >
+                    ТЗ создано
                   </button>
                 </template>
               </ModalOrderList>
@@ -305,8 +311,14 @@ export default {
   methods: {
     createTZ(item) {
       console.log('createTZ elem:', item)
+      item.status = 'newfrezer'
       this.$store.commit('addItem', { item })
       this.$store.dispatch('addItem', { item })
+      this.updateElemStatus({
+        array: 'rabotaArray',
+        id: item.id,
+        status: 'newfrezer'
+      })
     },
     updateOrderPolka() {
       this.order.status = 'donefrezer'
@@ -314,10 +326,10 @@ export default {
     },
     updateElemStatus({ array, id, status }) {
       const index = this.order[array].findIndex(item => item.id === id)
-      this.order[array][index].status = status.target.value
-      const item = this.order[array][index]
-      this.$store.commit('addItem', { item })
-      this.$store.dispatch('addItem', { item })
+      this.order[array][index].status = status
+      // const item = this.order[array][index]
+      // this.$store.commit('addItem', { item })
+      // this.$store.dispatch('addItem', { item })
       this.updateItem(this.order)
     },
     updateOrderTitle() {

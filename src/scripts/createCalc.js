@@ -15,7 +15,7 @@ export default () => {
     our: true,
     dateDelivery: '',
     orderId: '',
-    status: 'newfrezer'
+    status: ''
   }
 }
 
