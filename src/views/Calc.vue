@@ -206,22 +206,22 @@ export default {
 
       if (this.siryoArray.length) {
         this.siryoArray.forEach(item => {
-          sumSiryo += item.elemSumma
+          sumSiryo += item.summa
         })
       }
 
       if (this.rabotaArray.length) {
         this.rabotaArray.forEach(item => {
-          sumRabota += item.elemSumma
+          sumRabota += item.summa
         })
       }
 
       if (this.dopuslugArray.length) {
         this.dopuslugArray.forEach(item => {
-          if (item.elemSumma === 'x2') {
+          if (item.summa === 'x2') {
             x2 = true
           } else {
-            sumDopuslug += item.elemSumma
+            sumDopuslug += item.summa
           }
         })
       }
@@ -259,7 +259,7 @@ export default {
 
       let messageDopuslug = ''
       this.dopuslugArray.forEach(item => {
-        if (item.elemSumma === 'x2') {
+        if (item.summa === 'x2') {
           messageDopuslug +=
             'Внеочередная резка (подвинуть всех), итоговая сумма x2\n'
         } else {
@@ -297,17 +297,17 @@ export default {
       }
     },
     formattingMessage(item) {
-      if (item.elemTitle) {
+      if (item.title) {
         return (
-          item.elemTitle +
+          item.title +
           ', ' +
-          item.elemSize +
+          item.size +
           ' ' +
-          item.elemEd +
+          item.ed +
           ' x ' +
-          item.elemPrice +
+          item.price +
           ' ₽ = ' +
-          this.formattingSum(item.elemSumma) +
+          this.formattingSum(item.summa) +
           '\n'
         )
       } else {
@@ -351,8 +351,8 @@ export default {
       this[type].push(createCalc())
     },
     updateCalcInArray(item) {
-      let index = this[item.elemType].findIndex(elem => elem.id === item.id)
-      this[item.elemType][index] = item
+      let index = this[item.typeArray].findIndex(elem => elem.id === item.id)
+      this[item.typeArray][index] = item
     },
     copyInBuffer(e) {
       const el = e.target.parentNode.previousSibling.lastChild.lastChild

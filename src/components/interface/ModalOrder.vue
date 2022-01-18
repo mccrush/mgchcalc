@@ -112,15 +112,14 @@
             <ul class="list-group ist-group-numbered">
               <ModalOrderList v-for="elem in order.siryoArray" :key="elem.id">
                 <template v-slot:title
-                  >{{ elem.elemTitle }}, {{ elem.elemDlina }} x
-                  {{ elem.elemShirina }} = {{ elem.elemSize }}
-                  {{ elem.elemEd }}</template
+                  >{{ elem.title }}, {{ elem.dlina }} x {{ elem.shirina }} =
+                  {{ elem.size }} {{ elem.ed }}</template
                 >
                 <template v-slot:badge>
                   <span
-                    v-if="elem.elemOur"
+                    v-if="elem.our"
                     class="badge bg-light text-dark align-self-center me-2 p-2"
-                    >{{ elem.elemSumma }} ₽</span
+                    >{{ elem.summa }} ₽</span
                   >
                   <span
                     v-else
@@ -134,9 +133,7 @@
                     "
                     >Дата поставки:
                     {{
-                      new Date(elem.elemDateDelivery).toLocaleDateString(
-                        'ru-RU'
-                      )
+                      new Date(elem.dateDelivery).toLocaleDateString('ru-RU')
                     }}</span
                   >
                 </template>
@@ -150,13 +147,12 @@
             <ul class="list-group ist-group-numbered">
               <ModalOrderList v-for="elem in order.rabotaArray" :key="elem.id">
                 <template v-slot:title
-                  >{{ elem.elemTitle }}, {{ elem.elemSize }}
-                  {{ elem.elemEd }}</template
+                  >{{ elem.title }}, {{ elem.size }} {{ elem.ed }}</template
                 >
                 <template v-slot:badge>
                   <span
                     class="badge bg-light text-dark align-self-center me-2 p-2"
-                    >{{ elem.elemSumma }} ₽</span
+                    >{{ elem.summa }} ₽</span
                   >
                   <!-- <span
                     v-if="elem.elemSumma < 500"
@@ -206,13 +202,12 @@
                 :key="elem.id"
               >
                 <template v-slot:title
-                  >{{ elem.elemTitle }}, {{ elem.elemSize }}
-                  {{ elem.elemEd }}</template
+                  >{{ elem.title }}, {{ elem.size }} {{ elem.ed }}</template
                 >
                 <template v-slot:badge>
                   <span
                     class="badge bg-light text-dark align-self-center me-2 p-2"
-                    >{{ elem.elemSumma }} ₽</span
+                    >{{ elem.summa }} ₽</span
                   >
                 </template>
                 <template v-slot:button> </template>
