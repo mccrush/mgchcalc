@@ -186,6 +186,13 @@
                     <option value="inprogress">В работе</option>
                     <option value="done">Выполнена</option>
                   </select> -->
+                  <button
+                    v-if="mod === 'edit'"
+                    class="btn btn-sm btn-info"
+                    @click="createTZ(elem)"
+                  >
+                    Создать ТЗ
+                  </button>
                 </template>
               </ModalOrderList>
             </ul>
@@ -263,7 +270,7 @@
 
 <script>
 import orderStatus from '@/data/orderStatus'
-import voronkaOrders from '@/data/voronkaOrders'
+//import voronkaOrders from '@/data/voronkaOrders'
 import voronkaNafrezer from '@/data/voronkaNafrezer'
 import clients from '@/data/clients'
 import getDateNow from '@/scripts/getDateNow'
@@ -295,6 +302,9 @@ export default {
     }
   },
   methods: {
+    createTZ(elem) {
+      console.log('elem:', elem)
+    },
     updateOrderPolka() {
       this.order.status = 'donefrezer'
       this.updateItem(this.order)

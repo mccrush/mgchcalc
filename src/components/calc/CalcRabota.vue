@@ -145,7 +145,7 @@ export default {
         elemEd: 'м.п.',
         elemSumma: this.rabotaSumma,
         orderId: '',
-        status: 'new'
+        status: 'newfrezer'
       }
 
       this.$emit('calc-price', item)
