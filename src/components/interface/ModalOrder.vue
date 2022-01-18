@@ -14,17 +14,9 @@
     >
       <div class="modal-content border-0">
         <!-- modal-header -->
-        <div class="modal-header bg-light border-0">
-          <h6 class="modal-title text-muted" id="staticBackdropLabel">
-            Параметры заказа
-          </h6>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
+        <ModalHeader>
+          <template v-slot:modal-title> Параметры заказа </template>
+        </ModalHeader>
         <!-- end-modal-header -->
         <!-- modal-body -->
         <div class="modal-body pt-2">
@@ -164,27 +156,6 @@
                   > -->
                 </template>
                 <template v-slot:button>
-                  <!-- <select
-                    v-if="mod === 'edit'"
-                    :value="elem.status"
-                    @change="
-                      updateElemStatus({
-                        array: 'rabotaArray',
-                        id: elem.id,
-                        status: $event
-                      })
-                    "
-                    class="form-select form-select-sm text-white"
-                    :class="{
-                      'bg-info': elem.status === 'new',
-                      'bg-warning': elem.status === 'inprogress',
-                      'bg-success': elem.status === 'done'
-                    }"
-                  >
-                    <option value="new">Новая</option>
-                    <option value="inprogress">В работе</option>
-                    <option value="done">Выполнена</option>
-                  </select> -->
                   <button
                     v-if="mod === 'edit' && !elem.status"
                     class="btn btn-sm btn-info"
@@ -193,10 +164,21 @@
                     Создать ТЗ
                   </button>
                   <button
-                    v-if="mod === 'edit' && elem.status"
-                    class="btn btn-sm btn-info disabled"
+                    v-if="
+                      mod === 'edit' &&
+                      (elem.status === 'newfrezer' ||
+                        elem.status === 'prinyat' ||
+                        elem.status === 'inprogress')
+                    "
+                    class="btn btn-sm btn-warning disabled"
                   >
                     ТЗ создано
+                  </button>
+                  <button
+                    v-if="mod === 'edit' && elem.status === 'donefrezer'"
+                    class="btn btn-sm btn-success disabled"
+                  >
+                    Обработан
                   </button>
                 </template>
               </ModalOrderList>
@@ -242,33 +224,7 @@
         </div>
         <!-- end-modal-body -->
         <!-- modal-footer -->
-        <div class="modal-footer p-2">
-          <button
-            v-if="mod === 'edit'"
-            type="button"
-            class="btn btn-outline-danger"
-            @click="removeItem(order.id)"
-            data-bs-dismiss="modal"
-          >
-            Удалить заказ
-          </button>
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Отмена
-          </button>
-          <button
-            v-if="mod === 'create'"
-            type="button"
-            class="btn btn-success"
-            data-bs-dismiss="modal"
-            @click="saveItem"
-          >
-            Сохранить заказ и закрыть окно
-          </button>
-        </div>
+        <ModalFooter @remove-item="removeItem" :id="order.id" :mod="mod" />
         <!-- end-modal-footer -->
       </div>
     </div>
@@ -276,17 +232,21 @@
 </template>
 
 <script>
-import orderStatus from '@/data/orderStatus'
-//import voronkaOrders from '@/data/voronkaOrders'
+//import orderStatus from '@/data/orderStatus'
+import voronkaOrders from '@/data/voronkaOrders'
 import voronkaNafrezer from '@/data/voronkaNafrezer'
 import clients from '@/data/clients'
 import getDateNow from '@/scripts/getDateNow'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
+import ModalHeader from '@/components/modal/ModalHeader'
+import ModalFooter from '@/components/modal/ModalFooter'
 import ModalOrderList from '@/components/interface/ModalOrderList'
 
 export default {
   components: {
     ButtonTrash,
+    ModalHeader,
+    ModalFooter,
     ModalOrderList
   },
   props: {
@@ -304,7 +264,7 @@ export default {
       return this.$store.getters.pathname
     },
     etaps() {
-      if (this.pathname === 'order') return orderStatus
+      if (this.pathname === 'order') return voronkaOrders
       return voronkaNafrezer
     }
   },
@@ -327,9 +287,6 @@ export default {
     updateElemStatus({ array, id, status }) {
       const index = this.order[array].findIndex(item => item.id === id)
       this.order[array][index].status = status
-      // const item = this.order[array][index]
-      // this.$store.commit('addItem', { item })
-      // this.$store.dispatch('addItem', { item })
       this.updateItem(this.order)
     },
     updateOrderTitle() {
