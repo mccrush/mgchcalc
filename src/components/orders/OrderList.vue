@@ -30,8 +30,8 @@ export default {
   emits: ['edit-order'],
   methods: {
     editItem(id) {
-      const order = this.array.find(item => item.id === id)
-      this.$emit('edit-order', order)
+      const item = this.array.find(item => item.id === id)
+      this.$emit('edit-order', item)
     }
   }
 }

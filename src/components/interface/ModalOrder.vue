@@ -13,6 +13,7 @@
       "
     >
       <div class="modal-content border-0">
+        <!-- modal-header -->
         <div class="modal-header bg-light border-0">
           <h6 class="modal-title text-muted" id="staticBackdropLabel">
             Параметры заказа
@@ -24,6 +25,8 @@
             aria-label="Close"
           ></button>
         </div>
+        <!-- end-modal-header -->
+        <!-- modal-body -->
         <div class="modal-body pt-2">
           <div class="row">
             <div class="col-6 pe-0">
@@ -231,6 +234,8 @@
             </div>
           </div>
         </div>
+        <!-- end-modal-body -->
+        <!-- modal-footer -->
         <div class="modal-footer p-2">
           <button
             v-if="mod === 'edit'"
@@ -258,6 +263,7 @@
             Сохранить заказ и закрыть окно
           </button>
         </div>
+        <!-- end-modal-footer -->
       </div>
     </div>
   </div>
