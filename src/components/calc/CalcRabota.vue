@@ -18,7 +18,7 @@
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
-        @change="addElementRabota"
+        @change="updateCalc"
         v-model="rabotaSelectId"
         :disabled="!categoryRabotaId"
       >
@@ -38,7 +38,7 @@
             type="text"
             class="form-control form-control-sm"
             v-model="rabotaSizeOrigin"
-            @input="addElementRabota"
+            @input="updateCalc"
             :disabled="!categoryRabotaId || !rabotaSelectId"
           />
         </div>
@@ -64,7 +64,7 @@ export default {
     KolichBut
   },
   props: ['type', 'id'],
-  emits: ['calc-price', 'remove-calc'],
+  emits: ['update-calc', 'remove-calc'],
   data() {
     return {
       categoryRabotaId: '',
@@ -128,9 +128,9 @@ export default {
     },
     setRabotaAmount(priceType) {
       this.rabotaAmount = priceType
-      this.addElementRabota()
+      this.updateCalc()
     },
-    addElementRabota() {
+    updateCalc() {
       const item = {
         type: 'nafrezer',
         id: this.id,
@@ -148,7 +148,7 @@ export default {
         status: 'newfrezer'
       }
 
-      this.$emit('calc-price', item)
+      this.$emit('update-calc', item)
     }
   }
 }

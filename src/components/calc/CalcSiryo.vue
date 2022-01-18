@@ -18,7 +18,7 @@
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
-        @change="runCalc"
+        @change="updateCalc"
         v-model="siryoSelectId"
         :disabled="!categorySiryoId"
       >
@@ -59,7 +59,7 @@
               type="datetime-local"
               class="form-control form-control-sm"
               v-model="elemDateDelivery"
-              @change="runCalc"
+              @change="updateCalc"
             />
           </div>
         </div>
@@ -77,14 +77,14 @@
             type="text"
             class="form-control form-control-sm"
             v-model="siryoDlina"
-            @input="runCalc"
+            @input="updateCalc"
             :disabled="!categorySiryoId || !siryoSelectId"
           />
           <input
             type="text"
             class="form-control form-control-sm"
             v-model="siryoShirina"
-            @input="runCalc"
+            @input="updateCalc"
             :disabled="!categorySiryoId || !siryoSelectId"
           />
         </div>
@@ -108,7 +108,7 @@ export default {
     ButtonTrash
   },
   props: ['type', 'id', 'enableProcent'],
-  emits: ['calc-price', 'remove-calc'],
+  emits: ['update-calc', 'remove-calc'],
   data() {
     return {
       categorySiryoId: '',
@@ -166,13 +166,13 @@ export default {
   methods: {
     setElemOur() {
       this.elemOur = !this.elemOur
-      this.runCalc()
+      this.updateCalc()
     },
     selectCatSiryo() {
       this.siryoSelectId = ''
       this.siryoSize10 = 0
     },
-    runCalc() {
+    updateCalc() {
       const item = {
         type: 'task',
         id: this.id,
@@ -191,12 +191,12 @@ export default {
         orderId: ''
       }
 
-      this.$emit('calc-price', item)
+      this.$emit('update-calc', item)
     }
   },
   watch: {
     enableProcent() {
-      this.runCalc()
+      this.updateCalc()
     }
   }
 }

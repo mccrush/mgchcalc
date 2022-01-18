@@ -15,7 +15,7 @@ export default () => {
     elemOur: true,
     elemDateDelivery: '',
     orderId: '',
-    status: 'new'
+    status: 'newfrezer'
   }
 }
 

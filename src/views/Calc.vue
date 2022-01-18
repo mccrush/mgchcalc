@@ -38,7 +38,7 @@
       :id="sir.id"
       :enableProcent="enableProcent"
       type="siryoArray"
-      @calc-price="calculationPrice"
+      @update-calc="updateCalcInArray"
       @remove-calc="removeCalc"
     />
     <BlockAddCalc @add-new-calc="addNewCalc" type="siryoArray" />
@@ -80,7 +80,7 @@
       :key="rab.id"
       :id="rab.id"
       type="rabotaArray"
-      @calc-price="calculationPrice"
+      @update-calc="updateCalcInArray"
       @remove-calc="removeCalc"
     />
     <BlockAddCalc @add-new-calc="addNewCalc" type="rabotaArray" />
@@ -109,7 +109,7 @@
         :key="rab.id"
         :id="rab.id"
         type="dopuslugArray"
-        @calc-price="calculationPrice"
+        @update-calc="updateCalcInArray"
         @remove-calc="removeCalc"
       />
       <BlockAddCalc @add-new-calc="addNewCalc" type="dopuslugArray" />
@@ -350,7 +350,7 @@ export default {
     addNewCalc({ type }) {
       this[type].push(createCalc())
     },
-    calculationPrice(item) {
+    updateCalcInArray(item) {
       let index = this[item.elemType].findIndex(elem => elem.id === item.id)
       this[item.elemType][index] = item
     },

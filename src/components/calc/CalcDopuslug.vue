@@ -5,7 +5,7 @@
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
-        @change="runCalc"
+        @change="updateCalc"
         v-model="categoryId"
       >
         <option v-for="catS in categoryArray" :key="catS.id" :value="catS.id">
@@ -24,7 +24,7 @@
             type="text"
             class="form-control form-control-sm"
             v-model.number="element.price"
-            @input="runCalc"
+            @input="updateCalc"
             :disabled="!categoryId"
           />
           <div
@@ -44,7 +44,7 @@
             type="text"
             class="form-control form-control-sm"
             v-model="elementSize"
-            @input="runCalc"
+            @input="updateCalc"
             :disabled="!categoryId"
           />
         </div>
@@ -68,7 +68,7 @@ export default {
     ButtonTrash
   },
   props: ['type', 'id'],
-  emits: ['calc-price', 'remove-calc'],
+  emits: ['update-calc', 'remove-calc'],
   data() {
     return {
       categoryId: '',
@@ -110,7 +110,7 @@ export default {
     }
   },
   methods: {
-    runCalc() {
+    updateCalc() {
       const item = {
         type: 'task',
         id: this.id,
@@ -127,7 +127,7 @@ export default {
         orderId: ''
       }
 
-      this.$emit('calc-price', item)
+      this.$emit('update-calc', item)
     }
   },
   watch: {
