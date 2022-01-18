@@ -25,6 +25,7 @@ export default {
   components: {
     OrderList
   },
+  emits: ['edit-order'],
   computed: {
     pathname() {
       return this.$store.getters.pathname
