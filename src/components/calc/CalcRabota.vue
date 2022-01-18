@@ -18,7 +18,7 @@
       <select
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
-        @change="runCalc"
+        @change="addElementRabota"
         v-model="rabotaSelectId"
         :disabled="!categoryRabotaId"
       >
@@ -38,7 +38,7 @@
             type="text"
             class="form-control form-control-sm"
             v-model="rabotaSizeOrigin"
-            @input="runCalc"
+            @input="addElementRabota"
             :disabled="!categoryRabotaId || !rabotaSelectId"
           />
         </div>
@@ -128,9 +128,9 @@ export default {
     },
     setRabotaAmount(priceType) {
       this.rabotaAmount = priceType
-      this.runCalc()
+      this.addElementRabota()
     },
-    runCalc() {
+    addElementRabota() {
       const item = {
         type: 'nafrezer',
         id: this.id,
