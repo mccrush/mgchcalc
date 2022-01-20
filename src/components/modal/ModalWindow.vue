@@ -17,7 +17,7 @@
           <template v-slot:modal-title> Параметры {{ pathname }} </template>
         </ModalHeader>
         <ModalBodyOrder
-          v-if="pathname === 'order'"
+          v-if="order && pathname === 'order'"
           @create-tz="createTZ"
           @update-item="updateItem"
           @update-order-title="updateOrderTitle"
@@ -27,22 +27,24 @@
           :mod="mod"
         />
         <ModalBodyNafrezer
-          v-if="pathname === 'nafrezer'"
+          v-if="order && pathname === 'nafrezer'"
           @update-item="updateItem"
           @update-order-title="updateOrderTitle"
           @update-order-status="updateOrderStatus"
           :order="order"
           :mod="mod"
         />
-        <ModalFooter @remove-item="removeItem" :id="order.id" :mod="mod" />
+        <ModalFooter
+          @save-item="saveItem"
+          @remove-item="removeItem"
+          :mod="mod"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-//import orderStatus from '@/data/orderStatus'
-
 import getDateNow from '@/scripts/getDateNow'
 import ModalHeader from '@/components/modal/ModalHeader'
 import ModalBodyOrder from '@/components/modal/ModalBodyOrder'
@@ -54,20 +56,12 @@ export default {
     ModalHeader,
     ModalBodyOrder,
     ModalBodyNafrezer,
-    ModalFooter,
-    ModalOrderList
+    ModalFooter
   },
   props: {
     order: Object,
-    mod: String
-  },
-  data() {
-    return {}
-  },
-  computed: {
-    pathname() {
-      return this.$store.getters.pathname
-    }
+    mod: String,
+    pathname: String
   },
   methods: {
     createTZ(item) {
@@ -121,10 +115,10 @@ export default {
         this.$store.dispatch('updateItem', { item })
       }
     },
-    removeItem(id) {
+    removeItem() {
       if (confirm('Действительно удалить заказ?')) {
-        this.$store.commit('removeItem', { type: 'order', id })
-        this.$store.dispatch('removeItem', { type: 'order', id })
+        this.$store.commit('removeItem', { type: 'order', id: this.order.id })
+        this.$store.dispatch('removeItem', { type: 'order', id: this.order.id })
       }
     }
   }

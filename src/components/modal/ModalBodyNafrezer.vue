@@ -4,7 +4,8 @@
       <div class="col-6 pe-0">
         <input
           type="text"
-          class="form-control form-control-sm disabled"
+          class="form-control form-control-sm"
+          disabled="true"
           v-model.trim="order.title"
           placeholder="Название заказа"
           @change="$emit('update-item', order)"

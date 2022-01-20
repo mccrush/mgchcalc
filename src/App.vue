@@ -8,7 +8,12 @@
       </transition>
     </div>
   </div>
-  <ModalWindow v-if="order" :order="order" :mod="mod" id="staticBackdrop" />
+  <ModalWindow
+    :order="order"
+    :mod="mod"
+    :pathname="pathname"
+    id="staticBackdrop"
+  />
   <!-- <SettingsBar /> -->
 </template>
 
@@ -37,7 +42,8 @@ export default {
   },
   data() {
     return {
-      order: { siryoArray: [], rabotaArray: [], dopuslugArray: [] },
+      //order: { siryoArray: [], rabotaArray: [], dopuslugArray: [] },
+      order: null,
       mod: ''
     }
   },
@@ -47,6 +53,7 @@ export default {
   },
   computed: {
     pathname() {
+      this.order = null
       return this.$store.getters.pathname
     },
     widthBlock() {

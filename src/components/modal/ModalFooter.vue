@@ -4,7 +4,7 @@
       v-if="mod === 'edit'"
       type="button"
       class="btn btn-outline-danger"
-      @click="$emit('remove-item', id)"
+      @click="$emit('remove-item')"
       data-bs-dismiss="modal"
     >
       Удалить элемент
@@ -17,7 +17,7 @@
       type="button"
       class="btn btn-success"
       data-bs-dismiss="modal"
-      @click="saveItem"
+      @click="$emit('save-item')"
     >
       Сохранить заказ и закрыть окно
     </button>
@@ -27,6 +27,6 @@
 
 <script>
 export default {
-  props: ['mod', 'id']
+  props: ['mod']
 }
 </script>
