@@ -50,6 +50,10 @@ export default {
               item.status === 'prinyat' ||
               item.status === 'inprogress'
           )
+        } else if (alias === 'readyorder') {
+          return this.items.filter(
+            item => item.status === 'readyorder' && item.polka
+          )
         } else {
           return this.items.filter(item => item.status === alias)
         }

@@ -87,6 +87,7 @@ export default {
     dopuslug: state => state.dopuslug,
     order: state => state.order,
     nafrezer: state => state.nafrezer,
-    orderNumber: state => +state.order.filter(item => item.dateCreateWeek == getWeek()).length + 1 || 1
+    orderNumber: state => +state.order.filter(item => item.dateCreateWeek == getWeek()).length + 1 || 1,
+    parentOrder: state => id => state.order.find(item => item.id === id) || false
   }
 }

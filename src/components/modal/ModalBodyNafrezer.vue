@@ -8,7 +8,7 @@
           disabled="true"
           v-model.trim="order.title"
           placeholder="Название заказа"
-          @change="$emit('update-item', order)"
+          @change="$emit('update-object', order)"
         />
       </div>
       <div class="col-3 pe-0">
@@ -47,7 +47,7 @@
       <div class="col-4 pe-0">
         <div class="form-floating">
           <input
-            @change="$emit('update-item', order)"
+            @change="$emit('update-object', order)"
             type="datetime-local"
             id="date"
             class="form-control form-control-sm"
@@ -59,7 +59,7 @@
       <div class="col-4">
         <div class="form-floating">
           <input
-            @change="$emit('update-item', order)"
+            @change="$emit('update-object', order)"
             type="datetime-local"
             id="date"
             class="form-control form-control-sm"
@@ -71,7 +71,7 @@
       <div class="col-4 ps-0">
         <div class="form-floating">
           <input
-            @change="$emit('update-item', order)"
+            @change="$emit('update-object-datefinish', order)"
             type="datetime-local"
             id="date"
             class="form-control form-control-sm"

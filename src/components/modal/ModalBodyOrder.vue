@@ -7,7 +7,7 @@
           class="form-control form-control-sm"
           v-model.trim="order.title"
           placeholder="Название заказа"
-          @change="$emit('update-item', order)"
+          @change="$emit('update-object', order)"
         />
       </div>
       <div class="col-3 pe-0">
@@ -46,7 +46,7 @@
       <div class="col-4 pe-0">
         <div class="form-floating">
           <input
-            @change="$emit('update-item', order)"
+            @change="$emit('update-object', order)"
             type="datetime-local"
             id="date"
             class="form-control form-control-sm"
@@ -58,7 +58,7 @@
       <div class="col-4">
         <div class="form-floating">
           <input
-            @change="$emit('update-item', order)"
+            @change="$emit('update-object', order)"
             type="datetime-local"
             id="date"
             class="form-control form-control-sm"
@@ -70,7 +70,7 @@
       <div class="col-4 ps-0">
         <div class="form-floating">
           <input
-            @change="$emit('update-item', order)"
+            @change="$emit('update-object-datefinish', order)"
             type="datetime-local"
             id="date"
             class="form-control form-control-sm"
@@ -109,7 +109,7 @@
         </ModalBodyOrderList>
       </ul>
     </div>
-    <!-- -->
+    <!-- order.rabotaArray -->
     <div v-if="order.rabotaArray.length">
       <h6 class="mt-3">Услуги обработки</h6>
       <ul class="list-group ist-group-numbered">
@@ -154,7 +154,66 @@
             </button>
           </template>
         </ModalBodyOrderList>
+        <!-- Else one -->
+        <ModalBodyOrderList v-for="elem in nafrezer" :key="elem.id">
+          <template v-slot:title
+            >{{ elem.title }}, {{ elem.size }} {{ elem.ed }}</template
+          >
+          <template v-slot:badge>
+            <span class="badge bg-light text-dark align-self-center me-2 p-2"
+              >{{ elem.summa }} ₽</span
+            >
+            <!-- <span
+                    v-if="elem.elemSumma < 500"
+                    class="badge bg-light text-dark align-self-center me-2 p-2"
+                    >+ {{ 500 - elem.elemSumma }} ₽</span
+                  > -->
+          </template>
+          <template v-slot:button>
+            <button
+              v-if="mod === 'edit' && !elem.status"
+              class="btn btn-sm btn-info"
+              @click="$emit('create-tz', elem)"
+            >
+              Создать ТЗ
+            </button>
+            <button
+              v-if="
+                mod === 'edit' &&
+                (elem.status === 'newfrezer' ||
+                  elem.status === 'prinyat' ||
+                  elem.status === 'inprogress')
+              "
+              class="btn btn-sm btn-warning disabled"
+            >
+              ТЗ создано
+            </button>
+            <button
+              v-if="mod === 'edit' && elem.status === 'donefrezer'"
+              class="btn btn-sm btn-success disabled"
+            >
+              Обработан
+            </button>
+          </template>
+        </ModalBodyOrderList>
       </ul>
+      <div v-if="mod === 'edit'" class="row mt-2">
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+        <div class="col-2 text-end">Лежит на полке:</div>
+        <div class="col-2">
+          <select
+            class="form-select form-select-sm"
+            v-model.number="order.polka"
+            @change="$emit('update-order-polka', order.polka)"
+          >
+            <option :value="0">Еще не готов</option>
+            <option v-for="num in 10" :key="'id' + num" :value="num">
+              {{ num }}
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
     <!-- -->
     <div v-if="order.dopuslugArray.length">
@@ -172,22 +231,6 @@
           <template v-slot:button> </template>
         </ModalBodyOrderList>
       </ul>
-    </div>
-    <div class="row mt-2">
-      <div class="col-4"></div>
-      <div class="col-4"></div>
-      <div class="col-2 text-end">Лежит на полке:</div>
-      <div class="col-2">
-        <select
-          class="form-select form-select-sm"
-          v-model.number="order.polka"
-          @change="$emit('update-order-polka')"
-        >
-          <option v-for="num in 10" :key="'id' + num" :value="num">
-            {{ num }}
-          </option>
-        </select>
-      </div>
     </div>
   </div>
 </template>
@@ -211,6 +254,11 @@ export default {
   computed: {
     etaps() {
       return voronkaOrders
+    },
+    nafrezer() {
+      return this.$store.getters.nafrezer.filter(
+        item => item.orderId === this.order.id
+      )
     }
   }
 }
