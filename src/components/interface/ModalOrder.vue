@@ -53,9 +53,7 @@ export default {
     mod: String
   },
   data() {
-    return {
-      client: ''
-    }
+    return {}
   },
   computed: {
     pathname() {
@@ -87,10 +85,10 @@ export default {
       this.order[array][index].status = status
       this.updateItem(this.order)
     },
-    updateOrderTitle() {
+    updateOrderTitle(client) {
       const startPos = this.order.title.indexOf('_')
       const subStr = this.order.title.slice(startPos)
-      this.order.title = this.client.toUpperCase() + subStr
+      this.order.title = client.toUpperCase() + subStr
       if (this.order.title && this.mod === 'edit') {
         this.updateItem(this.order)
       }

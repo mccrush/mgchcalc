@@ -13,7 +13,7 @@
       <div class="col-3 pe-0">
         <select
           v-model="client"
-          @change="$emit('update-order-title')"
+          @change="$emit('update-order-title', client)"
           class="form-select form-select-sm"
         >
           <option
