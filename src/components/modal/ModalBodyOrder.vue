@@ -85,7 +85,7 @@
     <div v-if="order.siryoArray.length">
       <h6 class="mt-3">Материалы</h6>
       <ul class="list-group ist-group-numbered">
-        <ModalOrderList v-for="elem in order.siryoArray" :key="elem.id">
+        <ModalBodyOrderList v-for="elem in order.siryoArray" :key="elem.id">
           <template v-slot:title
             >{{ elem.title }}, {{ elem.dlina }} x {{ elem.shirina }} =
             {{ elem.size }} {{ elem.ed }}</template
@@ -106,14 +106,14 @@
             >
           </template>
           <template v-slot:button> </template>
-        </ModalOrderList>
+        </ModalBodyOrderList>
       </ul>
     </div>
     <!-- -->
     <div v-if="order.rabotaArray.length">
       <h6 class="mt-3">Услуги обработки</h6>
       <ul class="list-group ist-group-numbered">
-        <ModalOrderList v-for="elem in order.rabotaArray" :key="elem.id">
+        <ModalBodyOrderList v-for="elem in order.rabotaArray" :key="elem.id">
           <template v-slot:title
             >{{ elem.title }}, {{ elem.size }} {{ elem.ed }}</template
           >
@@ -153,14 +153,14 @@
               Обработан
             </button>
           </template>
-        </ModalOrderList>
+        </ModalBodyOrderList>
       </ul>
     </div>
     <!-- -->
     <div v-if="order.dopuslugArray.length">
       <h6 class="mt-3">Дополнительные услуги</h6>
       <ul class="list-group ist-group-numbered">
-        <ModalOrderList v-for="elem in order.dopuslugArray" :key="elem.id">
+        <ModalBodyOrderList v-for="elem in order.dopuslugArray" :key="elem.id">
           <template v-slot:title
             >{{ elem.title }}, {{ elem.size }} {{ elem.ed }}</template
           >
@@ -170,7 +170,7 @@
             >
           </template>
           <template v-slot:button> </template>
-        </ModalOrderList>
+        </ModalBodyOrderList>
       </ul>
     </div>
     <div class="row mt-2">
@@ -195,17 +195,17 @@
 <script>
 import voronkaOrders from '@/data/voronkaOrders'
 import clients from '@/data/clients'
-import ModalOrderList from '@/components/interface/ModalOrderList'
+import ModalBodyOrderList from '@/components/modal/ModalBodyOrderList'
 
 export default {
   components: {
-    ModalOrderList
+    ModalBodyOrderList
   },
   props: ['order', 'mod'],
   data() {
     return {
       clients,
-      client: '' /////////
+      client: ''
     }
   },
   computed: {

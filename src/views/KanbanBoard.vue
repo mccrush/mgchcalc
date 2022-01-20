@@ -5,7 +5,7 @@
       id="rowScroll"
     >
       <div v-for="etap in etaps" :key="etap.id" class="wrap-order-list">
-        <OrderList
+        <KanbanList
           :title="etap.title"
           :array="getArray(etap.alias)"
           @edit-order="editOrder"
@@ -19,11 +19,11 @@
 //import orderStatus from '@/data/orderStatus'
 import voronkaOrders from '@/data/voronkaOrders'
 import voronkaNafrezer from '@/data/voronkaNafrezer'
-import OrderList from '@/components/orders/OrderList'
+import KanbanList from '@/components/kanban/KanbanList'
 
 export default {
   components: {
-    OrderList
+    KanbanList
   },
   emits: ['edit-order'],
   computed: {

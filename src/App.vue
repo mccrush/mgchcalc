@@ -23,7 +23,7 @@ import Admin from '@/views/Admin'
 import KanbanBoard from '@/views/KanbanBoard'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
-import ModalOrder from '@/components/interface/ModalOrder'
+import ModalOrder from '@/components/modal/ModalOrder'
 
 export default {
   components: {
