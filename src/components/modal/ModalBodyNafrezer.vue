@@ -91,7 +91,7 @@
           v-model.number="order.polka"
           @change="$emit('update-nafrezer-polka', order)"
         >
-          <option :value="0">Еще не готов</option>
+          <option :value="0">---</option>
           <option v-for="num in 10" :key="'id' + num" :value="num">
             {{ num }}
           </option>

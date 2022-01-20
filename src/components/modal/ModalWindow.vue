@@ -101,6 +101,10 @@ export default {
           parentOrder.status = 'readyorder'
           this.updateItem(parentOrder)
         }
+      } else {
+        // let parentOrder = this.$store.getters.parentOrder(object.orderId)
+        // parentOrder.status = 'nafrezer'
+        // this.updateItem(parentOrder)
       }
     },
     // updateElemStatus({ array, id, status }) {
@@ -117,7 +121,19 @@ export default {
     },
     updateObjectStatus(object) {
       if (object.type === 'order') {
-        if (object.status === 'success' || object.status === 'failorder') {
+        if (object.status === 'doneorder') {
+          const nafrezer = this.$store.getters.nafrezer.filter(
+            item => item.orderId === object.id
+          )
+
+          nafrezer.forEach(item => {
+            item.status = 'arhivefrezer'
+            this.updateItem(item)
+          })
+        } else if (
+          object.status === 'successorder' ||
+          object.status === 'failorder'
+        ) {
           object.dateFinish = getDateNow
         } else {
           object.dateFinish = ''
@@ -127,6 +143,9 @@ export default {
           object.dateFinish = getDateNow
         } else {
           object.dateFinish = ''
+          let parentOrder = this.$store.getters.parentOrder(object.orderId)
+          parentOrder.status = 'nafrezer'
+          this.updateItem(parentOrder)
         }
       }
       this.updateItem(object)

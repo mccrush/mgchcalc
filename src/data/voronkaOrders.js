@@ -4,6 +4,6 @@ export default [
   { id: '3', title: 'Передан в обработку', pos: 3, alias: 'nafrezer' },
   { id: '4', title: 'Готов к отгрузке', pos: 4, alias: 'readyorder' },
   { id: '5', title: 'Передан заказчику', pos: 5, alias: 'doneorder' },
-  { id: '6', title: 'Успешно реализован', pos: 6, alias: 'success' },
+  { id: '6', title: 'Успешно реализован', pos: 6, alias: 'successorder' },
   { id: '7', title: 'Не реализован', pos: 7, alias: 'failorder' },
 ]

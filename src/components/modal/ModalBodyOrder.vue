@@ -189,7 +189,10 @@
               ТЗ создано
             </button>
             <button
-              v-if="mod === 'edit' && elem.status === 'donefrezer'"
+              v-if="
+                mod === 'edit' &&
+                (elem.status === 'donefrezer' || elem.status === 'arhivefrezer')
+              "
               class="btn btn-sm btn-success disabled"
             >
               Обработан
