@@ -14,7 +14,7 @@
     >
       <div class="modal-content border-0">
         <ModalHeader>
-          <template v-slot:modal-title> Параметры заказа </template>
+          <template v-slot:modal-title> Параметры {{ pathname }} </template>
         </ModalHeader>
         <ModalBodyOrder
           v-if="pathname === 'order'"

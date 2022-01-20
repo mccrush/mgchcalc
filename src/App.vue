@@ -8,7 +8,7 @@
       </transition>
     </div>
   </div>
-  <ModalOrder v-if="order" :order="order" :mod="mod" id="staticBackdrop" />
+  <ModalWindow v-if="order" :order="order" :mod="mod" id="staticBackdrop" />
   <!-- <SettingsBar /> -->
 </template>
 
@@ -23,7 +23,7 @@ import Admin from '@/views/Admin'
 import KanbanBoard from '@/views/KanbanBoard'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
-import ModalOrder from '@/components/modal/ModalOrder'
+import ModalWindow from '@/components/modal/ModalWindow'
 
 export default {
   components: {
@@ -33,7 +33,7 @@ export default {
     Admin,
     KanbanBoard,
     ButtonSettings,
-    ModalOrder
+    ModalWindow
   },
   data() {
     return {
