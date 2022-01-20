@@ -16,12 +16,21 @@
         <ModalHeader>
           <template v-slot:modal-title> Параметры заказа </template>
         </ModalHeader>
-        <ModalBody
+        <ModalBodyOrder
+          v-if="pathname === 'order'"
           @create-tz="createTZ"
           @update-item="updateItem"
           @update-order-title="updateOrderTitle"
           @update-order-status="updateOrderStatus"
           @update-order-polka="updateOrderPolka"
+          :order="order"
+          :mod="mod"
+        />
+        <ModalBodyNafrezer
+          v-if="pathname === 'nafrezer'"
+          @update-item="updateItem"
+          @update-order-title="updateOrderTitle"
+          @update-order-status="updateOrderStatus"
           :order="order"
           :mod="mod"
         />
@@ -33,18 +42,18 @@
 
 <script>
 //import orderStatus from '@/data/orderStatus'
-import voronkaOrders from '@/data/voronkaOrders'
-import voronkaNafrezer from '@/data/voronkaNafrezer'
 
 import getDateNow from '@/scripts/getDateNow'
 import ModalHeader from '@/components/modal/ModalHeader'
-import ModalBody from '@/components/modal/ModalBody'
+import ModalBodyOrder from '@/components/modal/ModalBodyOrder'
+import ModalBodyNafrezer from '@/components/modal/ModalBodyNafrezer'
 import ModalFooter from '@/components/modal/ModalFooter'
 
 export default {
   components: {
     ModalHeader,
-    ModalBody,
+    ModalBodyOrder,
+    ModalBodyNafrezer,
     ModalFooter,
     ModalOrderList
   },
@@ -58,10 +67,6 @@ export default {
   computed: {
     pathname() {
       return this.$store.getters.pathname
-    },
-    etaps() {
-      if (this.pathname === 'order') return voronkaOrders
-      return voronkaNafrezer
     }
   },
   methods: {

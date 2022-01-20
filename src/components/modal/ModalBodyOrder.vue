@@ -193,6 +193,7 @@
 </template>
 
 <script>
+import voronkaOrders from '@/data/voronkaOrders'
 import clients from '@/data/clients'
 import ModalOrderList from '@/components/interface/ModalOrderList'
 
@@ -200,11 +201,16 @@ export default {
   components: {
     ModalOrderList
   },
-  props: ['order', 'mod', 'client'],
+  props: ['order', 'mod'],
   data() {
     return {
       clients,
       client: '' /////////
+    }
+  },
+  computed: {
+    etaps() {
+      return voronkaOrders
     }
   }
 }
