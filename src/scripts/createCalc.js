@@ -14,6 +14,9 @@ export default () => {
     summa: 0,
     our: true,
     dateDelivery: '',
+    dateCreate: '',
+    dateForReady: '',
+    dateFinish: '',
     orderId: '',
     status: ''
   }

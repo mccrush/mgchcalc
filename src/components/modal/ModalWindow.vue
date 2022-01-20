@@ -67,6 +67,8 @@ export default {
     createTZ(item) {
       console.log('createTZ elem:', item)
       item.status = 'newfrezer'
+      item.dateCreate = getDateNow
+      item.dateForReady = this.order.dateForReady
       this.$store.commit('addItem', { item })
       this.$store.dispatch('addItem', { item })
       this.updateElemStatus({
@@ -116,9 +118,15 @@ export default {
       }
     },
     removeItem() {
-      if (confirm('Действительно удалить заказ?')) {
-        this.$store.commit('removeItem', { type: 'order', id: this.order.id })
-        this.$store.dispatch('removeItem', { type: 'order', id: this.order.id })
+      if (confirm('Действительно удалить элемент?')) {
+        this.$store.commit('removeItem', {
+          type: this.order.type,
+          id: this.order.id
+        })
+        this.$store.dispatch('removeItem', {
+          type: this.order.type,
+          id: this.order.id
+        })
       }
     }
   }
