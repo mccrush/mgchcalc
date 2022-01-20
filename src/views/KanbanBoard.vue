@@ -51,9 +51,7 @@ export default {
               item.status === 'inprogress'
           )
         } else if (alias === 'readyorder') {
-          return this.items.filter(
-            item => item.status === 'readyorder' && item.polka
-          )
+          return this.items.filter(item => item.status === 'readyorder')
         } else {
           return this.items.filter(item => item.status === alias)
         }

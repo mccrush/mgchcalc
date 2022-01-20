@@ -24,7 +24,6 @@
           @update-object="updateItem"
           @update-order-title="updateOrderTitle"
           @update-order-status="updateObjectStatus"
-          @update-order-polka="updateOrderPolka"
           @update-object-datefinish="updateObjectDatefinish"
           :order="order"
           :mod="mod"
@@ -32,17 +31,17 @@
         <ModalBodyNafrezer
           v-if="order && pathname === 'nafrezer'"
           @update-object="updateItem"
-          @update-order-title="updateOrderTitle"
           @update-order-status="updateObjectStatus"
           @update-object-datefinish="updateObjectDatefinish"
+          @update-nafrezer-polka="updateNafrezerPolka"
           :order="order"
           :mod="mod"
         />
-        <ModalFooter
-          @save-item="saveItem"
-          @remove-item="removeItem"
-          :mod="mod"
-        />
+        <ModalFooter @save-item="saveItem" @remove-item="removeItem" :mod="mod"
+          ><template v-slot:modal-footer>
+            {{ pathname === 'order' ? 'заказ' : 'обработку' }}
+          </template>
+        </ModalFooter>
       </div>
     </div>
   </div>
@@ -67,13 +66,6 @@ export default {
     mod: String,
     pathname: String
   },
-  computed: {
-    nafrezerOfOrder() {
-      return this.$store.getters.nafrezer.filter(
-        item => item.orderId === this.order.id
-      )
-    }
-  },
   methods: {
     createTZ(item) {
       console.log('createTZ elem:', item)
@@ -83,41 +75,38 @@ export default {
       item.dateForReady = this.order.dateForReady
       this.$store.commit('addItem', { item })
       this.$store.dispatch('addItem', { item })
-      this.updateElemStatus({
-        array: 'rabotaArray',
-        id: item.id,
-        status: 'newfrezer'
-      })
+      this.removeElementFromRabotaArray(item.id)
+    },
+    removeElementFromRabotaArray(id) {
+      this.order.rabotaArray = this.order.rabotaArray.filter(
+        item => item.id != id
+      )
       this.updateItem(this.order)
     },
-    updateOrderPolka(polka) {
-      if (polka != 0 && this.order.status != 'readyorder') {
-        this.order.status = 'readyorder'
-        this.order.dateFinish = getDateNow
+    updateNafrezerPolka(object) {
+      if (object.polka != 0) {
+        object.status = 'donefrezer'
+        object.dateFinish = getDateNow
 
-        // Всем дочерним обработкам в rabotaArray установить статус donefrezer
-        this.order.rabotaArray.forEach(item => {
-          this.updateElemStatus({
-            array: 'rabotaArray',
-            id: item.id,
-            status: 'donefrezer'
-          })
-        })
+        this.updateItem(object)
 
-        this.updateItem(this.order)
+        const nafrezer = this.$store.getters.nafrezer.filter(
+          item => item.orderId === object.orderId
+        )
 
-        // Всем дочерним обработкам nafrezer установить статус donefrezer
-        this.nafrezerOfOrder.forEach(item => {
-          item.status = 'donefrezer'
-          item.dateFinish = this.order.dateFinish
-          this.updateItem(item)
-        })
+        if (
+          nafrezer.every(item => item.status === 'donefrezer' && item.polka)
+        ) {
+          let parentOrder = this.$store.getters.parentOrder(object.orderId)
+          parentOrder.status = 'readyorder'
+          this.updateItem(parentOrder)
+        }
       }
     },
-    updateElemStatus({ array, id, status }) {
-      const index = this.order[array].findIndex(item => item.id === id)
-      this.order[array][index].status = status
-    },
+    // updateElemStatus({ array, id, status }) {
+    //   const index = this.order[array].findIndex(item => item.id === id)
+    //   this.order[array][index].status = status
+    // },
     updateOrderTitle(client) {
       const startPos = this.order.title.indexOf('_')
       const subStr = this.order.title.slice(startPos)
@@ -126,49 +115,29 @@ export default {
         this.updateItem(this.order)
       }
     },
-    updateChildStatusInParentOrder(orderId, status) {
-      let parentOrder = this.$store.getters.parentOrder(orderId)
-      console.log('parentOrder:', parentOrder)
-      if (parentOrder) {
-        parentOrder.rabotaArray.forEach(item => {
-          this.updateElemStatus({
-            array: 'rabotaArray',
-            id: item.id,
-            status
-          })
-        })
-      }
-
-      if (parentOrder.rabotaArray.every(item => item.status === 'donefrezer')) {
-        parentOrder.status = 'readyorder'
-      }
-      this.updateItem(parentOrder)
-    },
     updateObjectStatus(object) {
       if (object.type === 'order') {
         if (object.status === 'success' || object.status === 'failorder') {
           object.dateFinish = getDateNow
-          object.polka = ''
         } else {
           object.dateFinish = ''
         }
-        this.updateItem(object)
       } else if (object.type === 'nafrezer') {
-        this.updateItem(object)
-        this.updateChildStatusInParentOrder(object.orderId, object.status)
+        if (object.status === 'donefrezer') {
+          object.dateFinish = getDateNow
+        } else {
+          object.dateFinish = ''
+        }
       }
-      // Если oreder.type = nafrezer, то:
-      // также обновить статус и в rabotaArray,
-      // проверить, все ли дочерние обработки заказа имеют статус donefrezer,
-      //   если да, то обновить статус заказа на readyorder
+      this.updateItem(object)
     },
     updateObjectDatefinish(object) {
       if (object.type === 'order') {
-        object.status === 'success'
-        this.updateItem(object)
+        object.status = 'success'
       } else if (object.type === 'nafrezer') {
-        this.updateChildStatusInParentOrder(object.orderId, 'donefrezer')
+        object.status = 'donefrezer'
       }
+      this.updateItem(object)
     },
     saveItem() {
       if (this.order.title) {

@@ -33,7 +33,7 @@
           class="form-select form-select-sm"
         >
           <option
-            v-for="status in etaps"
+            v-for="status in voronkaNafrezer"
             :key="status.id"
             :value="status.alias"
           >
@@ -81,6 +81,23 @@
         </div>
       </div>
     </div>
+    <div v-if="mod === 'edit'" class="row mt-2">
+      <div class="col-4"></div>
+      <div class="col-4"></div>
+      <div class="col-2 text-end">Лежит на полке:</div>
+      <div class="col-2">
+        <select
+          class="form-select form-select-sm"
+          v-model.number="order.polka"
+          @change="$emit('update-nafrezer-polka', order)"
+        >
+          <option :value="0">Еще не готов</option>
+          <option v-for="num in 10" :key="'id' + num" :value="num">
+            {{ num }}
+          </option>
+        </select>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -90,12 +107,15 @@ import voronkaNafrezer from '@/data/voronkaNafrezer'
 export default {
   components: {},
   props: ['order', 'mod'],
+  emits: [
+    'update-object',
+    'update-order-status',
+    'update-object-datefinish',
+    'update-nafrezer-polka'
+  ],
   data() {
-    return {}
-  },
-  computed: {
-    etaps() {
-      return voronkaNafrezer
+    return {
+      voronkaNafrezer
     }
   }
 }

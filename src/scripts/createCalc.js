@@ -18,7 +18,8 @@ export default () => {
     dateForReady: '',
     dateFinish: '',
     orderId: '',
-    status: ''
+    status: '',
+    polka: ''
   }
 }
 

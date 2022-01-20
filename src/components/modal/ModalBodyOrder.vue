@@ -32,7 +32,7 @@
           class="form-select form-select-sm"
         >
           <option
-            v-for="status in etaps"
+            v-for="status in voronkaOrders"
             :key="status.id"
             :value="status.alias"
           >
@@ -110,7 +110,7 @@
       </ul>
     </div>
     <!-- order.rabotaArray -->
-    <div v-if="order.rabotaArray.length">
+    <div>
       <h6 class="mt-3">Услуги обработки</h6>
       <ul class="list-group ist-group-numbered">
         <ModalBodyOrderList v-for="elem in order.rabotaArray" :key="elem.id">
@@ -197,23 +197,6 @@
           </template>
         </ModalBodyOrderList>
       </ul>
-      <div v-if="mod === 'edit'" class="row mt-2">
-        <div class="col-4"></div>
-        <div class="col-4"></div>
-        <div class="col-2 text-end">Лежит на полке:</div>
-        <div class="col-2">
-          <select
-            class="form-select form-select-sm"
-            v-model.number="order.polka"
-            @change="$emit('update-order-polka', order.polka)"
-          >
-            <option :value="0">Еще не готов</option>
-            <option v-for="num in 10" :key="'id' + num" :value="num">
-              {{ num }}
-            </option>
-          </select>
-        </div>
-      </div>
     </div>
     <!-- -->
     <div v-if="order.dopuslugArray.length">
@@ -245,16 +228,21 @@ export default {
     ModalBodyOrderList
   },
   props: ['order', 'mod'],
+  emits: [
+    'update-object',
+    'update-order-title',
+    'update-order-status',
+    'update-object-datefinish',
+    'create-tz'
+  ],
   data() {
     return {
+      voronkaOrders,
       clients,
       client: ''
     }
   },
   computed: {
-    etaps() {
-      return voronkaOrders
-    },
     nafrezer() {
       return this.$store.getters.nafrezer.filter(
         item => item.orderId === this.order.id

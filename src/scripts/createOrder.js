@@ -14,7 +14,6 @@ export default (orderNumber, siryoArray, rabotaArray, dopuslugArray) => {
     dateFinish: '',
     type: 'order',
     status: 'neworder',
-    polka: '',
     siryoArray,
     rabotaArray,
     dopuslugArray
