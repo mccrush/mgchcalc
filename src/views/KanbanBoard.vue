@@ -4,22 +4,25 @@
       class="kanban row flex-nowrap overflow-auto pt-2 ps-2 pe-2 pb-3"
       id="rowScroll"
     >
-      <div v-for="etap in etaps" :key="etap.id" class="wrap-order-list">
-        <KanbanList
-          :title="etap.title"
-          :array="getArray(etap.alias)"
-          @edit-order="editOrder"
-        />
-      </div>
+      <KanbanList
+        v-for="etap in etaps"
+        :key="etap.id"
+        :title="etap.title"
+        :pathname="pathname"
+        :status="etap.alias"
+        :array="getArray(etap.alias)"
+        @edit-order="editOrder"
+        class="wrap-order-list ps-1 pe-2"
+      />
     </div>
   </div>
 </template>
 
 <script>
-//import orderStatus from '@/data/orderStatus'
 import voronkaOrders from '@/data/voronkaOrders'
 import voronkaNafrezer from '@/data/voronkaNafrezer'
 import KanbanList from '@/components/kanban/KanbanList'
+//import KanbanCard from '@/components/kanban/KanbanCard'
 
 export default {
   components: {
@@ -35,11 +38,30 @@ export default {
       return voronkaNafrezer
     },
     items() {
-      //return this.$store.getters.order
       return this.$store.getters[this.pathname]
     }
   },
   methods: {
+    // onDragStart(e, item) {
+    //   console.log('DragStart, item:', item.id)
+    //   e.dataTransfer.dropEffect = 'move'
+    //   e.dataTransfer.effectAllowed = 'move'
+    //   e.dataTransfer.setData('itemId', item.id)
+    // },
+    // onDrop(e, status) {
+    //   console.log('onDrop, status:', status)
+    //   let itemId = e.dataTransfer.getData('itemId')
+
+    //   this.items.forEach(item => {
+    //     if (item.id === itemId) {
+    //       console.log('Element naiden')
+    //       item.status = status
+    //       console.log('item.status:', item.status)
+    //       this.$store.commit('updateItem', { item })
+    //       this.$store.dispatch('updateItem', { item })
+    //     }
+    //   })
+    // },
     getArray(alias) {
       if (this.pathname === 'order') {
         if (alias === 'nafrezer') {
@@ -62,36 +84,36 @@ export default {
     editOrder(order) {
       this.$emit('edit-order', { order, mod: 'edit' })
     }
-  },
-  mounted() {
-    const slider = document.querySelector('#rowScroll')
-
-    let isDown = false
-    let startX
-    let scrollLeft
-
-    slider.addEventListener('mousedown', e => {
-      isDown = true
-      slider.classList.add('active')
-      startX = e.pageX - slider.offsetLeft
-      scrollLeft = slider.scrollLeft
-    })
-    slider.addEventListener('mouseleave', () => {
-      isDown = false
-      slider.classList.remove('active')
-    })
-    slider.addEventListener('mouseup', () => {
-      isDown = false
-      slider.classList.remove('active')
-    })
-    slider.addEventListener('mousemove', e => {
-      if (!isDown) return
-      e.preventDefault()
-      const x = e.pageX - slider.offsetLeft
-      const walk = (x - startX) * 1 //scroll-fast
-      slider.scrollLeft = scrollLeft - walk
-    })
   }
+  // mounted() {
+  //   const slider = document.querySelector('#rowScroll')
+
+  //   let isDown = false
+  //   let startX
+  //   let scrollLeft
+
+  //   slider.addEventListener('mousedown', e => {
+  //     isDown = true
+  //     slider.classList.add('active')
+  //     startX = e.pageX - slider.offsetLeft
+  //     scrollLeft = slider.scrollLeft
+  //   })
+  //   slider.addEventListener('mouseleave', () => {
+  //     isDown = false
+  //     slider.classList.remove('active')
+  //   })
+  //   slider.addEventListener('mouseup', () => {
+  //     isDown = false
+  //     slider.classList.remove('active')
+  //   })
+  //   slider.addEventListener('mousemove', e => {
+  //     if (!isDown) return
+  //     e.preventDefault()
+  //     const x = e.pageX - slider.offsetLeft
+  //     const walk = (x - startX) * 1 //scroll-fast
+  //     slider.scrollLeft = scrollLeft - walk
+  //   })
+  // }
 }
 </script>
 
