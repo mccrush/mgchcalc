@@ -9,7 +9,7 @@
       <div class="list-title text-center pt-0">
         <strong>{{ title }}</strong>
       </div>
-      <div class="list-items">
+      <div class="list-items pb-1">
         <KanbanCard
           v-for="item in array"
           :key="item.id"
@@ -52,10 +52,12 @@ export default {
       this.items.forEach(item => {
         if (item.id === itemId) {
           console.log('Element naiden')
-          item.status = status
-          console.log('item.status:', item.status)
-          this.$store.commit('updateItem', { item })
-          this.$store.dispatch('updateItem', { item })
+          if (item.status !== status) {
+            item.status = status
+            console.log('item.status:', item.status)
+            this.$store.commit('updateItem', { item })
+            this.$store.dispatch('updateItem', { item })
+          }
         }
       })
     },
