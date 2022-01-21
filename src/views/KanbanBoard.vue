@@ -1,20 +1,21 @@
 <template>
-  <div>
-    <div
-      class="kanban row flex-nowrap overflow-auto pt-2 ps-2 pe-2 pb-3"
-      id="rowScroll"
-    >
-      <KanbanList
-        v-for="etap in etaps"
-        :key="etap.id"
-        :title="etap.title"
-        :pathname="pathname"
-        :status="etap.alias"
-        :array="getArray(etap.alias)"
-        @edit-order="editOrder"
-        class="wrap-order-list ps-1 pe-2"
-      />
-    </div>
+  <div
+    class="kanban row flex-nowrap overflow-auto pt-2 ps-2 pe-2 pb-3"
+    @mousedown.self="scrollMouseDown($event)"
+    @mouseleave.self="scrollMouseLeave($event)"
+    @mouseup.self="scrollMouseUp($event)"
+    @mousemove.self="scrollMouseMove($event)"
+  >
+    <KanbanList
+      v-for="etap in etaps"
+      :key="etap.id"
+      :title="etap.title"
+      :pathname="pathname"
+      :status="etap.alias"
+      :array="getArray(etap.alias)"
+      @edit-order="editOrder"
+      class="wrap-order-list ps-1 pe-2"
+    />
   </div>
 </template>
 
@@ -22,7 +23,6 @@
 import voronkaOrders from '@/data/voronkaOrders'
 import voronkaNafrezer from '@/data/voronkaNafrezer'
 import KanbanList from '@/components/kanban/KanbanList'
-//import KanbanCard from '@/components/kanban/KanbanCard'
 
 export default {
   components: {
@@ -41,27 +41,41 @@ export default {
       return this.$store.getters[this.pathname]
     }
   },
+  data() {
+    return {
+      isDown: false,
+      startX: 0,
+      scrollLeft: 0
+    }
+  },
   methods: {
-    // onDragStart(e, item) {
-    //   console.log('DragStart, item:', item.id)
-    //   e.dataTransfer.dropEffect = 'move'
-    //   e.dataTransfer.effectAllowed = 'move'
-    //   e.dataTransfer.setData('itemId', item.id)
-    // },
-    // onDrop(e, status) {
-    //   console.log('onDrop, status:', status)
-    //   let itemId = e.dataTransfer.getData('itemId')
+    scrollMouseDown(e) {
+      const slider = e.target
+      //console.log('slider:', slider)
 
-    //   this.items.forEach(item => {
-    //     if (item.id === itemId) {
-    //       console.log('Element naiden')
-    //       item.status = status
-    //       console.log('item.status:', item.status)
-    //       this.$store.commit('updateItem', { item })
-    //       this.$store.dispatch('updateItem', { item })
-    //     }
-    //   })
-    // },
+      this.isDown = true
+      slider.classList.add('active')
+      this.startX = e.pageX - slider.offsetLeft
+      this.scrollLeft = slider.scrollLeft
+    },
+    scrollMouseLeave(e) {
+      const slider = e.target
+      this.isDown = false
+      slider.classList.remove('active')
+    },
+    scrollMouseUp(e) {
+      const slider = e.target
+      this.isDown = false
+      slider.classList.remove('active')
+    },
+    scrollMouseMove(e) {
+      const slider = e.target
+      if (!this.isDown) return
+      e.preventDefault()
+      const x = e.pageX - slider.offsetLeft
+      const walk = (x - this.startX) * 1 //scroll-fast
+      slider.scrollLeft = this.scrollLeft - walk
+    },
     getArray(alias) {
       if (this.pathname === 'order') {
         if (alias === 'nafrezer') {
@@ -85,35 +99,6 @@ export default {
       this.$emit('edit-order', { order, mod: 'edit' })
     }
   }
-  // mounted() {
-  //   const slider = document.querySelector('#rowScroll')
-
-  //   let isDown = false
-  //   let startX
-  //   let scrollLeft
-
-  //   slider.addEventListener('mousedown', e => {
-  //     isDown = true
-  //     slider.classList.add('active')
-  //     startX = e.pageX - slider.offsetLeft
-  //     scrollLeft = slider.scrollLeft
-  //   })
-  //   slider.addEventListener('mouseleave', () => {
-  //     isDown = false
-  //     slider.classList.remove('active')
-  //   })
-  //   slider.addEventListener('mouseup', () => {
-  //     isDown = false
-  //     slider.classList.remove('active')
-  //   })
-  //   slider.addEventListener('mousemove', e => {
-  //     if (!isDown) return
-  //     e.preventDefault()
-  //     const x = e.pageX - slider.offsetLeft
-  //     const walk = (x - startX) * 1 //scroll-fast
-  //     slider.scrollLeft = scrollLeft - walk
-  //   })
-  // }
 }
 </script>
 
@@ -125,6 +110,7 @@ export default {
 
 .wrap-order-list {
   width: 280px;
+  height: 0;
 }
 
 .active {

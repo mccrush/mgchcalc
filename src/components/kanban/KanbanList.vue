@@ -17,7 +17,7 @@
           class="item bg-white shadow-sm rounded lh-1 mt-2 p-2"
           draggable="true"
           @dblclick="editItem(item.id)"
-          @dragstart="onDragStart($event, item)"
+          @dragstart.stop="onDragStart($event, item)"
         />
       </div>
     </div>
@@ -47,14 +47,14 @@ export default {
     },
     onDrop(e, status) {
       console.log('onDrop, status:', status)
+
       let itemId = e.dataTransfer.getData('itemId')
 
       this.items.forEach(item => {
         if (item.id === itemId) {
-          console.log('Element naiden')
           if (item.status !== status) {
             item.status = status
-            console.log('item.status:', item.status)
+            console.log('new item.status:', item.status)
             this.$store.commit('updateItem', { item })
             this.$store.dispatch('updateItem', { item })
           }
