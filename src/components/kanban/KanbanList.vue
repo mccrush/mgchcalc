@@ -4,8 +4,8 @@
       class="dropzone bg-light rounded-3 p-2"
       @drop="onDrop($event, status)"
       @dragover.prevent
-      @dragleave.prevent="onDragLeave($event)"
-      @dragenter.prevent="onDragEnter($event)"
+      @dragenter="onDragEnter($event)"
+      @dragleave.stop="onDragLeave($event)"
     >
       <div class="list-title text-center pt-0">
         <strong>{{ title }}</strong>
@@ -48,13 +48,13 @@ export default {
     },
     onDragEnter(e) {
       if (e.target.classList.contains('dropzone')) {
-        e.target.lastChild.style.paddingTop = '60px'
-        e.target.lastChild.style.background = 'purple'
+        e.target.lastChild.style.paddingTop = '64px'
+        e.target.lastChild.style.background = '#e9ecef'
       }
     },
     onDragLeave(e) {
       if (e.target.classList.contains('dropzone')) {
-        e.target.lastChild.style.paddingTop = '10px'
+        e.target.lastChild.style.paddingTop = '0'
         e.target.lastChild.style.background = ''
       }
     },
