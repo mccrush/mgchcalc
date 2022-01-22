@@ -1,11 +1,5 @@
 <template>
-  <div
-    class="kanban row flex-nowrap overflow-auto pt-2 ps-2 pe-2 pb-3"
-    @mousedown.self="scrollMouseDown($event)"
-    @mouseleave.self="scrollMouseLeave($event)"
-    @mouseup.self="scrollMouseUp($event)"
-    @mousemove.self="scrollMouseMove($event)"
-  >
+  <div class="kanban row flex-nowrap overflow-auto pt-2 ps-2 pe-2">
     <KanbanList
       v-for="etap in etaps"
       :key="etap.id"
@@ -14,7 +8,11 @@
       :status="etap.alias"
       :array="getArray(etap.alias)"
       @edit-order="editOrder"
-      class="wrap-order-list ps-1 pe-2"
+      class="wrap-order-list bg-info border ps-1 pe-2"
+      @mousedown.self="scrollMouseDown($event)"
+      @mouseleave.self="scrollMouseLeave($event)"
+      @mouseup.self="scrollMouseUp($event)"
+      @mousemove.self="scrollMouseMove($event)"
     />
   </div>
 </template>
@@ -50,8 +48,8 @@ export default {
   },
   methods: {
     scrollMouseDown(e) {
-      const slider = e.target
-      //console.log('slider:', slider)
+      const slider = e.target.parentNode
+      console.log('slider:', slider)
 
       this.isDown = true
       slider.classList.add('active')
@@ -59,17 +57,17 @@ export default {
       this.scrollLeft = slider.scrollLeft
     },
     scrollMouseLeave(e) {
-      const slider = e.target
+      const slider = e.target.parentNode
       this.isDown = false
       slider.classList.remove('active')
     },
     scrollMouseUp(e) {
-      const slider = e.target
+      const slider = e.target.parentNode
       this.isDown = false
       slider.classList.remove('active')
     },
     scrollMouseMove(e) {
-      const slider = e.target
+      const slider = e.target.parentNode
       if (!this.isDown) return
       e.preventDefault()
       const x = e.pageX - slider.offsetLeft
@@ -104,13 +102,13 @@ export default {
 
 <style scoped>
 .kanban {
-  height: calc(100vh - 87px);
+  height: calc(100vh - 71px);
   overflow-x: auto;
 }
 
 .wrap-order-list {
   width: 280px;
-  height: 0;
+  /* height: 0; */
 }
 
 .active {
