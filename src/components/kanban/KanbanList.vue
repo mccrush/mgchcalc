@@ -1,10 +1,11 @@
 <template>
   <div>
     <div
-      class="bg-light rounded-3 p-2"
+      class="dropzone bg-light rounded-3 p-2"
       @drop="onDrop($event, status)"
       @dragover.prevent
-      @dragenter.prevent
+      @dragleave.prevent="onDragLeave($event)"
+      @dragenter.prevent="onDragEnter($event)"
     >
       <div class="list-title text-center pt-0">
         <strong>{{ title }}</strong>
@@ -45,9 +46,24 @@ export default {
       e.dataTransfer.effectAllowed = 'move'
       e.dataTransfer.setData('itemId', item.id)
     },
+    onDragEnter(e) {
+      if (e.target.classList.contains('dropzone')) {
+        e.target.lastChild.style.paddingTop = '60px'
+        e.target.lastChild.style.background = 'purple'
+      }
+    },
+    onDragLeave(e) {
+      if (e.target.classList.contains('dropzone')) {
+        e.target.lastChild.style.paddingTop = '10px'
+        e.target.lastChild.style.background = ''
+      }
+    },
     onDrop(e, status) {
       console.log('onDrop, status:', status)
-
+      if (e.target.classList.contains('dropzone')) {
+        e.target.lastChild.style.paddingTop = '0'
+        e.target.lastChild.style.background = ''
+      }
       let itemId = e.dataTransfer.getData('itemId')
 
       this.items.forEach(item => {
