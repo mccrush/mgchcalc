@@ -129,6 +129,6 @@ export default {
 
 .item {
   user-select: none;
-  cursor: default;
+  cursor: pointer;
 }
 </style>
