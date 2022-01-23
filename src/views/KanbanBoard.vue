@@ -8,7 +8,7 @@
       :status="etap.alias"
       :array="getArray(etap.alias)"
       @edit-order="editOrder"
-      class="wrap-order-list bg-info border ps-1 pe-2"
+      class="wrap-order-list ps-1 pe-2"
       @mousedown.self="scrollMouseDown($event)"
       @mouseleave.self="scrollMouseLeave($event)"
       @mouseup.self="scrollMouseUp($event)"
@@ -49,7 +49,7 @@ export default {
   methods: {
     scrollMouseDown(e) {
       const slider = e.target.parentNode
-      console.log('slider:', slider)
+      //console.log('slider:', slider)
 
       this.isDown = true
       slider.classList.add('active')
