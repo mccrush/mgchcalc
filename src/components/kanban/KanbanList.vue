@@ -18,7 +18,7 @@
           :item="item"
           class="item bg-white shadow-sm rounded lh-1 mt-2 p-2"
           draggable="true"
-          @dblclick="editItem(item.id)"
+          @click="editItem(item.id)"
           @dragstart.stop="onDragStart($event, item)"
         />
       </div>
