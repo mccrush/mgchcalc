@@ -127,6 +127,7 @@ export default {
           )
 
           nafrezer.forEach(item => {
+            item.dateFinish = getDateNow
             item.status = 'arhivefrezer'
             this.updateItem(item)
           })
