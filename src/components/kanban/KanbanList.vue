@@ -9,7 +9,7 @@
       @dragenter="onDragEnter($event)"
     >
       <div class="list-title text-center pt-0">
-        <strong>{{ title }}</strong>
+        <strong class="no-select">{{ title }}</strong>
       </div>
       <div class="list-items pb-1">
         <KanbanCard
@@ -86,6 +86,11 @@ export default {
 </script>
 
 <style scoped>
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 .list-items {
   max-height: calc(100vh - 160px);
   overflow-y: auto;
