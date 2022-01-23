@@ -15,7 +15,11 @@
           На Фрезер
         </button>
         <button
-          v-if="userId"
+          v-if="
+            userId === 'uNOE7SInyGQbRptYJq7OiQtG7Ol2' ||
+            userId === 'rNl0ejcTSIhMycVqx4XhTqVVhAv1' ||
+            userId === 'TbUni6NXcqNlqldnorqpfKkWPJ23'
+          "
           class="btn btn-sm btn-outline-light text-muted me-2"
           :class="{ active: pathname === 'order' }"
           @click="setPathName('order')"
