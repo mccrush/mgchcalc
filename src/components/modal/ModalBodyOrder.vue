@@ -110,7 +110,7 @@
       </ul>
     </div>
     <!-- order.rabotaArray -->
-    <div>
+    <div v-if="order.rabotaArray.length || nafrezer.length">
       <h6 class="mt-3">Услуги обработки</h6>
       <ul class="list-group ist-group-numbered">
         <ModalBodyOrderList v-for="elem in order.rabotaArray" :key="elem.id">
