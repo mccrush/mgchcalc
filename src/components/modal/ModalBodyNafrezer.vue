@@ -81,6 +81,17 @@
         </div>
       </div>
     </div>
+    <div class="row pt-2">
+      <div v-if="order.size" class="col-12">
+        <input
+          class="form-control"
+          type="text"
+          :value="'Длина: ' + order.size + ' ' + order.ed"
+          aria-label="readonly input example"
+          readonly
+        />
+      </div>
+    </div>
     <div v-if="mod === 'edit'" class="row mt-2">
       <div class="col-4"></div>
       <div class="col-4"></div>
