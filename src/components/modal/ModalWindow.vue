@@ -70,6 +70,7 @@ export default {
     createTZ(item) {
       console.log('createTZ elem:', item)
       item.orderId = this.order.id
+      item.client = this.order.client
       item.status = 'newfrezer'
       item.dateCreate = getDateNow
       item.dateForReady = this.order.dateForReady
@@ -115,6 +116,7 @@ export default {
       const startPos = this.order.title.indexOf('_')
       const subStr = this.order.title.slice(startPos)
       this.order.title = client.toUpperCase() + subStr
+      this.order.client = client
       if (this.order.title && this.mod === 'edit') {
         this.updateItem(this.order)
       }

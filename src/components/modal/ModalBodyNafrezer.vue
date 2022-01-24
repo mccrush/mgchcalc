@@ -82,14 +82,85 @@
       </div>
     </div>
     <div class="row pt-2">
-      <div v-if="order.size" class="col-12">
-        <input
-          class="form-control"
-          type="text"
-          :value="'Длина: ' + order.size + ' ' + order.ed"
-          aria-label="readonly input example"
-          readonly
-        />
+      <div class="col-6 me-0">
+        <form class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="client"
+            placeholder="Заказчик не указан"
+            :value="order.client"
+            readonly
+          />
+          <label for="client">Заказчик</label>
+        </form>
+      </div>
+      <div class="col-6">
+        <form class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="izdelie"
+            placeholder="Изделие не указано"
+            :value="order.title"
+            readonly
+          />
+          <label for="izdelie">Изделие</label>
+        </form>
+      </div>
+    </div>
+    <div class="row pt-2">
+      <div class="col-3 me-0">
+        <form class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="size"
+            placeholder="Размеры не указаны"
+            :value="order.size + ' ' + order.ed"
+            readonly
+          />
+          <label for="size">Размеры</label>
+        </form>
+      </div>
+      <div class="col-3 me-0">
+        <form class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="price"
+            placeholder="Цена не указана"
+            :value="order.price"
+            readonly
+          />
+          <label for="price">Цена</label>
+        </form>
+      </div>
+      <div class="col-3 me-0">
+        <form class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="summa"
+            placeholder="Стоимость не указана"
+            :value="order.summa"
+            readonly
+          />
+          <label for="summa">Стоимость, ₽</label>
+        </form>
+      </div>
+      <div class="col-3">
+        <form class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="zp"
+            placeholder="ЗП не указана"
+            :value="Math.floor(order.summa * 0.4)"
+            readonly
+          />
+          <label for="zp">ЗП, ₽</label>
+        </form>
       </div>
     </div>
     <div v-if="mod === 'edit'" class="row mt-2">
@@ -116,7 +187,6 @@
 import voronkaNafrezer from '@/data/voronkaNafrezer'
 
 export default {
-  components: {},
   props: ['order', 'mod'],
   emits: [
     'update-object',
