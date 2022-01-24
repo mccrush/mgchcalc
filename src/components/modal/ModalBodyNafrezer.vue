@@ -82,7 +82,7 @@
       </div>
     </div>
     <div class="row pt-2">
-      <div class="col-6 me-0">
+      <div class="col-6 pe-0">
         <form class="form-floating">
           <input
             type="text"
@@ -110,7 +110,7 @@
       </div>
     </div>
     <div class="row pt-2">
-      <div class="col-3 me-0">
+      <div class="col-3 pe-0">
         <form class="form-floating">
           <input
             type="text"
@@ -123,7 +123,7 @@
           <label for="size">Размеры</label>
         </form>
       </div>
-      <div class="col-3 me-0">
+      <div class="col-3 pe-0">
         <form class="form-floating">
           <input
             type="text"
@@ -136,7 +136,7 @@
           <label for="price">Цена</label>
         </form>
       </div>
-      <div class="col-3 me-0">
+      <div class="col-3 pe-0">
         <form class="form-floating">
           <input
             type="text"
@@ -166,7 +166,7 @@
     <div v-if="mod === 'edit'" class="row mt-2">
       <div class="col-4"></div>
       <div class="col-4"></div>
-      <div class="col-2 text-end">Лежит на полке:</div>
+      <div class="col-2 text-end lh-lg">Лежит на полке:</div>
       <div class="col-2">
         <select
           class="form-select form-select-sm"

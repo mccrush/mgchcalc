@@ -91,6 +91,7 @@ export default {
 
 <style>
 .btn:focus,
+.btn-close:focus,
 .btn-check:focus + .btn-outline-dark,
 .form-control:focus,
 .form-select:focus,
