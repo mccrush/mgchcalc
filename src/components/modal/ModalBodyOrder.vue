@@ -163,6 +163,11 @@
             <span class="badge bg-light text-dark align-self-center me-2 p-2"
               >{{ elem.summa }} ₽</span
             >
+            <span
+              v-if="elem.polka"
+              class="badge bg-info text-dark align-self-center me-2 p-2"
+              >Полка: {{ elem.polka }}</span
+            >
             <!-- <span
                     v-if="elem.elemSumma < 500"
                     class="badge bg-light text-dark align-self-center me-2 p-2"
