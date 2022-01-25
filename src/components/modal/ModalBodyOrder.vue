@@ -19,7 +19,7 @@
           <select
             v-model="client"
             @change="$emit('update-order-title', client)"
-            class="form-select form-select-sm"
+            class="form-select"
             id="selectClient"
           >
             <option
@@ -260,7 +260,7 @@ export default {
     return {
       voronkaOrders,
       clients,
-      client: ''
+      client: this.order.client
     }
   },
   computed: {
