@@ -1,6 +1,6 @@
 import getWeek from '@/scripts/getWeek'
 import fireApp from '@/firebase'
-import { getDatabase, ref, set } from 'firebase/database'
+import { getDatabase, ref, set, onValue } from 'firebase/database'
 const db = getDatabase(fireApp)
 
 export default {
@@ -10,6 +10,9 @@ export default {
     nafrezer: []
   },
   mutations: {
+    setItemsRT(state, { type, items }) {
+      state[type] = items
+    },
     addItemRT(state, { item }) {
       state[item.type].push(item)
     },
@@ -18,6 +21,24 @@ export default {
     },
   },
   actions: {
+    getItemsRT({ commit }, { type }) {
+      try {
+        commit('updateLoadingStatusRT', true)
+        let tempArray = []
+        const itemsRef = ref(db, type)
+
+        onValue(itemsRef, (snapshot) => {
+          const data = snapshot.val()
+          for (let item in data) {
+            tempArray.push(data[item])
+          }
+          commit('setItemsRT', { type, items: tempArray })
+          commit('updateLoadingStatusRT', false)
+        })
+      } catch (error) {
+        console.log('error realtime.js getItemsRT:', error)
+      }
+    },
     async addItemRT({ commit }, { item }) {
       try {
         commit('updateLoadingStatusRT', true)
