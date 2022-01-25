@@ -1,6 +1,6 @@
 import getWeek from '@/scripts/getWeek'
 import fireApp from '@/firebase'
-import { getDatabase, ref, set, onValue, update } from 'firebase/database'
+import { getDatabase, ref, set, onValue, update, remove } from 'firebase/database'
 const db = getDatabase(fireApp)
 
 export default {
@@ -21,13 +21,22 @@ export default {
     },
   },
   actions: {
+    async removeItemRT({ commit }, { type, id }) {
+      try {
+        commit('updateLoadingStatusRT', true)
+        await remove(ref(db, type + '/' + id))
+        commit('updateLoadingStatusRT', false)
+      } catch (error) {
+        console.log('error realtime.js removeItemRT:', error)
+      }
+    },
     async updateItemRT({ commit }, { item }) {
       try {
         commit('updateLoadingStatusRT', true)
         await update(ref(db, item.type + '/' + item.id), item)
         commit('updateLoadingStatusRT', false)
       } catch (error) {
-        console.log('error realtime.js addItemRT:', error)
+        console.log('error realtime.js updateItemRT:', error)
       }
     },
     getItemsRT({ commit }, { type }) {

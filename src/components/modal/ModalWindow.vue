@@ -176,11 +176,11 @@ export default {
     },
     removeItem() {
       if (confirm('Действительно удалить элемент?')) {
-        this.$store.commit('removeItem', {
-          type: this.order.type,
-          id: this.order.id
-        })
-        this.$store.dispatch('removeItem', {
+        // this.$store.commit('removeItem', {
+        //   type: this.order.type,
+        //   id: this.order.id
+        // })
+        this.$store.dispatch('removeItemRT', {
           type: this.order.type,
           id: this.order.id
         })
