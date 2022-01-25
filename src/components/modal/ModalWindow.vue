@@ -74,8 +74,8 @@ export default {
       item.status = 'newfrezer'
       item.dateCreate = getDateNow
       item.dateForReady = this.order.dateForReady
-      this.$store.commit('addItem', { item })
-      this.$store.dispatch('addItem', { item })
+      //this.$store.commit('addItem', { item })
+      this.$store.dispatch('addItemRT', { item })
       this.removeElementFromRabotaArray(item.id)
     },
     removeElementFromRabotaArray(id) {
@@ -170,8 +170,8 @@ export default {
     },
     updateItem(item) {
       if (item.title && this.mod === 'edit') {
-        this.$store.commit('updateItem', { item })
-        this.$store.dispatch('updateItem', { item })
+        //this.$store.commit('updateItem', { item })
+        this.$store.dispatch('updateItemRT', { item })
       }
     },
     removeItem() {

@@ -79,8 +79,8 @@ export default {
                 nafrezer.forEach(item1 => {
                   item1.dateFinish = getDateNow
                   item1.status = 'arhivefrezer'
-                  this.$store.commit('updateItem', { item: item1 })
-                  this.$store.dispatch('updateItem', { item: item1 })
+                  //this.$store.commit('updateItem', { item: item1 })
+                  this.$store.dispatch('updateItemRT', { item: item1 })
                 })
               } else if (status === 'successorder' || status === 'failorder') {
                 item.dateFinish = getDateNow
@@ -94,15 +94,15 @@ export default {
                 item.dateFinish = ''
                 let parentOrder = this.$store.getters.parentOrder(item.orderId)
                 parentOrder.status = 'nafrezer'
-                this.$store.commit('updateItem', { item: parentOrder })
-                this.$store.dispatch('updateItem', { item: parentOrder })
+                //this.$store.commit('updateItem', { item: parentOrder })
+                this.$store.dispatch('updateItemRT', { item: parentOrder })
               }
             }
 
             item.status = status
             console.log('new item.status:', item.status)
-            this.$store.commit('updateItem', { item })
-            this.$store.dispatch('updateItem', { item })
+            //this.$store.commit('updateItem', { item })
+            this.$store.dispatch('updateItemRT', { item })
           }
         }
       })

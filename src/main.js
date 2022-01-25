@@ -24,6 +24,7 @@ onAuthStateChanged(auth, (user) => {
     store.dispatch('getItems', { type: 'dopuslug' })
     store.dispatch('getItems', { type: 'procent' })
     store.dispatch('getItemsRT', { type: 'order' })
+    store.dispatch('getItemsRT', { type: 'nafrezer' })
     // store.dispatch('getItems', { type: 'nafrezer' })
   } else {
     store.commit('setUserId', null)

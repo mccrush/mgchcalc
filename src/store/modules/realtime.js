@@ -1,6 +1,6 @@
 import getWeek from '@/scripts/getWeek'
 import fireApp from '@/firebase'
-import { getDatabase, ref, set, onValue } from 'firebase/database'
+import { getDatabase, ref, set, onValue, update } from 'firebase/database'
 const db = getDatabase(fireApp)
 
 export default {
@@ -21,13 +21,23 @@ export default {
     },
   },
   actions: {
+    async updateItemRT({ commit }, { item }) {
+      try {
+        commit('updateLoadingStatusRT', true)
+        await update(ref(db, item.type + '/' + item.id), item)
+        commit('updateLoadingStatusRT', false)
+      } catch (error) {
+        console.log('error realtime.js addItemRT:', error)
+      }
+    },
     getItemsRT({ commit }, { type }) {
       try {
         commit('updateLoadingStatusRT', true)
-        let tempArray = []
         const itemsRef = ref(db, type)
 
         onValue(itemsRef, (snapshot) => {
+          console.log('Run onValue')
+          let tempArray = []
           const data = snapshot.val()
           for (let item in data) {
             tempArray.push(data[item])
