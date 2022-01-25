@@ -2,14 +2,18 @@
   <div class="modal-body pt-2">
     <div class="row">
       <div class="col-6 pe-0">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          disabled="true"
-          v-model.trim="order.title"
-          placeholder="Название заказа"
-          @change="$emit('update-object', order)"
-        />
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="nafrezerTitle"
+            disabled="true"
+            v-model.trim="order.title"
+            placeholder="Название заказа"
+            @change="$emit('update-object', order)"
+          />
+          <label for="nafrezerTitle">Название работы</label>
+        </div>
       </div>
       <div class="col-3 pe-0">
         <!-- <select
@@ -27,19 +31,23 @@
         </select> -->
       </div>
       <div class="col-3">
-        <select
-          v-model="order.status"
-          @change="$emit('update-order-status', order)"
-          class="form-select form-select-sm"
-        >
-          <option
-            v-for="status in voronkaNafrezer"
-            :key="status.id"
-            :value="status.alias"
+        <div class="form-floating">
+          <select
+            v-model="order.status"
+            @change="$emit('update-order-status', order)"
+            class="form-select"
+            id="nafrezerStatus"
           >
-            {{ status.title }}
-          </option>
-        </select>
+            <option
+              v-for="status in voronkaNafrezer"
+              :key="status.id"
+              :value="status.alias"
+            >
+              {{ status.title }}
+            </option>
+          </select>
+          <label for="nafrezerStatus">Статус</label>
+        </div>
       </div>
     </div>
 
@@ -133,7 +141,7 @@
             :value="order.price"
             readonly
           />
-          <label for="price">Цена</label>
+          <label for="price">Цена, ₽</label>
         </form>
       </div>
       <div class="col-3 pe-0">
