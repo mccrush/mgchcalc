@@ -1,7 +1,6 @@
 import fireApp from '@/firebase'
 import { getFirestore, doc, setDoc, updateDoc, deleteDoc, collection, query, getDocs } from "firebase/firestore"
 const db = getFirestore(fireApp)
-import getWeek from '@/scripts/getWeek'
 
 export default {
   state: {
@@ -11,9 +10,7 @@ export default {
     material: [],
     obrabotkavid: [],
     obrabotkatolshina: [],
-    dopuslug: [],
-    order: [],
-    nafrezer: []
+    dopuslug: []
   },
   mutations: {
     removeItem(state, { type, id }) {
@@ -84,10 +81,6 @@ export default {
     material: state => state.material,
     obrabotkavid: state => state.obrabotkavid,
     obrabotkatolshina: state => state.obrabotkatolshina,
-    dopuslug: state => state.dopuslug,
-    order: state => state.order,
-    nafrezer: state => state.nafrezer,
-    orderNumber: state => +state.order.filter(item => item.dateCreateWeek == getWeek()).length + 1 || 1,
-    parentOrder: state => id => state.order.find(item => item.id === id) || false
+    dopuslug: state => state.dopuslug
   }
 }

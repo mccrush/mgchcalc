@@ -164,8 +164,8 @@ export default {
     saveItem() {
       if (this.order.title) {
         console.log('save order:', this.order)
-        this.$store.commit('addItem', { item: this.order })
-        this.$store.dispatch('addItem', { item: this.order })
+        //this.$store.commit('addItem', { item: this.order })
+        this.$store.dispatch('addItemRT', { item: this.order })
       }
     },
     updateItem(item) {

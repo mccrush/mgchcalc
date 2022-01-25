@@ -10,6 +10,7 @@ const firebaseConfig = {
   projectId: "mgch-calc",
   storageBucket: "mgch-calc.appspot.com",
   messagingSenderId: "25810727339",
+  databaseURL: "https://mgch-calc-default-rtdb.europe-west1.firebasedatabase.app",
   appId: "1:25810727339:web:7f290561e8c4eeed19e2ee"
 };
 

@@ -252,9 +252,11 @@ export default {
   },
   computed: {
     nafrezer() {
-      return this.$store.getters.nafrezer.filter(
-        item => item.orderId === this.order.id
-      )
+      if (this.$store.getters.nafrezer.length) {
+        return this.$store.getters.nafrezer.filter(
+          item => item.orderId === this.order.id
+        )
+      }
     }
   }
 }

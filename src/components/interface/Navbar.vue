@@ -1,7 +1,7 @@
 <template>
   <div class="row m-0">
     <div class="progressbar col-12 p-0">
-      <Progressbar v-if="loading" />
+      <Progressbar v-if="loading || loadingRT" />
       <ProgressbarOff v-else />
     </div>
     <div class="col-12 pt-2">
@@ -72,6 +72,9 @@ export default {
     },
     loading() {
       return this.$store.getters.loading
+    },
+    loadingRT() {
+      return this.$store.getters.loadingRT
     },
     userId() {
       return this.$store.getters.userId
