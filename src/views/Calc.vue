@@ -323,26 +323,6 @@ export default {
       )
 
       this.$emit('edit-order', { order, mod: 'create' })
-
-      // Всем элементам массивов присвоить orderId
-      // const listOfTypes = ['siryoArray', 'rabotaArray', 'dopuslugArray']
-
-      // for (let i = 0; i < listOfTypes.length; i++) {
-      //   if (this[listOfTypes[i]].length) {
-      //     this[listOfTypes[i]].forEach((item, idx, array) => {
-      //       array[idx].orderId = order.id
-      //     })
-      //   }
-      // }
-
-      // console.log('this.siryoArray:', this.siryoArray)
-      // console.log('this.rabotaArray:', this.rabotaArray)
-      // console.log('this.dopuslugArray:', this.dopuslugArray)
-
-      // Каждую задачу (каждый элемент массива) сохранить в БД
-      // Заказ сохранить в БД
-      // А в модальном окне Заказа, данные уже брать из Vuex (из БД)
-      // В модалке Задачи можно изменять, обновляя уже в БД????????????
     },
     removeCalc({ type, id }) {
       this[type] = this[type].filter(item => item.id !== id)

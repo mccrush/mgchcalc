@@ -125,99 +125,28 @@
     <!-- <div v-if="order.rabotaArray.length || nafrezer.length"> -->
     <div>
       <h6 class="mt-3">Услуги обработки</h6>
-      <ul class="list-group ist-group-numbered">
-        <ModalBodyOrderList v-for="elem in order.rabotaArray" :key="elem.id">
-          <template v-slot:title
-            >{{ elem.title }}, {{ elem.size }} {{ elem.ed }}</template
+      <div class="list-group ist-group-numbered">
+        <ModalBodyOrderNafrezerItem
+          v-for="item in order.rabotaArray"
+          :key="item.id"
+          :item="item"
+          @change="selectItem(item)"
+        />
+      </div>
+      <div class="row pt-2">
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3">
+          <button
+            class="btn btn-sm btn-info w-100"
+            :class="{ disabled: !rabotaArrayTZ.length }"
+            @click="createTZ"
           >
-          <template v-slot:badge>
-            <span class="badge bg-light text-dark align-self-center me-2 p-2"
-              >{{ elem.summa }} ₽</span
-            >
-            <!-- <span
-                    v-if="elem.elemSumma < 500"
-                    class="badge bg-light text-dark align-self-center me-2 p-2"
-                    >+ {{ 500 - elem.elemSumma }} ₽</span
-                  > -->
-          </template>
-          <template v-slot:button>
-            <button
-              v-if="mod === 'edit' && !elem.status"
-              class="btn btn-sm btn-info"
-              @click="$emit('create-tz', elem)"
-            >
-              Создать ТЗ
-            </button>
-            <button
-              v-if="
-                mod === 'edit' &&
-                (elem.status === 'newfrezer' ||
-                  elem.status === 'prinyat' ||
-                  elem.status === 'inprogress')
-              "
-              class="btn btn-sm btn-warning disabled"
-            >
-              ТЗ создано
-            </button>
-            <button
-              v-if="mod === 'edit' && elem.status === 'donefrezer'"
-              class="btn btn-sm btn-success disabled"
-            >
-              Обработан
-            </button>
-          </template>
-        </ModalBodyOrderList>
-        <!-- Else one -->
-        <ModalBodyOrderList v-for="elem in nafrezer" :key="elem.id">
-          <template v-slot:title
-            >{{ elem.title }}, {{ elem.size }} {{ elem.ed }}</template
-          >
-          <template v-slot:badge>
-            <span class="badge bg-light text-dark align-self-center me-2 p-2"
-              >{{ elem.summa }} ₽</span
-            >
-            <span
-              v-if="elem.polka"
-              class="badge bg-info text-dark align-self-center me-2 p-2"
-              >Полка: {{ elem.polka }}</span
-            >
-            <!-- <span
-                    v-if="elem.elemSumma < 500"
-                    class="badge bg-light text-dark align-self-center me-2 p-2"
-                    >+ {{ 500 - elem.elemSumma }} ₽</span
-                  > -->
-          </template>
-          <template v-slot:button>
-            <button
-              v-if="mod === 'edit' && !elem.status"
-              class="btn btn-sm btn-info"
-              @click="$emit('create-tz', elem)"
-            >
-              Создать ТЗ
-            </button>
-            <button
-              v-if="
-                mod === 'edit' &&
-                (elem.status === 'newfrezer' ||
-                  elem.status === 'prinyat' ||
-                  elem.status === 'inprogress')
-              "
-              class="btn btn-sm btn-warning disabled"
-            >
-              ТЗ создано
-            </button>
-            <button
-              v-if="
-                mod === 'edit' &&
-                (elem.status === 'donefrezer' || elem.status === 'arhivefrezer')
-              "
-              class="btn btn-sm btn-success disabled"
-            >
-              Обработан
-            </button>
-          </template>
-        </ModalBodyOrderList>
-      </ul>
+            Создать ТЗ
+          </button>
+        </div>
+      </div>
     </div>
     <!-- -->
     <div v-if="order.dopuslugArray.length">
@@ -242,10 +171,12 @@
 <script>
 import voronkaOrders from '@/data/voronkaOrders'
 import clients from '@/data/clients'
+import ModalBodyOrderNafrezerItem from '@/components/modal/ModalBodyOrderNafrezerItem'
 import ModalBodyOrderList from '@/components/modal/ModalBodyOrderList'
 
 export default {
   components: {
+    ModalBodyOrderNafrezerItem,
     ModalBodyOrderList
   },
   props: ['order', 'mod'],
@@ -260,16 +191,34 @@ export default {
     return {
       voronkaOrders,
       clients,
-      client: this.order.client
+      client: this.order.client,
+      rabotaArrayTZ: []
     }
   },
   computed: {
     nafrezer() {
+      return []
       if (this.$store.getters.nafrezer.length) {
         return this.$store.getters.nafrezer.filter(
           item => item.orderId === this.order.id
         )
       }
+    }
+  },
+  methods: {
+    createTZ() {
+      this.$emit('create-tz', this.rabotaArrayTZ)
+    },
+    selectItem(item) {
+      if (!this.rabotaArrayTZ.find(elem => elem.id === item.id)) {
+        this.rabotaArrayTZ.push(item)
+      } else {
+        this.rabotaArrayTZ = this.rabotaArrayTZ.filter(
+          elem => elem.id != item.id
+        )
+      }
+
+      console.log('Select elements:', this.rabotaArrayTZ)
     }
   }
 }

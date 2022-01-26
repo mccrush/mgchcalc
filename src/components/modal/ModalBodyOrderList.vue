@@ -8,7 +8,6 @@
       pe-2
     "
   >
-    <!-- <input class="form-check-input me-2" type="checkbox" value="" /> -->
     <div class="pt-1">
       <slot name="title"> Название задачи </slot>
     </div>

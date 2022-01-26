@@ -20,11 +20,11 @@
         </ModalHeader>
         <ModalBodyOrder
           v-if="order && (pathname === 'order' || pathname === 'calc')"
-          @create-tz="createTZ"
           @update-object="updateItem"
           @update-order-title="updateOrderTitle"
           @update-order-status="updateObjectStatus"
           @update-object-datefinish="updateObjectDatefinish"
+          @create-tz="createTZ"
           :order="order"
           :mod="mod"
         />
@@ -49,6 +49,7 @@
 
 <script>
 import getDateNow from '@/scripts/getDateNow'
+import createNafrezer from '@/scripts/createNafrezer'
 import ModalHeader from '@/components/modal/ModalHeader'
 import ModalBodyOrder from '@/components/modal/ModalBodyOrder'
 import ModalBodyNafrezer from '@/components/modal/ModalBodyNafrezer'
@@ -67,21 +68,35 @@ export default {
     pathname: String
   },
   methods: {
-    createTZ(item) {
-      console.log('createTZ elem:', item)
-      item.orderId = this.order.id
-      item.client = this.order.client
-      item.status = 'newfrezer'
-      item.dateCreate = getDateNow
-      item.dateForReady = this.order.dateForReady
-      this.$store.dispatch('addItemRT', { item })
-      this.removeElementFromRabotaArray(item.id)
-    },
-    removeElementFromRabotaArray(id) {
-      this.order.rabotaArray = this.order.rabotaArray.filter(
-        item => item.id != id
+    createTZ(rabotaArray) {
+      const item = createNafrezer(
+        this.order.title,
+        this.order.id,
+        this.order.client,
+        this.order.dateForReady,
+        rabotaArray
       )
-      this.updateItem(this.order)
+      console.log('createTZ elem:', item)
+
+      //this.$emit('edit-order', { order: item, mod: 'create' })
+      //this.$store.dispatch('addItemRT', { item })
+
+      // rabotaArray.forEach(elem => {
+      //   this.updateStatusInRabotaArray(elem.id)
+      // })
+    },
+    updateStatusInRabotaArray(id) {
+      let array = this.order.rabotaArray.map(item => {
+        if (item.id === id) {
+          console.log('item:', item)
+          item.status = 'inprogress'
+          return item
+        }
+      })
+
+      console.log('array:', array)
+      // this.order.rabotaArray = array
+      //this.updateItem(this.order)
     },
     updateNafrezerPolka(object) {
       if (object.polka != 0) {
