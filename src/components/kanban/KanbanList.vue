@@ -70,39 +70,8 @@ export default {
       this.items.forEach(item => {
         if (item.id === itemId) {
           if (item.status !== status) {
-            if (item.type === 'order') {
-              if (status === 'doneorder') {
-                const nafrezer = this.$store.getters.nafrezer.filter(
-                  item1 => item1.orderId === item.id
-                )
-
-                nafrezer.forEach(item1 => {
-                  item1.dateFinish = getDateNow
-                  item1.status = 'arhivefrezer'
-                  //this.$store.commit('updateItem', { item: item1 })
-                  this.$store.dispatch('updateItemRT', { item: item1 })
-                })
-              } else if (status === 'successorder' || status === 'failorder') {
-                item.dateFinish = getDateNow
-              } else {
-                item.dateFinish = ''
-              }
-            } else if (item.type === 'nafrezer') {
-              if (status === 'donefrezer') {
-                item.dateFinish = getDateNow
-              } else {
-                item.dateFinish = ''
-                let parentOrder = this.$store.getters.parentOrder(item.orderId)
-                parentOrder.status = 'nafrezer'
-                //this.$store.commit('updateItem', { item: parentOrder })
-                this.$store.dispatch('updateItemRT', { item: parentOrder })
-              }
-            }
-
             item.status = status
-            console.log('new item.status:', item.status)
-            //this.$store.commit('updateItem', { item })
-            this.$store.dispatch('updateItemRT', { item })
+            this.$store.dispatch('updateItemStatus', { item })
           }
         }
       })

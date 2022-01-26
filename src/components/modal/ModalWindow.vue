@@ -74,7 +74,6 @@ export default {
       item.status = 'newfrezer'
       item.dateCreate = getDateNow
       item.dateForReady = this.order.dateForReady
-      //this.$store.commit('addItem', { item })
       this.$store.dispatch('addItemRT', { item })
       this.removeElementFromRabotaArray(item.id)
     },
@@ -102,16 +101,8 @@ export default {
           parentOrder.status = 'readyorder'
           this.updateItem(parentOrder)
         }
-      } else {
-        // let parentOrder = this.$store.getters.parentOrder(object.orderId)
-        // parentOrder.status = 'nafrezer'
-        // this.updateItem(parentOrder)
       }
     },
-    // updateElemStatus({ array, id, status }) {
-    //   const index = this.order[array].findIndex(item => item.id === id)
-    //   this.order[array][index].status = status
-    // },
     updateOrderTitle(client) {
       const startPos = this.order.title.indexOf('_')
       const subStr = this.order.title.slice(startPos)
@@ -121,37 +112,8 @@ export default {
         this.updateItem(this.order)
       }
     },
-    updateObjectStatus(object) {
-      if (object.type === 'order') {
-        if (object.status === 'doneorder') {
-          const nafrezer = this.$store.getters.nafrezer.filter(
-            item => item.orderId === object.id
-          )
-
-          nafrezer.forEach(item => {
-            item.dateFinish = getDateNow
-            item.status = 'arhivefrezer'
-            this.updateItem(item)
-          })
-        } else if (
-          object.status === 'successorder' ||
-          object.status === 'failorder'
-        ) {
-          object.dateFinish = getDateNow
-        } else {
-          object.dateFinish = ''
-        }
-      } else if (object.type === 'nafrezer') {
-        if (object.status === 'donefrezer') {
-          object.dateFinish = getDateNow
-        } else {
-          object.dateFinish = ''
-          let parentOrder = this.$store.getters.parentOrder(object.orderId)
-          parentOrder.status = 'nafrezer'
-          this.updateItem(parentOrder)
-        }
-      }
-      this.updateItem(object)
+    updateObjectStatus(item) {
+      this.$store.dispatch('updateItemStatus', { item })
     },
     updateObjectDatefinish(object) {
       if (object.type === 'order') {
@@ -164,22 +126,16 @@ export default {
     saveItem() {
       if (this.order.title) {
         console.log('save order:', this.order)
-        //this.$store.commit('addItem', { item: this.order })
         this.$store.dispatch('addItemRT', { item: this.order })
       }
     },
     updateItem(item) {
       if (item.title && this.mod === 'edit') {
-        //this.$store.commit('updateItem', { item })
         this.$store.dispatch('updateItemRT', { item })
       }
     },
     removeItem() {
       if (confirm('Действительно удалить элемент?')) {
-        // this.$store.commit('removeItem', {
-        //   type: this.order.type,
-        //   id: this.order.id
-        // })
         this.$store.dispatch('removeItemRT', {
           type: this.order.type,
           id: this.order.id
