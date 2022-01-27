@@ -57,10 +57,10 @@ export default {
     ModalFooter
   },
   props: ['item', 'mod'],
-  emits: [],
+  emits: ['show-modal'],
   computed: {
     modalBody() {
-      console.log('this.item:', this.item)
+      console.log('ModalMain, this.item:', this.item)
       if (this.item) {
         if (this.item.type === 'order') {
           return 'ModalBodyOrder'
@@ -72,16 +72,16 @@ export default {
   },
   methods: {
     createTZ(rabotaArray) {
-      const item = createNafrezer(
-        this.order.title,
-        this.order.id,
-        this.order.client,
-        this.order.dateForReady,
+      const newNafrezer = createNafrezer(
+        this.item.title,
+        this.item.id,
+        this.item.client,
+        this.item.dateForReady,
         rabotaArray
       )
-      console.log('createTZ elem:', item)
+      console.log('createTZ elem:', newNafrezer)
 
-      this.$emit('edit-order', { order: item, mod: 'create' })
+      this.$emit('show-modal', { modal: newNafrezer, mod: 'create' })
       //this.$store.dispatch('addItemRT', { item })
 
       // rabotaArray.forEach(elem => {
@@ -146,7 +146,7 @@ export default {
       }
     },
     updateItem(item) {
-      if (item.title && this.mod === 'edit') {
+      if (item.title) {
         this.$store.dispatch('updateItemRT', { item })
       }
     },

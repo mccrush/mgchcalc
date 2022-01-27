@@ -127,7 +127,7 @@
         <ModalBodyOrderNafrezerItem
           v-for="elem in item.rabotaArray"
           :key="elem.id"
-          :elem="elem"
+          :item="elem"
           @change="selectRabotaItem(elem)"
         />
       </div>

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import getDateNow from '@/scripts/getDateNow'
+//import getDateNow from '@/scripts/getDateNow'
 import KanbanCard from '@/components/kanban/KanbanCard'
 
 export default {
@@ -35,7 +35,7 @@ export default {
     KanbanCard
   },
   props: ['title', 'array', 'pathname', 'status'],
-  emits: ['edit-order'],
+  emits: ['edit-item'],
   computed: {
     items() {
       return this.$store.getters[this.pathname]
@@ -78,7 +78,7 @@ export default {
     },
     editItem(id) {
       const item = this.array.find(item => item.id === id)
-      this.$emit('edit-order', item)
+      this.$emit('edit-item', item)
     }
   }
 }

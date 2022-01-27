@@ -7,7 +7,7 @@
       :pathname="pathname"
       :status="etap.alias"
       :array="getArray(etap.alias)"
-      @edit-order="editOrder"
+      @edit-item="showModal"
       class="wrap-order-list ps-1 pe-2"
       @mousedown.self="scrollMouseDown($event)"
       @mouseleave.self="scrollMouseLeave($event)"
@@ -26,7 +26,7 @@ export default {
   components: {
     KanbanList
   },
-  emits: ['edit-order'],
+  emits: ['show-modal'],
   computed: {
     pathname() {
       return this.$store.getters.pathname
@@ -93,8 +93,8 @@ export default {
         return this.items.filter(item => item.status === alias)
       }
     },
-    editOrder(order) {
-      this.$emit('edit-order', { order, mod: 'edit' })
+    showModal(modal) {
+      this.$emit('show-modal', { modal, mod: 'edit' })
     }
   }
 }

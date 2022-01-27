@@ -4,12 +4,12 @@
     <Navbar />
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>
-        <component :is="myComponent" @edit-modal="showModal" />
+        <component :is="myComponent" @show-modal="showModal" />
       </transition>
     </div>
   </div>
-  <ModalMain id="modalOrder" :item="modal" @show-modal="showModal" />
-  <ModalMain id="modalNafrezer" :item="modal" />
+  <ModalMain id="modalOrder" :item="modalOrder" @show-modal="showModal" />
+  <ModalMain id="modalNafrezer" :item="modalNafrezer" />
   <!-- <ModalWindow
     :order="order"
     :mod="mod"
@@ -53,7 +53,8 @@ export default {
   data() {
     return {
       //order: { siryoArray: [], rabotaArray: [], dopuslugArray: [] },
-      modal: null,
+      modalOrder: null,
+      modalNafrezer: null,
       mod: ''
     }
   },
@@ -90,14 +91,16 @@ export default {
   },
   methods: {
     showModal({ modal, mod }) {
-      console.log('modal', modal)
-      this.modal = modal
+      //console.log('modal', modal)
+      //this.modal = modal
       this.mod = mod
 
       let myModal
       if (modal.type === 'order') {
+        this.modalOrder = modal
         myModal = new Modal(document.getElementById('modalOrder'))
       } else if (modal.type === 'nafrezer') {
+        this.modalNafrezer = modal
         myModal = new Modal(document.getElementById('modalNafrezer'))
       }
 
