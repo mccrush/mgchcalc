@@ -13,6 +13,7 @@
     :mod="mod"
     :pathname="pathname"
     id="staticBackdrop"
+    @edit-order="editOrder"
   />
   <!-- <SettingsBar /> -->
 </template>

@@ -15,10 +15,23 @@
       <div class="modal-content border-0">
         <ModalHeader>
           <template v-slot:modal-title>
-            Параметры {{ pathname === 'order' ? 'заказа' : 'обработки' }}
+            Параметры {{ order.type === 'order' ? 'заказа' : 'обработки' }}
           </template>
         </ModalHeader>
-        <ModalBodyOrder
+        <transition name="fade" mode="out-in" appear>
+          <component
+            :is="modalBody"
+            @update-object="updateItem"
+            @update-order-title="updateOrderTitle"
+            @update-order-status="updateObjectStatus"
+            @update-object-datefinish="updateObjectDatefinish"
+            @update-nafrezer-polka="updateNafrezerPolka"
+            @create-tz="createTZ"
+            :order="order"
+            :mod="mod"
+          />
+        </transition>
+        <!-- <ModalBodyOrder
           v-if="order && (pathname === 'order' || pathname === 'calc')"
           @update-object="updateItem"
           @update-order-title="updateOrderTitle"
@@ -36,10 +49,10 @@
           @update-nafrezer-polka="updateNafrezerPolka"
           :order="order"
           :mod="mod"
-        />
+        /> -->
         <ModalFooter @save-item="saveItem" @remove-item="removeItem" :mod="mod"
           ><template v-slot:modal-footer>
-            {{ pathname === 'order' ? 'заказ' : 'обработку' }}
+            {{ order.type === 'order' ? 'заказ' : 'обработку' }}
           </template>
         </ModalFooter>
       </div>
@@ -54,18 +67,34 @@ import ModalHeader from '@/components/modal/ModalHeader'
 import ModalBodyOrder from '@/components/modal/ModalBodyOrder'
 import ModalBodyNafrezer from '@/components/modal/ModalBodyNafrezer'
 import ModalFooter from '@/components/modal/ModalFooter'
+import ModalBodyTemplate from '@/components/modal/ModalBodyTemplate'
 
 export default {
   components: {
     ModalHeader,
     ModalBodyOrder,
     ModalBodyNafrezer,
-    ModalFooter
+    ModalFooter,
+    ModalBodyTemplate
   },
   props: {
     order: Object,
     mod: String,
     pathname: String
+  },
+  computed: {
+    modalBody() {
+      console.log('this.order:', this.order)
+      if (this.order) {
+        if (this.order.type === 'order') {
+          return 'ModalBodyOrder'
+        } else if (this.order.type === 'nafrezer') {
+          return 'ModalBodyNafrezer'
+        }
+      } else {
+        return 'ModalBodyTemplate'
+      }
+    }
   },
   methods: {
     createTZ(rabotaArray) {
@@ -78,7 +107,7 @@ export default {
       )
       console.log('createTZ elem:', item)
 
-      //this.$emit('edit-order', { order: item, mod: 'create' })
+      this.$emit('edit-order', { order: item, mod: 'create' })
       //this.$store.dispatch('addItemRT', { item })
 
       // rabotaArray.forEach(elem => {
