@@ -4,12 +4,12 @@
     <Navbar />
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>
-        <component :is="myComponent" @edit-card="editCard" />
+        <component :is="myComponent" @edit-modal="showModal" />
       </transition>
     </div>
   </div>
-  <ModalOrder id="modalOrder" :card="card" @show-window="editCard" />
-  <ModalNafrezer id="modalNafrezer" :card="card" />
+  <ModalMain id="modalOrder" :item="modal" @show-modal="showModal" />
+  <ModalMain id="modalNafrezer" :item="modal" />
   <!-- <ModalWindow
     :order="order"
     :mod="mod"
@@ -38,8 +38,7 @@ import Admin from '@/views/Admin'
 import KanbanBoard from '@/views/KanbanBoard'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
-import ModalOrder from '@/components/modal/ModalOrder'
-import ModalNafrezer from '@/components/modal/ModalNafrezer'
+import ModalMain from '@/components/modal/ModalMain'
 
 export default {
   components: {
@@ -49,13 +48,12 @@ export default {
     Admin,
     KanbanBoard,
     ButtonSettings,
-    ModalOrder,
-    ModalNafrezer
+    ModalMain
   },
   data() {
     return {
       //order: { siryoArray: [], rabotaArray: [], dopuslugArray: [] },
-      card: null,
+      modal: null,
       mod: ''
     }
   },
@@ -65,7 +63,7 @@ export default {
   },
   computed: {
     pathname() {
-      this.card = null
+      this.modal = null
       return this.$store.getters.pathname
     },
     widthBlock() {
@@ -91,20 +89,15 @@ export default {
     }
   },
   methods: {
-    editCard({ card, mod }) {
-      console.log('card', card)
-      this.card = card
+    showModal({ modal, mod }) {
+      console.log('modal', modal)
+      this.modal = modal
       this.mod = mod
 
       let myModal
-      let oldModal
-      if (card.type === 'order') {
-        //oldModal = new Modal(document.getElementById('modalNafrezer'))
-        //oldModal.hide()
+      if (modal.type === 'order') {
         myModal = new Modal(document.getElementById('modalOrder'))
-      } else if (card.type === 'nafrezer') {
-        //oldModal = new Modal(document.getElementById('modalOrder'))
-        //oldModal.hide()
+      } else if (modal.type === 'nafrezer') {
         myModal = new Modal(document.getElementById('modalNafrezer'))
       }
 

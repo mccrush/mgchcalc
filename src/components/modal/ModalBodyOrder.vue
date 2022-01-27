@@ -6,19 +6,19 @@
           <input
             type="text"
             class="form-control form-control-sm"
-            id="orderTitle"
-            v-model.trim="order.title"
+            id="itemTitle"
+            v-model.trim="item.title"
             placeholder="Название заказа"
-            @change="$emit('update-object', order)"
+            @change="$emit('update-item', item)"
           />
-          <label for="orderTitle">Название заказа</label>
+          <label for="itemTitle">Название заказа</label>
         </div>
       </div>
       <div class="col-3 pe-0">
         <div class="form-floating">
           <select
             v-model="client"
-            @change="$emit('update-order-title', client)"
+            @change="$emit('update-item-title', client)"
             class="form-select"
             id="selectClient"
           >
@@ -36,8 +36,8 @@
       <div class="col-3">
         <div class="form-floating">
           <select
-            v-model="order.status"
-            @change="$emit('update-order-status', order)"
+            v-model="item.status"
+            @change="$emit('update-item-status', item)"
             class="form-select"
             id="statusOrder"
           >
@@ -58,11 +58,11 @@
       <div class="col-4 pe-0">
         <div class="form-floating">
           <input
-            @change="$emit('update-object', order)"
+            @change="$emit('update-item', item)"
             type="datetime-local"
             id="date"
             class="form-control form-control-sm"
-            v-model="order.dateCreate"
+            v-model="item.dateCreate"
           />
           <label for="date">Создан</label>
         </div>
@@ -70,11 +70,11 @@
       <div class="col-4">
         <div class="form-floating">
           <input
-            @change="$emit('update-object', order)"
+            @change="$emit('update-item', item)"
             type="datetime-local"
             id="date"
             class="form-control form-control-sm"
-            v-model="order.dateForReady"
+            v-model="item.dateForReady"
           />
           <label for="date">Срок сдачи</label>
         </div>
@@ -82,11 +82,11 @@
       <div class="col-4 ps-0">
         <div class="form-floating">
           <input
-            @change="$emit('update-object-datefinish', order)"
+            @change="$emit('update-item-datefinish', item)"
             type="datetime-local"
             id="date"
             class="form-control form-control-sm"
-            v-model="order.dateFinish"
+            v-model="item.dateFinish"
           />
           <label for="date">Завершен</label>
         </div>
@@ -94,10 +94,10 @@
     </div>
 
     <!-- -->
-    <div v-if="order.siryoArray.length">
+    <div v-if="item.siryoArray.length">
       <h6 class="mt-3">Материалы</h6>
       <ul class="list-group ist-group-numbered">
-        <ModalBodyOrderList v-for="elem in order.siryoArray" :key="elem.id">
+        <ModalBodyOrderList v-for="elem in item.siryoArray" :key="elem.id">
           <template v-slot:title
             >{{ elem.title }}, {{ elem.dlina }} x {{ elem.shirina }} =
             {{ elem.size }} {{ elem.ed }}</template
@@ -121,16 +121,14 @@
         </ModalBodyOrderList>
       </ul>
     </div>
-    <!-- order.rabotaArray -->
-    <!-- <div v-if="order.rabotaArray.length || nafrezer.length"> -->
     <div>
       <h6 class="mt-3">Услуги обработки</h6>
       <div class="list-group ist-group-numbered">
         <ModalBodyOrderNafrezerItem
-          v-for="item in order.rabotaArray"
-          :key="item.id"
-          :item="item"
-          @change="selectItem(item)"
+          v-for="elem in item.rabotaArray"
+          :key="elem.id"
+          :elem="elem"
+          @change="selectRabotaItem(elem)"
         />
       </div>
       <div class="row pt-2">
@@ -149,10 +147,10 @@
       </div>
     </div>
     <!-- -->
-    <div v-if="order.dopuslugArray.length">
+    <div v-if="item.dopuslugArray.length">
       <h6 class="mt-3">Дополнительные услуги</h6>
       <ul class="list-group ist-group-numbered">
-        <ModalBodyOrderList v-for="elem in order.dopuslugArray" :key="elem.id">
+        <ModalBodyOrderList v-for="elem in item.dopuslugArray" :key="elem.id">
           <template v-slot:title
             >{{ elem.title }}, {{ elem.size }} {{ elem.ed }}</template
           >
@@ -179,42 +177,33 @@ export default {
     ModalBodyOrderNafrezerItem,
     ModalBodyOrderList
   },
-  props: ['order', 'mod'],
+  props: ['item', 'mod'],
   emits: [
-    'update-object',
-    'update-order-title',
-    'update-order-status',
-    'update-object-datefinish',
+    'update-item',
+    'update-item-title',
+    'update-item-status',
+    'update-item-datefinish',
     'create-tz'
   ],
   data() {
     return {
       voronkaOrders,
       clients,
-      client: this.order.client,
+      client: this.item.client,
       rabotaArrayTZ: []
     }
   },
-  computed: {
-    nafrezer() {
-      return []
-      if (this.$store.getters.nafrezer.length) {
-        return this.$store.getters.nafrezer.filter(
-          item => item.orderId === this.order.id
-        )
-      }
-    }
-  },
+  computed: {},
   methods: {
     createTZ() {
       this.$emit('create-tz', this.rabotaArrayTZ)
     },
-    selectItem(item) {
-      if (!this.rabotaArrayTZ.find(elem => elem.id === item.id)) {
-        this.rabotaArrayTZ.push(item)
+    selectRabotaItem(rabota) {
+      if (!this.rabotaArrayTZ.find(elem => elem.id === rabota.id)) {
+        this.rabotaArrayTZ.push(rabota)
       } else {
         this.rabotaArrayTZ = this.rabotaArrayTZ.filter(
-          elem => elem.id != item.id
+          elem => elem.id != rabota.id
         )
       }
 
