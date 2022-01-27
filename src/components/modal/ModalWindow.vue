@@ -64,7 +64,7 @@
 import getDateNow from '@/scripts/getDateNow'
 import createNafrezer from '@/scripts/createNafrezer'
 import ModalHeader from '@/components/modal/ModalHeader'
-import ModalBodyOrder from '@/components/modal/ModalBodyOrder'
+import ModalOrderBody from '@/components/modal/ModalOrderBody'
 import ModalBodyNafrezer from '@/components/modal/ModalBodyNafrezer'
 import ModalFooter from '@/components/modal/ModalFooter'
 import ModalBodyTemplate from '@/components/modal/ModalBodyTemplate'
@@ -72,7 +72,7 @@ import ModalBodyTemplate from '@/components/modal/ModalBodyTemplate'
 export default {
   components: {
     ModalHeader,
-    ModalBodyOrder,
+    ModalOrderBody,
     ModalBodyNafrezer,
     ModalFooter,
     ModalBodyTemplate

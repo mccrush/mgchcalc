@@ -4,11 +4,13 @@
     <Navbar />
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>
-        <component :is="myComponent" @edit-order="editOrder" />
+        <component :is="myComponent" @edit-card="editCard" />
       </transition>
     </div>
   </div>
-  <ModalWindow
+  <ModalOrder id="modalOrder" :card="card" @show-window="editCard" />
+  <ModalNafrezer id="modalNafrezer" :card="card" />
+  <!-- <ModalWindow
     :order="order"
     :mod="mod"
     :pathname="pathname"
@@ -21,7 +23,7 @@
     :pathname="pathname"
     id="staticBackdrop2"
     @edit-order="editOrder"
-  />
+  /> -->
   <!-- <SettingsBar /> -->
 </template>
 
@@ -36,8 +38,8 @@ import Admin from '@/views/Admin'
 import KanbanBoard from '@/views/KanbanBoard'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
-import ModalWindow from '@/components/modal/ModalWindow'
-import ModalWindow2 from '@/components/modal/ModalWindow2'
+import ModalOrder from '@/components/modal/ModalOrder'
+import ModalNafrezer from '@/components/modal/ModalNafrezer'
 
 export default {
   components: {
@@ -47,13 +49,13 @@ export default {
     Admin,
     KanbanBoard,
     ButtonSettings,
-    ModalWindow,
-    ModalWindow2
+    ModalOrder,
+    ModalNafrezer
   },
   data() {
     return {
       //order: { siryoArray: [], rabotaArray: [], dopuslugArray: [] },
-      order: null,
+      card: null,
       mod: ''
     }
   },
@@ -63,7 +65,7 @@ export default {
   },
   computed: {
     pathname() {
-      this.order = null
+      this.card = null
       return this.$store.getters.pathname
     },
     widthBlock() {
@@ -89,20 +91,21 @@ export default {
     }
   },
   methods: {
-    editOrder({ order, mod }) {
-      this.order = order
+    editCard({ card, mod }) {
+      console.log('card', card)
+      this.card = card
       this.mod = mod
 
       let myModal
       let oldModal
-      if (order.type === 'order') {
-        oldModal = new Modal(document.getElementById('staticBackdrop2'))
-        oldModal.hide()
-        myModal = new Modal(document.getElementById('staticBackdrop'))
-      } else if (order.type === 'nafrezer') {
-        oldModal = new Modal(document.getElementById('staticBackdrop'))
-        oldModal.hide()
-        myModal = new Modal(document.getElementById('staticBackdrop2'))
+      if (card.type === 'order') {
+        //oldModal = new Modal(document.getElementById('modalNafrezer'))
+        //oldModal.hide()
+        myModal = new Modal(document.getElementById('modalOrder'))
+      } else if (card.type === 'nafrezer') {
+        //oldModal = new Modal(document.getElementById('modalOrder'))
+        //oldModal.hide()
+        myModal = new Modal(document.getElementById('modalNafrezer'))
       }
 
       myModal.show()
