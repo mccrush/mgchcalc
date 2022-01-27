@@ -15,7 +15,7 @@
       <div class="modal-content border-0">
         <ModalHeader>
           <template v-slot:modal-title>
-            Параметры {{ pathname === 'order' ? 'заказа' : 'обработки' }}
+            Параметры 2 {{ pathname === 'order' ? 'заказа' : 'обработки' }}
           </template>
         </ModalHeader>
         <transition name="fade" mode="out-in" appear>

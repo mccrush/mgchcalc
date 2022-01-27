@@ -15,6 +15,13 @@
     id="staticBackdrop"
     @edit-order="editOrder"
   />
+  <ModalWindow2
+    :order="order"
+    :mod="mod"
+    :pathname="pathname"
+    id="staticBackdrop2"
+    @edit-order="editOrder"
+  />
   <!-- <SettingsBar /> -->
 </template>
 
@@ -30,6 +37,7 @@ import KanbanBoard from '@/views/KanbanBoard'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
 import ModalWindow from '@/components/modal/ModalWindow'
+import ModalWindow2 from '@/components/modal/ModalWindow2'
 
 export default {
   components: {
@@ -39,7 +47,8 @@ export default {
     Admin,
     KanbanBoard,
     ButtonSettings,
-    ModalWindow
+    ModalWindow,
+    ModalWindow2
   },
   data() {
     return {
@@ -83,7 +92,19 @@ export default {
     editOrder({ order, mod }) {
       this.order = order
       this.mod = mod
-      var myModal = new Modal(document.getElementById('staticBackdrop'))
+
+      let myModal
+      let oldModal
+      if (order.type === 'order') {
+        oldModal = new Modal(document.getElementById('staticBackdrop2'))
+        oldModal.hide()
+        myModal = new Modal(document.getElementById('staticBackdrop'))
+      } else if (order.type === 'nafrezer') {
+        oldModal = new Modal(document.getElementById('staticBackdrop'))
+        oldModal.hide()
+        myModal = new Modal(document.getElementById('staticBackdrop2'))
+      }
+
       myModal.show()
     }
   }
