@@ -27,7 +27,7 @@ export default {
         await remove(ref(db, type + '/' + id))
         commit('updateLoadingStatusRT', false)
       } catch (error) {
-        console.log('error realtime.js removeItemRT:', error)
+        console.error('error realtime.js removeItemRT:', error)
       }
     },
     async updateItemRT({ commit }, { item }) {
@@ -36,7 +36,7 @@ export default {
         await update(ref(db, item.type + '/' + item.id), item)
         commit('updateLoadingStatusRT', false)
       } catch (error) {
-        console.log('error realtime.js updateItemRT:', error)
+        console.error('error realtime.js updateItemRT:', error)
       }
     },
     getItemsRT({ commit }, { type }) {
@@ -55,7 +55,7 @@ export default {
           commit('updateLoadingStatusRT', false)
         })
       } catch (error) {
-        console.log('error realtime.js getItemsRT:', error)
+        console.error('error realtime.js getItemsRT:', error)
       }
     },
     async addItemRT({ commit }, { item }) {
@@ -65,7 +65,7 @@ export default {
         await set(ref(db, item.type + '/' + item.id), item)
         commit('updateLoadingStatusRT', false)
       } catch (error) {
-        console.log('error realtime.js addItemRT:', error)
+        console.error('error realtime.js addItemRT:', error)
       }
     }
   },

@@ -38,7 +38,7 @@ export default {
         commit('updateLoadingStatus', false)
         console.log('Данные удалены')
       } catch (error) {
-        console.log('error admin.js removeItem:', error)
+        console.error('error admin.js removeItem:', error)
       }
     },
     async updateItem({ commit }, { item }) {
@@ -49,7 +49,7 @@ export default {
         commit('updateLoadingStatus', false)
         console.log('Данные обновлены')
       } catch (error) {
-        console.log('error admin.js updateItem:', error)
+        console.error('error admin.js updateItem:', error)
       }
     },
     async addItem({ commit }, { item }) {
@@ -59,7 +59,7 @@ export default {
         commit('updateLoadingStatus', false)
         console.log('Данные добавлены')
       } catch (error) {
-        console.log('error admin.js addItem:', error)
+        console.error('error admin.js addItem:', error)
       }
     },
     async getItems({ commit }, { type }) {
