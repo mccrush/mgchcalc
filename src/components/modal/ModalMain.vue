@@ -35,6 +35,9 @@
           ><template v-slot:modal-footer>
             {{ item.type === 'order' ? 'заказ' : 'обработку' }}
           </template>
+          <template v-slot:modal-footer-close>
+            {{ mod === 'create' ? 'Отмена' : 'Закрыть' }}
+          </template>
         </ModalFooter>
       </div>
     </div>

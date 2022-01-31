@@ -9,7 +9,11 @@
     "
   >
     <div class="pt-1">
-      <input class="form-check-input me-2" type="checkbox" />
+      <input
+        v-if="mod === 'edit'"
+        class="form-check-input me-2"
+        type="checkbox"
+      />
       <span> {{ item.title }}, {{ item.size }} {{ item.ed }} </span>
     </div>
     <div class="d-flex align-content-center">
@@ -22,7 +26,7 @@
 
 <script>
 export default {
-  props: ['item']
+  props: ['item', 'mod']
 }
 </script>
 

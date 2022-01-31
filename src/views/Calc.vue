@@ -190,9 +190,9 @@ export default {
       siryoMessage: '',
       rabotaMessage: '',
       dopuslugMessage: '',
-      siryoArray: [createCalc()],
-      rabotaArray: [createCalc()],
-      dopuslugArray: [createCalc()],
+      siryoArray: [],
+      rabotaArray: [],
+      dopuslugArray: [],
       enableProcent: true,
       enableMinPrice: true
     }

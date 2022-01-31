@@ -8,8 +8,13 @@
       </transition>
     </div>
   </div>
-  <ModalMain id="modalOrder" :item="modalOrder" @show-modal="showModal" />
-  <ModalMain id="modalNafrezer" :item="modalNafrezer" />
+  <ModalMain
+    id="modalOrder"
+    :item="modalOrder"
+    @show-modal="showModal"
+    :mod="mod"
+  />
+  <ModalMain id="modalNafrezer" :item="modalNafrezer" :mod="mod" />
   <!-- <ModalWindow
     :order="order"
     :mod="mod"
@@ -94,6 +99,7 @@ export default {
       //console.log('modal', modal)
       //this.modal = modal
       this.mod = mod
+      //console.log('this.mod', this.mod)
 
       let myModal
       if (modal.type === 'order') {

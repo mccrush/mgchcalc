@@ -121,17 +121,18 @@
         </ModalBodyOrderList>
       </ul>
     </div>
-    <div>
+    <div v-if="item.rabotaArray.length">
       <h6 class="mt-3">Услуги обработки</h6>
       <div class="list-group ist-group-numbered">
         <ModalBodyOrderNafrezerItem
           v-for="elem in item.rabotaArray"
           :key="elem.id"
           :item="elem"
+          :mod="mod"
           @change="selectRabotaItem(elem)"
         />
       </div>
-      <div class="row pt-2">
+      <div v-if="mod === 'edit'" class="row pt-2">
         <div class="col-3"></div>
         <div class="col-3"></div>
         <div class="col-3"></div>
