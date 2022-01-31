@@ -82,7 +82,7 @@ export default {
         this.item.dateForReady,
         rabotaArray
       )
-      console.log('ModalMain, createTZ elem:', newNafrezer)
+      console.log('ModalMain: createTZ elem:', newNafrezer)
 
       this.$emit('show-modal', { modal: newNafrezer, mod: 'edit' })
       this.$store.dispatch('addItemRT', { item: newNafrezer })
@@ -94,7 +94,7 @@ export default {
     updateStatusInRabotaArray(id) {
       let array = this.order.rabotaArray.map(item => {
         if (item.id === id) {
-          console.log('item:', item)
+          console.log('ModalMain: updateStatusInRabotaArray: item:', item)
           item.status = 'inprogress'
           return item
         }

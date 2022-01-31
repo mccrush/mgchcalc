@@ -13,12 +13,12 @@ export default createStore({
     realtime
   },
   actions: {
-    updateItemStatus({ dispatch }, { item }) {
-      console.log('updateItemStatus Run');
+    updateItemStatus({ dispatch, getters }, { item }) {
+      console.log('Index.js: updateItemStatus Run');
 
       if (item.type === 'order') {
         if (item.status === 'doneorder') {
-          const nafrezer = this.$store.getters.nafrezer.filter(
+          const nafrezer = getters.nafrezer.filter(
             elem => elem.orderId === item.id
           )
 
@@ -40,7 +40,7 @@ export default createStore({
           item.dateFinish = getDateNow
         } else {
           item.dateFinish = ''
-          let parentOrder = this.$store.getters.parentOrder(item.orderId)
+          let parentOrder = getters.parentOrder(item.orderId)
           parentOrder.status = 'nafrezer'
           dispatch('updateItemRT', { item: parentOrder })
         }
