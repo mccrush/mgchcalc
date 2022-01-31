@@ -10,7 +10,7 @@
   >
     <div class="pt-1">
       <input
-        v-if="type === 'order'"
+        v-if="type === 'order' && mod === 'edit'"
         class="form-check-input me-2"
         type="checkbox"
       />
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  props: ['item', 'type']
+  props: ['item', 'type', 'mod']
 }
 </script>
 

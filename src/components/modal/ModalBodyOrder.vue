@@ -94,7 +94,7 @@
     </div>
 
     <!-- -->
-    <div v-if="item.siryoArray.length">
+    <div v-if="item.siryoArray && item.siryoArray.length">
       <h6 class="mt-3">Материалы</h6>
       <ul class="list-group ist-group-numbered">
         <ModalBodyOrderList v-for="elem in item.siryoArray" :key="elem.id">
@@ -121,13 +121,14 @@
         </ModalBodyOrderList>
       </ul>
     </div>
-    <div v-if="item.rabotaArray.length">
+    <div v-if="item.rabotaArray && item.rabotaArray.length">
       <h6 class="mt-3">Услуги обработки</h6>
       <div class="list-group ist-group-numbered">
         <ModalBodyOrderNafrezerItem
           v-for="elem in item.rabotaArray"
           :key="elem.id"
           :item="elem"
+          :type="item.type"
           :mod="mod"
           @change="selectRabotaItem(elem)"
         />
@@ -149,7 +150,7 @@
       </div>
     </div>
     <!-- -->
-    <div v-if="item.dopuslugArray">
+    <div v-if="item.dopuslugArray && item.dopuslugArray.length">
       <h6 class="mt-3">Дополнительные услуги</h6>
       <ul class="list-group ist-group-numbered">
         <ModalBodyOrderList v-for="elem in item.dopuslugArray" :key="elem.id">
