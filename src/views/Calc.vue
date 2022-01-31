@@ -181,7 +181,7 @@ export default {
     BlockAddCalc,
     BlockShowSum
   },
-  emits: ['edit-order'],
+  emits: ['show-modal'],
   data() {
     return {
       siryoSum: 0,
@@ -322,7 +322,7 @@ export default {
         this.dopuslugArray
       )
 
-      this.$emit('edit-order', { order, mod: 'create' })
+      this.$emit('show-modal', { modal: order, mod: 'create' })
     },
     removeCalc({ type, id }) {
       this[type] = this[type].filter(item => item.id !== id)

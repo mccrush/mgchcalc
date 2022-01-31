@@ -10,7 +10,7 @@
       Удалить <slot name="modal-footer">элемент</slot>
     </button>
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-      Отмена
+      Закрыть
     </button>
     <button
       v-if="mod === 'create'"
