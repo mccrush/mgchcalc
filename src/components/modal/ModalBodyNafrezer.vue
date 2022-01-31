@@ -15,7 +15,19 @@
           <label for="nafrezerTitle">Название работы</label>
         </div>
       </div>
-      <div class="col-3 pe-0"></div>
+      <div class="col-3 pe-0">
+        <form class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="client"
+            placeholder="Заказчик не указан"
+            :value="item.client"
+            readonly
+          />
+          <label for="client">Заказчик</label>
+        </form>
+      </div>
       <div class="col-3">
         <div class="form-floating">
           <select
@@ -75,19 +87,9 @@
         </div>
       </div>
     </div>
-    <div class="row pt-2">
+    <!-- <div class="row pt-2">
       <div class="col-6 pe-0">
-        <form class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="client"
-            placeholder="Заказчик не указан"
-            :value="item.client"
-            readonly
-          />
-          <label for="client">Заказчик</label>
-        </form>
+        
       </div>
       <div class="col-6">
         <form class="form-floating">
@@ -102,8 +104,28 @@
           <label for="izdelie">Изделие</label>
         </form>
       </div>
+    </div> -->
+    <!-- -->
+    <div v-if="item.rabotaArray.length">
+      <h6 class="mt-3">Услуги обработки</h6>
+      <div class="list-group ist-group-numbered">
+        <ModalBodyOrderNafrezerItem
+          v-for="elem in item.rabotaArray"
+          :key="elem.id"
+          :item="elem"
+          :type="item.type"
+        />
+      </div>
     </div>
+    <!-- -->
     <div class="row pt-2">
+      <div class="col-12 d-flex justify-content-end">
+        <span class="badge bg-light text-success align-self-center p-2"
+          >Итого ЗП: {{ itogoZP }} ₽</span
+        >
+      </div>
+    </div>
+    <!-- <div class="row pt-2">
       <div class="col-3 pe-0">
         <form class="form-floating">
           <input
@@ -156,7 +178,7 @@
           <label for="zp">ЗП, ₽</label>
         </form>
       </div>
-    </div>
+    </div> -->
     <div v-if="mod === 'edit'" class="row mt-2">
       <div class="col-4"></div>
       <div class="col-4"></div>
@@ -179,8 +201,12 @@
 
 <script>
 import voronkaNafrezer from '@/data/voronkaNafrezer'
+import ModalBodyOrderNafrezerItem from '@/components/modal/ModalBodyOrderNafrezerItem'
 
 export default {
+  components: {
+    ModalBodyOrderNafrezerItem
+  },
   props: ['item', 'mod'],
   emits: [
     'update-item',
@@ -188,6 +214,15 @@ export default {
     'update-item-datefinish',
     'update-item-polka'
   ],
+  computed: {
+    itogoZP() {
+      return this.item.rabotaArray
+        .map(item => {
+          return Math.floor(item.summa * 0.4)
+        })
+        .reduce((pre, next) => pre + next)
+    }
+  },
   data() {
     return {
       voronkaNafrezer

@@ -149,7 +149,7 @@
       </div>
     </div>
     <!-- -->
-    <div v-if="item.dopuslugArray.length">
+    <div v-if="item.dopuslugArray">
       <h6 class="mt-3">Дополнительные услуги</h6>
       <ul class="list-group ist-group-numbered">
         <ModalBodyOrderList v-for="elem in item.dopuslugArray" :key="elem.id">
@@ -195,7 +195,6 @@ export default {
       rabotaArrayTZ: []
     }
   },
-  computed: {},
   methods: {
     createTZ() {
       this.$emit('create-tz', this.rabotaArrayTZ)

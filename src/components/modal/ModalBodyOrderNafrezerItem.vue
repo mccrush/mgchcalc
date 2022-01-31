@@ -10,7 +10,7 @@
   >
     <div class="pt-1">
       <input
-        v-if="mod === 'edit'"
+        v-if="type === 'order'"
         class="form-check-input me-2"
         type="checkbox"
       />
@@ -18,7 +18,10 @@
     </div>
     <div class="d-flex align-content-center">
       <span class="badge bg-light text-dark align-self-center me-2 p-2"
-        >{{ item.summa }} ₽</span
+        >Стоимость: {{ item.summa }} ₽</span
+      >
+      <span class="badge bg-light text-success align-self-center me-2 p-2"
+        >ЗП: {{ Math.floor(item.summa * 0.4) }} ₽</span
       >
     </div>
   </label>
@@ -26,7 +29,7 @@
 
 <script>
 export default {
-  props: ['item', 'mod']
+  props: ['item', 'type']
 }
 </script>
 

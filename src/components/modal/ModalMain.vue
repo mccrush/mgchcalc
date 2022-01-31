@@ -63,7 +63,7 @@ export default {
   emits: ['show-modal'],
   computed: {
     modalBody() {
-      console.log('ModalMain, this.item:', this.item)
+      //console.log('ModalMain, this.item:', this.item)
       if (this.item) {
         if (this.item.type === 'order') {
           return 'ModalBodyOrder'
@@ -82,10 +82,10 @@ export default {
         this.item.dateForReady,
         rabotaArray
       )
-      console.log('createTZ elem:', newNafrezer)
+      console.log('ModalMain, createTZ elem:', newNafrezer)
 
-      this.$emit('show-modal', { modal: newNafrezer, mod: 'create' })
-      //this.$store.dispatch('addItemRT', { item })
+      this.$emit('show-modal', { modal: newNafrezer, mod: 'edit' })
+      this.$store.dispatch('addItemRT', { item: newNafrezer })
 
       // rabotaArray.forEach(elem => {
       //   this.updateStatusInRabotaArray(elem.id)
@@ -144,7 +144,7 @@ export default {
     },
     saveItem() {
       if (this.item.title) {
-        console.log('save item:', this.item)
+        console.log('ModalMain, save item:', this.item)
         this.$store.dispatch('addItemRT', { item: this.item })
       }
     },
