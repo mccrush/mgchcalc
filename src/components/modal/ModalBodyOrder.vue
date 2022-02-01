@@ -166,6 +166,7 @@
         </ModalBodyOrderList>
       </ul>
     </div>
+    <ModalBodyFiles />
   </div>
 </template>
 
@@ -174,11 +175,13 @@ import voronkaOrders from '@/data/voronkaOrders'
 import clients from '@/data/clients'
 import ModalBodyOrderNafrezerItem from '@/components/modal/ModalBodyOrderNafrezerItem'
 import ModalBodyOrderList from '@/components/modal/ModalBodyOrderList'
+import ModalBodyFiles from '@/components/modal/ModalBodyFiles'
 
 export default {
   components: {
     ModalBodyOrderNafrezerItem,
-    ModalBodyOrderList
+    ModalBodyOrderList,
+    ModalBodyFiles
   },
   props: ['item', 'mod'],
   emits: [

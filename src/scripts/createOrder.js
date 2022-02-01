@@ -17,7 +17,8 @@ export default (orderNumber, siryoArray, rabotaArray, dopuslugArray) => {
     status: 'neworder',
     siryoArray,
     rabotaArray,
-    dopuslugArray
+    dopuslugArray,
+    files: []
   }
   return item
 }

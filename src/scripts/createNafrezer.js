@@ -12,7 +12,8 @@ export default (title, orderId, client, dateForReady, rabotaArray) => {
     type: 'nafrezer',
     status: 'newfrezer',
     rabotaArray,
-    polka: ''
+    polka: '',
+    files: []
   }
   return item
 }
