@@ -10,7 +10,8 @@ export default {
     material: [],
     obrabotkavid: [],
     obrabotkatolshina: [],
-    dopuslug: []
+    dopuslug: [],
+    customer: []
   },
   mutations: {
     removeItem(state, { type, id }) {
