@@ -3,7 +3,7 @@
     <div class="col-6">
       <ul class="list-group">
         <li
-          v-for="file in item.files"
+          v-for="(file, index) in item.files"
           :key="file.title"
           class="list-group-item"
         >
@@ -16,11 +16,12 @@
                 :href="file.link"
                 class="btn btn-sm btn-outline-secondary w-100"
                 :download="file.title"
+                target="_blank"
                 >Скачать</a
               >
             </div>
             <div class="col-2">
-              <ButtonTrash />
+              <ButtonTrash @click="removeFile(file.fileRef, index)" />
             </div>
           </div>
         </li>
@@ -54,20 +55,12 @@ export default {
     ButtonTrash
   },
   props: ['item'],
-  data() {
-    return {
-      files: [
-        { id: '11', title: 'Some title of file one', link: 'https://downlink' },
-        { id: '12', title: 'Else one of files', link: 'https://downlink' },
-        {
-          id: '13',
-          title: 'More lont title of download files',
-          link: 'https://downlink'
-        }
-      ]
-    }
-  },
   methods: {
+    removeFile(fileRef, index) {
+      this.$store.dispatch('removeFile', { fileRef })
+      this.item.files.splice(index, 1)
+      this.$store.dispatch('updateItemRT', { item: this.item })
+    },
     async loadFile(e) {
       const file = e.target.files[0]
       console.log('ModalBodyFiles:loadfile:file:', file)
@@ -81,16 +74,20 @@ export default {
 
         console.log('ModalBodyFiles:loadfile:file.name:', file.name)
 
-        const downloadLink = await this.$store.dispatch('addFile', {
-          item: this.item,
-          file
-        })
+        const { downloadLink, fileRef } = await this.$store.dispatch(
+          'addFile',
+          {
+            item: this.item,
+            file
+          }
+        )
         console.log('ModalBodyFiles:loadfile:link:', downloadLink)
 
         const fileItem = {
           title: file.name,
           link: downloadLink,
-          size
+          size,
+          fileRef
         }
 
         console.log('ModalBodyFiles:loadfile:fileItem:', fileItem)
