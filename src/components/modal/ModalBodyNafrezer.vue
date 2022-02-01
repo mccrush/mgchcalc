@@ -125,60 +125,6 @@
         >
       </div>
     </div>
-    <!-- <div class="row pt-2">
-      <div class="col-3 pe-0">
-        <form class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="size"
-            placeholder="Размеры не указаны"
-            :value="item.size + ' ' + item.ed"
-            readonly
-          />
-          <label for="size">Размеры</label>
-        </form>
-      </div>
-      <div class="col-3 pe-0">
-        <form class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="price"
-            placeholder="Цена не указана"
-            :value="item.price"
-            readonly
-          />
-          <label for="price">Цена, ₽</label>
-        </form>
-      </div>
-      <div class="col-3 pe-0">
-        <form class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="summa"
-            placeholder="Стоимость не указана"
-            :value="item.summa"
-            readonly
-          />
-          <label for="summa">Стоимость, ₽</label>
-        </form>
-      </div>
-      <div class="col-3">
-        <form class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="zp"
-            placeholder="ЗП не указана"
-            :value="Math.floor(item.summa * 0.4)"
-            readonly
-          />
-          <label for="zp">ЗП, ₽</label>
-        </form>
-      </div>
-    </div> -->
     <div v-if="mod === 'edit'" class="row mt-2">
       <div class="col-4"></div>
       <div class="col-4"></div>
@@ -196,16 +142,19 @@
         </select>
       </div>
     </div>
+    <ModalBodyFiles :item="item" />
   </div>
 </template>
 
 <script>
 import voronkaNafrezer from '@/data/voronkaNafrezer'
 import ModalBodyOrderNafrezerItem from '@/components/modal/ModalBodyOrderNafrezerItem'
+import ModalBodyFiles from '@/components/modal/ModalBodyFiles'
 
 export default {
   components: {
-    ModalBodyOrderNafrezerItem
+    ModalBodyOrderNafrezerItem,
+    ModalBodyFiles
   },
   props: ['item', 'mod'],
   emits: [
