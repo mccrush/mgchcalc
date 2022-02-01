@@ -143,10 +143,12 @@ export default {
     },
     siryoDlina10() {
       let dlina = this.siryoDlina.replace(/,/g, '.')
+      return dlina
       return +(+dlina + dlina * 0.1).toFixed(2)
     },
     siryoShirina10() {
       let shirina = this.siryoShirina.replace(/,/g, '.')
+      return shirina
       return +(+shirina + shirina * 0.1).toFixed(2)
     },
     siryoPrice() {
@@ -159,8 +161,9 @@ export default {
       }
     },
     siryoSumma() {
-      this.siryoSize10 = +(this.siryoDlina10 * this.siryoShirina10).toFixed(2)
-      return Math.ceil(this.siryoPrice * this.siryoSize10)
+      this.siryoSize10 = this.siryoDlina10 * this.siryoShirina10
+      this.siryoSize10 += +(this.siryoSize10 * 0.1).toFixed(2)
+      return Math.floor(this.siryoPrice * this.siryoSize10)
     }
   },
   methods: {
