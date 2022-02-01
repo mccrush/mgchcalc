@@ -204,15 +204,20 @@ export default {
       this.$emit('create-tz', this.rabotaArrayTZ)
     },
     selectRabotaItem(rabota) {
-      if (!this.rabotaArrayTZ.find(elem => elem.id === rabota.id)) {
-        this.rabotaArrayTZ.push(rabota)
-      } else {
-        this.rabotaArrayTZ = this.rabotaArrayTZ.filter(
-          elem => elem.id != rabota.id
+      if (this.item.type === 'order') {
+        if (!this.rabotaArrayTZ.find(elem => elem.id === rabota.id)) {
+          this.rabotaArrayTZ.push(rabota)
+        } else {
+          this.rabotaArrayTZ = this.rabotaArrayTZ.filter(
+            elem => elem.id != rabota.id
+          )
+        }
+
+        console.log(
+          'ModalBodyOrder:selectRabotaItem Select elements:',
+          this.rabotaArrayTZ
         )
       }
-
-      console.log('Select elements:', this.rabotaArrayTZ)
     }
   }
 }
