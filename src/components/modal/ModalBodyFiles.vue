@@ -1,8 +1,12 @@
 <template>
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-6">
       <ul class="list-group">
-        <li v-for="file in files" :key="file.id" class="list-group-item">
+        <li
+          v-for="file in item.files"
+          :key="file.title"
+          class="list-group-item"
+        >
           <div class="row align-items-center">
             <div class="col-8 small">
               {{ file.title }}
@@ -49,7 +53,7 @@ export default {
   components: {
     ButtonTrash
   },
-  props: ['filessssss'],
+  props: ['item'],
   data() {
     return {
       files: [
@@ -64,9 +68,38 @@ export default {
     }
   },
   methods: {
-    loadFile(e) {
+    async loadFile(e) {
       const file = e.target.files[0]
-      console.log('ModalBodyFiles: loadfile: file:', file)
+      console.log('ModalBodyFiles:loadfile:file:', file)
+      if (file) {
+        const size = +(file.size / 1024 / 1024).toFixed(2)
+        console.log('ModalBodyFiles:loadfile:size:', size, 'Mb')
+        if (size > 5) {
+          alert('Размер файла более 5 Мб!')
+          return false
+        }
+
+        console.log('ModalBodyFiles:loadfile:file.name:', file.name)
+
+        const downloadLink = await this.$store.dispatch('addFile', {
+          item: this.item,
+          file
+        })
+        console.log('ModalBodyFiles:loadfile:link:', downloadLink)
+
+        const fileItem = {
+          title: file.name,
+          link: downloadLink,
+          size
+        }
+
+        console.log('ModalBodyFiles:loadfile:fileItem:', fileItem)
+        if (!this.item.files) {
+          this.item.files = []
+        }
+        this.item.files.push(fileItem)
+        this.$store.dispatch('updateItemRT', { item: this.item })
+      }
     }
   }
 }

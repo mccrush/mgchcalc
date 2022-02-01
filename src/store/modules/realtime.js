@@ -61,7 +61,7 @@ export default {
     async addItemRT({ commit }, { item }) {
       try {
         commit('updateLoadingStatusRT', true)
-        commit('addItemRT', { item })
+        //commit('addItemRT', { item })
         await set(ref(db, item.type + '/' + item.id), item)
         commit('updateLoadingStatusRT', false)
       } catch (error) {

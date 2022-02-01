@@ -166,7 +166,7 @@
         </ModalBodyOrderList>
       </ul>
     </div>
-    <ModalBodyFiles />
+    <ModalBodyFiles :item="item" />
   </div>
 </template>
 
