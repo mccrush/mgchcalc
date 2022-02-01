@@ -161,8 +161,9 @@ export default {
       }
     },
     siryoSumma() {
-      this.siryoSize10 = this.siryoDlina10 * this.siryoShirina10
-      this.siryoSize10 += +(this.siryoSize10 * 0.1).toFixed(2)
+      let siryoSize = this.siryoDlina10 * this.siryoShirina10
+      siryoSize += siryoSize * 0.1
+      this.siryoSize10 = +siryoSize.toFixed(2)
       return Math.floor(this.siryoPrice * this.siryoSize10)
     }
   },
