@@ -67,8 +67,8 @@ export default {
       if (file) {
         const size = +(file.size / 1024 / 1024).toFixed(2)
         console.log('ModalBodyFiles:loadfile:size:', size, 'Mb')
-        if (size > 5) {
-          alert('Размер файла более 5 Мб!')
+        if (size > 50) {
+          alert('Размер файла более 50 Мб!')
           return false
         }
 
