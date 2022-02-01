@@ -20,7 +20,9 @@
       <span class="badge bg-light text-dark align-self-center me-2 p-2"
         >Стоимость: {{ item.summa }} ₽</span
       >
-      <span class="badge bg-light text-success align-self-center me-2 p-2"
+      <span
+        v-if="type === 'nafrezer'"
+        class="badge bg-light text-success align-self-center me-2 p-2"
         >ЗП: {{ Math.floor(item.summa * 0.4) }} ₽</span
       >
     </div>

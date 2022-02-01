@@ -11,6 +11,7 @@
               <a
                 :href="file.link"
                 class="btn btn-sm btn-outline-secondary w-100"
+                :download="file.title"
                 >Скачать</a
               >
             </div>

@@ -139,7 +139,7 @@
         <div class="col-3"></div>
         <div class="col-3">
           <button
-            class="btn btn-sm btn-info w-100"
+            class="btn btn-sm btn-outline-success w-100"
             data-bs-dismiss="modal"
             :class="{ disabled: !rabotaArrayTZ.length }"
             @click="createTZ"
