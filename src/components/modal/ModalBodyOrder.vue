@@ -40,6 +40,7 @@
             @change="$emit('update-item-status', item)"
             class="form-select"
             id="statusOrder"
+            :disabled="mod === 'create'"
           >
             <option
               v-for="status in voronkaOrders"
@@ -166,7 +167,7 @@
         </ModalBodyOrderList>
       </ul>
     </div>
-    <ModalBodyFiles :item="item" />
+    <ModalBodyFiles v-if="mod === 'edit'" :item="item" />
   </div>
 </template>
 

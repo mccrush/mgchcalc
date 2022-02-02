@@ -149,7 +149,7 @@ export default {
       }
     },
     updateItem(item) {
-      if (item.title) {
+      if (item.title && this.mod === 'edit') {
         this.$store.dispatch('updateItemRT', { item })
       }
     },
