@@ -1,6 +1,6 @@
 <template>
   <div class="row mt-2">
-    <div class="col-6">
+    <div class="col-12 col-sm-10 col-md-8 col-xl-6 pe-sm-0">
       <ul class="list-group">
         <li
           v-for="(file, index) in item.files"

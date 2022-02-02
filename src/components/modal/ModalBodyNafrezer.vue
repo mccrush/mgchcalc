@@ -126,10 +126,10 @@
       </div>
     </div>
     <div v-if="mod === 'edit'" class="row mt-2">
-      <div class="col-4"></div>
-      <div class="col-4"></div>
-      <div class="col-2 text-end lh-lg">Лежит на полке:</div>
-      <div class="col-2">
+      <div class="col-2 col-md-3 col-lg-4"></div>
+      <div class="col-3 col-md-4"></div>
+      <div class="col-4 col-md-3 col-lg-2 text-end lh-lg">Лежит на полке:</div>
+      <div class="col-3 col-md-2">
         <select
           class="form-select form-select-sm"
           v-model.number="item.polka"
