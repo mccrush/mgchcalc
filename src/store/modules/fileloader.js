@@ -4,8 +4,14 @@ const storage = getStorage(fireApp)
 const year = new Date().getFullYear()
 
 export default {
-  state: {},
-  mutations: {},
+  state: {
+    loadingFL: false,
+  },
+  mutations: {
+    updateLoadingStatusFL(state, value) {
+      state.loadingFL = value
+    },
+  },
   actions: {
     async removeFile({ commit }, { fileRef }) {
       try {
@@ -17,16 +23,21 @@ export default {
     },
     async addFile({ commit }, { item, file }) {
       try {
+        commit('updateLoadingStatusFL', true)
         const mountainFileRef = ref(storage, item.type + '/' + year + '/' + item.id + '/' + file.name)
         console.log('fileload.js: addFile: mountainFileRe.ffullPath', mountainFileRef.fullPath)
 
         const snapshot = await uploadBytes(mountainFileRef, file)
         const downloadLink = await getDownloadURL(snapshot.ref)
+        commit('updateLoadingStatusFL', false)
         console.log('fileload.js: addFile: downloadLink', downloadLink)
         return { downloadLink, fileRef: mountainFileRef.fullPath }
       } catch (error) {
         console.error('fileload.js addFile:', error)
       }
     }
+  },
+  getters: {
+    loadingFL: state => state.loadingFL
   }
 }

@@ -2,6 +2,12 @@
   <div class="row mt-2">
     <div class="col-12 col-sm-10 col-md-8 col-xl-6 pe-sm-0">
       <ul class="list-group">
+        <li class="list-group-item p-0 border-0 border-bottom">
+          <div class="progressbar">
+            <Progressbar v-if="loading" />
+            <ProgressbarOff v-else />
+          </div>
+        </li>
         <li
           v-for="(file, index) in item.files"
           :key="file.title"
@@ -48,13 +54,22 @@
 </template>
 
 <script>
+import Progressbar from '@/components/interface/Progressbar'
+import ProgressbarOff from '@/components/interface/ProgressbarOff'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
 
 export default {
   components: {
+    Progressbar,
+    ProgressbarOff,
     ButtonTrash
   },
   props: ['item'],
+  computed: {
+    loading() {
+      return this.$store.getters.loadingFL
+    }
+  },
   methods: {
     removeFile(fileRef, index) {
       this.$store.dispatch('removeFile', { fileRef })
