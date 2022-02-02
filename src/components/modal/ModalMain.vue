@@ -155,6 +155,12 @@ export default {
     },
     removeItem() {
       if (confirm('Действительно удалить элемент?')) {
+        if (this.item.files && this.item.files.length) {
+          this.item.files.forEach(item => {
+            this.$store.dispatch('removeFile', { fileRef: item.fileRef })
+          })
+        }
+
         this.$store.dispatch('removeItemRT', {
           type: this.item.type,
           id: this.item.id
