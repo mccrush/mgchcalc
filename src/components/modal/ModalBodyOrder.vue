@@ -23,7 +23,7 @@
             id="selectClient"
           >
             <option
-              v-for="client in clients"
+              v-for="client in customer"
               :key="client.id"
               :value="client.title"
             >
@@ -172,7 +172,7 @@
 
 <script>
 import voronkaOrders from '@/data/voronkaOrders'
-import clients from '@/data/clients'
+//import clients from '@/data/clients'
 import ModalBodyOrderNafrezerItem from '@/components/modal/ModalBodyOrderNafrezerItem'
 import ModalBodyOrderList from '@/components/modal/ModalBodyOrderList'
 import ModalBodyFiles from '@/components/modal/ModalBodyFiles'
@@ -194,9 +194,13 @@ export default {
   data() {
     return {
       voronkaOrders,
-      clients,
       client: this.item.client,
       rabotaArrayTZ: []
+    }
+  },
+  computed: {
+    customer() {
+      return this.$store.getters.customer
     }
   },
   methods: {
