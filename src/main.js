@@ -22,6 +22,7 @@ onAuthStateChanged(auth, (user) => {
     store.dispatch('getItems', { type: 'obrabotkavid' })
     store.dispatch('getItems', { type: 'obrabotkatolshina' })
     store.dispatch('getItems', { type: 'dopuslug' })
+    store.dispatch('getItems', { type: 'customer' })
     store.dispatch('getItems', { type: 'procent' })
     store.dispatch('getItemsRT', { type: 'order' })
     store.dispatch('getItemsRT', { type: 'nafrezer' })

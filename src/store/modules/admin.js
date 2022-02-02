@@ -82,6 +82,7 @@ export default {
     material: state => state.material,
     obrabotkavid: state => state.obrabotkavid,
     obrabotkatolshina: state => state.obrabotkatolshina,
-    dopuslug: state => state.dopuslug
+    dopuslug: state => state.dopuslug,
+    customer: state => state.customer
   }
 }

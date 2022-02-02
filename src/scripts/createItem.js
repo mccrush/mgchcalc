@@ -45,5 +45,18 @@ export default (type, categoryId = '') => {
       priceL: 0,
       type: 'obrabotkatolshina'
     }
+  } else if (type === 'customer') {
+    return {
+      id,
+      title,
+      address: '',
+      inn: '',
+      kpp: '',
+      ogrn: '',
+      bic: '',
+      rs: '',
+      ks: '',
+      type: 'customer'
+    }
   }
 }

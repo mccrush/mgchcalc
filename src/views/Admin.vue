@@ -82,6 +82,7 @@ import FormMaterial from '@/components/admin/FormMaterial'
 import FormObrabotkaVid from '@/components/admin/FormObrabotkaVid'
 import FormObrabotkaTolshina from '@/components/admin/FormObrabotkaTolshina'
 import FormDopuslug from '@/components/admin/FormDopuslug'
+import FormCustomer from '@/components/admin/FormCustomer'
 import Footer from '@/components/interface/Footer'
 
 export default {
@@ -94,6 +95,7 @@ export default {
     FormObrabotkaVid,
     FormObrabotkaTolshina,
     FormDopuslug,
+    FormCustomer,
     Footer
   },
   data() {
@@ -119,6 +121,8 @@ export default {
           return 'FormObrabotkaTolshina'
         case 'dopuslug':
           return 'FormDopuslug'
+        case 'customer':
+          return 'FormCustomer'
         default:
           return 'FormMaterialVid'
       }
@@ -133,6 +137,8 @@ export default {
         return this.$store.getters.obrabotkavid
       } else if (this.razdel === 'dopuslug') {
         return this.$store.getters.dopuslug
+      } else if (this.razdel === 'customer') {
+        return this.$store.getters.customer
       }
     },
     siryoProcent() {
