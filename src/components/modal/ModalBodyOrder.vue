@@ -1,7 +1,7 @@
 <template>
   <div class="modal-body pt-2">
     <div class="row">
-      <div class="col-6 pe-0">
+      <div class="col-5 pe-0">
         <div class="form-floating">
           <input
             type="text"
@@ -14,7 +14,7 @@
           <label for="itemTitle">Название заказа</label>
         </div>
       </div>
-      <div class="col-3 pe-0">
+      <div class="col-4 d-flex pe-0">
         <div class="form-floating">
           <select
             v-model="client"
@@ -31,6 +31,12 @@
             </option>
           </select>
           <label for="selectClient">Заказчик</label>
+        </div>
+        <div
+          class="btn btn-outline-success fs-3"
+          @click.prevent="$emit('show-modal-customer')"
+        >
+          +
         </div>
       </div>
       <div class="col-3">
@@ -190,7 +196,8 @@ export default {
     'update-item-title',
     'update-item-status',
     'update-item-datefinish',
-    'create-tz'
+    'create-tz',
+    'show-modal-customer'
   ],
   data() {
     return {

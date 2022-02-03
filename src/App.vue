@@ -12,9 +12,11 @@
     id="modalOrder"
     :item="modalOrder"
     @show-modal="showModal"
+    @show-modal-customer="showModalCustomer"
     :mod="mod"
   />
   <ModalMain id="modalNafrezer" :item="modalNafrezer" :mod="mod" />
+  <ModalCustomer id="modalCustomer" />
   <!-- <ModalWindow
     :order="order"
     :mod="mod"
@@ -45,6 +47,7 @@ import KanbanBoard from '@/views/KanbanBoard'
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
 import ModalMain from '@/components/modal/ModalMain'
+import ModalCustomer from '@/components/modal/ModalCustomer'
 
 export default {
   components: {
@@ -54,7 +57,8 @@ export default {
     Admin,
     KanbanBoard,
     ButtonSettings,
-    ModalMain
+    ModalMain,
+    ModalCustomer
   },
   data() {
     return {
@@ -112,6 +116,12 @@ export default {
       }
 
       myModal.show()
+    },
+    showModalCustomer() {
+      const myModalCustomer = new Modal(
+        document.getElementById('modalCustomer')
+      )
+      myModalCustomer.show()
     }
   }
 }

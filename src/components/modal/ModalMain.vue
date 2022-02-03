@@ -27,6 +27,7 @@
             @update-item-datefinish="updateItemDatefinish"
             @update-item-polka="updateNafrezerPolka"
             @create-tz="createTZ"
+            @show-modal-customer="$emit('show-modal-customer')"
             :item="item"
             :mod="mod"
           />
@@ -60,7 +61,7 @@ export default {
     ModalFooter
   },
   props: ['item', 'mod'],
-  emits: ['show-modal'],
+  emits: ['show-modal', 'show-modal-customer'],
   computed: {
     modalBody() {
       //console.log('ModalMain, this.item:', this.item)
