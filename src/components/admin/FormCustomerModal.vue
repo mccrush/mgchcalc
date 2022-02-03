@@ -16,7 +16,7 @@
         v-model.trim="item.address"
       />
     </div>
-    <div class="col-12 col-md-6 col-lg-2 mt-1 pe-md-0">
+    <div class="col-12 col-md-6 col-lg-4 mt-1 pe-md-0">
       <form class="form-floating">
         <input
           type="text"
@@ -27,7 +27,7 @@
         <label for="inputINN">ИНН</label>
       </form>
     </div>
-    <div class="col-12 col-md-6 col-lg-2 mt-1 pe-lg-0">
+    <div class="col-12 col-md-6 col-lg-4 mt-1 pe-lg-0">
       <form class="form-floating">
         <input
           type="text"
@@ -38,7 +38,7 @@
         <label for="inputKPP">КПП</label>
       </form>
     </div>
-    <div class="col-12 col-md-6 col-lg-2 mt-1 pe-md-0">
+    <div class="col-12 col-md-6 col-lg-4 mt-1">
       <form class="form-floating">
         <input
           type="text"
@@ -49,7 +49,7 @@
         <label for="inputOGRN">ОГРН</label>
       </form>
     </div>
-    <div class="col-12 col-md-6 col-lg-2 mt-1 pe-lg-0">
+    <div class="col-12 col-md-6 col-lg-4 mt-1 pe-lg-0">
       <form class="form-floating">
         <input
           type="text"
@@ -60,7 +60,7 @@
         <label for="inputBIC">БИК</label>
       </form>
     </div>
-    <div class="col-12 col-md-6 col-lg-2 mt-1 pe-md-0">
+    <div class="col-12 col-md-6 col-lg-4 mt-1 pe-md-0">
       <form class="form-floating">
         <input
           type="text"
@@ -71,7 +71,7 @@
         <label for="inputRS">Р/С</label>
       </form>
     </div>
-    <div class="col-12 col-md-6 col-lg-2 mt-1">
+    <div class="col-12 col-md-6 col-lg-4 mt-1">
       <form class="form-floating">
         <input
           type="text"

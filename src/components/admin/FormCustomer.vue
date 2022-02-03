@@ -1,6 +1,6 @@
 <template>
-  <div class="col-12 pt-2">
-    <div v-for="item in sortFilter" :key="item.id" class="row mt-3">
+  <div class="col-12">
+    <div v-for="item in sortFilter" :key="item.id" class="row mt-4">
       <div class="col-6 pe-0">
         <input
           type="text"
@@ -10,7 +10,7 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-6">
+      <div class="col-6 ps-1">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -19,7 +19,7 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-2 mt-1 pe-0">
+      <div class="col-4 mt-1 pe-0">
         <form class="form-floating">
           <input
             type="text"
@@ -31,7 +31,7 @@
           <label for="inputINN">ИНН</label>
         </form>
       </div>
-      <div class="col-2 mt-1 pe-0">
+      <div class="col-4 mt-1 ps-1 pe-0">
         <form class="form-floating">
           <input
             type="text"
@@ -43,7 +43,7 @@
           <label for="inputKPP">КПП</label>
         </form>
       </div>
-      <div class="col-2 mt-1 pe-0">
+      <div class="col-4 mt-1 ps-1">
         <form class="form-floating">
           <input
             type="text"
@@ -55,7 +55,7 @@
           <label for="inputOGRN">ОГРН</label>
         </form>
       </div>
-      <div class="col-1 mt-1 pe-0">
+      <div class="col-4 mt-1 pe-0">
         <form class="form-floating">
           <input
             type="text"
@@ -67,7 +67,7 @@
           <label for="inputBIC">БИК</label>
         </form>
       </div>
-      <div class="col-2 mt-1 pe-0">
+      <div class="col-4 mt-1 ps-1 pe-0">
         <form class="form-floating">
           <input
             type="text"
@@ -79,7 +79,7 @@
           <label for="inputRS">Р/С</label>
         </form>
       </div>
-      <div class="col-2 mt-1 pe-0">
+      <div class="col-3 mt-1 ps-1 pe-0">
         <form class="form-floating">
           <input
             type="text"

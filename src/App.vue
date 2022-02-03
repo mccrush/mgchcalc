@@ -17,20 +17,6 @@
   />
   <ModalMain id="modalNafrezer" :item="modalNafrezer" :mod="mod" />
   <ModalCustomer id="modalCustomer" />
-  <!-- <ModalWindow
-    :order="order"
-    :mod="mod"
-    :pathname="pathname"
-    id="staticBackdrop"
-    @edit-order="editOrder"
-  />
-  <ModalWindow2
-    :order="order"
-    :mod="mod"
-    :pathname="pathname"
-    id="staticBackdrop2"
-    @edit-order="editOrder"
-  /> -->
   <!-- <SettingsBar /> -->
 </template>
 
