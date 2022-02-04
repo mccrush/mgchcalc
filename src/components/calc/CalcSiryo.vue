@@ -89,7 +89,7 @@
           />
         </div>
         <div class="col-6 col-sm-1 col-md-2 text-center small pt-2 pt-sm-1">
-          {{ siryoSumma }}
+          {{ siryoSumma }} <span class="d-sm-none">₽</span>
         </div>
         <div class="col-6 col-sm-2 text-end pt-2 pt-sm-0">
           <ButtonTrash @click="$emit('remove-calc', { type, id })" />
@@ -101,6 +101,7 @@
 </template>
 
 <script>
+import 'bootstrap/js/dist/dropdown'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
 
 export default {
