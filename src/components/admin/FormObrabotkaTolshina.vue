@@ -1,7 +1,12 @@
 <template>
   <div class="col-12 pt-2">
-    <div v-for="item in sortFilter" :key="item.id" class="row mt-1">
-      <div class="col-5 pe-0">
+    <div
+      v-for="(item, index) in sortFilter"
+      :key="item.id"
+      class="row mt-2 pt-2 pb-2"
+      :class="{ 'bg-light': index % 2 === 0 }"
+    >
+      <div class="col-12 col-sm-6 col-md-5 pe-sm-0">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -9,7 +14,7 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-3 pe-0">
+      <div class="col-12 col-sm-6 col-md-3 mt-1 mt-sm-0 pe-md-0">
         <select
           class="form-select form-select-sm w-100"
           aria-label="Select resourse"
@@ -21,7 +26,7 @@
           </option>
         </select>
       </div>
-      <div class="col-1 pe-0">
+      <div class="col-3 col-md-1 mt-1 mt-md-0 pe-0">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -29,7 +34,7 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-1 pe-0">
+      <div class="col-3 col-md-1 mt-1 mt-md-0 pe-0">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -37,7 +42,7 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-1 pe-0">
+      <div class="col-3 col-md-1 mt-1 mt-md-0 pe-0">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -45,7 +50,7 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-1 text-end">
+      <div class="col-3 col-md-1 mt-1 mt-md-0 text-end">
         <ButtonTrash @click="$emit('remove-item', item.id)" />
       </div>
     </div>
