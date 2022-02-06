@@ -108,9 +108,7 @@
       </div>
     </div>
     <div v-if="mod === 'edit'" class="row mt-2">
-      <div class="col-7 col-sm-9 col-md-10 col-lg-2 text-end lh-lg">
-        Лежит на полке:
-      </div>
+      <div class="col-7 col-sm-9 col-md-10 text-end lh-lg">Лежит на полке:</div>
       <div class="col-5 col-sm-3 col-md-2">
         <select
           class="form-select form-select-sm"

@@ -1,5 +1,5 @@
 <template>
-  <div class="row p-2 pb-3">
+  <div class="row p-2 pt-3 pb-3">
     <LoginForm />
   </div>
 </template>

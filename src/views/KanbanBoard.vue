@@ -1,5 +1,5 @@
 <template>
-  <div class="kanban row flex-nowrap overflow-auto pt-2 ps-2 pe-2">
+  <div class="kanban row flex-nowrap overflow-auto pt-3 ps-2 pe-2">
     <KanbanList
       v-for="etap in etaps"
       :key="etap.id"
