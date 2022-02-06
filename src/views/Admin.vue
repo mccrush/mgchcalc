@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row pt-2">
-      <div class="col-3 pe-0">
+      <div class="col-12 col-sm-6 col-md-3 pe-sm-0">
         <select
           class="form-select form-select-sm w-100"
           aria-label="Select group resourse"
@@ -18,7 +18,7 @@
         </select>
       </div>
       <!---->
-      <div class="col-3 pe-0">
+      <div class="col-12 col-sm-6 col-md-3 mt-2 mt-sm-0 pe-md-0">
         <select
           v-if="razdel === 'material' || razdel === 'obrabotkatolshina'"
           class="form-select form-select-sm w-100"
@@ -46,13 +46,13 @@
         </div>
       </div>
       <!---->
-      <div class="col-1 pe-0">
+      <div class="col-3 col-sm-4 col-md-1 mt-2 mt-md-0 pe-0">
         <ButtonSort @sort="sortStart" />
       </div>
-      <div class="col-3 pe-0">
+      <div class="col-9 col-sm-4 col-md-3 mt-2 mt-md-0 pe-sm-0">
         <InputSearch v-model:search="searchText" />
       </div>
-      <div class="col-2">
+      <div class="col-12 col-sm-4 col-md-2 mt-2 mt-md-0">
         <ButtonAdd @click="addItem" />
       </div>
     </div>
