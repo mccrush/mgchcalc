@@ -1,7 +1,12 @@
 <template>
   <div class="col-12">
-    <div v-for="item in sortFilter" :key="item.id" class="row mt-4">
-      <div class="col-6 pe-0">
+    <div
+      v-for="(item, index) in sortFilter"
+      :key="item.id"
+      class="row mt-1 pt-2 pb-2"
+      :class="{ 'bg-light': index % 2 === 0 }"
+    >
+      <div class="col-12 col-sm-6 pe-sm-0">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -10,7 +15,7 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-6 ps-1">
+      <div class="col-12 col-sm-6 mt-1 mt-sm-0 ps-sm-1">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -19,7 +24,7 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-4 mt-1 pe-0">
+      <div class="col-12 col-sm-6 col-md-4 mt-1 pe-sm-0">
         <form class="form-floating">
           <input
             type="text"
@@ -31,7 +36,7 @@
           <label for="inputINN">ИНН</label>
         </form>
       </div>
-      <div class="col-4 mt-1 ps-1 pe-0">
+      <div class="col-12 col-sm-6 col-md-4 mt-1 ps-sm-1 pe-md-0">
         <form class="form-floating">
           <input
             type="text"
@@ -43,7 +48,7 @@
           <label for="inputKPP">КПП</label>
         </form>
       </div>
-      <div class="col-4 mt-1 ps-1">
+      <div class="col-12 col-sm-6 col-md-4 mt-1 ps-md-1 pe-sm-0 pe-md-3">
         <form class="form-floating">
           <input
             type="text"
@@ -55,7 +60,7 @@
           <label for="inputOGRN">ОГРН</label>
         </form>
       </div>
-      <div class="col-4 mt-1 pe-0">
+      <div class="col-12 col-sm-6 col-md-4 mt-1 ps-sm-1 ps-md-3 pe-md-0">
         <form class="form-floating">
           <input
             type="text"
@@ -67,7 +72,7 @@
           <label for="inputBIC">БИК</label>
         </form>
       </div>
-      <div class="col-4 mt-1 ps-1 pe-0">
+      <div class="col-12 col-sm-6 col-md-4 mt-1 ps-md-1 pe-sm-0">
         <form class="form-floating">
           <input
             type="text"
@@ -79,7 +84,7 @@
           <label for="inputRS">Р/С</label>
         </form>
       </div>
-      <div class="col-3 mt-1 ps-1 pe-0">
+      <div class="col-10 col-sm-5 col-md-3 mt-1 ps-sm-1 pe-1">
         <form class="form-floating">
           <input
             type="text"
@@ -91,7 +96,7 @@
           <label for="inputKS">К/С</label>
         </form>
       </div>
-      <div class="col-1 d-flex mt-1 text-end">
+      <div class="col-2 col-sm-1 col-md-1 d-flex text-end mt-1 ps-0">
         <ButtonTrash @click="$emit('remove-item', item.id)" />
       </div>
     </div>
