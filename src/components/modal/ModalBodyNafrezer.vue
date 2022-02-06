@@ -1,7 +1,7 @@
 <template>
   <div class="modal-body pt-2">
     <div class="row">
-      <div class="col-6 pe-0">
+      <div class="col-12 col-md-5 pe-md-0">
         <div class="form-floating">
           <input
             type="text"
@@ -15,7 +15,7 @@
           <label for="nafrezerTitle">Название работы</label>
         </div>
       </div>
-      <div class="col-3 pe-0">
+      <div class="col-12 col-sm-6 col-md-4 d-flex mt-2 mt-md-0 pe-md-0">
         <form class="form-floating">
           <input
             type="text"
@@ -28,7 +28,7 @@
           <label for="client">Заказчик</label>
         </form>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-3 mt-2 mt-md-0">
         <div class="form-floating">
           <select
             v-model="item.status"
@@ -50,7 +50,7 @@
     </div>
 
     <div class="row pt-2">
-      <div class="col-4 pe-0">
+      <div class="col-12 col-md-4 pe-md-0">
         <div class="form-floating">
           <input
             @change="$emit('update-item', item)"
@@ -62,7 +62,7 @@
           <label for="date">Создан</label>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-md-4 mt-2 mt-md-0">
         <div class="form-floating">
           <input
             @change="$emit('update-item', item)"
@@ -74,7 +74,7 @@
           <label for="date">Срок сдачи</label>
         </div>
       </div>
-      <div class="col-4 ps-0">
+      <div class="col-12 col-md-4 mt-2 mt-md-0 ps-md-0">
         <div class="form-floating">
           <input
             @change="$emit('update-item-datefinish', item)"
@@ -87,24 +87,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row pt-2">
-      <div class="col-6 pe-0">
-        
-      </div>
-      <div class="col-6">
-        <form class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="izdelie"
-            placeholder="Изделие не указано"
-            :value="item.title"
-            readonly
-          />
-          <label for="izdelie">Изделие</label>
-        </form>
-      </div>
-    </div> -->
     <!-- -->
     <div v-if="item.rabotaArray.length">
       <h6 class="mt-3">Услуги обработки</h6>
@@ -126,10 +108,10 @@
       </div>
     </div>
     <div v-if="mod === 'edit'" class="row mt-2">
-      <div class="col-2 col-md-3 col-lg-4"></div>
-      <div class="col-3 col-md-4"></div>
-      <div class="col-4 col-md-3 col-lg-2 text-end lh-lg">Лежит на полке:</div>
-      <div class="col-3 col-md-2">
+      <div class="col-7 col-sm-9 col-md-10 col-lg-2 text-end lh-lg">
+        Лежит на полке:
+      </div>
+      <div class="col-5 col-sm-3 col-md-2">
         <select
           class="form-select form-select-sm"
           v-model.number="item.polka"

@@ -1,7 +1,7 @@
 <template>
   <div class="modal-body pt-2">
     <div class="row">
-      <div class="col-5 pe-0">
+      <div class="col-12 col-md-5 pe-md-0">
         <div class="form-floating">
           <input
             type="text"
@@ -14,7 +14,7 @@
           <label for="itemTitle">Название заказа</label>
         </div>
       </div>
-      <div class="col-4 d-flex pe-0">
+      <div class="col-12 col-sm-6 col-md-4 d-flex mt-2 mt-md-0 pe-md-0">
         <div class="form-floating">
           <select
             v-model="client"
@@ -39,7 +39,7 @@
           +
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-3 mt-2 mt-md-0">
         <div class="form-floating">
           <select
             v-model="item.status"
@@ -62,7 +62,7 @@
     </div>
 
     <div class="row pt-2">
-      <div class="col-4 pe-0">
+      <div class="col-12 col-md-4 pe-md-0">
         <div class="form-floating">
           <input
             @change="$emit('update-item', item)"
@@ -74,7 +74,7 @@
           <label for="date">Создан</label>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-md-4 mt-2 mt-md-0">
         <div class="form-floating">
           <input
             @change="$emit('update-item', item)"
@@ -86,7 +86,7 @@
           <label for="date">Срок сдачи</label>
         </div>
       </div>
-      <div class="col-4 ps-0">
+      <div class="col-12 col-md-4 mt-2 mt-md-0 ps-md-0">
         <div class="form-floating">
           <input
             @change="$emit('update-item-datefinish', item)"
@@ -141,10 +141,8 @@
         />
       </div>
       <div v-if="mod === 'edit'" class="row pt-2">
-        <div class="col-3"></div>
-        <div class="col-3"></div>
-        <div class="col-3"></div>
-        <div class="col-3">
+        <div class="col-6 col-md-9"></div>
+        <div class="col-6 col-md-3">
           <button
             class="btn btn-sm btn-outline-success w-100"
             data-bs-dismiss="modal"
