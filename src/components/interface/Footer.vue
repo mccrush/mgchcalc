@@ -1,13 +1,15 @@
 <template>
   <div class="row bg-light rounded-bottom mt-2 pt-1 pb-1">
     <div class="col-12 text-end">
-      <a
-        class="text-muted small"
-        href="https://github.com/mccrush/mgchcalc/releases"
-        target="_blank"
-        title="Посмотреть историю изменений"
-        >Версия v{{ version }}</a
-      >
+      <span class="badge bg-dark">
+        <a
+          class="text-white small"
+          href="https://github.com/mccrush/mgchcalc/releases"
+          target="_blank"
+          title="Посмотреть историю изменений"
+          >Версия v{{ version }}</a
+        >
+      </span>
     </div>
   </div>
 </template>
