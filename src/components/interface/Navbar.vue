@@ -5,6 +5,9 @@
       <ProgressbarOff v-else />
     </div>
     <div class="container-fluid mt-2">
+      <div class="navbar-brand p-0">
+        <img src="/images/logos/favicon-32x32.png" width="32" alt="Calc logo" />
+      </div>
       <button
         class="navbar-toggler"
         type="button"
