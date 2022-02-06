@@ -18,7 +18,7 @@
         </select>
       </div>
       <!---->
-      <div class="col-12 col-sm-6 col-md-3 mt-2 mt-sm-0 pe-md-0">
+      <div class="col-12 col-sm-6 col-md-2 col-lg-3 mt-2 mt-sm-0 pe-md-0">
         <select
           v-if="razdel === 'material' || razdel === 'obrabotkatolshina'"
           class="form-select form-select-sm w-100"
@@ -46,7 +46,7 @@
         </div>
       </div>
       <!---->
-      <div class="col-3 col-sm-4 col-md-1 mt-2 mt-md-0 pe-0">
+      <div class="col-3 col-sm-4 col-md-2 col-lg-1 mt-2 mt-md-0 pe-0">
         <ButtonSort @sort="sortStart" />
       </div>
       <div class="col-9 col-sm-4 col-md-3 mt-2 mt-md-0 pe-sm-0">
