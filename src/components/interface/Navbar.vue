@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-sm navbar-light flex-column pt-0">
+  <nav class="navbar navbar-expand-sm navbar-light shadow-sm flex-column pt-0">
     <div class="progressbar w-100">
       <Progressbar v-if="loading || loadingRT" />
       <ProgressbarOff v-else />
@@ -27,7 +27,15 @@
           <li class="nav-item pe-sm-2">
             <button
               v-if="userId"
-              class="btn btn-outline-light text-muted w-100 me-2 mt-2 mt-sm-0"
+              class="
+                btn btn-outline-light
+                text-muted
+                w-100
+                me-2
+                mt-2 mt-sm-0
+                ps-1
+                pe-1
+              "
               :class="{ active: pathname === 'nafrezer' }"
               @click="setPathName('nafrezer')"
             >
@@ -51,7 +59,15 @@
           <li class="nav-item pe-sm-2">
             <button
               v-if="userId"
-              class="btn btn-outline-light text-muted w-100 me-2 mt-2 mt-sm-0"
+              class="
+                btn btn-outline-light
+                text-muted
+                w-100
+                me-2
+                mt-2 mt-sm-0
+                ps-1
+                pe-1
+              "
               :class="{ active: pathname === 'calc' }"
               @click="setPathName('calc')"
             >
@@ -64,7 +80,15 @@
                 userId === 'uNOE7SInyGQbRptYJq7OiQtG7Ol2' ||
                 userId === 'rNl0ejcTSIhMycVqx4XhTqVVhAv1'
               "
-              class="btn btn-outline-light text-muted w-100 me-2 mt-2 mt-sm-0"
+              class="
+                btn btn-outline-light
+                text-muted
+                w-100
+                me-2
+                mt-2 mt-sm-0
+                ps-1
+                pe-1
+              "
               :class="{ active: pathname === 'admin' }"
               @click="setPathName('admin')"
             >
