@@ -132,7 +132,7 @@ export default {
     },
     updateCalc() {
       const item = {
-        type: 'nafrezer',
+        type: 'calc',
         id: this.id,
         groupId: this.categoryRabotaId,
         elemId: this.rabotaSelectId,
@@ -145,7 +145,7 @@ export default {
         ed: 'м.п.',
         summa: this.rabotaSumma,
         orderId: '',
-        status: ''
+        status: 'newfrezer'
       }
 
       this.$emit('update-calc', item)

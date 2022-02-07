@@ -16,7 +16,11 @@
       />
       <span> {{ item.title }}, {{ item.size }} {{ item.ed }} </span>
     </div>
+
     <div class="d-flex align-content-center">
+      <span class="badge bg-info align-self-center me-2 p-2">{{
+        item.status
+      }}</span>
       <span class="badge bg-light text-dark align-self-center me-2 p-2"
         >Стоимость: {{ item.summa }} ₽</span
       >

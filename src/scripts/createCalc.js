@@ -1,7 +1,7 @@
 export default () => {
   return {
     id: Date.now().toString(),
-    type: 'nafrezer',
+    type: 'calc',
     groupId: '',
     elemId: '',
     typeArray: '',
@@ -18,7 +18,7 @@ export default () => {
     dateForReady: '',
     dateFinish: '',
     orderId: '',
-    status: '',
+    status: 'newfrezer',
     polka: ''
   }
 }

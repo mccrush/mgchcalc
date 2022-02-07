@@ -102,8 +102,8 @@ export default {
       })
 
       console.log('array:', array)
-      // this.order.rabotaArray = array
-      //this.updateItem(this.order)
+      this.order.rabotaArray = array
+      // this.$store.dispatch('updateItemRT', { item: this.order })
     },
     updateItemDatefinish(object) {
       if (object.type === 'order') {
