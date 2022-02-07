@@ -132,12 +132,12 @@
       <h6 class="mt-3">Услуги обработки</h6>
       <div class="list-group ist-group-numbered">
         <ModalBodyOrderNafrezerItem
-          v-for="elem in item.rabotaArray"
+          v-for="(elem, index) in item.rabotaArray"
           :key="elem.id"
           :item="elem"
           :type="item.type"
           :mod="mod"
-          @change="selectRabotaItem(elem)"
+          @change="selectRabotaItem(elem, index)"
         />
       </div>
       <div v-if="mod === 'edit'" class="row pt-2">
@@ -211,13 +211,17 @@ export default {
   },
   methods: {
     createTZ() {
+      // Обновить item в БД
+      this.$store.dispatch('updateItemRT', { item: this.item })
       this.$emit('create-tz', this.rabotaArrayTZ)
     },
-    selectRabotaItem(rabota) {
+    selectRabotaItem(rabota, index) {
       if (this.item.type === 'order') {
         if (!this.rabotaArrayTZ.find(elem => elem.id === rabota.id)) {
+          this.item.rabotaArray[index].status = 'inprogress'
           this.rabotaArrayTZ.push(rabota)
         } else {
+          this.item.rabotaArray[index].status = 'newfrezer'
           this.rabotaArrayTZ = this.rabotaArrayTZ.filter(
             elem => elem.id != rabota.id
           )
