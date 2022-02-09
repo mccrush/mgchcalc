@@ -90,7 +90,7 @@ export default {
       return (
         this.$store.getters.obrabotkatolshina.find(
           item => item.id === this.rabotaSelectId
-        ) || { priceS: 0, priceM: 0, priceL: 0 }
+        ) || { priceS: '0', priceM: '0', priceL: '0' }
       )
     },
     rabotaSize() {
@@ -111,11 +111,11 @@ export default {
     rabotaPrice() {
       let size = this.rabotaSize
       if (size < 100) {
-        return this.rabota.priceS
+        return +this.rabota.priceS.replace(/,/g, '.')
       } else if (size >= 100 && size < 500) {
-        return this.rabota.priceM
+        return +this.rabota.priceM.replace(/,/g, '.')
       } else if (size >= 500) {
-        return this.rabota.priceL
+        return +this.rabota.priceL.replace(/,/g, '.')
       }
     },
     rabotaSumma() {

@@ -30,7 +30,7 @@
         <input
           type="text"
           class="form-control form-control-sm"
-          v-model.number="item.priceS"
+          v-model="item.priceS"
           @change="saveItem(item)"
         />
       </div>
@@ -38,7 +38,7 @@
         <input
           type="text"
           class="form-control form-control-sm"
-          v-model.number="item.priceM"
+          v-model="item.priceM"
           @change="saveItem(item)"
         />
       </div>
@@ -46,7 +46,7 @@
         <input
           type="text"
           class="form-control form-control-sm"
-          v-model.number="item.priceL"
+          v-model="item.priceL"
           @change="saveItem(item)"
         />
       </div>
