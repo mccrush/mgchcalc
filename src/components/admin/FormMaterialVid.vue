@@ -9,10 +9,12 @@
     <div
       v-for="(item, index) in sortFilter"
       :key="item.id"
-      class="row mt-1 pt-2 pb-2"
+      class="row pre-drop mt-1 pt-2 pb-2"
       :class="{ 'bg-light': index % 2 === 0 }"
       draggable="true"
       @dragstart.stop="onDragStart($event, item)"
+      @dragover.self="onDragOverItem($event, item.position)"
+      @dragleave.self="onDragLeaveItem($event, item.position)"
     >
       <div class="drag-button ms-1 p-0 pb-1">
         <ButtonDrag />
@@ -86,6 +88,25 @@ export default {
         // e.target.lastChild.style.paddingTop = '64px'
       }
     },
+    onDragOverItem(e, index) {
+      //e.target.classList.add('border', 'border-danger')
+      let element = e.target
+      //console.log('onDragOverItem: element:', element)
+
+      // while (!element.contains('pre-drop')) {
+      //   element = element.parentNode
+      // }
+
+      element.classList.add('border', 'border-danger')
+
+      //e.target.style.border = '1px solid red'
+      //e.target.style.marginTop = '52px'
+      //this.sortFilter.splice(index, 0, { title: '333' })
+    },
+    onDragLeaveItem(e, position) {
+      e.target.classList.remove('border', 'border-danger')
+      //e.target.classList.add('border', 'border-success')
+    },
     onDrop(e, status) {
       //console.log('onDrop, status:', status)
 
@@ -96,6 +117,7 @@ export default {
 
       let itemId = e.dataTransfer.getData('itemId')
       console.log('onDrop, itemId:', itemId)
+      e.target.classList.remove('border', 'border-danger', 'mt-5')
       // this.items.forEach(item => {
       //   if (item.id === itemId) {
       //     if (item.status !== status) {
