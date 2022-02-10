@@ -8,7 +8,11 @@
         @change="selectCatSiryo"
         v-model="categorySiryoId"
       >
-        <option v-for="catS in categorySiryos" :key="catS.id" :value="catS.id">
+        <option
+          v-for="catS in categorySiryosSort"
+          :key="catS.id"
+          :value="catS.id"
+        >
           {{ catS.title }}
         </option>
       </select>
@@ -130,6 +134,9 @@ export default {
     },
     categorySiryos() {
       return this.$store.getters.materialvid
+    },
+    categorySiryosSort() {
+      return sortMethod(this.categorySiryos, 'asc', 'position')
     },
     siryos() {
       return this.$store.getters.material.filter(
