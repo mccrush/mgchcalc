@@ -22,7 +22,7 @@
         v-model="siryoSelectId"
         :disabled="!categorySiryoId"
       >
-        <option v-for="sir in siryos" :key="sir.id" :value="sir.id">
+        <option v-for="sir in siryosSort" :key="sir.id" :value="sir.id">
           {{ sir.title }}
         </option>
       </select>
@@ -102,6 +102,7 @@
 
 <script>
 import 'bootstrap/js/dist/dropdown'
+import sortMethod from '@/scripts/sortMethod'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
 
 export default {
@@ -134,6 +135,9 @@ export default {
       return this.$store.getters.material.filter(
         item => item.categoryId === this.categorySiryoId
       )
+    },
+    siryosSort() {
+      return sortMethod(this.siryos, 'asc', 'position')
     },
     siryo() {
       return (

@@ -22,7 +22,7 @@
         v-model="rabotaSelectId"
         :disabled="!categoryRabotaId"
       >
-        <option v-for="sir in rabotas" :key="sir.id" :value="sir.id">
+        <option v-for="sir in rabotasSort" :key="sir.id" :value="sir.id">
           {{ sir.title }}
         </option>
       </select>
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import sortMethod from '@/scripts/sortMethod'
 import ButtonTrash from '@/components/buttons/ButtonTrash'
 import KolichBut from '@/components/buttons/KolichBut'
 
@@ -85,6 +86,9 @@ export default {
       return this.$store.getters.obrabotkatolshina.filter(
         item => item.categoryId === this.categoryRabotaId
       )
+    },
+    rabotasSort() {
+      return sortMethod(this.rabotas, 'asc', 'position')
     },
     rabota() {
       return (
