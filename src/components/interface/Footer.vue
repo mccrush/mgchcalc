@@ -1,7 +1,7 @@
 <template>
   <div class="row bg-light rounded-bottom mt-2 pt-1 pb-1">
     <div class="col-12 text-end">
-      <span class="badge bg-dark">
+      <span class="badge bg-secondary">
         <a
           class="text-white small"
           href="https://github.com/mccrush/mgchcalc/releases"
