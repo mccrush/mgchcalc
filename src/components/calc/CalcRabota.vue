@@ -8,7 +8,11 @@
         @change="selectCatRabota"
         v-model="categoryRabotaId"
       >
-        <option v-for="catS in categoryRabotas" :key="catS.id" :value="catS.id">
+        <option
+          v-for="catS in categoryRabotasSort"
+          :key="catS.id"
+          :value="catS.id"
+        >
           {{ catS.title }}
         </option>
       </select>
@@ -76,6 +80,9 @@ export default {
   computed: {
     categoryRabotas() {
       return this.$store.getters.obrabotkavid
+    },
+    categoryRabotasSort() {
+      return sortMethod(this.categoryRabotas, 'asc', 'position')
     },
     categoryTitle() {
       return this.categoryRabotas.find(
