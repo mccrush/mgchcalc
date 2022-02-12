@@ -1,22 +1,20 @@
 <template>
-  <div
-    class="col-12 dropzone pt-2"
-    @drop="onDrop($event)"
-    @dragover.prevent
-    @dragleave.prevent
-    @dragenter="onDragEnter($event)"
-  >
+  <div class="col-12 pt-2">
     <div
       v-for="(item, index) in sortFilter"
       :key="item.id"
-      class="row pre-drop mt-1 pt-2 pb-2"
-      :class="{ 'bg-light': index % 2 === 0 }"
+      class="row mt-1 pt-2 pb-2"
       draggable="true"
-      @dragstart.stop="onDragStart($event, item)"
-      @dragover.self="onDragOverItem($event, item.position)"
-      @dragleave.self="onDragLeaveItem($event, item.position)"
+      @dragstart="dragStart($event, item)"
+      @dragover="dragOver($event)"
+      @dragleave="dragLeave($event)"
+      @drop="dropItem($event, item, index)"
+      @dragover.prevent
     >
-      <div class="drag-button ms-1 p-0 pb-1">
+      <div
+        class="drag-button ms-1 p-0 pb-1"
+        :class="{ 'bg-light': index % 2 === 0 }"
+      >
         <ButtonDrag />
       </div>
       <div class="col-2 col-sm-1 ps-1 pe-0">
@@ -36,7 +34,10 @@
           @change="saveItem(item)"
         />
       </div>
-      <div class="col-2 col-md-1 text-end">
+      <div
+        class="col-2 col-md-1 text-end"
+        :class="{ 'bg-light': index % 2 === 0 }"
+      >
         <ButtonTrash @click="$emit('remove-item', item.id)" />
       </div>
       <div class="col-5"></div>
@@ -73,59 +74,52 @@ export default {
     }
   },
   methods: {
-    onDragStart(e, item) {
-      console.log('DragStart, item:', item.id)
-      e.dataTransfer.dropEffect = 'move'
-      e.dataTransfer.effectAllowed = 'move'
+    dragStart(e, item) {
       e.dataTransfer.setData('itemId', item.id)
     },
-    onDragEnter(e) {
-      if (e.target.classList.contains('dropzone')) {
-        // let dropzones = document.querySelectorAll('.dropzone')
-        // dropzones.forEach(item => {
-        //   item.lastChild.style.paddingTop = '0'
-        // })
-        // e.target.lastChild.style.paddingTop = '64px'
+    dragOver(e) {
+      e.currentTarget.classList.add('bg-secondary')
+    },
+    dragLeave(e) {
+      e.currentTarget.classList.remove('bg-secondary')
+    },
+    dropItem(e, item, index) {
+      e.currentTarget.classList.remove('bg-secondary')
+      const itemId = e.dataTransfer.getData('itemId')
+
+      if (item.id !== itemId) {
+        const newItemPos = item.position
+
+        const itemIndex = this.items.findIndex(item => item.id === itemId)
+        let element = this.items[itemIndex]
+        element.position = newItemPos
+
+        this.items.splice(itemIndex, 1)
+        this.items.splice(index, 0, element)
+
+        if (itemIndex > index) {
+          this.upArrayIndexes(index, newItemPos, this.items)
+        } else {
+          this.downArrayIndexes(index, this.items)
+        }
       }
     },
-    onDragOverItem(e, index) {
-      //e.target.classList.add('border', 'border-danger')
-      let element = e.target
-      //console.log('onDragOverItem: element:', element)
-
-      // while (!element.contains('pre-drop')) {
-      //   element = element.parentNode
-      // }
-
-      element.classList.add('border', 'border-danger')
-
-      //e.target.style.border = '1px solid red'
-      //e.target.style.marginTop = '52px'
-      //this.sortFilter.splice(index, 0, { title: '333' })
+    upArrayIndexes(index, newPos, array) {
+      let element
+      for (let i = index + 1; i < array.length; i++) {
+        newPos = +newPos + 1
+        element = array[i]
+        element.position = newPos
+        console.log('new elem up pos:', element)
+      }
     },
-    onDragLeaveItem(e, position) {
-      e.target.classList.remove('border', 'border-danger')
-      //e.target.classList.add('border', 'border-success')
-    },
-    onDrop(e, status) {
-      //console.log('onDrop, status:', status)
-
-      // let dropzone = document.querySelector(
-      //   '.dropzone[data-status ="' + status + '" ]'
-      // )
-      // dropzone.lastChild.style.paddingTop = '0'
-
-      let itemId = e.dataTransfer.getData('itemId')
-      console.log('onDrop, itemId:', itemId)
-      e.target.classList.remove('border', 'border-danger', 'mt-5')
-      // this.items.forEach(item => {
-      //   if (item.id === itemId) {
-      //     if (item.status !== status) {
-      //       item.status = status
-      //       this.$store.dispatch('updateItemStatus', { item })
-      //     }
-      //   }
-      // })
+    downArrayIndexes(index, array) {
+      let element
+      for (let i = 0; i < index; i++) {
+        element = array[i]
+        element.position = i + 1
+        console.log('new elem down pos:', element)
+      }
     },
     saveItem(item) {
       this.$emit('save-item', { item })
