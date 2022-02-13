@@ -6,13 +6,15 @@ export default (type, categoryId = '') => {
     return {
       id,
       title,
-      type: 'materialvid'
+      type: 'materialvid',
+      position: 0
     }
   } else if (type === 'obrabotkavid') {
     return {
       id,
       title,
-      type: 'obrabotkavid'
+      type: 'obrabotkavid',
+      position: 0
     }
   } else if (type === 'dopuslug') {
     return {
@@ -21,7 +23,8 @@ export default (type, categoryId = '') => {
       type: 'dopuslug',
       alias: '',
       ed: '',
-      price: 0
+      price: 0,
+      position: 0
     }
   } else if (type === 'material') {
     return {
@@ -32,7 +35,8 @@ export default (type, categoryId = '') => {
       ed: '',
       price: 0,
       ostatok: 0,
-      type: 'material'
+      type: 'material',
+      position: 0
     }
   } else if (type === 'obrabotkatolshina') {
     return {
@@ -43,7 +47,8 @@ export default (type, categoryId = '') => {
       priceS: 0,
       priceM: 0,
       priceL: 0,
-      type: 'obrabotkatolshina'
+      type: 'obrabotkatolshina',
+      position: 0
     }
   } else if (type === 'customer') {
     return {
