@@ -1,3 +1,10 @@
+// Import all Domains
+import Materialvid from '@/classes/materialvid'
+import Material from '@/classes/material'
+import Obrabotkavid from '@/classes/obrabotkavid'
+import Obrabotkatolshina from '@/classes/obrabotkatolshina'
+import Dopuslug from '@/classes/dopuslug'
+import Customer from '@/classes/customer'
 export default (type, categoryId = '') => {
   const id = Date.now().toString()
   const title = '[]'
