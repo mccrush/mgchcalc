@@ -31,8 +31,8 @@
           </option>
         </select>
         <div v-if="razdel === 'materialvid'" class="d-flex">
-          <div class="small text-end w-75 me-2 pt-1">Процент наценки</div>
-          <div class="w-25">
+          <div class="small text-end w-50 me-2 pt-1">Наценка&nbsp;%</div>
+          <div class="w-50">
             <input
               type="number"
               min="0"
