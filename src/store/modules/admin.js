@@ -20,6 +20,7 @@ export default {
     updateItem(state, { item }) {
       const index = state[item.type].findIndex(el => el.id === item.id)
       state[item.type][index] = item
+      console.log('admin.js: m updateItem(): Данные обновлены')
     },
     addItem(state, { item }) {
       state[item.type].push(item)
@@ -37,9 +38,9 @@ export default {
         commit('updateLoadingStatus', true)
         await deleteDoc(doc(db, type, id))
         commit('updateLoadingStatus', false)
-        console.log('Данные удалены')
+        console.log('admin.js: removeItem(): Данные удалены')
       } catch (error) {
-        console.error('error admin.js removeItem:', error)
+        console.error('admin.js: removeItem(): error', error)
       }
     },
     async updateItem({ commit }, { item }) {
@@ -48,9 +49,9 @@ export default {
         const itemRef = doc(db, item.type, item.id)
         await updateDoc(itemRef, item)
         commit('updateLoadingStatus', false)
-        console.log('Данные обновлены')
+        console.log('admin.js: a updateItem(): Данные обновлены')
       } catch (error) {
-        console.error('error admin.js updateItem:', error)
+        console.error('admin.js: updateItem(): error', error)
       }
     },
     async addItem({ commit }, { item }) {
@@ -58,9 +59,9 @@ export default {
         commit('updateLoadingStatus', true)
         await setDoc(doc(db, item.type, item.id), item)
         commit('updateLoadingStatus', false)
-        console.log('Данные добавлены')
+        console.log('admin.js: addItem(): Данные добавлены')
       } catch (error) {
-        console.error('error admin.js addItem:', error)
+        console.error('admin.js: addItem(): error', error)
       }
     },
     async getItems({ commit }, { type }) {

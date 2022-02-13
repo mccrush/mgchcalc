@@ -49,6 +49,7 @@ export default {
   emits: ['save-item', 'remove-item'],
   computed: {
     items() {
+      console.log('Новые Items получены')
       return this.$store.getters[this.type]
     },
     searchFilter() {
@@ -75,6 +76,8 @@ export default {
     },
     dropItem(e, item, index) {
       e.currentTarget.classList.remove('bg-secondary')
+      if (index % 2 === 0) e.currentTarget.classList.add('bg-light')
+
       const itemId = e.dataTransfer.getData('itemId')
 
       if (item.id !== itemId) {
@@ -83,7 +86,10 @@ export default {
         const itemIndex = this.items.findIndex(item => item.id === itemId)
         let element = this.items[itemIndex]
         element.position = newItemPos
+        this.saveItem(element)
 
+        // Пока не до конца ясно, почему надо делать так,
+        // почему не обновляются данные через computed
         this.items.splice(itemIndex, 1)
         this.items.splice(index, 0, element)
 
@@ -100,7 +106,8 @@ export default {
         newPos = +newPos + 1
         element = array[i]
         element.position = newPos
-        console.log('new elem up pos:', element)
+        this.saveItem(element)
+        //console.log('new elem up pos:', element)
       }
     },
     downArrayIndexes(index, array) {
@@ -108,7 +115,8 @@ export default {
       for (let i = 0; i < index; i++) {
         element = array[i]
         element.position = i + 1
-        console.log('new elem down pos:', element)
+        this.saveItem(element)
+        //console.log('new elem down pos:', element)
       }
     },
     saveItem(item) {
