@@ -18,7 +18,7 @@
       <div class="position-block border small text-center rounded p-0 pt-1">
         {{ item.position }}
       </div>
-      <div class="col-8 col-sm-11 col-md-5 ps-1 pe-md-0">
+      <div class="col-9 col-sm-10 col-md-5 ps-1 pe-md-0">
         <input
           type="text"
           class="form-control form-control-sm"
