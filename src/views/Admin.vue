@@ -163,17 +163,17 @@ export default {
     },
     addItem() {
       const newItem = createItem(this.razdel, this.categoryId)
-      this.$store.commit('addItem', { item: newItem })
+      //this.$store.commit('addItem', { item: newItem })
       this.$store.dispatch('addItem', { item: newItem })
     },
     saveItem({ item }) {
       if (item.title) {
-        this.$store.commit('updateItem', { item })
+        //this.$store.commit('updateItem', { item })
         this.$store.dispatch('updateItem', { item })
       }
     },
     removeItem(id) {
-      this.$store.commit('removeItem', { type: this.razdel, id })
+      //this.$store.commit('removeItem', { type: this.razdel, id })
       this.$store.dispatch('removeItem', { type: this.razdel, id })
     },
     sortStart(sort) {
@@ -181,7 +181,7 @@ export default {
     },
     saveProcent() {
       const item = { type: 'procent', id: '1639495120848', value: this.procent }
-      this.$store.commit('updateItem', { item })
+      //this.$store.commit('updateItem', { item })
       this.$store.dispatch('updateItem', { item })
     }
   }

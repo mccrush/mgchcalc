@@ -36,6 +36,7 @@ export default {
     async removeItem({ commit }, { type, id }) {
       try {
         commit('updateLoadingStatus', true)
+        commit('removeItem', { type, id })
         await deleteDoc(doc(db, type, id))
         commit('updateLoadingStatus', false)
         console.log('admin.js: removeItem(): Данные удалены')
@@ -46,6 +47,7 @@ export default {
     async updateItem({ commit }, { item }) {
       try {
         commit('updateLoadingStatus', true)
+        commit('updateItem', { item })
         const itemRef = doc(db, item.type, item.id)
         await updateDoc(itemRef, item)
         commit('updateLoadingStatus', false)
@@ -57,6 +59,7 @@ export default {
     async addItem({ commit }, { item }) {
       try {
         commit('updateLoadingStatus', true)
+        commit('addItem', { item })
         await setDoc(doc(db, item.type, item.id), item)
         commit('updateLoadingStatus', false)
         console.log('admin.js: addItem(): Данные добавлены')

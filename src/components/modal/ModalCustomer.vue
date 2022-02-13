@@ -42,7 +42,7 @@ export default {
         item.id = Date.now().toString()
         item.type = 'customer'
         console.log('ModalCustomer: item:', item)
-        this.$store.commit('addItem', { item })
+        //this.$store.commit('addItem', { item })
         this.$store.dispatch('addItem', { item })
       }
     }
