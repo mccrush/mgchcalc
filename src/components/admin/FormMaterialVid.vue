@@ -4,6 +4,7 @@
       v-for="(item, index) in sortFilter"
       :key="item.id"
       class="row mt-1 pt-2 pb-2"
+      :class="{ 'bg-light': index % 2 === 0 }"
       draggable="true"
       @dragstart="dragStart($event, item)"
       @dragover="dragOver($event)"
@@ -11,20 +12,11 @@
       @drop="dropItem($event, item, index)"
       @dragover.prevent
     >
-      <div
-        class="drag-button ms-1 p-0 pb-1"
-        :class="{ 'bg-light': index % 2 === 0 }"
-      >
+      <div class="drag-button ms-1 p-0 pb-1">
         <ButtonDrag />
       </div>
-      <div class="col-2 col-sm-1 ps-1 pe-0">
-        <input
-          type="number"
-          class="form-control form-control-sm"
-          v-model.number="item.position"
-          @change="saveItem(item)"
-          disabled
-        />
+      <div class="position-block border small text-center rounded p-0 pt-1">
+        {{ item.position }}
       </div>
       <div class="col-8 col-md-6 ps-1 pe-0">
         <input
@@ -34,10 +26,7 @@
           @change="saveItem(item)"
         />
       </div>
-      <div
-        class="col-2 col-md-1 text-end"
-        :class="{ 'bg-light': index % 2 === 0 }"
-      >
+      <div class="col-2 col-md-1 text-end">
         <ButtonTrash @click="$emit('remove-item', item.id)" />
       </div>
       <div class="col-5"></div>
@@ -78,6 +67,7 @@ export default {
       e.dataTransfer.setData('itemId', item.id)
     },
     dragOver(e) {
+      e.currentTarget.classList.remove('bg-light')
       e.currentTarget.classList.add('bg-secondary')
     },
     dragLeave(e) {
@@ -129,7 +119,8 @@ export default {
 </script>
 
 <style scoped>
-.drag-button {
+.drag-button,
+.position-block {
   width: 24px;
 }
 </style>
