@@ -97,7 +97,9 @@ export default {
     },
     searchFilter() {
       if (this.searchText) {
-        return this.items.filter(item => item.title.includes(this.searchText))
+        return this.items.filter(item =>
+          item.title.toUpperCase().includes(this.searchText.toUpperCase())
+        )
       } else {
         return this.items
       }
