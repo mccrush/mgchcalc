@@ -53,7 +53,15 @@
         <InputSearch v-model:search="searchText" />
       </div>
       <div class="col-12 col-sm-4 col-md-2 mt-2 mt-md-0">
-        <ButtonAdd @click="addItem" />
+        <ButtonAdd
+          @click="addItem"
+          :class="{
+            disabled:
+              (this.razdel === 'obrabotkatolshina' ||
+                this.razdel === 'material') &&
+              !categoryId
+          }"
+        />
       </div>
     </div>
     <component
