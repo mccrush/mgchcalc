@@ -20,7 +20,7 @@ export default {
     updateItem(state, { item }) {
       const index = state[item.type].findIndex(el => el.id === item.id)
       state[item.type][index] = item
-      console.log('admin.js: m updateItem(): Данные обновлены')
+      //console.log('admin.js: m updateItem(): Данные обновлены')
     },
     addItem(state, { item }) {
       state[item.type].push(item)
