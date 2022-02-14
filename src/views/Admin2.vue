@@ -38,11 +38,31 @@ export default {
       sortType: 'asc'
     }
   },
+  mounted() {
+    console.log('razdel:', this.razdel)
+    console.log('categoryId:', this.categoryId)
+    console.log('searchText:', this.searchText)
+    console.log('sortType:', this.sortType)
+  },
   methods: {
     addItem() {
       const item = createItem(this.razdel, this.categoryId)
       console.log('new item:', item)
       //this.$store.dispatch('addItem', { item })
+    }
+  },
+  watch: {
+    razdel(n, o) {
+      console.log('razdel n:', this.razdel)
+    },
+    categoryId(n, o) {
+      console.log('categoryId n:', this.categoryId)
+    },
+    searchText(n, o) {
+      console.log('searchText n:', this.searchText)
+    },
+    sortType(n, o) {
+      console.log('sortType n:', this.sortType)
     }
   }
 }
