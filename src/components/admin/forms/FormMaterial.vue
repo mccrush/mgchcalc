@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="row">
     <div class="drag-button ms-1 p-0 pb-1">
       <ButtonDrag />
     </div>

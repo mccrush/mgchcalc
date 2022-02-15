@@ -4,7 +4,7 @@
       <div
         v-for="(item, index) in sortFilter"
         :key="item.id"
-        class="row mt-2 pt-2 pb-2"
+        class="row pt-3 pb-3"
         :class="{ 'bg-light': index % 2 === 0 }"
         draggable="true"
         @dragstart="dragStart($event, item)"

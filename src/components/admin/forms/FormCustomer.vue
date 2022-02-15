@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="row">
     <div class="col-12 col-sm-6 pe-sm-0">
       <input
         type="text"
