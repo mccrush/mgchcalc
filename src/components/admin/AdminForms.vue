@@ -140,7 +140,7 @@ export default {
         //console.log('new elem down pos:', element)
       }
     },
-    saveItem(item) {
+    saveItem({ item }) {
       this.$emit('save-item', { item })
     },
     removeItem(id) {
