@@ -87,6 +87,12 @@ export default {
   methods: {
     dragStart(e, item) {
       e.dataTransfer.setData('itemId', item.id)
+      // console.log(e.currentTarget.classList)
+      // if (e.currentTarget.classList.contains('drag-button')) {
+      //   e.dataTransfer.setData('itemId', item.id)
+      // } else {
+      //   e.preventDefault()
+      // }
     },
     dragOver(e) {
       e.currentTarget.classList.remove('bg-light')

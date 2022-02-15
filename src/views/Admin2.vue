@@ -41,10 +41,10 @@ export default {
     }
   },
   mounted() {
-    console.log('mn razdel:', this.razdel)
-    console.log('mn categoryId:', this.categoryId)
-    console.log('mn searchText:', this.searchText)
-    console.log('mn sortType:', this.sortType)
+    // console.log('mn razdel:', this.razdel)
+    // console.log('mn categoryId:', this.categoryId)
+    // console.log('mn searchText:', this.searchText)
+    // console.log('mn sortType:', this.sortType)
   },
   methods: {
     addItem() {
