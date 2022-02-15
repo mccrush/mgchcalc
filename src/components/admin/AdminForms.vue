@@ -107,7 +107,7 @@ export default {
         const itemIndex = this.items.findIndex(item => item.id === itemId)
         let element = this.items[itemIndex]
         element.position = newItemPos
-        this.saveItem(element)
+        this.saveItem({ item: element })
 
         // Пока не до конца ясно, почему надо делать так,
         // почему не обновляются данные через computed
@@ -127,7 +127,7 @@ export default {
         newPos = +newPos + 1
         element = array[i]
         element.position = newPos
-        this.saveItem(element)
+        this.saveItem({ item: element })
         //console.log('new elem up pos:', element)
       }
     },
@@ -136,7 +136,7 @@ export default {
       for (let i = 0; i < index; i++) {
         element = array[i]
         element.position = i + 1
-        this.saveItem(element)
+        this.saveItem({ item: element })
         //console.log('new elem down pos:', element)
       }
     },

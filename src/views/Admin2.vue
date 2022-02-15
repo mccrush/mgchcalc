@@ -55,7 +55,7 @@ export default {
     },
     saveItem({ item }) {
       if (item.title) {
-        console.log('saveItem item:', item)
+        //console.log('saveItem 2 item:', item)
         this.$store.dispatch('updateItem', { item })
       }
     },
@@ -66,7 +66,7 @@ export default {
   },
   watch: {
     razdel(n, o) {
-      console.log('razdel n:', this.razdel)
+      //console.log('razdel n:', this.razdel)
       localStorage.setItem('cl-razdel', this.razdel)
       if (this.razdel === 'obrabotkatolshina' || this.razdel === 'material') {
         this.categoryId = ''
@@ -74,14 +74,14 @@ export default {
       }
     },
     categoryId(n, o) {
-      console.log('categoryId n:', this.categoryId)
+      //console.log('categoryId n:', this.categoryId)
       localStorage.setItem('cl-categoryId', this.categoryId)
     },
     searchText(n, o) {
-      console.log('searchText n:', this.searchText)
+      //console.log('searchText n:', this.searchText)
     },
     sortType(n, o) {
-      console.log('sortType n:', this.sortType)
+      //console.log('sortType n:', this.sortType)
     }
   }
 }
