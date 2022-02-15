@@ -8,7 +8,7 @@
       @add-item="addItem"
     />
     <AdminForms
-      :razdel="razdel"
+      :type="razdel"
       :categoryId="categoryId"
       :searchText="searchText"
       :sortType="sortType"
@@ -54,9 +54,15 @@ export default {
   watch: {
     razdel(n, o) {
       console.log('razdel n:', this.razdel)
+      localStorage.setItem('cl-razdel', this.razdel)
+      if (this.razdel === 'obrabotkatolshina' || this.razdel === 'material') {
+        this.categoryId = ''
+        localStorage.setItem('cl-categoryId', '')
+      }
     },
     categoryId(n, o) {
       console.log('categoryId n:', this.categoryId)
+      localStorage.setItem('cl-categoryId', this.categoryId)
     },
     searchText(n, o) {
       console.log('searchText n:', this.searchText)
