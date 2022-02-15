@@ -13,7 +13,14 @@
         @drop="dropItem($event, item, index)"
         @dragover.prevent
       >
-        {{ item.position }} . {{ item.title }}
+        <component
+          :is="myForm"
+          :item="item"
+          :categoryId="categoryId"
+          :categorys="categorys"
+          @save-item="saveItem"
+          @remove-item="removeItem"
+        />
       </div>
     </div>
   </div>
@@ -22,9 +29,39 @@
 <script>
 import sortMethod from '@/scripts/sortMethod'
 
+import FormMaterialvid from '@/components/admin/forms/FormMaterialVid'
+import FormMaterial from '@/components/admin/forms/FormMaterial'
+import FormObrabotkavid from '@/components/admin/forms/FormObrabotkaVid'
+import FormObrabotkatolshina from '@/components/admin/forms/FormObrabotkaTolshina'
+import FormDopuslug from '@/components/admin/forms/FormDopuslug'
+import FormCustomer from '@/components/admin/forms/FormCustomer'
+
 export default {
+  components: {
+    FormMaterialvid,
+    FormMaterial,
+    FormObrabotkavid,
+    FormObrabotkatolshina,
+    FormDopuslug,
+    FormCustomer
+  },
   props: ['type', 'categoryId', 'searchText', 'sortType'],
+  emits: ['save-item', 'remove-item'],
   computed: {
+    myForm() {
+      const form =
+        'Form' +
+        this.type.substring(0, 1).toUpperCase() +
+        this.type.substring(1)
+      return form
+    },
+    categorys() {
+      if (this.type === 'material') {
+        return this.$store.getters.materialvid
+      } else if (this.type === 'obrabotkatolshina') {
+        return this.$store.getters.obrabotkavid
+      }
+    },
     items() {
       if (this.type === 'obrabotkatolshina' || this.type === 'material') {
         return this.$store.getters[this.type].filter(
@@ -104,9 +141,18 @@ export default {
       }
     },
     saveItem(item) {
-      console.log('save-item():', item)
-      //this.$emit('save-item', { item })
+      this.$emit('save-item', { item })
+    },
+    removeItem(id) {
+      this.$emit('remove-item', id)
     }
   }
 }
 </script>
+
+<style>
+.drag-button,
+.position-block {
+  width: 24px;
+}
+</style>

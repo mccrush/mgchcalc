@@ -12,6 +12,8 @@
       :categoryId="categoryId"
       :searchText="searchText"
       :sortType="sortType"
+      @save-item="saveItem"
+      @remove-item="removeItem"
     />
     <AdminFooter />
   </div>
@@ -47,8 +49,18 @@ export default {
   methods: {
     addItem() {
       const item = createItem(this.razdel, this.categoryId)
-      console.log('new item:', item)
+      console.log('addItem new item:', item)
       //this.$store.dispatch('addItem', { item })
+    },
+    saveItem({ item }) {
+      if (item.title) {
+        console.log('saveItem item:', item)
+        //this.$store.dispatch('updateItem', { item })
+      }
+    },
+    removeItem(id) {
+      console.log('removeItem item.id:', id)
+      //this.$store.dispatch('removeItem', { type: this.razdel, id })
     }
   },
   watch: {
