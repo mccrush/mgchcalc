@@ -98,17 +98,10 @@ export default {
   },
   computed: {
     categorys() {
-      if (this.razdel === 'materialvid' || this.razdel === 'material') {
+      if (this.razdel === 'material') {
         return this.$store.getters.materialvid
-      } else if (
-        this.razdel === 'obrabotkavid' ||
-        this.razdel === 'obrabotkatolshina'
-      ) {
+      } else if (this.razdel === 'obrabotkatolshina') {
         return this.$store.getters.obrabotkavid
-      } else if (this.razdel === 'dopuslug') {
-        return this.$store.getters.dopuslug
-      } else if (this.razdel === 'customer') {
-        return this.$store.getters.customer
       }
     }
   }

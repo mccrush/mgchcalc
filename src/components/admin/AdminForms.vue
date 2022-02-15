@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 pt-2">
       <div
-        v-for="(item, index) in items"
+        v-for="(item, index) in sortFilter"
         :key="item.id"
         class="row mt-2 pt-2 pb-2"
         :class="{ 'bg-light': index % 2 === 0 }"
@@ -13,13 +13,15 @@
         @drop="dropItem($event, item, index)"
         @dragover.prevent
       >
-        {{ item.title }}
+        {{ item.position }} . {{ item.title }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import sortMethod from '@/scripts/sortMethod'
+
 export default {
   props: ['type', 'categoryId', 'searchText', 'sortType'],
   computed: {
@@ -31,6 +33,18 @@ export default {
       } else {
         return this.$store.getters[this.type]
       }
+    },
+    searchFilter() {
+      if (this.searchText) {
+        return this.items.filter(item =>
+          item.title.toUpperCase().includes(this.searchText.toUpperCase())
+        )
+      } else {
+        return this.items
+      }
+    },
+    sortFilter() {
+      return sortMethod(this.searchFilter, this.sortType, 'position')
     }
   }
 }
