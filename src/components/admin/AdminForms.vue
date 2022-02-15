@@ -46,6 +46,67 @@ export default {
     sortFilter() {
       return sortMethod(this.searchFilter, this.sortType, 'position')
     }
+  },
+  methods: {
+    dragStart(e, item) {
+      e.dataTransfer.setData('itemId', item.id)
+    },
+    dragOver(e) {
+      e.currentTarget.classList.remove('bg-light')
+      e.currentTarget.classList.add('bg-secondary')
+    },
+    dragLeave(e) {
+      e.currentTarget.classList.remove('bg-secondary')
+    },
+    dropItem(e, item, index) {
+      e.currentTarget.classList.remove('bg-secondary')
+      if (index % 2 === 0) e.currentTarget.classList.add('bg-light')
+
+      const itemId = e.dataTransfer.getData('itemId')
+
+      if (item.id !== itemId) {
+        const newItemPos = item.position
+
+        const itemIndex = this.items.findIndex(item => item.id === itemId)
+        let element = this.items[itemIndex]
+        element.position = newItemPos
+        this.saveItem(element)
+
+        // Пока не до конца ясно, почему надо делать так,
+        // почему не обновляются данные через computed
+        this.items.splice(itemIndex, 1)
+        this.items.splice(index, 0, element)
+
+        if (itemIndex > index) {
+          this.upArrayIndexes(index, newItemPos, this.items)
+        } else {
+          this.downArrayIndexes(index, this.items)
+        }
+      }
+    },
+    upArrayIndexes(index, newPos, array) {
+      let element
+      for (let i = index + 1; i < array.length; i++) {
+        newPos = +newPos + 1
+        element = array[i]
+        element.position = newPos
+        this.saveItem(element)
+        //console.log('new elem up pos:', element)
+      }
+    },
+    downArrayIndexes(index, array) {
+      let element
+      for (let i = 0; i < index; i++) {
+        element = array[i]
+        element.position = i + 1
+        this.saveItem(element)
+        //console.log('new elem down pos:', element)
+      }
+    },
+    saveItem(item) {
+      console.log('save-item():', item)
+      //this.$emit('save-item', { item })
+    }
   }
 }
 </script>
