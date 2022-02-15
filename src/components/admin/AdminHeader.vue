@@ -72,13 +72,16 @@
 </template>
 
 <script>
+import razdels from '@/data/razdels'
 import ButtonSort2 from '@/components/buttons/ButtonSort2'
 import InputSearch2 from '@/components/inputs/InputSearch2'
+import ButtonAdd from '@/components/buttons/ButtonAdd'
 
 export default {
   components: {
     ButtonSort2,
-    InputSearch2
+    InputSearch2,
+    ButtonAdd
   },
   props: ['razdel', 'categoryId', 'searchText', 'sortType'],
   emits: [
@@ -87,6 +90,27 @@ export default {
     'update:searchText',
     'update:sortType',
     'add-item'
-  ]
+  ],
+  data() {
+    return {
+      razdels
+    }
+  },
+  computed: {
+    categorys() {
+      if (this.razdel === 'materialvid' || this.razdel === 'material') {
+        return this.$store.getters.materialvid
+      } else if (
+        this.razdel === 'obrabotkavid' ||
+        this.razdel === 'obrabotkatolshina'
+      ) {
+        return this.$store.getters.obrabotkavid
+      } else if (this.razdel === 'dopuslug') {
+        return this.$store.getters.dopuslug
+      } else if (this.razdel === 'customer') {
+        return this.$store.getters.customer
+      }
+    }
+  }
 }
 </script>
