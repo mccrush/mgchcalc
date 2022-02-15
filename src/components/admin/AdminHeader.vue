@@ -5,7 +5,10 @@
         class="form-select form-select-sm w-100"
         aria-label="Select group resourse"
         :value="razdel"
-        @change="$emit('update:razdel', $event.target.value)"
+        @change="
+          $emit('update:razdel', $event.target.value),
+            $emit('update:categoryId', '')
+        "
       >
         <option
           v-for="razdel in razdels"
