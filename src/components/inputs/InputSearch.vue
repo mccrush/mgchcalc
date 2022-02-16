@@ -3,14 +3,14 @@
     type="text"
     class="form-control form-control-sm"
     placeholder="Поиск"
-    :value="search"
-    @input="$emit('update:search', $event.target.value)"
+    :value="searchText"
+    @input="$emit('update:searchText', $event.target.value)"
   />
 </template>
 
 <script>
 export default {
-  props: ['search'],
-  emits: ['update:search']
+  props: ['searchText'],
+  emits: ['update:searchText']
 }
 </script>

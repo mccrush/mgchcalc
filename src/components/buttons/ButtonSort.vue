@@ -58,6 +58,8 @@
 
 <script>
 export default {
+  props: ['sortType'],
+  emits: ['update:sortType'],
   data() {
     return {
       sort: 'asc'
@@ -65,7 +67,7 @@ export default {
   },
   methods: {
     selectSort(sort) {
-      this.$emit('sort', sort)
+      this.$emit('update:sortType', sort)
       this.sort = sort
     }
   }
