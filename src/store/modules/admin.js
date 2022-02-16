@@ -11,7 +11,8 @@ export default {
     obrabotkavid: [],
     obrabotkatolshina: [],
     dopuslug: [],
-    customer: []
+    contact: [],
+    company: []
   },
   mutations: {
     removeItem(state, { type, id }) {
