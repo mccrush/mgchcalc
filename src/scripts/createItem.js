@@ -1,93 +1,32 @@
 // Import all Domains
-import Materialvid from '@/classes/materialvid'
-import Material from '@/classes/material'
-import Obrabotkavid from '@/classes/obrabotkavid'
-import Obrabotkatolshina from '@/classes/obrabotkatolshina'
-import Dopuslug from '@/classes/dopuslug'
-import Contact from '@/classes/contact'
-import Company from '@/classes/company'
+import getId from './getId'
+import materialvid from '@/classes/materialvid'
+import material from '@/classes/material'
+import obrabotkavid from '@/classes/obrabotkavid'
+import obrabotkatolshina from '@/classes/obrabotkatolshina'
+import dopuslug from '@/classes/dopuslug'
+import contact from '@/classes/contact'
+import company from '@/classes/company'
+
+
 
 export default (type, categoryId) => {
+  const id = getId()
+
   switch (type) {
     case 'materialvid':
-      return new Materialvid()
+      return materialvid(id)
     case 'material':
-      return new Material(categoryId)
+      return material(id, categoryId)
     case 'obrabotkavid':
-      return new Obrabotkavid()
+      return obrabotkavid(id)
     case 'obrabotkatolshina':
-      return new Obrabotkatolshina(categoryId)
+      return obrabotkatolshina(id, categoryId)
     case 'dopuslug':
-      return new Dopuslug()
+      return dopuslug(id)
     case 'contact':
-      return new Contact()
+      return contact(id)
     case 'company':
-      return new Company()
+      return company(id)
   }
-
-  // const id = Date.now().toString()
-  // const title = '[]'
-
-  // if (type === 'materialvid') {
-  //   return {
-  //     id,
-  //     title,
-  //     type: 'materialvid',
-  //     position: 0
-  //   }
-  // } else if (type === 'obrabotkavid') {
-  //   return {
-  //     id,
-  //     title,
-  //     type: 'obrabotkavid',
-  //     position: 0
-  //   }
-  // } else if (type === 'dopuslug') {
-  //   return {
-  //     id,
-  //     title,
-  //     type: 'dopuslug',
-  //     alias: '',
-  //     ed: '',
-  //     price: 0,
-  //     position: 0
-  //   }
-  // } else if (type === 'material') {
-  //   return {
-  //     id,
-  //     title,
-  //     categoryId,
-  //     categoryTitle: '',
-  //     ed: '',
-  //     price: 0,
-  //     ostatok: 0,
-  //     type: 'material',
-  //     position: 0
-  //   }
-  // } else if (type === 'obrabotkatolshina') {
-  //   return {
-  //     id,
-  //     title,
-  //     categoryId,
-  //     categoryTitle: '',
-  //     priceS: 0,
-  //     priceM: 0,
-  //     priceL: 0,
-  //     type: 'obrabotkatolshina',
-  //     position: 0
-  //   }
-  // } else if (type === 'customer') {
-  //   return {
-  //     id,
-  //     title,
-  //     address: '',
-  //     inn: '',
-  //     kpp: '',
-  //     ogrn: '',
-  //     bic: '',
-  //     rs: '',
-  //     ks: '',
-  //     type: 'customer'
-  //   }
-  // }
 }

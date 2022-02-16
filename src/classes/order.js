@@ -5,21 +5,21 @@ import getDateNow from '@/scripts/getDateNow'
 const weekFormat = getWeek() < 10 ? '0' + getWeek() : getWeek()
 const titleFormar = '_' + weekFormat + '_'
 
-export default class Order {
-  constructor(orderNumber, siryoArray, rabotaArray, dopuslugArray) {
-    this.id = id
-    this.title = titleFormar + orderNumber
-    this.type = 'order'
-    this.position = 0
-    this.client = ''
-    this.dateCreate = getDateNow
-    this.dateCreateWeek = getWeek()
-    this.dateFinish = ''
-    this.dateForReady = ''
-    this.status = 'neworder'
-    this.siryoArray = siryoArray
-    this.rabotaArray = rabotaArray
-    this.dopuslugArray = dopuslugArray
-    this.files = []
+export default (id, orderNumber, siryoArray, rabotaArray, dopuslugArray) => {
+  return {
+    id,
+    title: titleFormar + orderNumber,
+    type: 'order',
+    position: 0,
+    client: '',
+    dateCreate: getDateNow,
+    dateCreateWeek: getWeek(),
+    dateFinish: '',
+    dateForReady: '',
+    status: 'neworder',
+    siryoArray,
+    rabotaArray,
+    dopuslugArray,
+    files: []
   }
 }

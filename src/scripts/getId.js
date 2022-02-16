@@ -1,1 +1,1 @@
-export default Date.now().toString()
+export default () => Date.now().toString()

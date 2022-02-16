@@ -1,13 +1,11 @@
-import id from '@/scripts/getId'
-
-export default class Contact {
-  constructor() {
-    this.id = id
-    this.name = '[]'
-    this.type = 'contact'
-    this.shortname = ''
-    this.phone = ''
-    this.email = ''
-    this.messengers = []
+export default (id) => {
+  return {
+    id,
+    name: '[]',
+    type: 'contact',
+    shortname: '',
+    phone: '',
+    email: '',
+    messengers: []
   }
 }

@@ -1,16 +1,14 @@
-import id from '@/scripts/getId'
-
-export default class Company {
-  constructor() {
-    this.id = id
-    this.title = '[]'
-    this.type = 'company'
-    this.inn = ''
-    this.kpp = ''
-    this.ogrn = ''
-    this.address = ''
-    this.bic = ''
-    this.rs = ''
-    this.ks = ''
+export default (id) => {
+  return {
+    id,
+    title: '[]',
+    type: 'company',
+    inn: '',
+    kpp: '',
+    ogrn: '',
+    address: '',
+    bic: '',
+    rs: '',
+    ks: ''
   }
 }

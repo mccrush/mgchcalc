@@ -61,9 +61,10 @@ export default {
   methods: {
     addItem() {
       //const item = createItem(this.razdel, this.categoryId)
-      const item = Object.assign({}, createItem(this.razdel, this.categoryId))
+      //const item = Object.assign({}, createItem(this.razdel, this.categoryId))
+      const item = createItem(this.razdel, this.categoryId)
       console.log('addItem new item:', item)
-      this.$store.dispatch('addItem', { item })
+      //this.$store.dispatch('addItem', { item })
     },
     saveItem({ item }) {
       if (item.title) {
