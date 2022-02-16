@@ -4,7 +4,8 @@ import Material from '@/classes/material'
 import Obrabotkavid from '@/classes/obrabotkavid'
 import Obrabotkatolshina from '@/classes/obrabotkatolshina'
 import Dopuslug from '@/classes/dopuslug'
-import Customer from '@/classes/customer'
+import Contact from '@/classes/contact'
+import Company from '@/classes/company'
 
 export default (type, categoryId) => {
   switch (type) {
@@ -18,8 +19,10 @@ export default (type, categoryId) => {
       return new Obrabotkatolshina(categoryId)
     case 'dopuslug':
       return new Dopuslug()
-    case 'customer':
-      return new Customer()
+    case 'contact':
+      return new Contact()
+    case 'company':
+      return new Company()
   }
 
   // const id = Date.now().toString()
