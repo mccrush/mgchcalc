@@ -29,20 +29,20 @@
           {{ cat.title }}
         </option>
       </select>
-      <!-- <div v-if="razdel === 'materialvid'" class="d-flex">
-          <div class="small text-end w-50 me-2 pt-1">Наценка&nbsp;%</div>
-          <div class="w-50">
-            <input
-              type="number"
-              min="0"
-              max="200"
-              step="5"
-              class="form-control form-control-sm"
-              v-model.number="procent"
-              @change="saveProcent"
-            />
-          </div>
-        </div> -->
+      <div v-if="razdel === 'materialvid'" class="d-flex">
+        <div class="small text-end w-50 me-2 pt-1">Наценка&nbsp;%</div>
+        <div class="w-50">
+          <input
+            type="number"
+            min="0"
+            max="200"
+            step="1"
+            class="form-control form-control-sm"
+            :value="procent"
+            @change="$emit('update:procent', $event.target.value)"
+          />
+        </div>
+      </div>
     </div>
     <!---->
     <div class="col-3 col-sm-4 col-md-2 col-lg-1 mt-2 mt-md-0 pe-0">
@@ -83,12 +83,13 @@ export default {
     InputSearch,
     ButtonAdd
   },
-  props: ['razdel', 'categoryId', 'searchText', 'sortType'],
+  props: ['razdel', 'categoryId', 'searchText', 'sortType', 'procent'],
   emits: [
     'update:razdel',
     'update:categoryId',
     'update:searchText',
     'update:sortType',
+    'update:procent',
     'add-item'
   ],
   data() {
