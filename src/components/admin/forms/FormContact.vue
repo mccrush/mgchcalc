@@ -121,23 +121,19 @@ export default {
   },
   computed: {
     companys() {
-      return []
       return this.$store.getters.company
     }
   },
   methods: {
     addMessenger() {
       this.item.messengers.push({ title: '', login: '' })
-      console.log('this.item.messengers:', this.item.messengers)
     },
     updateMessanger(index, title, login) {
       this.item.messengers[index] = { title, login }
-      console.log('this.item.messengers[index]:', this.item.messengers[index])
       this.$emit('save-item', { item: this.item })
     },
     removeMessanger(index) {
       this.item.messengers.splice(index, 1)
-      console.log('this.item.messengers:', this.item.messengers)
       this.$emit('save-item', { item: this.item })
     }
   }
