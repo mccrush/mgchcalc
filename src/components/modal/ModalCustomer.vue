@@ -22,7 +22,26 @@
           ></button>
         </div>
         <div class="modal-body">
-          <FormCustomerModal @add-customer="addCustomer" />
+          <div class="row">
+            <div class="col-6 pe-0">
+              <button class="btn btn-lg shadow-sm bg-white w-100 pt-3 pb-3">
+                Создать Контакт
+              </button>
+            </div>
+            <div class="col-6 pe-0">
+              <button class="btn btn-lg shadow-sm bg-white w-100 pt-3 pb-3">
+                Создать Компанию
+              </button>
+            </div>
+          </div>
+          <component
+            v-if="myForm"
+            :is="myForm"
+            :item="item"
+            @save-item="saveItem"
+            @remove-item="removeItem"
+            @add-customer="addCustomer"
+          />
         </div>
       </div>
     </div>
@@ -30,13 +49,30 @@
 </template>
 
 <script>
-import FormCustomerModal from '@/components/admin/FormCustomerModal'
+import createItem from '@/scripts/createItem'
+import FormContact from '@/components/admin/forms/FormContact.vue'
 
 export default {
   components: {
-    FormCustomerModal
+    FormContact
+  },
+  data() {
+    return {
+      myForm: 'FormContact',
+      item: createItem('contact')
+    }
   },
   methods: {
+    saveItem({ item }) {
+      if (item.title || item.name) {
+        this.$store.dispatch('updateItem', { item })
+      }
+    },
+    removeItem(id) {
+      this.$emit('remove-item', id)
+      // Если это Контакт или Компания, то также удалить их
+      // из всех Компаний и Контактов
+    },
     addCustomer(item) {
       if (item.title) {
         item.id = Date.now().toString()
