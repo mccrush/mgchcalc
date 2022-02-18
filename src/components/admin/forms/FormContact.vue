@@ -36,17 +36,42 @@
         placeholder="Email"
       />
     </div>
-    <div class="col-12 col-sm-4 mt-1 pe-0">
-      <select
-        class="form-select form-select-sm"
-        v-model="item.companyId"
-        @change="$emit('save-item', { item })"
-      >
-        <option value="">Нет компании</option>
-        <option v-for="comp in companys" :key="comp.id" :value="comp.id">
-          {{ comp.title }}
-        </option>
-      </select>
+    <div
+      v-for="(cont, index) in item.companys"
+      :key="cont"
+      class="col-12 mt-1 pe-0"
+    >
+      <div class="row">
+        <div class="col-12 col-sm-6 pe-sm-0">
+          <select
+            class="form-select form-select-sm"
+            v-model="item.companys[index]"
+            @change="updateCompany($event.target.value)"
+          >
+            <option value="">Не выбран</option>
+            <option
+              v-for="contact in companys"
+              :key="contact.id"
+              :value="contact.id"
+            >
+              {{ contact.title }}
+            </option>
+          </select>
+        </div>
+        <div class="col-12 col-sm-6 mt-1 mt-sm-0 ps-sm-1">
+          <button
+            class="btn btn-sm btn-outline-secondary w-100"
+            @click="removeCompany(index, cont)"
+          >
+            Удалить компанию
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-1 pe-0">
+      <button class="btn btn-sm btn-outline-success w-100" @click="addCompany">
+        Добавить компанию
+      </button>
     </div>
     <div
       v-for="(mess, index) in item.messengers"
@@ -97,7 +122,7 @@
         Добавить мессенджер
       </button>
     </div>
-    <div class="col-12 text-end mt-1">
+    <div class="col-12 text-end mt-1 pe-0">
       <ButtonTrash @click="$emit('remove-item', item.id)" />
     </div>
   </div>
@@ -125,6 +150,38 @@ export default {
     }
   },
   methods: {
+    addCompany() {
+      this.item.companys.push('')
+    },
+    updateCompany(companyId) {
+      console.log('updateCompany() companyId:', companyId)
+      let company = this.$store.getters.company.find(
+        item => item.id === companyId
+      )
+
+      if (!company.contacts.some(item => item === this.item.id)) {
+        company.contacts.push(this.item.id)
+        this.$emit('save-item', { item: company })
+      }
+      this.$emit('save-item', { item: this.item })
+    },
+    removeCompany(index, companyId) {
+      console.log('removeCompany() companyId:', companyId)
+      let company = this.$store.getters.company.find(
+        item => item.id === companyId
+      )
+
+      const indexOfContact = company.contacts.findIndex(
+        item => item === companyId
+      )
+      if (indexOfContact) {
+        company.contacts.splice(indexOfContact, 1)
+        this.$emit('save-item', { item: company })
+      }
+
+      this.item.contacts.splice(index, 1)
+      this.$emit('save-item', { item: this.item })
+    },
     addMessenger() {
       this.item.messengers.push({ title: '', login: '' })
     },

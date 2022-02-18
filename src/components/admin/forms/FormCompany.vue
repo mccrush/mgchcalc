@@ -66,11 +66,11 @@
       class="col-12 mt-1 pe-0"
     >
       <div class="row">
-        <div class="col-12 col-sm-6 pe-0">
+        <div class="col-12 col-sm-6 pe-sm-0">
           <select
             class="form-select form-select-sm"
             v-model="item.contacts[index]"
-            @change="$emit('save-item', { item })"
+            @change="updateContact($event.target.value)"
           >
             <option value="">Не выбран</option>
             <option
@@ -85,7 +85,7 @@
         <div class="col-12 col-sm-6 mt-1 mt-sm-0 ps-sm-1">
           <button
             class="btn btn-sm btn-outline-secondary w-100"
-            @click="removeContact(index)"
+            @click="removeContact(index, cont)"
           >
             Удалить контакт
           </button>
@@ -97,7 +97,7 @@
         Добавить контакт
       </button>
     </div>
-    <div class="col-12 text-end mt-1">
+    <div class="col-12 text-end mt-1 pe-0">
       <ButtonTrash @click="$emit('remove-item', item.id)" />
     </div>
   </div>
@@ -122,7 +122,32 @@ export default {
     addContact() {
       this.item.contacts.push('')
     },
-    removeContact(index) {
+    updateContact(contactId) {
+      console.log('updateContact() contactId:', contactId)
+      let contact = this.$store.getters.contact.find(
+        item => item.id === contactId
+      )
+
+      if (!contact.companys.some(item => item === this.item.id)) {
+        contact.companys.push(this.item.id)
+        this.$emit('save-item', { item: contact })
+      }
+      this.$emit('save-item', { item: this.item })
+    },
+    removeContact(index, contactId) {
+      console.log('removeContact() contactId:', contactId)
+      let contact = this.$store.getters.contact.find(
+        item => item.id === contactId
+      )
+
+      const indexOfCompany = contact.companys.findIndex(
+        item => item === contactId
+      )
+      if (indexOfCompany) {
+        contact.companys.splice(indexOfCompany, 1)
+        this.$emit('save-item', { item: contact })
+      }
+
       this.item.contacts.splice(index, 1)
       this.$emit('save-item', { item: this.item })
     }
