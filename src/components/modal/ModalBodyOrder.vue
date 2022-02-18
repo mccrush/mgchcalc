@@ -14,30 +14,32 @@
           <label for="itemTitle">Название заказа</label>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 d-flex mt-2 mt-md-0 pe-md-0">
-        <div class="form-floating">
-          <select
+      <div class="col-12 col-sm-6 col-md-4 mt-2 mt-md-0 pe-md-0">
+        <div class="input-group h-100 mb-3">
+          <input
+            class="form-control"
+            list="datalistOptions"
+            id="exampleDataList"
+            placeholder="Заказчик..."
             v-model="client"
             @change="$emit('update-item-title', client)"
-            class="form-select"
-            id="selectClient"
+          />
+          <button
+            class="btn btn-outline-success"
+            type="button"
+            id="button-addon2"
+            @click.prevent="$emit('show-modal-customer')"
           >
-            <option
-              v-for="client in customers"
-              :key="client.id"
-              :value="client.title"
-            >
-              {{ client.title }}
-            </option>
-          </select>
-          <label for="selectClient">Заказчик</label>
+            +
+          </button>
         </div>
-        <div
-          class="btn btn-outline-success fs-3"
-          @click.prevent="$emit('show-modal-customer')"
-        >
-          +
-        </div>
+        <datalist id="datalistOptions">
+          <option
+            v-for="client in customers"
+            :key="client.id"
+            :value="client.title"
+          ></option>
+        </datalist>
       </div>
       <div class="col-12 col-sm-6 col-md-3 mt-2 mt-md-0">
         <div class="form-floating">
