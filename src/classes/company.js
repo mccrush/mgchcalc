@@ -3,6 +3,7 @@ export default (id) => {
     id,
     title: '[]',
     type: 'company',
+    position: 0,
     inn: '',
     kpp: '',
     ogrn: '',

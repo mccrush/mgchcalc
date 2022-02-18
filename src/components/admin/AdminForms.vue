@@ -34,7 +34,7 @@ import FormMaterial from '@/components/admin/forms/FormMaterial'
 import FormObrabotkavid from '@/components/admin/forms/FormObrabotkaVid'
 import FormObrabotkatolshina from '@/components/admin/forms/FormObrabotkaTolshina'
 import FormDopuslug from '@/components/admin/forms/FormDopuslug'
-import FormCustomer from '@/components/admin/forms/FormCustomer'
+import FormContact from '@/components/admin/forms/FormContact'
 
 export default {
   components: {
@@ -43,7 +43,7 @@ export default {
     FormObrabotkavid,
     FormObrabotkatolshina,
     FormDopuslug,
-    FormCustomer
+    FormContact
   },
   props: ['type', 'categoryId', 'searchText', 'sortType'],
   emits: ['save-item', 'remove-item'],
@@ -81,7 +81,8 @@ export default {
       }
     },
     sortFilter() {
-      return sortMethod(this.searchFilter, this.sortType, 'position')
+      return this.searchFilter
+      //return sortMethod(this.searchFilter, this.sortType, 'position')
     }
   },
   methods: {

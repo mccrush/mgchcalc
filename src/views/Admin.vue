@@ -67,7 +67,7 @@ export default {
       this.$store.dispatch('addItem', { item })
     },
     saveItem({ item }) {
-      if (item.title) {
+      if (item.title || item.name) {
         //console.log('saveItem 2 item:', item)
         this.$store.dispatch('updateItem', { item })
       }

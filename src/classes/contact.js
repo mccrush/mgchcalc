@@ -8,6 +8,6 @@ export default (id) => {
     phone: '',
     email: '',
     messengers: [],
-    company
+    companyId: ''
   }
 }

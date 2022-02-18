@@ -88,6 +88,7 @@ export default {
     obrabotkavid: state => state.obrabotkavid,
     obrabotkatolshina: state => state.obrabotkatolshina,
     dopuslug: state => state.dopuslug,
-    customer: state => state.customer
+    contact: state => state.contact,
+    company: state => state.company
   }
 }
