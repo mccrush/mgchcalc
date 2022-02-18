@@ -23,7 +23,7 @@
             id="selectClient"
           >
             <option
-              v-for="client in customer"
+              v-for="client in customers"
               :key="client.id"
               :value="client.title"
             >
@@ -205,8 +205,14 @@ export default {
     }
   },
   computed: {
-    customer() {
-      return this.$store.getters.customer
+    contact() {
+      return this.$store.getters.contact
+    },
+    company() {
+      return this.$store.getters.company
+    },
+    customers() {
+      return this.contact.concat(this.company)
     }
   },
   methods: {

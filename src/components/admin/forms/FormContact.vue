@@ -4,7 +4,7 @@
       <input
         type="text"
         class="form-control form-control-sm"
-        v-model.trim="item.name"
+        v-model.trim="item.title"
         @change="$emit('save-item', { item })"
         placeholder="ФИО"
       />
@@ -171,12 +171,14 @@ export default {
         item => item.id === companyId
       )
 
-      const indexOfContact = company.contacts.findIndex(
-        item => item === companyId
-      )
-      if (indexOfContact) {
-        company.contacts.splice(indexOfContact, 1)
-        this.$emit('save-item', { item: company })
+      if (company) {
+        const indexOfContact = company.contacts.findIndex(
+          item => item === companyId
+        )
+        if (indexOfContact) {
+          company.contacts.splice(indexOfContact, 1)
+          this.$emit('save-item', { item: company })
+        }
       }
 
       this.item.contacts.splice(index, 1)

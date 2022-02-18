@@ -78,7 +78,7 @@
               :key="contact.id"
               :value="contact.id"
             >
-              {{ contact.name }}
+              {{ contact.title }}
             </option>
           </select>
         </div>
@@ -140,12 +140,14 @@ export default {
         item => item.id === contactId
       )
 
-      const indexOfCompany = contact.companys.findIndex(
-        item => item === contactId
-      )
-      if (indexOfCompany) {
-        contact.companys.splice(indexOfCompany, 1)
-        this.$emit('save-item', { item: contact })
+      if (contact) {
+        const indexOfCompany = contact.companys.findIndex(
+          item => item === contactId
+        )
+        if (indexOfCompany) {
+          contact.companys.splice(indexOfCompany, 1)
+          this.$emit('save-item', { item: contact })
+        }
       }
 
       this.item.contacts.splice(index, 1)
