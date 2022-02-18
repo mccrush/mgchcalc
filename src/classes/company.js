@@ -1,7 +1,7 @@
 export default (id) => {
   return {
     id,
-    title: '[]',
+    title: '',
     type: 'company',
     position: 0,
     inn: '',

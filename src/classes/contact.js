@@ -1,7 +1,7 @@
 export default (id) => {
   return {
     id,
-    title: 'ФИО',
+    title: '',
     type: 'contact',
     position: 0,
     shortname: '',
