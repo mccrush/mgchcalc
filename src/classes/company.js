@@ -10,6 +10,7 @@ export default (id) => {
     address: '',
     bic: '',
     rs: '',
-    ks: ''
+    ks: '',
+    contacts: []
   }
 }

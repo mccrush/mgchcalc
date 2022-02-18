@@ -35,6 +35,7 @@ import FormObrabotkavid from '@/components/admin/forms/FormObrabotkaVid'
 import FormObrabotkatolshina from '@/components/admin/forms/FormObrabotkaTolshina'
 import FormDopuslug from '@/components/admin/forms/FormDopuslug'
 import FormContact from '@/components/admin/forms/FormContact'
+import FormCompany from '@/components/admin/forms/FormCompany'
 
 export default {
   components: {
@@ -43,7 +44,8 @@ export default {
     FormObrabotkavid,
     FormObrabotkatolshina,
     FormDopuslug,
-    FormContact
+    FormContact,
+    FormCompany
   },
   props: ['type', 'categoryId', 'searchText', 'sortType'],
   emits: ['save-item', 'remove-item'],
