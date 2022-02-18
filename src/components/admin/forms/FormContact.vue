@@ -181,7 +181,7 @@ export default {
         }
       }
 
-      this.item.contacts.splice(index, 1)
+      this.item.companys.splice(index, 1)
       this.$emit('save-item', { item: this.item })
     },
     addMessenger() {
