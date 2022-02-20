@@ -12,7 +12,7 @@
         <label for="inputTitle">Название</label>
       </form>
     </div>
-    <div class="col-12 col-sm-6 mt-1 mt-sm-0 pe-0">
+    <div class="col-12 col-sm-6 mt-1 mt-sm-0 ps-md-1 pe-0">
       <form class="form-floating">
         <input
           type="text"
@@ -24,7 +24,7 @@
         <label for="inputINN">ИНН</label>
       </form>
     </div>
-    <div class="col-12 col-sm-4 mt-1 pe-0">
+    <div class="col-12 col-sm-6 mt-1 pe-0">
       <form class="form-floating">
         <input
           type="text"
@@ -36,7 +36,7 @@
         <label for="inputKPP">КПП</label>
       </form>
     </div>
-    <div class="col-12 col-sm-4 mt-1 pe-0">
+    <div class="col-12 col-sm-6 mt-1 ps-md-1 pe-0">
       <form class="form-floating">
         <input
           type="text"
@@ -48,7 +48,7 @@
         <label for="inputOGRN">ОГРН</label>
       </form>
     </div>
-    <div class="col-12 col-sm-4 mt-1 pe-0">
+    <div class="col-12 col-sm-12 mt-1 pe-0">
       <form class="form-floating">
         <input
           type="text"
@@ -97,7 +97,43 @@
         Добавить контакт
       </button>
     </div>
-    <div class="col-12 text-end mt-1 pe-0">
+    <div class="col-12 col-sm-6 col-md-4 mt-1 ps-md-3 pe-0">
+      <form class="form-floating">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          id="inputBIC"
+          v-model.trim="item.bic"
+          @change="$emit('save-item', { item })"
+        />
+        <label for="inputBIC">БИК</label>
+      </form>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 mt-1 ps-md-1 pe-0">
+      <form class="form-floating">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          id="inputRS"
+          v-model.trim="item.rs"
+          @change="$emit('save-item', { item })"
+        />
+        <label for="inputRS">Р/С</label>
+      </form>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3 mt-1 ps-md-1 pe-0">
+      <form class="form-floating">
+        <input
+          type="text"
+          class="form-control form-control-sm"
+          id="inputKS"
+          v-model.trim="item.ks"
+          @change="$emit('save-item', { item })"
+        />
+        <label for="inputKS">К/С</label>
+      </form>
+    </div>
+    <div class="col-12 col-sm-6 col-md-1 d-flex text-end mt-1 pe-0">
       <ButtonTrash @click="$emit('remove-item', item.id)" />
     </div>
   </div>
