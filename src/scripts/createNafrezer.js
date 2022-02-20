@@ -1,12 +1,12 @@
 import getDateNow from './getDateNow'
 
 export default (title, orderId, client, dateForReady, rabotaArray) => {
-  const item = {
+  return {
     id: Date.now().toString(),
     title,
     orderId,
     client,
-    dateCreate: getDateNow,
+    dateCreate: getDateNow(),
     dateForReady,
     dateFinish: '',
     type: 'nafrezer',
@@ -15,5 +15,4 @@ export default (title, orderId, client, dateForReady, rabotaArray) => {
     polka: '',
     files: []
   }
-  return item
 }

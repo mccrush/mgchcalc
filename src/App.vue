@@ -51,7 +51,8 @@ export default {
       //order: { siryoArray: [], rabotaArray: [], dopuslugArray: [] },
       modalOrder: null,
       modalNafrezer: null,
-      mod: ''
+      mod: '',
+      clearForm: ''
     }
   },
   mounted() {

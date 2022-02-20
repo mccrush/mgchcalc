@@ -1,0 +1,2 @@
+          @save-item="$emit('save-item')"
+          @remove-item="$emit('remove-item')"

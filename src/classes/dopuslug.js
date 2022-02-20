@@ -1,13 +1,11 @@
-import id from '@/scripts/getId'
-
-export default class Dopuslug {
-  constructor() {
-    this.id = id
-    this.title = '[]'
-    this.type = 'dopuslug'
-    this.position = 0
-    this.ed = ''
-    this.price = 0
-    this.alias = ''
+export default (id) => {
+  return {
+    id,
+    title: '[]',
+    type: 'dopuslug',
+    position: 0,
+    ed: '',
+    price: 0,
+    alias: ''
   }
 }

@@ -1,62 +1,32 @@
-export default (type, categoryId = '') => {
-  const id = Date.now().toString()
-  const title = '[]'
+// Import all Domains
+import getId from './getId'
+import materialvid from '@/classes/materialvid'
+import material from '@/classes/material'
+import obrabotkavid from '@/classes/obrabotkavid'
+import obrabotkatolshina from '@/classes/obrabotkatolshina'
+import dopuslug from '@/classes/dopuslug'
+import contact from '@/classes/contact'
+import company from '@/classes/company'
 
-  if (type === 'materialvid') {
-    return {
-      id,
-      title,
-      type: 'materialvid'
-    }
-  } else if (type === 'obrabotkavid') {
-    return {
-      id,
-      title,
-      type: 'obrabotkavid'
-    }
-  } else if (type === 'dopuslug') {
-    return {
-      id,
-      title,
-      type: 'dopuslug',
-      alias: '',
-      ed: '',
-      price: 0
-    }
-  } else if (type === 'material') {
-    return {
-      id,
-      title,
-      categoryId,
-      categoryTitle: '',
-      ed: '',
-      price: 0,
-      ostatok: 0,
-      type: 'material'
-    }
-  } else if (type === 'obrabotkatolshina') {
-    return {
-      id,
-      title,
-      categoryId,
-      categoryTitle: '',
-      priceS: 0,
-      priceM: 0,
-      priceL: 0,
-      type: 'obrabotkatolshina'
-    }
-  } else if (type === 'customer') {
-    return {
-      id,
-      title,
-      address: '',
-      inn: '',
-      kpp: '',
-      ogrn: '',
-      bic: '',
-      rs: '',
-      ks: '',
-      type: 'customer'
-    }
+
+
+export default (type, categoryId) => {
+  const id = getId()
+
+  switch (type) {
+    case 'materialvid':
+      return materialvid(id)
+    case 'material':
+      return material(id, categoryId)
+    case 'obrabotkavid':
+      return obrabotkavid(id)
+    case 'obrabotkatolshina':
+      return obrabotkatolshina(id, categoryId)
+    case 'dopuslug':
+      return dopuslug(id)
+    case 'contact':
+      return contact(id)
+    case 'company':
+      return company(id)
   }
 }

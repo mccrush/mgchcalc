@@ -1,15 +1,17 @@
+import getId from './getId'
 import getWeek from './getWeek'
 import getDateNow from './getDateNow'
 
-const weekFormat = getWeek() < 10 ? '0' + getWeek() : getWeek()
-const titleFormar = '_' + weekFormat + '_'
-
 export default (orderNumber, siryoArray, rabotaArray, dopuslugArray) => {
-  const item = {
-    id: Date.now().toString(),
+  const id = getId()
+  const weekFormat = getWeek() < 10 ? '0' + getWeek() : getWeek()
+  const titleFormar = '_' + weekFormat + '_'
+
+  return {
+    id,
     title: titleFormar + orderNumber,
     client: '',
-    dateCreate: getDateNow,
+    dateCreate: getDateNow(),
     dateCreateWeek: getWeek(),
     dateForReady: '',
     dateFinish: '',
@@ -20,5 +22,4 @@ export default (orderNumber, siryoArray, rabotaArray, dopuslugArray) => {
     dopuslugArray,
     files: []
   }
-  return item
 }

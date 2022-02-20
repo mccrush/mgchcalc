@@ -19,10 +19,73 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            @click="resetPharams"
           ></button>
         </div>
         <div class="modal-body">
-          <FormCustomerModal @add-customer="addCustomer" />
+          <div v-if="!myForm" class="row">
+            <div class="col-6 pe-0">
+              <button
+                class="btn btn-lg shadow-sm bg-white w-100 pt-3 pb-3"
+                @click="createCustomer('contact')"
+              >
+                Создать Контакт
+              </button>
+            </div>
+            <div class="col-6">
+              <button
+                class="btn btn-lg shadow-sm bg-white w-100 pt-3 pb-3"
+                @click="createCustomer('company')"
+              >
+                Создать Компанию
+              </button>
+            </div>
+          </div>
+          <component
+            v-if="myForm"
+            :is="myForm"
+            :item="item"
+            @save-item="saveItem"
+            @remove-item="removeItem"
+          />
+        </div>
+        <div class="modal-footer d-flex justify-content-between p-2">
+          <div>
+            <button
+              v-if="razdel === 'contact'"
+              type="button"
+              class="btn btn-outline-success"
+              @click="createCustomer('company')"
+            >
+              Или создать Компанию
+            </button>
+            <button
+              v-if="razdel === 'company'"
+              type="button"
+              class="btn btn-outline-success"
+              @click="createCustomer('contact')"
+            >
+              Или создать Контакт
+            </button>
+          </div>
+          <button
+            v-if="item"
+            type="button"
+            class="btn btn-outline-danger"
+            data-bs-dismiss="modal"
+            @click="resetPharams"
+          >
+            Удалить заказчика
+          </button>
+          <button
+            v-if="!item"
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            @click="resetPharams"
+          >
+            Отмена
+          </button>
         </div>
       </div>
     </div>
@@ -30,21 +93,48 @@
 </template>
 
 <script>
-import FormCustomerModal from '@/components/admin/FormCustomerModal'
+import createItem from '@/scripts/createItem'
+import FormContact from '@/components/admin/forms/FormContact'
+import FormCompany from '@/components/admin/forms/FormCompany'
 
 export default {
   components: {
-    FormCustomerModal
+    FormContact,
+    FormCompany
+  },
+  data() {
+    return {
+      myForm: '',
+      razdel: '',
+      item: null
+    }
   },
   methods: {
-    addCustomer(item) {
-      if (item.title) {
-        item.id = Date.now().toString()
-        item.type = 'customer'
-        console.log('ModalCustomer: item:', item)
-        this.$store.commit('addItem', { item })
-        this.$store.dispatch('addItem', { item })
+    createCustomer(type) {
+      this.razdel = type
+      this.item = createItem(type)
+      this.$store.dispatch('addItem', { item: this.item })
+      switch (type) {
+        case 'contact':
+          this.myForm = 'FormContact'
+          break
+        case 'company':
+          this.myForm = 'FormCompany'
       }
+      console.log('this.myForm:', this.myForm)
+    },
+    saveItem({ item }) {
+      if (item.title) {
+        this.$store.dispatch('updateItem', { item })
+      }
+    },
+    removeItem(id) {
+      this.$store.dispatch('removeItem', { type: this.razdel, id })
+    },
+    resetPharams() {
+      this.myForm = ''
+      this.razdel = ''
+      this.item = null
     }
   }
 }
