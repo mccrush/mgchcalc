@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12 col-sm-6 pe-0">
-      <form class="form-floating">
+      <form @keypress.enter.prevent class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -13,7 +13,7 @@
       </form>
     </div>
     <div class="col-12 col-sm-6 mt-1 mt-sm-0 ps-md-1 pe-0">
-      <form class="form-floating">
+      <form @keypress.enter.prevent class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -25,7 +25,7 @@
       </form>
     </div>
     <div class="col-12 col-sm-6 mt-1 pe-0">
-      <form class="form-floating">
+      <form @keypress.enter.prevent class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -37,7 +37,7 @@
       </form>
     </div>
     <div class="col-12 col-sm-6 mt-1 ps-md-1 pe-0">
-      <form class="form-floating">
+      <form @keypress.enter.prevent class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -49,7 +49,7 @@
       </form>
     </div>
     <div class="col-12 col-sm-12 mt-1 pe-0">
-      <form class="form-floating">
+      <form @keypress.enter.prevent class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -98,7 +98,7 @@
       </button>
     </div>
     <div class="col-12 col-sm-6 col-md-4 mt-1 ps-md-3 pe-0">
-      <form class="form-floating">
+      <form @keypress.enter.prevent class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -110,7 +110,7 @@
       </form>
     </div>
     <div class="col-12 col-sm-6 col-md-4 mt-1 ps-md-1 pe-0">
-      <form class="form-floating">
+      <form @keypress.enter.prevent class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -122,7 +122,7 @@
       </form>
     </div>
     <div class="col-12 col-sm-6 col-md-3 mt-1 ps-md-1 pe-0">
-      <form class="form-floating">
+      <form @keypress.enter.prevent class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
