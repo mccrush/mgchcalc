@@ -21,8 +21,8 @@
             list="datalistOptions"
             id="exampleDataList"
             placeholder="Заказчик..."
-            v-model="client"
-            @change="$emit('update-item-title', client)"
+            v-model="clientTitle"
+            @change="$emit('update-item-title', clientTitle)"
           />
           <button
             class="btn btn-outline-success"
@@ -202,7 +202,8 @@ export default {
   data() {
     return {
       voronkaOrders,
-      client: this.item.client,
+      clientTitle: this.item.title ? this.item.title.split('_')[0] : '',
+      //clientTitle: '',
       rabotaArrayTZ: []
     }
   },
