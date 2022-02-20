@@ -15,7 +15,7 @@
           <label for="nafrezerTitle">Название работы</label>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 d-flex mt-2 mt-md-0 pe-md-0">
+      <div class="col-12 col-sm-6 col-md-4 mt-2 mt-md-0 pe-md-0">
         <form class="form-floating">
           <input
             type="text"
