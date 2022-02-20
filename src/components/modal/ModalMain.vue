@@ -128,7 +128,12 @@ export default {
         )
 
         if (
-          nafrezer.every(elem => elem.status === 'donefrezer' && elem.polka)
+          nafrezer.every(
+            elem =>
+              (elem.status === 'donefrezer' ||
+                elem.status === 'arhivefrezer') &&
+              elem.polka
+          )
         ) {
           let parentOrder = this.$store.getters.parentOrder(object.orderId)
           parentOrder.status = 'readyorder'
