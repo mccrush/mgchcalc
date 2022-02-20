@@ -19,6 +19,7 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            @click="resetPharams"
           ></button>
         </div>
         <div class="modal-body">
@@ -81,6 +82,7 @@
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
+            @click="resetPharams"
           >
             Отмена
           </button>
@@ -130,7 +132,6 @@ export default {
       this.$store.dispatch('removeItem', { type: this.razdel, id })
     },
     resetPharams() {
-      this.removeItem(this.item.id)
       this.myForm = ''
       this.razdel = ''
       this.item = null
