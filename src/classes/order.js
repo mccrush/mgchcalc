@@ -12,7 +12,7 @@ export default (id, orderNumber, siryoArray, rabotaArray, dopuslugArray) => {
     type: 'order',
     position: 0,
     client: '',
-    dateCreate: getDateNow,
+    dateCreate: getDateNow(),
     dateCreateWeek: getWeek(),
     dateFinish: '',
     dateForReady: '',

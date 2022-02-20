@@ -25,7 +25,7 @@ export default createStore({
           )
 
           nafrezer.forEach(elem => {
-            elem.dateFinish = getDateNow
+            elem.dateFinish = getDateNow()
             elem.status = 'arhivefrezer'
             dispatch('updateItemRT', { item: elem })
           })
@@ -33,13 +33,13 @@ export default createStore({
           item.status === 'successorder' ||
           item.status === 'failorder'
         ) {
-          item.dateFinish = getDateNow
+          item.dateFinish = getDateNow()
         } else {
           item.dateFinish = ''
         }
       } else if (item.type === 'nafrezer') {
         if (item.status === 'donefrezer') {
-          item.dateFinish = getDateNow
+          item.dateFinish = getDateNow()
         } else {
           item.dateFinish = ''
           let parentOrder = getters.parentOrder(item.orderId)

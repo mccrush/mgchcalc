@@ -21,7 +21,7 @@
         }}
       </div>
 
-      <span v-if="item.polka"> | Полка: {{ item.polka }}</span>
+      <span v-if="item.polka">Полка: {{ item.polka }}</span>
     </div>
   </div>
 </template>

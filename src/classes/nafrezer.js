@@ -8,7 +8,7 @@ export default (id, title, orderId, client, dateForReady, rabotaArray) => {
     type: 'nafrezer',
     position: 0,
     client,
-    dateCreate: getDateNow,
+    dateCreate: getDateNow(),
     dateFinish: '',
     dateForReady,
     status: 'newfrezer',

@@ -130,7 +130,7 @@ export default {
     updateNafrezerPolka(object) {
       if (object.polka != 0) {
         object.status = 'donefrezer'
-        object.dateFinish = getDateNow
+        object.dateFinish = getDateNow()
 
         this.updateItem(object)
 

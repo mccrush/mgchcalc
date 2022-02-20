@@ -156,7 +156,8 @@ export default {
         ed: 'м.п.',
         summa: this.rabotaSumma,
         orderId: '',
-        status: 'newfrezer'
+        status: 'newfrezer',
+        polka: ''
       }
 
       this.$emit('update-calc', item)

@@ -119,7 +119,7 @@ export default {
     updateNafrezerPolka(object) {
       if (object.polka != 0) {
         object.status = 'donefrezer'
-        object.dateFinish = getDateNow
+        object.dateFinish = getDateNow()
 
         this.updateItem(object)
 
@@ -132,6 +132,15 @@ export default {
         ) {
           let parentOrder = this.$store.getters.parentOrder(object.orderId)
           parentOrder.status = 'readyorder'
+
+          object.rabotaArray.forEach(itemNaf => {
+            parentOrder.rabotaArray.forEach((itemOr, index) => {
+              if (itemOr.id === itemNaf.id) {
+                parentOrder.rabotaArray[index].polka = object.polka
+              }
+            })
+          })
+
           this.updateItem(parentOrder)
         }
       }
