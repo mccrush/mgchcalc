@@ -1,8 +1,8 @@
 <template>
   <div>
     <span class="small">{{ item.title }}</span>
-    <div class="text-muted small border-top mt-2 pt-2">
-      <div class="font-monospace">
+    <div class="text-muted font-monospace small border-top mt-2 pt-2">
+      <div>
         Создан:
         {{
           new Date(item.dateCreate).toLocaleDateString('ru-RU', {
@@ -11,7 +11,7 @@
           })
         }}
       </div>
-      <div class="font-monospace">
+      <div>
         Срок:&nbsp;&nbsp;
         {{
           new Date(item.dateForReady).toLocaleDateString('ru-RU', {
@@ -21,7 +21,7 @@
         }}
       </div>
 
-      <span v-if="item.polka">Полка: {{ item.polka }}</span>
+      <span v-if="item.polka">Полка:&nbsp;&nbsp;{{ item.polka }}</span>
     </div>
   </div>
 </template>
