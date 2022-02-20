@@ -25,6 +25,14 @@
             @change="$emit('update-item-title', clientTitle)"
           />
           <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon3"
+            @click="clientTitle = ''"
+          >
+            -
+          </button>
+          <button
             class="btn btn-outline-success"
             type="button"
             id="button-addon2"
@@ -241,6 +249,12 @@ export default {
           this.rabotaArrayTZ
         )
       }
+    }
+  },
+  watch: {
+    item(n, o) {
+      console.log('item is Update')
+      this.clientTitle = this.item.title ? this.item.title.split('_')[0] : ''
     }
   }
 }
