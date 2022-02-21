@@ -12,6 +12,7 @@
         class="form-control form-control-sm"
         v-model.trim="item.title"
         @change="$emit('save-item', { item })"
+        draggable="true"
       />
     </div>
     <div class="col-12 col-sm-5 col-md-2 mt-2 mt-sm-0 pe-md-0">
@@ -47,6 +48,7 @@
         step="10"
         v-model.number="item.price"
         @change="$emit('save-item', { item })"
+        draggable="true"
       />
     </div>
     <div class="col-2 col-md-1 text-end mt-2 mt-md-0 pe-md-0">

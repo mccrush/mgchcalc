@@ -7,6 +7,7 @@
         v-model.trim="item.title"
         @change="$emit('save-item', { item })"
         placeholder="ФИО"
+        draggable="true"
       />
     </div>
     <div class="col-12 col-sm-6 mt-1 mt-sm-0 pe-0">
@@ -16,6 +17,7 @@
         v-model.trim="item.shortname"
         @change="$emit('save-item', { item })"
         placeholder="Псевдоним"
+        draggable="true"
       />
     </div>
     <div class="col-12 col-sm-4 mt-1 pe-0">
@@ -25,6 +27,7 @@
         v-model.trim="item.phone"
         @change="$emit('save-item', { item })"
         placeholder="Телефон"
+        draggable="true"
       />
     </div>
     <div class="col-12 col-sm-4 mt-1 pe-0">
@@ -34,6 +37,7 @@
         v-model.trim="item.email"
         @change="$emit('save-item', { item })"
         placeholder="Email"
+        draggable="true"
       />
     </div>
     <div
@@ -102,6 +106,7 @@
             v-model.trim="mess.login"
             @change="updateMessanger(index, mess.title, mess.login)"
             placeholder="Login"
+            draggable="true"
           />
         </div>
         <div class="col-12 col-sm-4 mt-1 mt-sm-0 ps-sm-1">

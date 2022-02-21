@@ -12,6 +12,7 @@
         class="form-control form-control-sm"
         v-model.trim="item.title"
         @change="$emit('save-item', { item })"
+        draggable="true"
       />
     </div>
     <div class="col-2 col-md-1 text-end">

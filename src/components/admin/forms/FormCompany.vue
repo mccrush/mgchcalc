@@ -8,6 +8,7 @@
           id="inputTitle"
           v-model.trim="item.title"
           @change="$emit('save-item', { item })"
+          draggable="true"
         />
         <label for="inputTitle">Название</label>
       </form>
@@ -20,6 +21,7 @@
           id="inputINN"
           v-model.trim="item.inn"
           @change="$emit('save-item', { item })"
+          draggable="true"
         />
         <label for="inputINN">ИНН</label>
       </form>
@@ -32,6 +34,7 @@
           id="inputKPP"
           v-model.trim="item.kpp"
           @change="$emit('save-item', { item })"
+          draggable="true"
         />
         <label for="inputKPP">КПП</label>
       </form>
@@ -44,6 +47,7 @@
           id="inputOGRN"
           v-model.trim="item.ogrn"
           @change="$emit('save-item', { item })"
+          draggable="true"
         />
         <label for="inputOGRN">ОГРН</label>
       </form>
@@ -56,6 +60,7 @@
           id="inputAddress"
           v-model.trim="item.address"
           @change="$emit('save-item', { item })"
+          draggable="true"
         />
         <label for="inputAddress">Адрес</label>
       </form>
@@ -105,6 +110,7 @@
           id="inputBIC"
           v-model.trim="item.bic"
           @change="$emit('save-item', { item })"
+          draggable="true"
         />
         <label for="inputBIC">БИК</label>
       </form>
@@ -117,6 +123,7 @@
           id="inputRS"
           v-model.trim="item.rs"
           @change="$emit('save-item', { item })"
+          draggable="true"
         />
         <label for="inputRS">Р/С</label>
       </form>
@@ -129,6 +136,7 @@
           id="inputKS"
           v-model.trim="item.ks"
           @change="$emit('save-item', { item })"
+          draggable="true"
         />
         <label for="inputKS">К/С</label>
       </form>

@@ -12,6 +12,7 @@
         class="form-control form-control-sm"
         v-model.trim="item.title"
         @change="$emit('save-item', { item })"
+        draggable="true"
       />
     </div>
     <div class="col-12 col-sm-6 col-md-3 mt-1 mt-sm-0 pe-md-0">
@@ -32,6 +33,7 @@
         class="form-control form-control-sm"
         v-model="item.priceS"
         @change="$emit('save-item', { item })"
+        draggable="true"
       />
     </div>
     <div class="col-3 col-md-1 mt-1 mt-md-0 pe-0">
@@ -40,6 +42,7 @@
         class="form-control form-control-sm"
         v-model="item.priceM"
         @change="$emit('save-item', { item })"
+        draggable="true"
       />
     </div>
     <div class="col-3 col-md-1 mt-1 mt-md-0 pe-0">
@@ -48,6 +51,7 @@
         class="form-control form-control-sm"
         v-model="item.priceL"
         @change="$emit('save-item', { item })"
+        draggable="true"
       />
     </div>
     <div class="col-3 col-md-1 mt-1 mt-md-0 text-end">
