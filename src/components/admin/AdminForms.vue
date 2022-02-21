@@ -83,8 +83,8 @@ export default {
       }
     },
     sortFilter() {
-      return this.searchFilter
-      //return sortMethod(this.searchFilter, this.sortType, 'position')
+      //return this.searchFilter
+      return sortMethod(this.searchFilter, this.sortType, 'position')
     }
   },
   methods: {
