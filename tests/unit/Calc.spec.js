@@ -1,10 +1,11 @@
 import { mount } from '@vue/test-utils'
 import Calc from '@/views/Calc.vue'
 
-test('renders a head', () => {
+test('Add new Siryo Calc', async () => {
   const wrapper = mount(Calc)
+  expect(wrapper.findAll('[data-test="calc-siryo"]')).toHaveLength(0)
 
-  const head = wrapper.get('[data-test="block-head"]')
+  await wrapper.get('[data-test="new-calc-siryo"]').trigger('add-new-calc')
 
-  expect(head.text()).toBe('Материалы')
+  expect(wrapper.findAll('[data-test="calc-siryo"]')).toHaveLength(1)
 })

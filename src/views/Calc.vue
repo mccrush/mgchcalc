@@ -2,7 +2,7 @@
   <div>
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-start">
-        <h5 class="lh-1 m-0" data-test="block-head">Материалы</h5>
+        <h5 class="lh-1 m-0">Материалы</h5>
         <div class="form-check form-switch ms-3">
           <input
             class="form-check-input"
@@ -40,8 +40,13 @@
       type="siryoArray"
       @update-calc="updateCalcInArray"
       @remove-calc="removeCalc"
+      data-test="calc-siryo"
     />
-    <BlockAddCalc @add-new-calc="addNewCalc" type="siryoArray" />
+    <BlockAddCalc
+      @add-new-calc="addNewCalc"
+      type="siryoArray"
+      data-test="new-calc-siryo"
+    />
     <BlockShowSum title="материал" :sum="formattingSum(siryoSum)" />
     <!-- -->
     <div class="row pt-3">
