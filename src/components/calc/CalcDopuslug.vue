@@ -121,7 +121,7 @@ export default {
         price: this.element.price,
         dlina: 0,
         shirina: 0,
-        size: +this.elementSize.replace(/,/g, '.'),
+        size: Number(this.elementSize.replace(/,/g, '.')),
         ed: this.element.ed,
         summa: this.elementSumma,
         orderId: ''

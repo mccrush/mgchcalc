@@ -105,7 +105,7 @@ export default {
       )
     },
     rabotaSize() {
-      return +this.rabotaSizeOrigin.replace(/,/g, '.')
+      return Number(this.rabotaSizeOrigin.replace(/,/g, '.'))
     },
     rabotaAmount() {
       let size = this.rabotaSize
@@ -122,11 +122,11 @@ export default {
     rabotaPrice() {
       let size = this.rabotaSize
       if (size < 100) {
-        return +(this.rabota.priceS + '').replace(/,/g, '.')
+        return Number((this.rabota.priceS + '').replace(/,/g, '.'))
       } else if (size >= 100 && size < 500) {
-        return +(this.rabota.priceM + '').replace(/,/g, '.')
+        return Number((this.rabota.priceM + '').replace(/,/g, '.'))
       } else if (size >= 500) {
-        return +(this.rabota.priceL + '').replace(/,/g, '.')
+        return Number((this.rabota.priceL + '').replace(/,/g, '.'))
       }
     },
     rabotaSumma() {

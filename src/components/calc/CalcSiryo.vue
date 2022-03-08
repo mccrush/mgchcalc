@@ -156,12 +156,10 @@ export default {
     siryoDlina10() {
       let dlina = this.siryoDlina.replace(/,/g, '.')
       return dlina
-      return +(+dlina + dlina * 0.1).toFixed(2)
     },
     siryoShirina10() {
       let shirina = this.siryoShirina.replace(/,/g, '.')
       return shirina
-      return +(+shirina + shirina * 0.1).toFixed(2)
     },
     siryoPrice() {
       if (this.enableProcent) {
@@ -175,7 +173,7 @@ export default {
     siryoSumma() {
       let siryoSize = this.siryoDlina10 * this.siryoShirina10
       siryoSize += siryoSize * 0.1
-      this.siryoSize10 = +siryoSize.toFixed(2)
+      this.siryoSize10 = siryoSize.toFixed(2)
       return Math.floor(this.siryoPrice * this.siryoSize10)
     }
   },
