@@ -22,13 +22,47 @@
       </div>
 
       <span v-if="item.polka">Полка:&nbsp;&nbsp;{{ item.polka }}</span>
+      <span v-if="item.type === 'order'"
+        >Сумма:&nbsp;&nbsp;<span
+          class="bg-success rounded text-white ps-2 pe-2"
+          >{{ getItogSum() }}</span
+        ></span
+      >
     </div>
   </div>
 </template>
 
 <script>
+import { getArraySum } from '@/scripts/getArraySum'
+import { formatMoney } from '@/scripts/formatMoney'
+
 export default {
-  props: ['item']
+  props: ['item'],
+  methods: {
+    getItogSum() {
+      let sum = 0
+      let prioritet = false
+      if (this.item.siryoArray) {
+        sum += getArraySum(this.item.siryoArray)
+      }
+      if (this.item.rabotaArray) {
+        sum += getArraySum(this.item.rabotaArray)
+      }
+      if (this.item.dopuslugArray) {
+        sum += getArraySum(this.item.dopuslugArray)
+
+        if (this.item.dopuslugArray.some(ss => ss === 'x2')) {
+          prioritet = true
+        }
+      }
+
+      if (prioritet) {
+        return formatMoney(sum * 2)
+      } else {
+        return formatMoney(sum)
+      }
+    }
+  }
 }
 </script>
 

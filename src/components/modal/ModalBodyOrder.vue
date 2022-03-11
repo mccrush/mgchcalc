@@ -123,7 +123,7 @@
             <span
               v-if="elem.our"
               class="badge bg-light text-dark align-self-center me-2 p-2"
-              >{{ elem.summa }} ₽</span
+              >{{ formatMoneyFromSum(elem.summa) }}</span
             >
             <span
               v-else
@@ -140,8 +140,8 @@
     </div>
     <div v-if="item.siryoArray && item.siryoArray.length" class="row">
       <div class="col-12 text-end pt-2">
-        <span class="badge bg-light text-dark align-self-center me-2 p-2"
-          >Итого: {{ itogSum(item.siryoArray) }} ₽</span
+        <span class="badge bg-light text-dark align-self-center p-2"
+          >Итого: {{ itogSum(item.siryoArray) }}</span
         >
       </div>
     </div>
@@ -160,8 +160,8 @@
       </div>
       <div v-if="item.rabotaArray && item.rabotaArray.length" class="row">
         <div class="col-12 text-end pt-2">
-          <span class="badge bg-light text-dark align-self-center me-2 p-2"
-            >Итого: {{ itogSum(item.rabotaArray) }} ₽</span
+          <span class="badge bg-light text-dark align-self-center p-2"
+            >Итого: {{ itogSum(item.rabotaArray) }}</span
           >
         </div>
       </div>
@@ -188,9 +188,9 @@
             >{{ elem.title }}, {{ elem.size }} {{ elem.ed }}</template
           >
           <template v-slot:badge>
-            <span class="badge bg-light text-dark align-self-center me-2 p-2"
-              >{{ elem.summa }} ₽</span
-            >
+            <span class="badge bg-light text-dark align-self-center me-2 p-2">{{
+              formatMoneyFromSum(elem.summa)
+            }}</span>
           </template>
           <template v-slot:button> </template>
         </ModalBodyOrderList>
@@ -198,8 +198,8 @@
     </div>
     <div v-if="item.dopuslugArray && item.dopuslugArray.length" class="row">
       <div class="col-12 text-end pt-2">
-        <span class="badge bg-light text-dark align-self-center me-2 p-2"
-          >Итого: {{ itogSum(item.dopuslugArray) }} ₽</span
+        <span class="badge bg-light text-dark align-self-center p-2"
+          >Итого: {{ itogSum(item.dopuslugArray) }}</span
         >
       </div>
     </div>
@@ -211,6 +211,7 @@
 <script>
 import voronkaOrders from '@/data/voronkaOrders'
 import { getArraySum } from '@/scripts/getArraySum'
+import { formatMoney } from '@/scripts/formatMoney'
 //import clients from '@/data/clients'
 import ModalBodyOrderNafrezerItem from '@/components/modal/ModalBodyOrderNafrezerItem'
 import ModalBodyOrderList from '@/components/modal/ModalBodyOrderList'
@@ -251,8 +252,11 @@ export default {
     }
   },
   methods: {
+    formatMoneyFromSum(sum) {
+      return formatMoney(sum)
+    },
     itogSum(array) {
-      return getArraySum(array)
+      return formatMoney(getArraySum(array))
     },
     createTZ() {
       // Обновить item в БД

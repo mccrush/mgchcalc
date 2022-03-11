@@ -171,6 +171,7 @@
 <script>
 import createCalc from '@/scripts/createCalc'
 import createOrder from '@/scripts/createOrder'
+import { formatMoney } from '@/scripts/formatMoney'
 
 import CalcSiryo from '@/components/calc/CalcSiryo'
 import CalcRabota from '@/components/calc/CalcRabota'
@@ -291,15 +292,17 @@ export default {
     }
   },
   methods: {
+    // Здесь надо подключить готовый скрипт для форматирования
     formattingSum(sum) {
-      sum = String(sum)
-      if (sum.length > 4) {
-        return (
-          sum.slice(0, sum.length - 3) + ' ' + sum.slice(sum.length - 3) + ' ₽'
-        )
-      } else {
-        return sum + ' ₽'
-      }
+      return formatMoney(sum)
+      // sum = String(sum)
+      // if (sum.length > 4) {
+      //   return (
+      //     sum.slice(0, sum.length - 3) + ' ' + sum.slice(sum.length - 3) + ' ₽'
+      //   )
+      // } else {
+      //   return sum + ' ₽'
+      // }
     },
     formattingMessage(item) {
       if (item.title) {

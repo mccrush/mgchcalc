@@ -27,20 +27,27 @@
         >Полка: {{ item.polka }}</span
       >
       <span class="badge bg-light text-dark align-self-center me-2 p-2"
-        >Стоимость: {{ item.summa }} ₽</span
+        >Стоимость: {{ formatMoneyFromSum(item.summa) }}</span
       >
       <span
         v-if="type === 'nafrezer'"
         class="badge bg-light text-success align-self-center me-2 p-2"
-        >ЗП: {{ Math.floor(item.summa * 0.4) }} ₽</span
+        >ЗП: {{ formatMoneyFromSum(Math.floor(item.summa * 0.4)) }}</span
       >
     </div>
   </label>
 </template>
 
 <script>
+import { formatMoney } from '@/scripts/formatMoney'
+
 export default {
-  props: ['item', 'type', 'mod']
+  props: ['item', 'type', 'mod'],
+  methods: {
+    formatMoneyFromSum(sum) {
+      return formatMoney(sum)
+    }
+  }
 }
 </script>
 
