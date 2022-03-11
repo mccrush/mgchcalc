@@ -6,7 +6,7 @@
     </div>
     <div class="container-fluid mt-2">
       <div class="navbar-brand p-0">
-        <img src="/images/logos/favicon-32x32.png" width="32" alt="Calc logo" />
+        <img src="/images/logo2/favicon-32x32.png" width="32" alt="Calc logo" />
       </div>
       <button
         class="navbar-toggler"
@@ -144,3 +144,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.btn {
+  font-weight: 500;
+}
+
+.active {
+  color: #f8f9fa !important;
+  background-color: #6c757d !important;
+}
+</style>
