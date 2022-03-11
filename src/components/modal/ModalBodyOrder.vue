@@ -138,6 +138,14 @@
         </ModalBodyOrderList>
       </ul>
     </div>
+    <div v-if="item.siryoArray && item.siryoArray.length" class="row">
+      <div class="col-12 text-end pt-2">
+        <span class="badge bg-light text-dark align-self-center me-2 p-2"
+          >Итого: {{ itogSum(item.siryoArray) }} ₽</span
+        >
+      </div>
+    </div>
+    <!-- rabotaArray -->
     <div v-if="item.rabotaArray && item.rabotaArray.length">
       <h6 class="mt-3">Услуги обработки</h6>
       <div class="list-group ist-group-numbered">
@@ -149,6 +157,13 @@
           :mod="mod"
           @change="selectRabotaItem(elem, index)"
         />
+      </div>
+      <div v-if="item.rabotaArray && item.rabotaArray.length" class="row">
+        <div class="col-12 text-end pt-2">
+          <span class="badge bg-light text-dark align-self-center me-2 p-2"
+            >Итого: {{ itogSum(item.rabotaArray) }} ₽</span
+          >
+        </div>
       </div>
       <div v-if="mod === 'edit'" class="row pt-2">
         <div class="col-6 col-md-9"></div>
@@ -181,12 +196,21 @@
         </ModalBodyOrderList>
       </ul>
     </div>
+    <div v-if="item.dopuslugArray && item.dopuslugArray.length" class="row">
+      <div class="col-12 text-end pt-2">
+        <span class="badge bg-light text-dark align-self-center me-2 p-2"
+          >Итого: {{ itogSum(item.dopuslugArray) }} ₽</span
+        >
+      </div>
+    </div>
+
     <ModalBodyFiles v-if="mod === 'edit'" :item="item" />
   </div>
 </template>
 
 <script>
 import voronkaOrders from '@/data/voronkaOrders'
+import { getArraySum } from '@/scripts/getArraySum'
 //import clients from '@/data/clients'
 import ModalBodyOrderNafrezerItem from '@/components/modal/ModalBodyOrderNafrezerItem'
 import ModalBodyOrderList from '@/components/modal/ModalBodyOrderList'
@@ -227,6 +251,9 @@ export default {
     }
   },
   methods: {
+    itogSum(array) {
+      return getArraySum(array)
+    },
     createTZ() {
       // Обновить item в БД
       this.$store.dispatch('updateItemRT', { item: this.item })
