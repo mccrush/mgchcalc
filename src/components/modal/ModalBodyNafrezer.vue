@@ -122,7 +122,7 @@
         </select>
       </div>
     </div>
-    <ModalBodyFiles :item="item" />
+    <ModalBodyFiles :item="parentOrder" />
   </div>
 </template>
 
@@ -150,6 +150,11 @@ export default {
           return Math.floor(item.summa * 0.4)
         })
         .reduce((pre, next) => pre + next)
+    },
+    parentOrder() {
+      return this.$store.getters.order.find(
+        item => item.id === this.item.orderId
+      )
     }
   },
   data() {

@@ -1,6 +1,6 @@
 <template>
   <div class="row mt-2">
-    <div class="col-12 col-sm-10 col-md-8 col-xl-6 pe-sm-0">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-6 pe-md-0">
       <ul class="list-group">
         <li class="list-group-item p-0 border-0 border-bottom">
           <div class="progressbar">
@@ -14,19 +14,19 @@
           class="list-group-item"
         >
           <div class="row align-items-center">
-            <div class="col-8 small">
+            <div class="col-12 col-sm-6 small">
               {{ file.title }}
             </div>
-            <div class="col-2 pe-0">
+            <div class="col-6 col-sm-4 pe-0">
               <a
                 :href="file.link"
                 class="btn btn-sm btn-outline-secondary w-100"
                 :download="file.title"
                 target="_blank"
-                >Скачать</a
+                >Скачать [{{ file.size }} Мб]</a
               >
             </div>
-            <div class="col-2">
+            <div class="col-6 col-sm-2">
               <ButtonTrash @click="removeFile(file.fileRef, index)" />
             </div>
           </div>
@@ -80,7 +80,7 @@ export default {
       const file = e.target.files[0]
       console.log('ModalBodyFiles:loadfile:file:', file)
       if (file) {
-        const size = +(file.size / 1024 / 1024).toFixed(2)
+        const size = Number((file.size / 1024 / 1024).toFixed(2))
         console.log('ModalBodyFiles:loadfile:size:', size, 'Mb')
         if (size > 50) {
           alert('Размер файла более 50 Мб!')
