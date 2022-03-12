@@ -352,14 +352,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.width-960 {
-  max-width: 960px;
-}
-
-.form-check-input:checked {
-  background-color: #fd0d5f;
-  border-color: #fd0d5f;
-}
-</style>

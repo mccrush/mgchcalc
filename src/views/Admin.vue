@@ -110,9 +110,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.width-960 {
-  max-width: 960px;
-}
-</style>

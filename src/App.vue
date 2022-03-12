@@ -170,6 +170,11 @@ export default {
   box-shadow: none;
 }
 
+.form-check-input:checked {
+  background-color: #fd0d5f;
+  border-color: #fd0d5f;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -181,14 +186,6 @@ export default {
 .width-960 {
   max-width: 960px;
 }
-
-/* .max-width-900 {
-  max-width: 900px;
-}
-
-.max-width-100 {
-  max-width: 1870px;
-} */
 
 .fade-enter-active,
 .fade-leave-active {
