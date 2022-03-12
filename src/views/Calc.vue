@@ -1,5 +1,5 @@
 <template>
-  <div class="width-960 bg-white shadow-sm m-auto p-3 pb-0">
+  <div class="width-960 bg-white shadow-sm rounded-3 mt-4 m-auto p-3 pb-0">
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-start">
         <h5 class="lh-1 m-0">Материалы</h5>

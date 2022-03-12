@@ -1,19 +1,25 @@
 <template>
   <nav
-    class="
-      navbar navbar-expand-sm navbar-light
-      bg-white
-      shadow-sm
-      flex-column
-      pt-0
-    "
+    class="navbar navbar-expand-sm navbar-light bg-white flex-column pt-0 pb-0"
   >
     <div class="progressbar w-100">
       <Progressbar v-if="loading || loadingRT" />
       <ProgressbarOff v-else />
     </div>
-    <div class="container-fluid mt-2">
-      <div class="navbar-brand p-0">
+    <div class="container-fluid p-0">
+      <div
+        class="
+          logo-area
+          navbar-brand
+          d-none d-lg-block
+          col-lg-2
+          p-0
+          ps-3
+          pt-2
+          pe-3
+          pb-2
+        "
+      >
         <img src="/images/logo2/favicon-32x32.png" width="32" alt="Calc logo" />
       </div>
       <button
@@ -28,7 +34,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div
-        class="collapse navbar-collapse justify-content-end"
+        class="collapse navbar-collapse justify-content-end bg-warning"
         id="navbarSupportedContent"
       >
         <ul class="navbar-nav mb-2 mb-sm-0">
@@ -154,6 +160,10 @@ export default {
 </script>
 
 <style scoped>
+.logo-area {
+  background-color: #313a46;
+}
+
 .btn {
   font-weight: 500;
 }

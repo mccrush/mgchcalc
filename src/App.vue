@@ -4,9 +4,16 @@
   <div>
     <Navbar />
     <div class="container-fluid">
-      <transition name="fade" mode="out-in" appear>
-        <component :is="myComponent" @show-modal="showModal" />
-      </transition>
+      <div class="row">
+        <div class="col-lg-2 d-lg-block collapse p-0">
+          <Sidebar />
+        </div>
+        <div class="col-12 col-lg-10">
+          <transition name="fade" mode="out-in" appear>
+            <component :is="myComponent" @show-modal="showModal" />
+          </transition>
+        </div>
+      </div>
     </div>
   </div>
   <ModalMain
@@ -27,6 +34,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 //import { Modal } from 'bootstrap'
 import Modal from 'bootstrap/js/dist/modal'
 import Navbar from '@/components/interface/Navbar'
+import Sidebar from '@/components/interface/Sidebar'
 import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
@@ -39,6 +47,7 @@ import ModalCustomer from '@/components/modal/ModalCustomer'
 export default {
   components: {
     Navbar,
+    Sidebar,
     Login,
     Calc,
     Admin,

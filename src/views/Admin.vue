@@ -1,5 +1,5 @@
 <template>
-  <div class="width-960 bg-white shadow-sm m-auto p-3 pb-0">
+  <div class="width-960 bg-white shadow-sm rounded-3 mt-4 m-auto p-3 pb-0">
     <AdminHeader
       v-model:razdel="razdel"
       v-model:categoryId="categoryId"

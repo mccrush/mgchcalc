@@ -1,5 +1,5 @@
 <template>
-  <div class="progress bg-transparent rounded-0 rounded-top">
+  <div class="height-4 progress bg-transparent rounded-0 rounded-top">
     <div
       class="progress-bar progress-bar-striped bg-warning progress-bar-animated"
       role="progressbar"
@@ -10,3 +10,9 @@
     ></div>
   </div>
 </template>
+
+<style scoped>
+.height-4 {
+  height: 4px !important;
+}
+</style>
