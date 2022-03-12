@@ -6,13 +6,14 @@
       <Progressbar v-if="loading || loadingRT" />
       <ProgressbarOff v-else />
     </div>
-    <div class="container-fluid p-0">
+    <div class="height-50 container-fluid p-0">
       <div
         class="
           logo-area
           navbar-brand
           d-none d-lg-block
           col-lg-2
+          me-0
           p-0
           ps-3
           pt-2
@@ -22,7 +23,8 @@
       >
         <img src="/images/logo2/favicon-32x32.png" width="32" alt="Calc logo" />
       </div>
-      <button
+      <div class="height-50 col-12 col-lg-10 shadow-sm m-0"></div>
+      <!-- <button
         class="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
@@ -32,8 +34,8 @@
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
+      </button> -->
+      <!-- <div
         class="collapse navbar-collapse justify-content-end bg-warning"
         id="navbarSupportedContent"
       >
@@ -119,7 +121,7 @@
             </button>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </nav>
 </template>
@@ -164,12 +166,16 @@ export default {
   background-color: #313a46;
 }
 
-.btn {
+.height-50 {
+  height: 50px;
+}
+
+/* .btn {
   font-weight: 500;
 }
 
 .active {
   color: #f8f9fa !important;
   background-color: #6c757d !important;
-}
+} */
 </style>
