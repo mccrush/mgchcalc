@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="width-960 bg-white shadow-sm m-auto p-3 pb-0">
     <AdminHeader
       v-model:razdel="razdel"
       v-model:categoryId="categoryId"
@@ -110,3 +110,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.width-960 {
+  max-width: 960px;
+}
+</style>

@@ -1,5 +1,13 @@
 <template>
-  <nav class="navbar navbar-expand-sm navbar-light shadow-sm flex-column pt-0">
+  <nav
+    class="
+      navbar navbar-expand-sm navbar-light
+      bg-white
+      shadow-sm
+      flex-column
+      pt-0
+    "
+  >
     <div class="progressbar w-100">
       <Progressbar v-if="loading || loadingRT" />
       <ProgressbarOff v-else />

@@ -1,6 +1,7 @@
 <template>
   <!-- <ButtonSettings data-bs-toggle="offcanvas" href="#settingsBar" /> -->
-  <div class="m-auto shadow-sm bg-white rounded-3 mt-3" :class="widthBlock">
+  <!-- <div class="m-auto shadow-sm bg-white rounded-3 mt-3" :class="widthBlock"> -->
+  <div>
     <Navbar />
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>

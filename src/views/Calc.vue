@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="width-960 bg-white shadow-sm m-auto p-3 pb-0">
     <div class="row pt-3">
       <div class="col-12 d-flex justify-content-start">
         <h5 class="lh-1 m-0">Материалы</h5>
@@ -354,6 +354,10 @@ export default {
 </script>
 
 <style scoped>
+.width-960 {
+  max-width: 960px;
+}
+
 .form-check-input:checked {
   background-color: #fd0d5f;
   border-color: #fd0d5f;
