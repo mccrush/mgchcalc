@@ -107,8 +107,8 @@ export default {
 }
 
 .wrap-order-list {
-  width: 280px;
-  /* height: 0; */
+  width: 249px;
+  /* width: 280px; */
 }
 
 .active {

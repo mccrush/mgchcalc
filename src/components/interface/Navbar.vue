@@ -13,7 +13,7 @@
           logo-area
           navbar-brand
           d-none d-lg-block
-          col-lg-1
+          col-lg-2 col-xxl-1
           me-0
           p-0
           ps-3
