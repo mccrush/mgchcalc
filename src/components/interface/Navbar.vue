@@ -13,7 +13,7 @@
           logo-area
           navbar-brand
           d-none d-lg-block
-          col-lg-2
+          col-lg-1
           me-0
           p-0
           ps-3
@@ -24,7 +24,7 @@
       >
         <img src="/images/logo2/favicon-32x32.png" width="32" alt="Calc logo" />
       </div>
-      <div class="height-58 col-12 col-lg-10 shadow-sm m-0">
+      <div class="height-58 col-12 col-lg-11 shadow-sm m-0">
         <button
           class="navbar-toggler ms-2 mt-2"
           type="button"

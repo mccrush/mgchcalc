@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar d-flex flex-column justify-content-between pt-3">
-    <ul class="nav flex-column ps-2 pe-2">
+    <ul class="nav flex-column pe-2">
       <li class="nav-item">
         <button
           v-if="userId"
@@ -141,7 +141,7 @@
       </li>
     </ul>
 
-    <ul class="nav flex-column ps-2 pe-2">
+    <ul class="nav flex-column">
       <li class="nav-item border-top border-secondary">
         <button
           v-if="userId"

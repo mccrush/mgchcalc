@@ -5,7 +5,7 @@
     <Navbar />
     <div class="container-fluid">
       <div class="row">
-        <div class="d-none d-lg-block col-lg-2 p-0">
+        <div class="d-none d-lg-block col-lg-1 p-0">
           <Sidebar />
         </div>
         <div
@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-lg-10">
+        <div class="col-12 col-lg-11">
           <transition name="fade" mode="out-in" appear>
             <component :is="myComponent" @show-modal="showModal" />
           </transition>
