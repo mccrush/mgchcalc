@@ -5,9 +5,29 @@
     <Navbar />
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-2 d-lg-block collapse p-0">
+        <div class="d-none d-lg-block col-lg-2 p-0">
           <Sidebar />
         </div>
+        <div
+          class="offcanvas offcanvas-start d-lg-none ps-0 pe-0"
+          tabindex="-1"
+          id="offcanvasExample"
+          aria-labelledby="offcanvasExampleLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Меню</h5>
+            <button
+              type="button"
+              class="btn-close text-reset"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body p-0">
+            <Sidebar />
+          </div>
+        </div>
+
         <div class="col-12 col-lg-10">
           <transition name="fade" mode="out-in" appear>
             <component :is="myComponent" @show-modal="showModal" />
@@ -32,6 +52,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 //import {Offcanvas, Dropdown, Modal, Tooltip } from 'bootstrap'
 //import { Modal } from 'bootstrap'
+import Offcanvas from 'bootstrap/js/dist/offcanvas'
 import Modal from 'bootstrap/js/dist/modal'
 import Navbar from '@/components/interface/Navbar'
 import Sidebar from '@/components/interface/Sidebar'

@@ -1,14 +1,15 @@
 <template>
   <nav
-    class="navbar navbar-expand-sm navbar-light bg-white flex-column pt-0 pb-0"
+    class="navbar navbar-expand-lg navbar-light bg-white flex-column pt-0 pb-0"
   >
     <div class="progressbar w-100">
       <Progressbar v-if="loading || loadingRT" />
       <ProgressbarOff v-else />
     </div>
-    <div class="height-50 container-fluid p-0">
+    <div class="height-58 container-fluid p-0">
       <div
         class="
+          height-58
           logo-area
           navbar-brand
           d-none d-lg-block
@@ -16,14 +17,25 @@
           me-0
           p-0
           ps-3
-          pt-2
+          pt-3
           pe-3
           pb-2
         "
       >
         <img src="/images/logo2/favicon-32x32.png" width="32" alt="Calc logo" />
       </div>
-      <div class="height-50 col-12 col-lg-10 shadow-sm m-0"></div>
+      <div class="height-58 col-12 col-lg-10 shadow-sm m-0">
+        <button
+          class="navbar-toggler ms-2 mt-2"
+          type="button"
+          data-bs-toggle="offcanvas"
+          href="#offcanvasExample"
+          aria-controls="offcanvasExample"
+          aria-expanded="false"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
       <!-- <button
         class="navbar-toggler"
         type="button"
@@ -166,8 +178,8 @@ export default {
   background-color: #313a46;
 }
 
-.height-50 {
-  height: 50px;
+.height-58 {
+  height: 58px;
 }
 
 /* .btn {

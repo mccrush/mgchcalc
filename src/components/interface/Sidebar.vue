@@ -16,6 +16,7 @@
           "
           :class="{ 'btn-sidebar-active': pathname === 'calc' }"
           @click="setPathName('calc')"
+          data-bs-dismiss="offcanvas"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +55,7 @@
           "
           :class="{ 'btn-sidebar-active': pathname === 'order' }"
           @click="setPathName('order')"
+          data-bs-dismiss="offcanvas"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +203,7 @@ export default {
 
 <style scoped>
 .sidebar {
-  height: calc(100vh - 54px);
+  height: calc(100vh - 62px);
   background-color: #313a46;
 }
 
