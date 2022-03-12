@@ -24,7 +24,7 @@
             ></button>
           </div>
           <div class="offcanvas-body p-0">
-            <Sidebar />
+            <SidebarOffcanvas />
           </div>
         </div>
 
@@ -56,6 +56,7 @@ import Offcanvas from 'bootstrap/js/dist/offcanvas'
 import Modal from 'bootstrap/js/dist/modal'
 import Navbar from '@/components/interface/Navbar'
 import Sidebar from '@/components/interface/Sidebar'
+import SidebarOffcanvas from '@/components/interface/SidebarOffcanvas'
 import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
@@ -69,6 +70,7 @@ export default {
   components: {
     Navbar,
     Sidebar,
+    SidebarOffcanvas,
     Login,
     Calc,
     Admin,

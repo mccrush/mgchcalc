@@ -16,6 +16,7 @@
           "
           :class="{ 'btn-sidebar-active': pathname === 'calc' }"
           @click="setPathName('calc')"
+          data-bs-dismiss="offcanvas"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +55,7 @@
           "
           :class="{ 'btn-sidebar-active': pathname === 'order' }"
           @click="setPathName('order')"
+          data-bs-dismiss="offcanvas"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -88,6 +90,7 @@
           "
           :class="{ 'btn-sidebar-active': pathname === 'nafrezer' }"
           @click="setPathName('nafrezer')"
+          data-bs-dismiss="offcanvas"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -122,6 +125,7 @@
           "
           :class="{ 'btn-sidebar-active': pathname === 'admin' }"
           @click="setPathName('admin')"
+          data-bs-dismiss="offcanvas"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -156,6 +160,7 @@
             pb-3
           "
           @click="logOut"
+          data-bs-dismiss="offcanvas"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

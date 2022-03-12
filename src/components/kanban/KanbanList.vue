@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="dropzone bg-light rounded-3 p-2"
+      class="dropzone border rounded-3 p-2"
       :data-status="status"
       @drop="onDrop($event, status)"
       @dragover.prevent
