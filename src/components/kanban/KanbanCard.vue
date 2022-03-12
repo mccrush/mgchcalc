@@ -24,7 +24,7 @@
       <span v-if="item.polka">Полка:&nbsp;&nbsp;{{ item.polka }}</span>
       <span v-if="item.type === 'order'"
         >Сумма:&nbsp;&nbsp;<span
-          class="bg-success rounded text-white ps-2 pe-2"
+          class="bg-secondary rounded text-white ps-2 pe-2"
           >{{ getItogSum() }}</span
         ></span
       >
