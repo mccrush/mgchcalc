@@ -61,6 +61,8 @@ import Login from '@/views/Login'
 import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
 import KanbanBoard from '@/views/KanbanBoard'
+import Backup from '@/views/Backup'
+
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
 import ModalMain from '@/components/modal/ModalMain'
@@ -75,6 +77,7 @@ export default {
     Calc,
     Admin,
     KanbanBoard,
+    Backup,
     ButtonSettings,
     ModalMain,
     ModalCustomer
@@ -97,11 +100,11 @@ export default {
       this.modal = null
       return this.$store.getters.pathname
     },
-    widthBlock() {
-      if (this.pathname === 'order' || this.pathname === 'nafrezer')
-        return 'max-width-100'
-      return 'max-width-900'
-    },
+    // widthBlock() {
+    //   if (this.pathname === 'order' || this.pathname === 'nafrezer')
+    //     return 'max-width-100'
+    //   return 'max-width-900'
+    // },
     userId() {
       return this.$store.getters.userId
     },
@@ -113,6 +116,8 @@ export default {
           return 'Calc'
         } else if (this.pathname === 'order' || this.pathname === 'nafrezer') {
           return 'KanbanBoard'
+        } else if (this.pathname === 'backup') {
+          return 'Backup'
         }
       } else {
         return 'Login'
@@ -173,13 +178,17 @@ export default {
   height: calc(100vh - 86px);
 }
 
-.max-width-900 {
+.width-960 {
+  max-width: 960px;
+}
+
+/* .max-width-900 {
   max-width: 900px;
 }
 
 .max-width-100 {
   max-width: 1870px;
-}
+} */
 
 .fade-enter-active,
 .fade-leave-active {
