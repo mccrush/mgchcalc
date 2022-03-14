@@ -1,5 +1,5 @@
 <template>
-  <div class="width-960 bg-white shadow-sm rounded-3 mt-4 m-auto p-3 pb-0">
+  <div class="width-960 bg-white shadow-sm rounded-3 mt-4 m-auto p-3 pb-1">
     <AdminHeader
       v-model:razdel="razdel"
       v-model:categoryId="categoryId"
@@ -16,7 +16,6 @@
       @save-item="saveItem"
       @remove-item="removeItem"
     />
-    <AdminFooter />
   </div>
 </template>
 
@@ -25,13 +24,11 @@ import createItem from '@/scripts/createItem'
 
 import AdminHeader from '@/components/admin/AdminHeader'
 import AdminForms from '@/components/admin/AdminForms'
-import AdminFooter from '@/components/admin/AdminFooter'
 
 export default {
   components: {
     AdminHeader,
-    AdminForms,
-    AdminFooter
+    AdminForms
   },
   data() {
     return {

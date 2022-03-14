@@ -177,8 +177,7 @@
 
     <ul class="nav flex-column">
       <li class="nav-item border-top border-secondary">
-        <button
-          v-if="userId"
+        <a
           class="
             btn-sidebar
             text-start
@@ -186,37 +185,42 @@
             align-items-center
             btn
             w-100
-            pt-3
-            pb-3
+            pt-1
+            pb-1
           "
-          @click="logOut"
-        >
-          <svg
+          href="https://github.com/mccrush/mgchcalc/releases"
+          target="_blank"
+          title="Посмотреть историю изменений"
+          ><svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-box-arrow-in-right"
+            class="bi bi-tag"
             viewBox="0 0 16 16"
           >
             <path
-              fill-rule="evenodd"
-              d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"
+              d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"
             />
             <path
-              fill-rule="evenodd"
-              d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
-            />
-          </svg>
-          <span class="ms-3">Выйти</span>
-        </button>
+              d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"
+            /></svg
+          ><small class="ms-2">Версия v{{ version }}</small></a
+        >
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { version } from '@/../package.json'
+
 export default {
+  data() {
+    return {
+      version
+    }
+  },
   computed: {
     pathname() {
       return this.$store.getters.pathname
@@ -228,9 +232,6 @@ export default {
   methods: {
     setPathName(path) {
       this.$store.commit('setPath', path)
-    },
-    async logOut() {
-      await this.$store.dispatch('logOut')
     }
   }
 }
