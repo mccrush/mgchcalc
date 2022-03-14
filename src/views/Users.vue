@@ -1,11 +1,5 @@
 <template>
   <div class="width-960 mt-4 m-auto p-3 pb-1">
-    <!-- <div class="row pt-3 border">
-      <div class="col-12 col-sm-6 col-md-3"></div>
-      <div class="col-12 col-sm-6 col-md-3"></div>
-      <div class="col-12 col-sm-6 col-md-3"></div>
-      <div class="col-12 col-sm-6 col-md-3"></div>
-    </div> -->
     <div v-if="users.length" class="row">
       <div
         v-for="user in users"
@@ -14,15 +8,16 @@
       >
         <div class="row lh-sm">
           <div class="col-12 col-sm-4 col-xl-2">
-            <strong>Имя</strong><br />
-            <small>должность</small>
+            <strong>{{ user.name }}</strong
+            ><br />
+            <small class="text-lowercase">{{ getRoleTitle(user.role) }}</small>
           </div>
           <div class="col-12 col-sm-6 col-xl-9 mt-3 mt-sm-0">
-            Телефон<br />
+            {{ user.phone }}<br />
             {{ user.email }}
           </div>
           <div class="col-12 col-sm-2 col-xl-1 mt-3 mt-sm-0">
-            <ButtonEdit />
+            <ButtonEdit @click="$emit('show-modal', { modal: user })" />
           </div>
         </div>
       </div>
@@ -31,6 +26,7 @@
 </template>
 
 <script>
+import { roles } from '@/data/roles'
 import ButtonEdit from '@/components/buttons/ButtonEdit'
 
 export default {
@@ -39,6 +35,7 @@ export default {
   },
   data() {
     return {
+      roles,
       users: []
     }
   },
@@ -51,6 +48,10 @@ export default {
       this.users = this.$store.getters.user
     }
   },
-  methods: {}
+  methods: {
+    getRoleTitle(role) {
+      return this.roles.find(item => item.role === role).title
+    }
+  }
 }
 </script>

@@ -39,9 +39,17 @@
             </button>
           </div>
           <div class="col-8 d-flex justify-content-end align-items-center">
-            <div class="text-end lh-1 pe-3 pb-1">
-              <span><strong>Сергей</strong></span> <br />
-              <span><small>администратор</small></span> <br />
+            <div v-if="user" class="text-end lh-1 pe-3 pb-1">
+              <span
+                ><strong>{{ user.name }}</strong></span
+              >
+              <br />
+              <span
+                ><small class="text-lowercase">{{
+                  getRoleTitle(user.role)
+                }}</small></span
+              >
+              <br />
             </div>
             <div>
               <button
@@ -60,6 +68,7 @@
 </template>
 
 <script>
+import { roles } from '@/data/roles'
 import Progressbar from '@/components/interface/Progressbar'
 import ProgressbarOff from '@/components/interface/ProgressbarOff'
 
@@ -67,6 +76,11 @@ export default {
   components: {
     Progressbar,
     ProgressbarOff
+  },
+  data() {
+    return {
+      roles
+    }
   },
   computed: {
     loading() {
@@ -78,13 +92,16 @@ export default {
     userId() {
       return this.$store.getters.userId
     },
-    userData() {
+    user() {
       return this.$store.getters.userData
     }
   },
   methods: {
     async logOut() {
       await this.$store.dispatch('logOut')
+    },
+    getRoleTitle(role) {
+      return this.roles.find(item => item.role === role).title
     }
   }
 }

@@ -22,7 +22,6 @@ export default {
       try {
         const docRef = doc(db, 'user', id)
         const user = await getDoc(docRef)
-        console.log('user: ', user.data());
         commit('setUserData', user.data())
       } catch (err) {
         console.log('user.js getUserData(): Ошибка при получении данных пользователя, err:', error)
@@ -48,6 +47,5 @@ export default {
   getters: {
     userId: state => state.userId,
     userData: state => state.userData
-    //userId: state => 123
   }
 }

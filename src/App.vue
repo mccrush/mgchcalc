@@ -45,6 +45,7 @@
   />
   <ModalMain id="modalNafrezer" :item="modalNafrezer" :mod="mod" />
   <ModalCustomer id="modalCustomer" />
+  <ModalUser id="modalUserData" :user="modalUserData" />
   <!-- <SettingsBar /> -->
 </template>
 
@@ -68,6 +69,7 @@ import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
 import ModalMain from '@/components/modal/ModalMain'
 import ModalCustomer from '@/components/modal/ModalCustomer'
+import ModalUser from '@/components/modal/ModalUser'
 
 export default {
   components: {
@@ -82,13 +84,15 @@ export default {
     Users,
     ButtonSettings,
     ModalMain,
-    ModalCustomer
+    ModalCustomer,
+    ModalUser
   },
   data() {
     return {
       //order: { siryoArray: [], rabotaArray: [], dopuslugArray: [] },
       modalOrder: null,
       modalNafrezer: null,
+      modalUserData: null,
       mod: '',
       clearForm: ''
     }
@@ -142,6 +146,9 @@ export default {
       } else if (modal.type === 'nafrezer') {
         this.modalNafrezer = modal
         myModal = new Modal(document.getElementById('modalNafrezer'))
+      } else if (modal.type === 'user') {
+        this.modalUserData = modal
+        myModal = new Modal(document.getElementById('modalUserData'))
       }
 
       myModal.show()
