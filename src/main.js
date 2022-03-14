@@ -17,6 +17,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log('main.js : Пользователь авторизован')
     store.commit('setUserId', user.uid)
+    store.dispatch('getUserData', user.uid)
     store.dispatch('getItems', { type: 'materialvid' })
     store.dispatch('getItems', { type: 'material' })
     store.dispatch('getItems', { type: 'obrabotkavid' })
@@ -29,6 +30,7 @@ onAuthStateChanged(auth, (user) => {
     store.dispatch('getItemsRT', { type: 'nafrezer' })
   } else {
     store.commit('setUserId', null)
+    store.commit('setUserData', null)
     console.log('main.js: Пользователь не авторизован. user = ', user)
   }
 })
