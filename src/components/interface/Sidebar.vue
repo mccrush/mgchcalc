@@ -212,6 +212,7 @@
     <ul class="nav flex-column">
       <li class="nav-item border-top border-secondary">
         <a
+          v-if="userId"
           class="
             btn-sidebar
             text-start

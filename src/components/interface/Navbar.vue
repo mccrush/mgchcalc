@@ -28,6 +28,7 @@
         <div class="height-58 row m-0 p-0">
           <div class="col-4">
             <button
+              v-if="userId"
               class="navbar-toggler btn btn-outline-light border mt-2"
               type="button"
               data-bs-toggle="offcanvas"
@@ -53,6 +54,7 @@
             </div>
             <div>
               <button
+                v-if="userId"
                 class="btn btn-outline-light border text-muted"
                 title="Выйти из аккаунта"
                 @click="logOut"
