@@ -62,6 +62,7 @@ import Calc from '@/views/Calc'
 import Admin from '@/views/Admin'
 import KanbanBoard from '@/views/KanbanBoard'
 import Backup from '@/views/Backup'
+import Users from '@/views/Users'
 
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
@@ -78,6 +79,7 @@ export default {
     Admin,
     KanbanBoard,
     Backup,
+    Users,
     ButtonSettings,
     ModalMain,
     ModalCustomer
@@ -118,6 +120,8 @@ export default {
           return 'KanbanBoard'
         } else if (this.pathname === 'backup') {
           return 'Backup'
+        } else if (this.pathname === 'users') {
+          return 'Users'
         }
       } else {
         return 'Login'
