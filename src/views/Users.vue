@@ -16,8 +16,11 @@
             {{ user.phone }}<br />
             {{ user.email }}
           </div>
-          <div class="col-12 col-sm-2 col-xl-1 mt-3 mt-sm-0">
-            <ButtonEdit @click="$emit('show-modal', { modal: user })" />
+          <div v-if="userData" class="col-12 col-sm-2 col-xl-1 mt-3 mt-sm-0">
+            <ButtonEdit
+              v-if="userData.role === '1'"
+              @click="$emit('show-modal', { modal: user })"
+            />
           </div>
         </div>
       </div>
@@ -37,6 +40,11 @@ export default {
     return {
       roles,
       users: []
+    }
+  },
+  computed: {
+    userData() {
+      return this.$store.getters.userData
     }
   },
   async mounted() {
