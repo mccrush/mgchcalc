@@ -10,7 +10,7 @@
           <div class="col-12 col-sm-4 col-xl-2">
             <strong>{{ user.name }}</strong
             ><br />
-            <small class="text-lowercase">{{ getRoleTitle(user.role) }}</small>
+            <small>{{ user.roleTitle }}</small>
           </div>
           <div class="col-12 col-sm-6 col-xl-9 mt-3 mt-sm-0">
             {{ user.phone }}<br />
@@ -46,11 +46,6 @@ export default {
       console.log('users is get')
     } else {
       this.users = this.$store.getters.user
-    }
-  },
-  methods: {
-    getRoleTitle(role) {
-      return this.roles.find(item => item.role === role).title
     }
   }
 }

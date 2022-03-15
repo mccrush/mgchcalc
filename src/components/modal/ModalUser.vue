@@ -102,8 +102,12 @@ export default {
   methods: {
     saveUserData() {
       if (this.user.name) {
+        this.user.roleTitle = this.getRoleTitle(this.user.role)
         this.$store.dispatch('updateItem', { item: this.user })
       }
+    },
+    getRoleTitle(role) {
+      return this.roles.find(item => item.role === role).title
     }
   }
 }

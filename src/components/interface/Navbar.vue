@@ -46,9 +46,7 @@
               >
               <br />
               <span
-                ><small class="text-lowercase">{{
-                  getRoleTitle(user.role)
-                }}</small></span
+                ><small>{{ user.roleTitle }}</small></span
               >
               <br />
             </div>
@@ -101,9 +99,6 @@ export default {
   methods: {
     async logOut() {
       await this.$store.dispatch('logOut')
-    },
-    getRoleTitle(role) {
-      return this.roles.find(item => item.role === role).title
     }
   }
 }
