@@ -16,15 +16,15 @@
           </option>
         </select>
       </div>
-      <div class="col-12 col-sm-6 col-md-3">
+      <div class="col-12 col-sm-6 col-md-3 mt-2 mt-sm-0">
         {{ razdel }}
       </div>
-      <div class="col-12 col-sm-6 col-md-3">
+      <div class="col-12 col-sm-6 col-md-3 mt-2 mt-md-0">
         <button class="btn btn-sm btn-secondary w-100" @click="getBackup">
           Извлечь
         </button>
       </div>
-      <div class="col-12 col-sm-6 col-md-3">
+      <div class="col-12 col-sm-6 col-md-3 mt-2 mt-md-0">
         <button class="btn btn-sm btn-secondary w-100" @click="copyInBuffer">
           Копировать
         </button>
