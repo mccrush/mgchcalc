@@ -103,6 +103,7 @@ export default {
     saveUserData() {
       if (this.user.name) {
         this.user.roleTitle = this.getRoleTitle(this.user.role)
+        this.$store.commit('setUserData', this.user)
         this.$store.dispatch('updateItem', { item: this.user })
       }
     },
