@@ -161,6 +161,7 @@
           "
           :class="{ 'btn-sidebar-active': pathname === 'users' }"
           @click="setPathName('users')"
+          data-bs-dismiss="offcanvas"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -192,6 +193,7 @@
           "
           :class="{ 'btn-sidebar-active': pathname === 'backup' }"
           @click="setPathName('backup')"
+          data-bs-dismiss="offcanvas"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
