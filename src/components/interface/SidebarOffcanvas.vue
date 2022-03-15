@@ -1,8 +1,9 @@
 <template>
   <div class="sidebar d-flex flex-column justify-content-between pt-3">
-    <ul v-if="userId && userData" class="nav flex-column ps-2 pe-2">
+    <ul class="nav flex-column ps-2 pe-2">
       <li class="nav-item">
         <button
+          v-if="userId"
           class="
             btn-sidebar
             text-start
@@ -35,7 +36,7 @@
           <span class="ms-3">Калькулятор</span>
         </button>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" v-if="userData">
         <button
           v-if="userData.role === '1' || userData.role === '2'"
           class="
@@ -72,6 +73,7 @@
       </li>
       <li class="nav-item">
         <button
+          v-if="userId"
           class="
             btn-sidebar
             text-start
@@ -101,7 +103,7 @@
           <span class="ms-3">На Фрезер</span>
         </button>
       </li>
-      <li class="nav-item">
+      <li v-if="userData" class="nav-item">
         <button
           v-if="userData.role === '1'"
           class="
@@ -136,6 +138,7 @@
       </li>
       <li class="nav-item">
         <button
+          v-if="userId"
           class="
             btn-sidebar
             text-start
@@ -165,7 +168,7 @@
           <span class="small ms-3">Пользователи</span>
         </button>
       </li>
-      <li class="nav-item">
+      <li v-if="userData" class="nav-item">
         <button
           v-if="userData.role === '1'"
           class="
