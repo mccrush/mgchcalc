@@ -1,9 +1,8 @@
 <template>
   <div class="sidebar d-flex flex-column justify-content-between pt-3">
-    <ul class="nav flex-column ps-2 pe-2">
+    <ul v-if="userId && userData" class="nav flex-column ps-2 pe-2">
       <li class="nav-item">
         <button
-          v-if="userId"
           class="
             btn-sidebar
             text-start
@@ -38,11 +37,7 @@
       </li>
       <li class="nav-item">
         <button
-          v-if="
-            userId === 'uNOE7SInyGQbRptYJq7OiQtG7Ol2' ||
-            userId === 'rNl0ejcTSIhMycVqx4XhTqVVhAv1' ||
-            userId === 'TbUni6NXcqNlqldnorqpfKkWPJ23'
-          "
+          v-if="userData.role === '1' || userData.role === '2'"
           class="
             btn-sidebar
             text-start
@@ -77,7 +72,6 @@
       </li>
       <li class="nav-item">
         <button
-          v-if="userId"
           class="
             btn-sidebar
             text-start
@@ -109,10 +103,7 @@
       </li>
       <li class="nav-item">
         <button
-          v-if="
-            userId === 'uNOE7SInyGQbRptYJq7OiQtG7Ol2' ||
-            userId === 'rNl0ejcTSIhMycVqx4XhTqVVhAv1'
-          "
+          v-if="userData.role === '1'"
           class="
             btn-sidebar
             text-start
@@ -145,10 +136,6 @@
       </li>
       <li class="nav-item">
         <button
-          v-if="
-            userId === 'uNOE7SInyGQbRptYJq7OiQtG7Ol2' ||
-            userId === 'rNl0ejcTSIhMycVqx4XhTqVVhAv1'
-          "
           class="
             btn-sidebar
             text-start
@@ -180,7 +167,7 @@
       </li>
       <li class="nav-item">
         <button
-          v-if="userId === 'rNl0ejcTSIhMycVqx4XhTqVVhAv1'"
+          v-if="userData.role === '1'"
           class="
             btn-sidebar
             text-start
@@ -268,6 +255,9 @@ export default {
     },
     userId() {
       return this.$store.getters.userId
+    },
+    userData() {
+      return this.$store.getters.userData
     }
   },
   methods: {

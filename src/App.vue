@@ -114,18 +114,23 @@ export default {
     userId() {
       return this.$store.getters.userId
     },
+    userData() {
+      return this.$store.getters.userData
+    },
     myComponent() {
       if (this.userId) {
-        if (this.pathname === 'admin') {
+        if (this.pathname === 'admin' && this.userData.role === '1') {
           return 'Admin'
         } else if (this.pathname === 'calc') {
           return 'Calc'
         } else if (this.pathname === 'order' || this.pathname === 'nafrezer') {
           return 'KanbanBoard'
-        } else if (this.pathname === 'backup') {
+        } else if (this.pathname === 'backup' && this.userData.role === '1') {
           return 'Backup'
         } else if (this.pathname === 'users') {
           return 'Users'
+        } else {
+          return this.myComponent
         }
       } else {
         return 'Login'
