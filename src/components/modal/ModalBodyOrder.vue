@@ -155,6 +155,7 @@
           :item="elem"
           :type="item.type"
           :mod="mod"
+          :checkvalue="isChecked(elem.id)"
           @change="selectRabotaItem(elem, index)"
         />
       </div>
@@ -262,6 +263,19 @@ export default {
       // Обновить item в БД
       this.$store.dispatch('updateItemRT', { item: this.item })
       this.$emit('create-tz', this.rabotaArrayTZ)
+      // Очистить массив this.rabotaArrayTZ
+      this.rabotaArrayTZ = []
+      console.log(
+        'ModalBodyOrder: createTZ() this.rabotaArrayTZ:',
+        this.rabotaArrayTZ
+      )
+    },
+    isChecked(id) {
+      if (this.rabotaArrayTZ.find(elem => elem.id === id)) {
+        return true
+      } else {
+        return false
+      }
     },
     selectRabotaItem(rabota, index) {
       if (this.item.type === 'order') {
@@ -276,7 +290,7 @@ export default {
         }
 
         console.log(
-          'ModalBodyOrder:selectRabotaItem Select elements:',
+          'ModalBodyOrder: selectRabotaItem() this.rabotaArrayTZ:',
           this.rabotaArrayTZ
         )
       }

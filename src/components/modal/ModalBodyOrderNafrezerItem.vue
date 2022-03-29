@@ -13,6 +13,7 @@
         v-if="type === 'order' && mod === 'edit'"
         class="form-check-input me-2"
         type="checkbox"
+        :checked="checkvalue"
       />
       <span> {{ item.title }}, {{ item.size }} {{ item.ed }} </span>
     </div>
@@ -42,7 +43,7 @@
 import { formatMoney } from '@/scripts/formatMoney'
 
 export default {
-  props: ['item', 'type', 'mod'],
+  props: ['item', 'type', 'mod', 'checkvalue'],
   methods: {
     formatMoneyFromSum(sum) {
       return formatMoney(sum)
