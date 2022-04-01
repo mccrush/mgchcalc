@@ -4,7 +4,7 @@
     <div class="text-muted small border-top mt-2 pt-2">
       <div class="d-flex">
         <div class="d-flex align-items-end w-50">
-          <PencilSquare />
+          <CalendarPlus />
           <span class="ms-1">
             {{
               new Date(item.dateCreate).toLocaleDateString('ru-RU', {
@@ -50,14 +50,14 @@
 import { getArraySum } from '@/scripts/getArraySum'
 import { formatMoney } from '@/scripts/formatMoney'
 
-import PencilSquare from '@/components/icons/PencilSquare.vue'
+import CalendarPlus from '@/components/icons/CalendarPlus.vue'
 import Clock from '@/components/icons/Clock.vue'
 import Cash from '@/components/icons/Cash.vue'
 import Inbox from '@/components/icons/Inbox.vue'
 
 export default {
   components: {
-    PencilSquare,
+    CalendarPlus,
     Clock,
     Cash,
     Inbox
