@@ -1,33 +1,47 @@
 <template>
   <div>
     <span class="small">{{ item.title }}</span>
-    <div class="text-muted font-monospace small border-top mt-2 pt-2">
-      <div>
-        Создан:
-        {{
-          new Date(item.dateCreate).toLocaleDateString('ru-RU', {
-            hour: '2-digit',
-            minute: '2-digit'
-          })
-        }}
-      </div>
-      <div>
-        Срок:&nbsp;&nbsp;
-        {{
-          new Date(item.dateForReady).toLocaleDateString('ru-RU', {
-            hour: '2-digit',
-            minute: '2-digit'
-          })
-        }}
+    <div class="text-muted small border-top mt-2 pt-2">
+      <div class="d-flex">
+        <div class="d-flex align-items-end w-50">
+          <PencilSquare />
+          <span class="ms-1">
+            {{
+              new Date(item.dateCreate).toLocaleDateString('ru-RU', {
+                day: '2-digit',
+                month: '2-digit',
+                year: '2-digit'
+              })
+            }}
+          </span>
+        </div>
+        <div class="d-flex align-items-end w-50">
+          <Clock />
+          <span class="ms-1">
+            {{
+              new Date(item.dateForReady).toLocaleDateString('ru-RU', {
+                day: '2-digit',
+                month: '2-digit',
+                year: '2-digit'
+              })
+            }}
+          </span>
+        </div>
       </div>
 
-      <span v-if="item.polka">Полка:&nbsp;&nbsp;{{ item.polka }}</span>
-      <span v-if="item.type === 'order'"
-        >Сумма:&nbsp;&nbsp;<span
-          class="bg-secondary rounded text-white ps-2 pe-2"
-          >{{ getItogSum() }}</span
-        ></span
-      >
+      <div class="d-flex">
+        <div
+          v-if="item.type === 'order'"
+          class="d-flex align-items-center w-50 mt-2"
+        >
+          <Cash />
+          <span class="fw-bold ms-1">{{ getItogSum() }}</span>
+        </div>
+        <div v-if="item.polka" class="d-flex align-items-center w-50 mt-2">
+          <Inbox />
+          <span class="ms-2"> {{ item.polka }}</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,7 +50,18 @@
 import { getArraySum } from '@/scripts/getArraySum'
 import { formatMoney } from '@/scripts/formatMoney'
 
+import PencilSquare from '@/components/icons/PencilSquare.vue'
+import Clock from '@/components/icons/Clock.vue'
+import Cash from '@/components/icons/Cash.vue'
+import Inbox from '@/components/icons/Inbox.vue'
+
 export default {
+  components: {
+    PencilSquare,
+    Clock,
+    Cash,
+    Inbox
+  },
   props: ['item'],
   methods: {
     getItogSum() {
