@@ -102,7 +102,8 @@ export default {
 
 <style scoped>
 .kanban {
-  height: calc(100vh - 71px);
+  /* height: calc(100vh - 71px); */
+  height: calc(100vh - 86px);
   overflow-x: auto;
 }
 

@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-lg-10 col-xxl-11">
+        <div class="my-h-100 col-12 col-lg-10 col-xxl-11 overflow-auto pb-4">
           <transition name="fade" mode="out-in" appear>
             <component :is="myComponent" @show-modal="showModal" />
           </transition>
@@ -196,7 +196,7 @@ export default {
 }
 
 .my-h-100 {
-  height: calc(100vh - 86px);
+  height: calc(100vh - 62px);
 }
 
 .width-960 {
