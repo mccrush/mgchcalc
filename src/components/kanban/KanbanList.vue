@@ -14,7 +14,7 @@
           v-if="array.length && this.pathname === 'order'"
           class="text-muted small"
         >
-          <span>{{ array.length }} шт., </span>
+          <span>{{ array.length }} шт, </span>
           <strong> {{ itogSum(array) }}</strong>
         </div>
       </div>
