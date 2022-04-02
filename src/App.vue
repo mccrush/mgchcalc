@@ -97,10 +97,10 @@ export default {
       clearForm: ''
     }
   },
-  mounted() {
-    let body = document.getElementsByTagName('body')[0]
-    body.style.backgroundColor = '#f8f9fa'
-  },
+  // mounted() {
+  //   let body = document.getElementsByTagName('body')[0]
+  //   body.style.backgroundColor = '#f8f9fa'
+  // },
   computed: {
     pathname() {
       this.modal = null
@@ -169,6 +169,11 @@ export default {
 </script>
 
 <style>
+body {
+  /* background-color: #f8f9fa; */
+  background-color: #fafbfe;
+}
+
 .btn:focus,
 .btn-close:focus,
 .btn-check:focus + .btn-outline-dark,
