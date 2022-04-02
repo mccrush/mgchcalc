@@ -35,7 +35,9 @@
           class="d-flex align-items-center w-50 mt-2"
         >
           <Cash />
-          <span class="fw-bold ms-1">{{ getItogSum() }}</span>
+          <!-- <span class="fw-bold ms-1">{{ getItogSum() }}</span
+          ><br /> -->
+          <span class="fw-bold ms-1">{{ formatMoney(item.summa) }}</span>
         </div>
         <div v-if="item.polka" class="d-flex align-items-center w-50 mt-2">
           <Inbox />
@@ -47,7 +49,7 @@
 </template>
 
 <script>
-import { getArraySum } from '@/scripts/getArraySum'
+//import { getArraySum } from '@/scripts/getArraySum'
 import { formatMoney } from '@/scripts/formatMoney'
 
 import CalendarPlus from '@/components/icons/CalendarPlus.vue'
@@ -64,29 +66,30 @@ export default {
   },
   props: ['item'],
   methods: {
-    getItogSum() {
-      let sum = 0
-      let prioritet = false
-      if (this.item.siryoArray) {
-        sum += getArraySum(this.item.siryoArray)
-      }
-      if (this.item.rabotaArray) {
-        sum += getArraySum(this.item.rabotaArray)
-      }
-      if (this.item.dopuslugArray) {
-        sum += getArraySum(this.item.dopuslugArray)
+    formatMoney
+    // getItogSum() {
+    //   let sum = 0
+    //   let prioritet = false
+    //   if (this.item.siryoArray) {
+    //     sum += getArraySum(this.item.siryoArray)
+    //   }
+    //   if (this.item.rabotaArray) {
+    //     sum += getArraySum(this.item.rabotaArray)
+    //   }
+    //   if (this.item.dopuslugArray) {
+    //     sum += getArraySum(this.item.dopuslugArray)
 
-        if (this.item.dopuslugArray.some(ss => ss === 'x2')) {
-          prioritet = true
-        }
-      }
+    //     if (this.item.dopuslugArray.some(ss => ss === 'x2')) {
+    //       prioritet = true
+    //     }
+    //   }
 
-      if (prioritet) {
-        return formatMoney(sum * 2)
-      } else {
-        return formatMoney(sum)
-      }
-    }
+    //   if (prioritet) {
+    //     return formatMoney(sum * 2)
+    //   } else {
+    //     return formatMoney(sum)
+    //   }
+    // }
   }
 }
 </script>

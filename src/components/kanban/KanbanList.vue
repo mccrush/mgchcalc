@@ -10,6 +10,13 @@
     >
       <div class="list-title text-center pt-0">
         <strong class="no-select">{{ title }}</strong>
+        <div
+          v-if="array.length && this.pathname === 'order'"
+          class="text-muted small"
+        >
+          <span>{{ array.length }} шт., </span>
+          <strong> {{ itogSum(array) }}</strong>
+        </div>
       </div>
       <div class="list-items pb-1">
         <KanbanCard
@@ -28,6 +35,8 @@
 
 <script>
 //import getDateNow from '@/scripts/getDateNow'
+import { getArraySum } from '@/scripts/getArraySum'
+import { formatMoney } from '@/scripts/formatMoney'
 import KanbanCard from '@/components/kanban/KanbanCard'
 
 export default {
@@ -36,12 +45,26 @@ export default {
   },
   props: ['title', 'array', 'pathname', 'status'],
   emits: ['edit-item'],
+  data() {
+    return {
+      array2: [
+        { summa: 1 },
+        { summa: 2 },
+        { summa: 3 },
+        { summa: 4 },
+        { summa: 5 }
+      ]
+    }
+  },
   computed: {
     items() {
       return this.$store.getters[this.pathname]
     }
   },
   methods: {
+    itogSum(array) {
+      return formatMoney(getArraySum(array))
+    },
     onDragStart(e, item) {
       console.log('DragStart, item:', item.id)
       e.dataTransfer.dropEffect = 'move'

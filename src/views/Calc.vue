@@ -327,7 +327,8 @@ export default {
         this.orderNumber,
         this.siryoArray,
         this.rabotaArray,
-        this.dopuslugArray
+        this.dopuslugArray,
+        this.sumItogo
       )
 
       this.$emit('show-modal', { modal: order, mod: 'create' })
