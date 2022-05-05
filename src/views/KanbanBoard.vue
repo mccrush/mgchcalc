@@ -31,9 +31,25 @@ export default {
     pathname() {
       return this.$store.getters.pathname
     },
+    showArchive() {
+      return this.$store.getters.showArchive
+    },
     etaps() {
-      if (this.pathname === 'order') return voronkaOrders
-      return voronkaNafrezer
+      if (this.pathname === 'order') {
+        if (this.showArchive) {
+          return voronkaOrders
+        } else {
+          return voronkaOrders.filter(
+            item => item.alias !== 'successorder' && item.alias !== 'failorder'
+          )
+        }
+      } else if (this.pathname === 'nafrezer') {
+        if (this.showArchive) {
+          return voronkaNafrezer
+        } else {
+          return voronkaNafrezer.filter(item => item.alias !== 'arhivefrezer')
+        }
+      }
     },
     items() {
       return this.$store.getters[this.pathname]

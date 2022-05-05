@@ -26,7 +26,7 @@
       </div>
       <div class="col-12 col-lg-10 col-xxl-11 shadow-sm m-0">
         <div class="height-58 row m-0 p-0">
-          <div class="col-4">
+          <div class="col-2 d-lg-none">
             <button
               v-if="userId"
               class="navbar-toggler btn btn-outline-light border mt-2"
@@ -39,7 +39,29 @@
               <span class="navbar-toggler-icon"></span>
             </button>
           </div>
-          <div class="col-8 d-flex justify-content-end align-items-center">
+          <div class="col-2 d-flex align-items-center">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckShowArchive"
+                :checked="showArchive"
+                @change="setShowArchive"
+              />
+              <label class="form-check-label" for="flexSwitchCheckShowArchive"
+                >Архивные</label
+              >
+            </div>
+          </div>
+          <div
+            class="
+              col-8 col-lg-10
+              d-flex
+              justify-content-end
+              align-items-center
+            "
+          >
             <div v-if="user" class="text-end lh-1 pe-3 pb-1">
               <span
                 ><strong>{{ user.name }}</strong></span
@@ -94,11 +116,17 @@ export default {
     },
     user() {
       return this.$store.getters.userData
+    },
+    showArchive() {
+      return this.$store.getters.showArchive
     }
   },
   methods: {
     async logOut() {
       await this.$store.dispatch('logOut')
+    },
+    setShowArchive() {
+      this.$store.commit('setShowArchive', !this.showArchive)
     }
   }
 }

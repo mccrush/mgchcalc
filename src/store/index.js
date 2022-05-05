@@ -5,6 +5,7 @@ import admin from './modules/admin'
 import pathname from './modules/pathname'
 import realtime from './modules/realtime'
 import fileloader from './modules/fileloader'
+import showarchive from './modules/showarchive'
 
 export default createStore({
   modules: {
@@ -12,7 +13,8 @@ export default createStore({
     admin,
     pathname,
     realtime,
-    fileloader
+    fileloader,
+    showarchive
   },
   actions: {
     updateItemStatus({ dispatch, getters }, { item }) {
