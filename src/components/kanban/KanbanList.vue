@@ -123,7 +123,7 @@ export default {
 }
 
 .list-items {
-  max-height: calc(100vh - 160px);
+  /* max-height: calc(100vh - 160px); off 05.05.22 */
   overflow-y: auto;
   overflow-x: hidden;
 }

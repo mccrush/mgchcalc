@@ -103,12 +103,14 @@ export default {
 <style scoped>
 .kanban {
   /* height: calc(100vh - 71px); */
-  height: calc(100vh - 86px);
+  /* height: calc(100vh - 86px); */
+  height: calc(100vh - 62px); /* add 05.05.22 */
   overflow-x: auto;
 }
 
 .wrap-order-list {
-  width: 249px;
+  width: 345px; /* add 05.05.22 */
+  /* width: 249px; */
   /* width: 280px; */
 }
 
