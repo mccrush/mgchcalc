@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     materials() {
-      console.log('this.groupId = ', this.groupId)
+      // console.log('this.groupId = ', this.groupId)
       if (this.groupId) {
         return this.$store.getters.material.filter(
           item => item.categoryId === this.groupId

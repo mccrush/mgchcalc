@@ -18,19 +18,27 @@
     >
       <span class="small">{{ group.title }}</span>
       <div class="d-flex align-items-center">
-        <ButtonEdit @click.stop class="my-btn-hide border-0 me-1" />
+        <ButtonEdit
+          @click.stop
+          class="my-btn-hide border-0 me-1"
+          data-bs-toggle="modal"
+          data-bs-target="#modalMaterial"
+        />
         <ButtonTrash @click.stop class="my-btn-hide border-0" />
       </div>
     </li>
   </ul>
+  <ModalMaterial formType="ListMaterialGroups" item="5" />
 </template>
 
 <script>
+import ModalMaterial from './ModalMaterial.vue'
 import ButtonEdit from './../buttons/ButtonEdit.vue'
 import ButtonTrash from './../buttons/ButtonTrash.vue'
 
 export default {
   components: {
+    ModalMaterial,
     ButtonEdit,
     ButtonTrash
   },
