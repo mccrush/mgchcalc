@@ -5,5 +5,6 @@ export default [
   { id: '44', title: 'Раздел Толщина материала', alias: 'obrabotkatolshina' },
   { id: '55', title: 'Раздел Дополнительные услуги', alias: 'dopuslug' },
   { id: '66', title: 'Раздел Контакты', alias: 'contact' },
-  { id: '77', title: 'Раздел Компании', alias: 'company' }
+  { id: '77', title: 'Раздел Компании', alias: 'company' },
+  { id: '88', title: 'Раздел Поставщики', alias: 'postavshik' }
 ]

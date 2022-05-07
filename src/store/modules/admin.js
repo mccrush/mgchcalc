@@ -13,7 +13,8 @@ export default {
     dopuslug: [],
     contact: [],
     company: [],
-    user: []
+    user: [], /* ?? */
+    postavshik: []
   },
   mutations: {
     removeItem(state, { type, id }) {
@@ -91,6 +92,7 @@ export default {
     dopuslug: state => state.dopuslug,
     contact: state => state.contact,
     company: state => state.company,
-    user: state => state.user
+    user: state => state.user,
+    postavshik: state => state.postavshik
   }
 }

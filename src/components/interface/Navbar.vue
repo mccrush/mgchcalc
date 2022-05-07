@@ -40,7 +40,10 @@
             </button>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <div class="form-check form-switch">
+            <div
+              v-if="pathname === 'order' || pathname === 'nafrezer'"
+              class="form-check form-switch"
+            >
               <input
                 class="form-check-input"
                 type="checkbox"
@@ -119,6 +122,9 @@ export default {
     },
     showArchive() {
       return this.$store.getters.showArchive
+    },
+    pathname() {
+      return this.$store.getters.pathname
     }
   },
   methods: {

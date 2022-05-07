@@ -1,12 +1,13 @@
 // Import all Domains
-import getId from './getId'
-import materialvid from '@/classes/materialvid'
-import material from '@/classes/material'
-import obrabotkavid from '@/classes/obrabotkavid'
-import obrabotkatolshina from '@/classes/obrabotkatolshina'
-import dopuslug from '@/classes/dopuslug'
-import contact from '@/classes/contact'
-import company from '@/classes/company'
+import getId from './getId.js'
+import materialvid from './../classes/materialvid.js'
+import material from './../classes/material.js'
+import obrabotkavid from './../classes/obrabotkavid.js'
+import obrabotkatolshina from './../classes/obrabotkatolshina.js'
+import dopuslug from './../classes/dopuslug.js'
+import contact from './../classes/contact.js'
+import company from './../classes/company.js'
+import postavshik from './../classes/postavshik.js'
 
 
 
@@ -28,5 +29,7 @@ export default (type, categoryId) => {
       return contact(id)
     case 'company':
       return company(id)
+    case 'postavshik':
+      return postavshik(id)
   }
 }
