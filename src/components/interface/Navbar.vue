@@ -1,6 +1,13 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light bg-white flex-column pt-0 pb-0"
+    class="
+      z-index-1
+      navbar navbar-expand-lg navbar-light
+      bg-white
+      flex-column
+      pt-0
+      pb-0
+    "
   >
     <div class="progressbar w-100">
       <Progressbar v-if="loading || loadingRT" />
@@ -145,6 +152,10 @@ export default {
 
 .height-58 {
   height: 58px;
+}
+
+.z-index-1 {
+  z-index: 1;
 }
 
 /* .btn {

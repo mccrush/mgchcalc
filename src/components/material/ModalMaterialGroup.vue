@@ -19,7 +19,7 @@
           class="form-control form-control-sm"
           id="inputNacenka"
           v-model.number="item.nacenka"
-          @change="$emit('save-item', { item })"
+          @blur="$emit('save-item', { item })"
         />
         <label for="inputNacenka">Наценка %</label>
       </form>
@@ -31,7 +31,7 @@
           class="form-control form-control-sm"
           id="inputNacenka"
           v-model.number="item.othody"
-          @change="$emit('save-item', { item })"
+          @blur="$emit('save-item', { item })"
         />
         <label for="inputNacenka">Отход %</label>
       </form>
@@ -43,7 +43,7 @@
           class="form-control form-control-sm"
           id="inputTitle"
           v-model.number="item.position"
-          @change="$emit('save-item', { item })"
+          @blur="$emit('save-item', { item })"
         />
         <label for="inputTitle">Позиция</label>
       </form>

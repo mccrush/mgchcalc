@@ -12,7 +12,12 @@
           ></button>
         </div>
         <div class="modal-body">
-          <component v-if="item" :is="myModalMaterialComponent" :item="item" />
+          <component
+            v-if="item"
+            :is="myModalMaterialComponent"
+            :item="item"
+            @save-item="saveItem"
+          />
         </div>
         <!-- <div class="modal-footer">
           <button
@@ -54,6 +59,12 @@ export default {
           this.modalTitle = 'Материал'
           return 'ModalMaterialMaterial'
       }
+    }
+  },
+  methods: {
+    saveItem({ item }) {
+      //console.log('have item = ', item)
+      this.$store.dispatch('updateItem', { item })
     }
   }
 }

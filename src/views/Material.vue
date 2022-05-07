@@ -6,12 +6,19 @@
     </div> -->
     <div class="row">
       <div class="col-12 col-md-4 col-lg-3">
-        <ListMaterialGroups v-model:groupId="groupId" />
+        <ListMaterialGroups
+          v-model:groupId="groupId"
+          v-model:groupNacenka="groupNacenka"
+          v-model:groupOthody="groupOthody"
+        />
       </div>
       <div class="col-12 col-md-8 col-lg-9 ps-md-0">
-        <span class="small">Наценка группы: 20%, норма отхода: 35%</span>
+        <span class="small"
+          >Наценка группы: {{ groupNacenka }}%, норма отхода:
+          {{ groupOthody }}%</span
+        >
         <hr class="mt-2" />
-        <ListMaterials :materials="materials" />
+        <ListMaterials :materials="materials" :groupNacenka="groupNacenka" />
       </div>
     </div>
   </div>
@@ -28,7 +35,9 @@ export default {
   },
   data() {
     return {
-      groupId: null
+      groupId: null,
+      groupNacenka: 0,
+      groupOthody: 0
     }
   },
   computed: {

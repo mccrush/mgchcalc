@@ -14,7 +14,7 @@
         ps-2
       "
       :class="{ active: groupId === group.id }"
-      @click="$emit('update:groupId', group.id)"
+      @click="emitsGroup(group.id, group.nacenka, group.othody)"
     >
       <span class="small">{{ group.title }}</span>
       <div class="d-flex align-items-center">
@@ -42,8 +42,8 @@ export default {
     ButtonEdit,
     ButtonTrash
   },
-  props: ['groupId'],
-  emits: ['update:groupId'],
+  props: ['groupId', 'groupNacenka', 'groupOthody'],
+  emits: ['update:groupId', 'update:groupNacenka', 'update:groupOthody'],
   data() {
     return {
       modalItem: null
@@ -52,6 +52,13 @@ export default {
   computed: {
     materialGroups() {
       return this.$store.getters.materialvid
+    }
+  },
+  methods: {
+    emitsGroup(groupId, groupNacenka, groupOthody) {
+      this.$emit('update:groupId', groupId)
+      this.$emit('update:groupNacenka', groupNacenka)
+      this.$emit('update:groupOthody', groupOthody)
     }
   }
 }
