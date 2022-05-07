@@ -9,7 +9,7 @@
         <ListMaterialGroups v-model:groupId="groupId" />
       </div>
       <div class="col-12 col-md-8 col-lg-9 ps-md-0">
-        Наценка группы: 20%, норма отхода: 35%
+        <span class="small">Наценка группы: 20%, норма отхода: 35%</span>
         <hr class="mt-2" />
         <ListMaterials :materials="materials" />
       </div>

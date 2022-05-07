@@ -19,7 +19,7 @@
       <span class="small">{{ group.title }}</span>
       <div class="d-flex align-items-center">
         <ButtonEdit
-          @click.stop
+          @click.stop="modalItem = group"
           class="my-btn-hide border-0 me-1"
           data-bs-toggle="modal"
           data-bs-target="#modalMaterial"
@@ -28,7 +28,7 @@
       </div>
     </li>
   </ul>
-  <ModalMaterial formType="ListMaterialGroups" item="5" />
+  <ModalMaterial formType="ListMaterialGroups" :item="modalItem" />
 </template>
 
 <script>
@@ -44,6 +44,11 @@ export default {
   },
   props: ['groupId'],
   emits: ['update:groupId'],
+  data() {
+    return {
+      modalItem: null
+    }
+  },
   computed: {
     materialGroups() {
       return this.$store.getters.materialvid

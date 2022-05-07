@@ -5,7 +5,7 @@
       :key="material.id"
       class="
         list-group-item
-        d-flex
+        d-sm-flex
         justify-content-between
         align-items-center
         lh-1
@@ -15,7 +15,7 @@
       "
     >
       <span class="small">{{ material.title }}</span>
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center mt-1 mt-sm-0">
         <span class="badge text-dark me-2">
           {{ material.ed }}
         </span>
