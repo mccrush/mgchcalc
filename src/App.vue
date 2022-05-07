@@ -64,6 +64,7 @@ import Admin from '@/views/Admin'
 import KanbanBoard from '@/views/KanbanBoard'
 import Backup from '@/views/Backup'
 import Users from '@/views/Users'
+import Material from '@/views/Material'
 
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 //import SettingsBar from '@/components/interface/SettingsBar'
@@ -82,6 +83,7 @@ export default {
     KanbanBoard,
     Backup,
     Users,
+    Material,
     ButtonSettings,
     ModalMain,
     ModalCustomer,
@@ -129,6 +131,8 @@ export default {
           return 'Backup'
         } else if (this.pathname === 'users') {
           return 'Users'
+        } else if (this.pathname === 'material') {
+          return 'Material'
         } else {
           return this.myComponent
         }
