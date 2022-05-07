@@ -16,6 +16,9 @@
     >
       <span class="small">{{ material.title }}</span>
       <div class="d-flex align-items-center">
+        <span class="badge text-dark me-2">
+          {{ material.ed }}
+        </span>
         <span class="badge text-dark border border-success me-2">
           {{ material.price }}
         </span>
