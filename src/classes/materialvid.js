@@ -3,6 +3,8 @@ export default (id) => {
     id,
     title: '[]',
     type: 'materialvid',
-    position: 0
+    position: 0,
+    nacenka: 1,
+    othody: 1
   }
 }
