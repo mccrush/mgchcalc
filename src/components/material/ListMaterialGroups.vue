@@ -24,7 +24,7 @@
           data-bs-toggle="modal"
           data-bs-target="#modalMaterial"
         />
-        <ButtonTrash @click.stop class="my-btn-hide border-0" />
+        <ButtonTrash @click.stop class="my-btn-hide border-0 disabled" />
       </div>
     </li>
   </ul>
