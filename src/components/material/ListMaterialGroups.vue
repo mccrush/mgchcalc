@@ -28,7 +28,7 @@
           <ButtonTrash
             @click.stop
             class="my-btn-hide border-0"
-            @click="removeGroup(group.id)"
+            @click="removeGroup(group.type, group.id)"
           />
         </div>
       </li>
@@ -94,16 +94,28 @@ export default {
         this.titleNewGroup = ''
       }
     },
-    removeGroup(id) {
+    removeGroup(type, id) {
       console.log('id:', id)
       if (
         confirm(
           'Точно удалить? Будут удалены и все материалы принадлежащие этой группе!'
         )
       ) {
-        // Проверить, есть ли дети. Если есть, сначала удалить их
-        // Проверить через длину массива после фильтрации всех материалов по полю categoryId
+        // Сначала удалить всех детей, если они есть
+        const childArray = this.$store.getters.material.filter(
+          item => item.categoryId === id
+        )
+        console.log('В группе столько детей:', childArray.length)
+        // Перебирать массив детей и удалять каждый через forEach
+        if (childArray.length) {
+          childArray.forEach(item => {
+            console.log('Типа удален:', item)
+            //this.$store.dispatch('removeItem', { type: item.type, id: item.id })
+          })
+        }
+
         // Затем удалить сам объект
+        //this.$store.dispatch('removeItem', { type, id })
       }
     }
   }
