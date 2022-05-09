@@ -13,10 +13,20 @@
         />
       </div>
       <div class="col-12 col-md-8 col-lg-9 ps-md-0">
-        <span class="small"
-          >Наценка группы: {{ groupNacenka }}%, норма отхода:
-          {{ groupOthody }}%</span
-        >
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="small"
+            >Наценка группы: {{ groupNacenka }}%, норма отхода:
+            {{ groupOthody }}%</span
+          >
+          <button
+            class="btn btn-sm btn-outline-success"
+            :class="{ disabled: !groupId }"
+            title="Добавить материал"
+            @click="addNewMaterial"
+          >
+            Добавить &nbsp;+&nbsp;
+          </button>
+        </div>
         <hr class="mt-2" />
         <ListMaterials :materials="materials" :groupNacenka="groupNacenka" />
       </div>
@@ -50,6 +60,11 @@ export default {
       } else {
         return []
       }
+    }
+  },
+  methods: {
+    addNewMaterial() {
+      // Вызвать модальное окно Материала и передать в него id группы
     }
   }
 }

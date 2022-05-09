@@ -46,6 +46,7 @@
         class="btn btn-outline-success"
         type="button"
         id="createNewGroup"
+        title="Добавить группу"
         @click="addNewGroup"
       >
         &nbsp;+&nbsp;
