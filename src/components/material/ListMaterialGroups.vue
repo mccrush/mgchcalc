@@ -33,13 +33,14 @@
         </div>
       </li>
     </ul>
-    <div class="input-group mt-3">
+    <div class="input-group input-group-sm mt-3">
       <input
         type="text"
         class="form-control"
         placeholder="Новая группа"
         aria-describedby="createNewGroup"
         v-model.trim="titleNewGroup"
+        @keyup.enter="addNewGroup"
       />
       <button
         class="btn btn-outline-success"
@@ -47,7 +48,7 @@
         id="createNewGroup"
         @click="addNewGroup"
       >
-        +
+        &nbsp;+&nbsp;
       </button>
     </div>
     <ModalMaterial formType="ListMaterialGroups" :item="modalItem" />
