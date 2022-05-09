@@ -4,7 +4,7 @@ export default (id) => {
     title: '[]',
     type: 'materialvid',
     position: 0,
-    nacenka: 1,
-    othody: 1
+    nacenka: 0,
+    othody: 0
   }
 }
