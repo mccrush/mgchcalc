@@ -3,7 +3,9 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{ modalTitle }}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">
+            {{ modalTitle }}
+          </h5>
           <button
             type="button"
             class="btn-close"
@@ -43,7 +45,7 @@ export default {
     ModalMaterialGroup,
     ModalMaterialMaterial
   },
-  props: ['formType', 'item'],
+  props: ['type', 'item'],
   data() {
     return {
       modalTitle: ''
@@ -51,11 +53,11 @@ export default {
   },
   computed: {
     myModalMaterialComponent() {
-      switch (this.formType) {
-        case 'ListMaterialGroups':
+      switch (this.type) {
+        case 'materialvid':
           this.modalTitle = 'Группа'
           return 'ModalMaterialGroup'
-        case 'ListMaterials':
+        case 'material':
           this.modalTitle = 'Материал'
           return 'ModalMaterialMaterial'
       }

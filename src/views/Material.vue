@@ -1,15 +1,12 @@
 <template>
   <div class="width-960 bg-white shadow-sm rounded-3 mt-4 m-auto p-3">
-    <!-- <div class="row">
-      <div class="col-12 col-md-4 col-lg-2">Группа</div>
-      <div class="col-12 col-md-8 col-lg-10">Материал</div>
-    </div> -->
     <div class="row">
       <div class="col-12 col-md-4 col-lg-3">
         <ListMaterialGroups
           v-model:groupId="groupId"
           v-model:groupNacenka="groupNacenka"
           v-model:groupOthody="groupOthody"
+          @show-modal-material="showModalMaterial"
         />
       </div>
       <div class="col-12 col-md-8 col-lg-9 ps-md-0">
@@ -31,28 +28,34 @@
         <ListMaterials :materials="materials" :groupNacenka="groupNacenka" />
       </div>
     </div>
+    <ModalMaterial :type="modalType" :item="modalItem" />
   </div>
 </template>
 
 <script>
+import Modal from 'bootstrap/js/dist/modal.js'
+import Material from './../classes/materialClass.js'
 import ListMaterialGroups from './../components/material/ListMaterialGroups.vue'
 import ListMaterials from './../components/material/ListMaterials.vue'
+import ModalMaterial from './../components/material/ModalMaterial.vue'
 
 export default {
   components: {
     ListMaterialGroups,
-    ListMaterials
+    ListMaterials,
+    ModalMaterial
   },
   data() {
     return {
       groupId: null,
       groupNacenka: 0,
-      groupOthody: 0
+      groupOthody: 0,
+      modalItem: null,
+      modalType: ''
     }
   },
   computed: {
     materials() {
-      // console.log('this.groupId = ', this.groupId)
       if (this.groupId) {
         return this.$store.getters.material.filter(
           item => item.categoryId === this.groupId
@@ -64,7 +67,18 @@ export default {
   },
   methods: {
     addNewMaterial() {
-      // Вызвать модальное окно Материала и передать в него id группы
+      const item = Object.assign({}, new Material('', this.groupId))
+      //console.log('new material:', item)
+      this.$store.dispatch('addItem', { item })
+      this.showModalMaterial(item)
+    },
+    showModalMaterial(item) {
+      this.modalItem = item
+      this.modalType = item.type
+      const myModalMaterial = new Modal(
+        document.getElementById('modalMaterial')
+      )
+      myModalMaterial.show()
     }
   }
 }

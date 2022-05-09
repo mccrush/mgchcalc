@@ -20,10 +20,8 @@
         <span class="small">{{ group.title }}</span>
         <div class="d-flex align-items-center">
           <ButtonEdit
-            @click.stop="modalItem = group"
+            @click.stop="$emit('show-modal-material', group)"
             class="my-btn-hide border-0 me-1"
-            data-bs-toggle="modal"
-            data-bs-target="#modalMaterial"
           />
           <ButtonTrash
             @click.stop
@@ -52,25 +50,27 @@
         &nbsp;+&nbsp;
       </button>
     </div>
-    <ModalMaterial formType="ListMaterialGroups" :item="modalItem" />
   </div>
 </template>
 
 <script>
 import Materialvid from './../../classes/materialvidClass.js'
 
-import ModalMaterial from './ModalMaterial.vue'
 import ButtonEdit from './../buttons/ButtonEdit.vue'
 import ButtonTrash from './../buttons/ButtonTrash.vue'
 
 export default {
   components: {
-    ModalMaterial,
     ButtonEdit,
     ButtonTrash
   },
   props: ['groupId', 'groupNacenka', 'groupOthody'],
-  emits: ['update:groupId', 'update:groupNacenka', 'update:groupOthody'],
+  emits: [
+    'update:groupId',
+    'update:groupNacenka',
+    'update:groupOthody',
+    'show-modal-material'
+  ],
   data() {
     return {
       modalItem: null,
@@ -91,6 +91,7 @@ export default {
     addNewGroup() {
       if (this.titleNewGroup) {
         const item = Object.assign({}, new Materialvid(this.titleNewGroup))
+        //console.log('item in listgroup:', item)
         this.$store.dispatch('addItem', { item })
         this.titleNewGroup = ''
       }
