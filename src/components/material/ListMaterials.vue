@@ -25,9 +25,12 @@
         <span class="badge text-dark border border-warning me-2">{{
           Math.ceil(material.price + (material.price * groupNacenka) / 100)
         }}</span>
-        <ButtonEdit class="my-btn-hide border-0 me-1 disabled" />
+        <ButtonEdit
+          class="border-0 me-1"
+          @click.stop="$emit('show-modal-material', material)"
+        />
         <ButtonTrash
-          class="my-btn-hide border-0"
+          class="border-0"
           @click="removeMaterial(material.type, material.id)"
         />
       </div>
@@ -44,9 +47,10 @@ export default {
     ButtonTrash
   },
   props: ['materials', 'groupNacenka'],
+  emits: ['show-modal-material'],
   methods: {
     removeMaterial(type, id) {
-      if (confirm('Действительно удалить?')) {
+      if (confirm('Точно удалить?')) {
         this.$store.dispatch('removeItem', { type, id })
       }
     }

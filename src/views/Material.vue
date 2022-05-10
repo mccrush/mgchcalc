@@ -30,6 +30,7 @@
           v-if="group"
           :materials="materials"
           :groupNacenka="group.nacenka"
+          @show-modal-material="showModalMaterial"
         />
       </div>
     </div>

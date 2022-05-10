@@ -71,6 +71,7 @@
           id="inputPostavshik"
           v-model="item.postavshik"
           @change="$emit('save-item')"
+          disabled
         >
           <option
             v-for="postavshik in postavshiki"
