@@ -23,7 +23,7 @@
           {{ material.price }}
         </span>
         <span class="badge text-dark border border-warning me-2">{{
-          Math.round(material.price + (material.price * groupNacenka) / 100)
+          Math.ceil(material.price + (material.price * groupNacenka) / 100)
         }}</span>
         <ButtonEdit class="my-btn-hide border-0 me-1 disabled" />
         <ButtonTrash
