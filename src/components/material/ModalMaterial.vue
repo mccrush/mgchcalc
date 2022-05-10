@@ -46,6 +46,7 @@ export default {
     ModalMaterialMaterial
   },
   props: ['type', 'item'],
+  emits: ['save-item'],
   data() {
     return {
       modalTitle: ''
@@ -64,9 +65,10 @@ export default {
     }
   },
   methods: {
-    saveItem({ item }) {
+    saveItem() {
       //console.log('have item = ', item)
-      this.$store.dispatch('updateItem', { item })
+      this.$emit('save-item')
+      //this.$store.dispatch('updateItem', { item: this.item })
     }
   }
 }

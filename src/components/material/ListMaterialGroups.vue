@@ -2,7 +2,7 @@
   <div>
     <ul class="list-group">
       <li
-        v-for="group in materialGroups"
+        v-for="group in groups"
         :key="group.id"
         class="
           cursor-pointer
@@ -64,7 +64,7 @@ export default {
     ButtonEdit,
     ButtonTrash
   },
-  props: ['groupId', 'groupNacenka', 'groupOthody'],
+  props: ['groups', 'groupId', 'groupNacenka', 'groupOthody'],
   emits: [
     'update:groupId',
     'update:groupNacenka',
@@ -75,11 +75,6 @@ export default {
     return {
       modalItem: null,
       titleNewGroup: ''
-    }
-  },
-  computed: {
-    materialGroups() {
-      return this.$store.getters.materialvid
     }
   },
   methods: {

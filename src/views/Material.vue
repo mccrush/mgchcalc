@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col-12 col-md-4 col-lg-3">
         <ListMaterialGroups
+          :groups="groups"
           v-model:groupId="groupId"
           v-model:groupNacenka="groupNacenka"
           v-model:groupOthody="groupOthody"
@@ -28,7 +29,7 @@
         <ListMaterials :materials="materials" :groupNacenka="groupNacenka" />
       </div>
     </div>
-    <ModalMaterial :type="modalType" :item="modalItem" />
+    <ModalMaterial :type="modalType" :item="modalItem" @save-item="saveItem" />
   </div>
 </template>
 
@@ -55,6 +56,12 @@ export default {
     }
   },
   computed: {
+    groups() {
+      return this.$store.getters.materialvid
+    },
+    groupItem() {
+      return this.groups.filter(item => item.id === this.groupId)
+    },
     materials() {
       if (this.groupId) {
         return this.$store.getters.material.filter(
@@ -71,6 +78,10 @@ export default {
       //console.log('new material:', item)
       this.$store.dispatch('addItem', { item })
       this.showModalMaterial(item)
+    },
+    saveItem() {
+      //console.log('have item = ', item)
+      this.$store.dispatch('updateItem', { item: this.modalItem })
     },
     showModalMaterial(item) {
       this.modalItem = item
