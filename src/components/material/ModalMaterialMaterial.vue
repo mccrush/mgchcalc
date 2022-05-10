@@ -7,7 +7,7 @@
           class="form-control form-control-sm"
           id="inputTitle"
           v-model.trim="item.title"
-          @change="$emit('save-item', { item })"
+          @change="$emit('save-item')"
         />
         <label for="inputTitle">Название</label>
       </form>
@@ -18,7 +18,7 @@
           class="form-select"
           id="inputGroup"
           v-model="item.categoryId"
-          @change="$emit('save-item', { item })"
+          @change="$emit('save-item')"
         >
           <option v-for="group in groups" :key="group.id" :value="group.id">
             {{ group.title }}
@@ -33,7 +33,7 @@
           class="form-select"
           id="inputEd"
           v-model.number="item.ed"
-          @change="$emit('save-item', { item })"
+          @change="$emit('save-item')"
         >
           <option v-for="e in ed" :key="e" :value="e">{{ e }}</option>
         </select>
@@ -47,7 +47,7 @@
           class="form-control form-control-sm"
           id="inputPrice"
           v-model.number="item.price"
-          @change="$emit('save-item', { item })"
+          @change="$emit('save-item')"
         />
         <label for="inputPrice">Стоимость</label>
       </form>
@@ -59,7 +59,7 @@
           class="form-control form-control-sm"
           id="inputPosition"
           v-model.number="item.position"
-          @change="$emit('save-item', { item })"
+          @change="$emit('save-item')"
         />
         <label for="inputPosition">Позиция</label>
       </form>
@@ -70,7 +70,7 @@
           class="form-select"
           id="inputPostavshik"
           v-model="item.postavshik"
-          @change="$emit('save-item', { item })"
+          @change="$emit('save-item')"
         >
           <option
             v-for="postavshik in postavshiki"
@@ -89,8 +89,9 @@
           class="form-control form-control-sm"
           id="inputDescription"
           v-model.trim="item.description"
-          @change="$emit('save-item', { item })"
+          @change="$emit('save-item')"
         ></textarea>
+        <label for="inputDescription">Комментарий</label>
       </form>
     </div>
   </div>

@@ -4,21 +4,21 @@
       <div class="col-12 col-md-4 col-lg-3">
         <ListMaterialGroups
           :groups="groups"
-          v-model:groupId="groupId"
-          v-model:groupNacenka="groupNacenka"
-          v-model:groupOthody="groupOthody"
+          v-model:group="group"
           @show-modal-material="showModalMaterial"
         />
       </div>
       <div class="col-12 col-md-8 col-lg-9 ps-md-0">
         <div class="d-flex justify-content-between align-items-center">
-          <span class="small"
-            >Наценка группы: {{ groupNacenka }}%, норма отхода:
-            {{ groupOthody }}%</span
-          >
+          <div>
+            <span v-if="group" class="small"
+              >Наценка группы: {{ group.nacenka }}%, норма отхода:
+              {{ group.othody }}%</span
+            >
+          </div>
           <button
             class="btn btn-sm btn-outline-success"
-            :class="{ disabled: !groupId }"
+            :class="{ disabled: !group }"
             title="Добавить материал"
             @click="addNewMaterial"
           >
@@ -26,7 +26,11 @@
           </button>
         </div>
         <hr class="mt-2" />
-        <ListMaterials :materials="materials" :groupNacenka="groupNacenka" />
+        <ListMaterials
+          v-if="group"
+          :materials="materials"
+          :groupNacenka="group.nacenka"
+        />
       </div>
     </div>
     <ModalMaterial :type="modalType" :item="modalItem" @save-item="saveItem" />
@@ -48,9 +52,7 @@ export default {
   },
   data() {
     return {
-      groupId: null,
-      groupNacenka: 0,
-      groupOthody: 0,
+      group: null,
       modalItem: null,
       modalType: ''
     }
@@ -59,13 +61,10 @@ export default {
     groups() {
       return this.$store.getters.materialvid
     },
-    groupItem() {
-      return this.groups.filter(item => item.id === this.groupId)
-    },
     materials() {
-      if (this.groupId) {
+      if (this.group) {
         return this.$store.getters.material.filter(
-          item => item.categoryId === this.groupId
+          item => item.categoryId === this.group.id
         )
       } else {
         return []
@@ -74,14 +73,10 @@ export default {
   },
   methods: {
     addNewMaterial() {
-      const item = Object.assign({}, new Material('', this.groupId))
+      const item = Object.assign({}, new Material('', this.group.id))
       //console.log('new material:', item)
       this.$store.dispatch('addItem', { item })
       this.showModalMaterial(item)
-    },
-    saveItem() {
-      //console.log('have item = ', item)
-      this.$store.dispatch('updateItem', { item: this.modalItem })
     },
     showModalMaterial(item) {
       this.modalItem = item
@@ -90,6 +85,10 @@ export default {
         document.getElementById('modalMaterial')
       )
       myModalMaterial.show()
+    },
+    saveItem() {
+      //console.log('have item = ', item)
+      this.$store.dispatch('updateItem', { item: this.modalItem })
     }
   }
 }

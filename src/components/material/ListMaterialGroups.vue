@@ -14,8 +14,8 @@
           p-1
           ps-2
         "
-        :class="{ active: groupId === group.id }"
-        @click="emitsGroup(group.id, group.nacenka, group.othody)"
+        :class="{ active: group.id === groupId }"
+        @click.stop="selectGroup(group)"
       >
         <span class="small">{{ group.title }}</span>
         <div class="d-flex align-items-center">
@@ -64,24 +64,19 @@ export default {
     ButtonEdit,
     ButtonTrash
   },
-  props: ['groups', 'groupId', 'groupNacenka', 'groupOthody'],
-  emits: [
-    'update:groupId',
-    'update:groupNacenka',
-    'update:groupOthody',
-    'show-modal-material'
-  ],
+  props: ['groups'],
+  emits: ['update:group', 'show-modal-material'],
   data() {
     return {
       modalItem: null,
-      titleNewGroup: ''
+      titleNewGroup: '',
+      groupId: ''
     }
   },
   methods: {
-    emitsGroup(groupId, groupNacenka, groupOthody) {
-      this.$emit('update:groupId', groupId)
-      this.$emit('update:groupNacenka', groupNacenka)
-      this.$emit('update:groupOthody', groupOthody)
+    selectGroup(group) {
+      this.groupId = group.id
+      this.$emit('update:group', group)
     },
     addNewGroup() {
       if (this.titleNewGroup) {
