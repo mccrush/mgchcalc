@@ -26,7 +26,10 @@
           Math.round(material.price + (material.price * groupNacenka) / 100)
         }}</span>
         <ButtonEdit class="my-btn-hide border-0 me-1 disabled" />
-        <ButtonTrash class="my-btn-hide border-0 disabled" />
+        <ButtonTrash
+          class="my-btn-hide border-0"
+          @click="removeMaterial(material.type, material.id)"
+        />
       </div>
     </li>
   </ul>
@@ -40,6 +43,13 @@ export default {
     ButtonEdit,
     ButtonTrash
   },
-  props: ['materials', 'groupNacenka']
+  props: ['materials', 'groupNacenka'],
+  methods: {
+    removeMaterial(type, id) {
+      if (confirm('Действительно удалить?')) {
+        this.$store.dispatch('removeItem', { type, id })
+      }
+    }
+  }
 }
 </script>

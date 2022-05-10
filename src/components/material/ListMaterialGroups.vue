@@ -25,7 +25,7 @@
           />
           <ButtonTrash
             @click.stop
-            class="my-btn-hide border-0 disabled"
+            class="my-btn-hide border-0"
             @click="removeGroup(group.type, group.id)"
           />
         </div>
@@ -97,7 +97,6 @@ export default {
       }
     },
     removeGroup(type, id) {
-      console.log('id:', id)
       if (
         confirm(
           'Точно удалить? Будут удалены и все материалы принадлежащие этой группе!'
@@ -111,13 +110,12 @@ export default {
         // Перебирать массив детей и удалять каждый через forEach
         if (childArray.length) {
           childArray.forEach(item => {
-            console.log('Типа удален:', item)
-            //this.$store.dispatch('removeItem', { type: item.type, id: item.id })
+            this.$store.dispatch('removeItem', { type: item.type, id: item.id })
           })
         }
 
         // Затем удалить сам объект
-        //this.$store.dispatch('removeItem', { type, id })
+        this.$store.dispatch('removeItem', { type, id })
       }
     }
   }
