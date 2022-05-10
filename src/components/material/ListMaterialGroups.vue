@@ -25,7 +25,7 @@
           />
           <ButtonTrash
             @click.stop
-            class="my-btn-hide border-0"
+            class="my-btn-hide border-0 disabled"
             @click="removeGroup(group.type, group.id)"
           />
         </div>
