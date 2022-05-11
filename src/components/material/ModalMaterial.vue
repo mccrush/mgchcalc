@@ -45,7 +45,7 @@ export default {
     ModalMaterialGroup,
     ModalMaterialMaterial
   },
-  props: ['type', 'item'],
+  props: ['item'],
   emits: ['save-item'],
   data() {
     return {
@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     myModalMaterialComponent() {
-      switch (this.type) {
+      switch (this.item.type) {
         case 'materialvid':
           this.modalTitle = 'Группа'
           return 'ModalMaterialGroup'

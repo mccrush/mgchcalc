@@ -34,7 +34,7 @@
         />
       </div>
     </div>
-    <ModalMaterial :type="modalType" :item="modalItem" @save-item="saveItem" />
+    <ModalMaterial :item="modalItem" @save-item="saveItem" />
   </div>
 </template>
 
@@ -88,7 +88,7 @@ export default {
     },
     showModalMaterial(item) {
       this.modalItem = item
-      this.modalType = item.type
+      //this.modalType = item.type
       const myModalMaterial = new Modal(
         document.getElementById('modalMaterial')
       )

@@ -66,6 +66,18 @@
     </div>
     <div class="col-12 mt-2">
       <form class="form-floating">
+        <textarea
+          class="form-control form-control-sm"
+          id="inputDescription"
+          v-model.trim="item.description"
+          @change="$emit('save-item')"
+        ></textarea>
+        <label for="inputDescription">Комментарий</label>
+      </form>
+    </div>
+    <!-- История поставок -->
+    <div class="col-12 mt-2">
+      <form class="form-floating">
         <select
           class="form-select"
           id="inputPostavshik"
@@ -82,17 +94,6 @@
           </option>
         </select>
         <label for="inputPostavshik">Поставщик</label>
-      </form>
-    </div>
-    <div class="col-12 mt-2">
-      <form class="form-floating">
-        <textarea
-          class="form-control form-control-sm"
-          id="inputDescription"
-          v-model.trim="item.description"
-          @change="$emit('save-item')"
-        ></textarea>
-        <label for="inputDescription">Комментарий</label>
       </form>
     </div>
   </div>
