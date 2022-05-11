@@ -55,7 +55,8 @@ export default {
     return {
       group: null,
       modalItem: null,
-      modalType: ''
+      modalType: '',
+      postuplenie: []
     }
   },
   computed: {
@@ -70,6 +71,12 @@ export default {
       } else {
         return []
       }
+    }
+  },
+  async mounted() {
+    if (!this.$store.getters.postuplenie.length) {
+      await this.$store.dispatch('getItems', { type: 'postuplenie' })
+      console.log('Material.vue mounted(): postuplenie is get')
     }
   },
   methods: {

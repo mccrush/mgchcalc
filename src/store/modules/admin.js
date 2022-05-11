@@ -14,7 +14,8 @@ export default {
     contact: [],
     company: [],
     user: [], /* ?? */
-    postavshik: []
+    postavshik: [],
+    postuplenie: []
   },
   mutations: {
     removeItem(state, { type, id }) {
@@ -93,6 +94,7 @@ export default {
     contact: state => state.contact,
     company: state => state.company,
     user: state => state.user,
-    postavshik: state => state.postavshik
+    postavshik: state => state.postavshik,
+    postuplenie: state => state.postuplenie
   }
 }
