@@ -1,4 +1,4 @@
-import getId from './../scripts/getId.js'
+import getId from './../scripts/getId'
 
 export default class Material {
   constructor(title = '', categoryId) {
@@ -10,6 +10,6 @@ export default class Material {
     this.categoryId = categoryId
     this.price = 0
     this.ed = ''
-    this.postavshik = []
+    this.postupleniya = []
   }
 }
