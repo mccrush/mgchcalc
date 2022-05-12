@@ -10,6 +10,6 @@ export default class Material {
     this.categoryId = categoryId
     this.price = 0
     this.ed = ''
-    this.postupleniya = []
+    this.postuplenie = []
   }
 }

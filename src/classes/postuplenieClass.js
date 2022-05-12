@@ -7,9 +7,10 @@ export default class Postuplenie {
     this.type = 'postuplenie'
     this.title = ''
     this.description = ''
-    this.datePostuplenie = getDateNow()
+    this.dateCreate = getDateNow()
     this.obyom = obyom
     this.cena = cena
+    this.summa = Math.ceil(cena * obyom)
     this.postavshikId = postavshikId
   }
 }

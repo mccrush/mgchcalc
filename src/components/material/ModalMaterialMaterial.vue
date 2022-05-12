@@ -75,26 +75,21 @@
         <label for="inputDescription">Комментарий</label>
       </form>
     </div>
-    <!-- История поставок -->
+    <!-- История поступлений -->
     <div class="col-12 mt-2">
-      <form class="form-floating">
-        <select
-          class="form-select"
-          id="inputPostavshik"
-          v-model="item.postavshik"
-          @change="$emit('save-item')"
-          disabled
+      <button class="btn btn-sm btn-outline-success">
+        Добавить поступление
+      </button>
+      <ui class="list-group">
+        <li
+          v-for="postup in item.postuplenie"
+          :key="postup.id"
+          class="list-group-item lh-1 p-1 ps-2"
         >
-          <option
-            v-for="postavshik in postavshiki"
-            :key="postavshik.id"
-            :value="postavshik.id"
-          >
-            {{ postavshik.title }}
-          </option>
-        </select>
-        <label for="inputPostavshik">Поставщик</label>
-      </form>
+          {{ postup.dateCreate }} {{ postup.obyom }} {{ postup.cena }}
+          {{ postup.summa }} {{ getPostavshik(postup.postavshikId) }}
+        </li>
+      </ui>
     </div>
   </div>
 </template>
@@ -114,6 +109,11 @@ export default {
     },
     postavshiki() {
       return this.$store.getters.postavshik
+    }
+  },
+  methods: {
+    getPostavshik(id) {
+      return this.postavshiki.find(item => item.id === id).title
     }
   }
 }
