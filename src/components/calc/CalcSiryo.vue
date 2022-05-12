@@ -174,7 +174,7 @@ export default {
       let siryoSize = this.siryoDlina10 * this.siryoShirina10
       siryoSize += siryoSize * 0.1
       this.siryoSize10 = siryoSize.toFixed(2)
-      return Math.floor(this.siryoPrice * this.siryoSize10)
+      return Math.ceil(this.siryoPrice * this.siryoSize10)
     }
   },
   methods: {

@@ -147,7 +147,7 @@ export default {
     itogoZP() {
       return this.item.rabotaArray
         .map(item => {
-          return Math.floor(item.summa * 0.4)
+          return Math.ceil(item.summa * 0.4)
         })
         .reduce((pre, next) => pre + next)
     },
