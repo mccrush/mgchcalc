@@ -34,8 +34,7 @@ export default {
     return {
       group: null,
       modalItem: null,
-      modalType: '',
-      postuplenie: []
+      modalType: ''
     }
   },
   computed: {
