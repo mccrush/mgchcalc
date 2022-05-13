@@ -27,7 +27,7 @@
         }}</span>
         <ButtonEdit
           class="border-0 me-1"
-          @click.stop="$emit('show-modal-material', material)"
+          @click.stop="$emit('edit-material', material)"
         />
         <ButtonTrash
           class="border-0"
@@ -47,7 +47,7 @@ export default {
     ButtonTrash
   },
   props: ['materials', 'groupNacenka'],
-  emits: ['show-modal-material'],
+  emits: ['edit-material'],
   methods: {
     removeMaterial(type, id) {
       if (confirm('Точно удалить?')) {

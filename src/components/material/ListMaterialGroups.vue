@@ -20,7 +20,7 @@
         <span class="small">{{ group.title }}</span>
         <div class="d-flex align-items-center">
           <ButtonEdit
-            @click.stop="$emit('show-modal-material', group)"
+            @click.stop="$emit('update:form', 'group')"
             class="my-btn-hide border-0 me-1"
           />
           <ButtonTrash
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import Materialvid from './../../classes/materialvidClass.js'
+import Materialvid from './../../classes/materialvidClass'
 
 import ButtonEdit from './../buttons/ButtonEdit.vue'
 import ButtonTrash from './../buttons/ButtonTrash.vue'
@@ -64,8 +64,8 @@ export default {
     ButtonEdit,
     ButtonTrash
   },
-  props: ['groups'],
-  emits: ['update:group', 'show-modal-material'],
+  props: ['groups', 'group', 'form'],
+  emits: ['update:group', 'update:form'],
   data() {
     return {
       modalItem: null,
@@ -77,6 +77,7 @@ export default {
     selectGroup(group) {
       this.groupId = group.id
       this.$emit('update:group', group)
+      this.$emit('update:form', '')
     },
     addNewGroup() {
       if (this.titleNewGroup) {

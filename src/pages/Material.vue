@@ -5,36 +5,54 @@
         <ListMaterialGroups
           :groups="groups"
           v-model:group="group"
-          @show-modal-material="showModalMaterial"
+          v-model:form="form"
         />
       </div>
 
       <div class="col-12 col-md-8 col-lg-9 ps-md-0">
-        <ViewListMaterial :group="group" :materials="materials" />
+        <ViewListMaterial
+          v-if="group && !form"
+          :group="group"
+          v-model:material="material"
+          v-model:form="form"
+          :materials="materials"
+        />
+        <FormGroup
+          v-if="group && form === 'group'"
+          :item="group"
+          @save-item="saveItem(group)"
+        />
+        <FormMaterial
+          v-if="material && form === 'material'"
+          :item="material"
+          @save-item="saveItem(material)"
+        />
       </div>
     </div>
-    <ModalMaterial :item="modalItem" @save-item="saveItem" />
   </div>
 </template>
 
 <script>
-import Modal from 'bootstrap/js/dist/modal'
-
 import ListMaterialGroups from './../components/material/ListMaterialGroups.vue'
 import ViewListMaterial from './../components/material/ViewListMaterial.vue'
-import ModalMaterial from './../components/material/ModalMaterial.vue'
+
+import FormGroup from './../components/forms/FormGroup.vue'
+import FormMaterial from './../components/forms/FormMaterial.vue'
 
 export default {
   components: {
     ListMaterialGroups,
     ViewListMaterial,
-    ModalMaterial
+    FormGroup,
+    FormMaterial
   },
   data() {
     return {
       group: null,
+      material: null,
       modalItem: null,
-      modalType: ''
+      modalType: '',
+      form: ''
     }
   },
   computed: {
@@ -52,17 +70,9 @@ export default {
     }
   },
   methods: {
-    showModalMaterial(item) {
-      this.modalItem = item
-      //this.modalType = item.type
-      const myModalMaterial = new Modal(
-        document.getElementById('modalMaterial')
-      )
-      myModalMaterial.show()
-    },
-    saveItem() {
-      //console.log('have item = ', item)
-      this.$store.dispatch('updateItem', { item: this.modalItem })
+    saveItem(item) {
+      console.log('have item for update = ', item)
+      this.$store.dispatch('updateItem', { item })
     }
   }
 }

@@ -12,7 +12,6 @@
         </div>
         <button
           class="btn btn-sm btn-outline-success"
-          :class="{ disabled: !group }"
           title="Добавить материал"
           @click="addNewMaterial"
         >
@@ -23,9 +22,9 @@
     </div>
     <div class="col-12">
       <ListMaterials
-        v-if="group"
         :materials="materials"
         :groupNacenka="group.nacenka"
+        @edit-material="editMaterial"
       />
     </div>
   </div>
@@ -39,12 +38,18 @@ export default {
   components: {
     ListMaterials
   },
-  props: ['group', 'materials'],
+  props: ['group', 'materials', 'material', 'form'],
+  emits: ['update:material', 'update:form'],
   methods: {
     addNewMaterial() {
       const material = Object.assign({}, new Material('', this.group.id))
       console.log('new material:', material)
-      //this.$store.dispatch('addItem', { item })
+      this.editMaterial(material)
+      this.$store.dispatch('addItem', { item: material })
+    },
+    editMaterial(material) {
+      this.$emit('update:material', material)
+      this.$emit('update:form', 'material')
     }
   }
 }
