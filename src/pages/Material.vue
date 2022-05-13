@@ -8,30 +8,9 @@
           @show-modal-material="showModalMaterial"
         />
       </div>
+
       <div class="col-12 col-md-8 col-lg-9 ps-md-0">
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <span v-if="group" class="small"
-              >Наценка группы: {{ group.nacenka }}%, норма отхода:
-              {{ group.othody }}%</span
-            >
-          </div>
-          <button
-            class="btn btn-sm btn-outline-success"
-            :class="{ disabled: !group }"
-            title="Добавить материал"
-            @click="addNewMaterial"
-          >
-            Добавить &nbsp;+&nbsp;
-          </button>
-        </div>
-        <hr class="mt-2" />
-        <ListMaterials
-          v-if="group"
-          :materials="materials"
-          :groupNacenka="group.nacenka"
-          @show-modal-material="showModalMaterial"
-        />
+        <ViewListMaterial :group="group" :materials="materials" />
       </div>
     </div>
     <ModalMaterial :item="modalItem" @save-item="saveItem" />
@@ -39,16 +18,16 @@
 </template>
 
 <script>
-import Modal from 'bootstrap/js/dist/modal.js'
-import Material from './../classes/materialClass.js'
+import Modal from 'bootstrap/js/dist/modal'
+import Material from './../classes/materialClass'
 import ListMaterialGroups from './../components/material/ListMaterialGroups.vue'
-import ListMaterials from './../components/material/ListMaterials.vue'
+import ViewListMaterial from './../components/material/ViewListMaterial.vue'
 import ModalMaterial from './../components/material/ModalMaterial.vue'
 
 export default {
   components: {
     ListMaterialGroups,
-    ListMaterials,
+    ViewListMaterial,
     ModalMaterial
   },
   data() {
@@ -80,12 +59,6 @@ export default {
     }
   },
   methods: {
-    addNewMaterial() {
-      const item = Object.assign({}, new Material('', this.group.id))
-      //console.log('new material:', item)
-      this.$store.dispatch('addItem', { item })
-      this.showModalMaterial(item)
-    },
     showModalMaterial(item) {
       this.modalItem = item
       //this.modalType = item.type

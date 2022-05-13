@@ -77,7 +77,7 @@
     </div>
     <!-- История поступлений -->
     <div class="col-12 mt-2">
-      <button class="btn btn-sm btn-outline-success">
+      <button class="btn btn-sm btn-outline-success" @click="addNewPostuplenie">
         Добавить поступление
       </button>
       <ui class="list-group">
@@ -96,6 +96,8 @@
 
 <script>
 import ed from './../../data/ed'
+import Postuplenie from './../../classes/postuplenieClass'
+
 export default {
   props: ['item'],
   data() {
@@ -114,6 +116,12 @@ export default {
   methods: {
     getPostavshik(id) {
       return this.postavshiki.find(item => item.id === id).title
+    },
+    addNewPostuplenie() {
+      const postuplenie = Object.assign({}, new Postuplenie())
+      console.log('new postuplenie: ', postuplenie)
+      //this.item.postuplenie.push(postuplenie)
+      //this.$emit('show-modal-material', postuplenie)
     }
   }
 }

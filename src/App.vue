@@ -46,15 +46,13 @@
   <ModalMain id="modalNafrezer" :item="modalNafrezer" :mod="mod" />
   <ModalCustomer id="modalCustomer" />
   <ModalUser id="modalUserData" :user="modalUserData" />
-  <!-- <SettingsBar /> -->
 </template>
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
-//import {Offcanvas, Dropdown, Modal, Tooltip } from 'bootstrap'
-//import { Modal } from 'bootstrap'
 import Offcanvas from 'bootstrap/js/dist/offcanvas'
 import Modal from 'bootstrap/js/dist/modal'
+
 import Navbar from '@/components/interface/Navbar'
 import Sidebar from '@/components/interface/Sidebar'
 import SidebarOffcanvas from '@/components/interface/SidebarOffcanvas'
@@ -64,10 +62,9 @@ import Admin from '@/views/Admin'
 import KanbanBoard from '@/views/KanbanBoard'
 import Backup from '@/views/Backup'
 import Users from '@/views/Users'
-import Material from '@/views/Material'
+import Material from './pages/Material.vue'
 
 import ButtonSettings from '@/components/buttons/ButtonSettings'
-//import SettingsBar from '@/components/interface/SettingsBar'
 import ModalMain from '@/components/modal/ModalMain'
 import ModalCustomer from '@/components/modal/ModalCustomer'
 import ModalUser from '@/components/modal/ModalUser'
