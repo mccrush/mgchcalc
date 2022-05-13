@@ -50,8 +50,6 @@ export default {
     return {
       group: null,
       material: null,
-      modalItem: null,
-      modalType: '',
       form: ''
     }
   },
@@ -73,6 +71,17 @@ export default {
     saveItem(item) {
       console.log('have item for update = ', item)
       this.$store.dispatch('updateItem', { item })
+    }
+  },
+  watch: {
+    group(newv, oldv) {
+      console.log('new group in watch:', newv)
+    },
+    material(newv, oldv) {
+      console.log('new material in watch:', newv)
+    },
+    form(newv, oldv) {
+      console.log('new form in watch:', newv)
     }
   }
 }

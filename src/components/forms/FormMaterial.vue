@@ -80,7 +80,7 @@
       <button class="btn btn-sm btn-outline-success" @click="addNewPostuplenie">
         Добавить поступление
       </button>
-      <ui class="list-group">
+      <ui v-if="item.postuplenie.length" class="list-group">
         <li
           v-for="postup in item.postuplenie"
           :key="postup.id"
@@ -90,6 +90,7 @@
           {{ postup.summa }} {{ getPostavshik(postup.postavshikId) }}
         </li>
       </ui>
+      <p v-else>Поступлений еще не было</p>
     </div>
   </div>
 </template>

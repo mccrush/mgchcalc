@@ -62,7 +62,7 @@ import Admin from '@/views/Admin'
 import KanbanBoard from '@/views/KanbanBoard'
 import Backup from '@/views/Backup'
 import Users from '@/views/Users'
-import Material from './pages/Material.vue'
+import Material from '@/views/Material.vue'
 
 import ButtonSettings from '@/components/buttons/ButtonSettings'
 import ModalMain from '@/components/modal/ModalMain'
