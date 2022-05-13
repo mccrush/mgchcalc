@@ -19,7 +19,7 @@
 
 <script>
 import Modal from 'bootstrap/js/dist/modal'
-import Material from './../classes/materialClass'
+
 import ListMaterialGroups from './../components/material/ListMaterialGroups.vue'
 import ViewListMaterial from './../components/material/ViewListMaterial.vue'
 import ModalMaterial from './../components/material/ModalMaterial.vue'
@@ -50,12 +50,6 @@ export default {
       } else {
         return []
       }
-    }
-  },
-  async mounted() {
-    if (!this.$store.getters.postuplenie.length) {
-      await this.$store.dispatch('getItems', { type: 'postuplenie' })
-      console.log('Material.vue mounted(): postuplenie is get')
     }
   },
   methods: {

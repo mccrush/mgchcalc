@@ -1,7 +1,9 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <div class="d-flex justify-content-between align-items-center">
+      <div
+        class="d-flex justify-content-between align-items-center mt-2 mt-md-0"
+      >
         <div>
           <span v-if="group" class="small"
             >Наценка группы: {{ group.nacenka }}%, норма отхода:
@@ -16,8 +18,10 @@
         >
           Добавить &nbsp;+&nbsp;
         </button>
-        <hr class="mt-2" />
       </div>
+      <hr class="mt-2" />
+    </div>
+    <div class="col-12">
       <ListMaterials
         v-if="group"
         :materials="materials"
@@ -28,7 +32,13 @@
 </template>
 
 <script>
+import Material from './../../classes/materialClass'
+import ListMaterials from './ListMaterials.vue'
+
 export default {
+  components: {
+    ListMaterials
+  },
   props: ['group', 'materials'],
   methods: {
     addNewMaterial() {
