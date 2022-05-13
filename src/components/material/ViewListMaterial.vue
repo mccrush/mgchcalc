@@ -45,7 +45,7 @@ export default {
       const material = Object.assign({}, new Material('', this.group.id))
       console.log('new material:', material)
       this.editMaterial(material)
-      this.$store.dispatch('addItem', { item: material })
+      //this.$store.dispatch('addItem', { item: material })
     },
     editMaterial(material) {
       this.$emit('update:material', material)

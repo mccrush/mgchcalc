@@ -17,16 +17,7 @@
           v-model:form="form"
           :materials="materials"
         />
-        <FormGroup
-          v-if="group && form === 'group'"
-          :item="group"
-          @save-item="saveItem(group)"
-        />
-        <FormMaterial
-          v-if="material && form === 'material'"
-          :item="material"
-          @save-item="saveItem(material)"
-        />
+        <ViewForm v-if="form && formItem" :item="formItem" />
       </div>
     </div>
   </div>
@@ -36,20 +27,19 @@
 import ListMaterialGroups from './../components/material/ListMaterialGroups.vue'
 import ViewListMaterial from './../components/material/ViewListMaterial.vue'
 
-import FormGroup from './../components/forms/FormGroup.vue'
-import FormMaterial from './../components/forms/FormMaterial.vue'
+import ViewForm from './../components/material/ViewForm.vue'
 
 export default {
   components: {
     ListMaterialGroups,
     ViewListMaterial,
-    FormGroup,
-    FormMaterial
+    ViewForm
   },
   data() {
     return {
       group: null,
       material: null,
+      formItem: null,
       form: ''
     }
   },
@@ -67,12 +57,6 @@ export default {
       }
     }
   },
-  methods: {
-    saveItem(item) {
-      console.log('have item for update = ', item)
-      this.$store.dispatch('updateItem', { item })
-    }
-  },
   watch: {
     group(newv, oldv) {
       console.log('new group in watch:', newv)
@@ -82,6 +66,11 @@ export default {
     },
     form(newv, oldv) {
       console.log('new form in watch:', newv)
+      if (newv === 'group') {
+        this.formItem = this.group
+      } else if (newv === 'material') {
+        this.formItem = this.material
+      }
     }
   }
 }

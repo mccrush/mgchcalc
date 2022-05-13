@@ -53,6 +53,7 @@
 
 <script>
 export default {
-  props: ['item']
+  props: ['item'],
+  emits: ['save-item']
 }
 </script>
