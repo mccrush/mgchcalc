@@ -44,17 +44,17 @@ export default {
     // console.log('mn categoryId:', this.categoryId)
     // console.log('mn searchText:', this.searchText)
     // console.log('mn sortType:', this.sortType)
-    setTimeout(() => {
-      this.procent = this.materialProcent
-    }, 1000)
+    // setTimeout(() => {
+    //   this.procent = this.materialProcent
+    // }, 1000)
   },
-  computed: {
-    materialProcent() {
-      if (this.$store.getters.procent.length) {
-        return this.$store.getters.procent[0].value
-      }
-    }
-  },
+  // computed: {
+  //   materialProcent() {
+  //     if (this.$store.getters.procent.length) {
+  //       return this.$store.getters.procent[0].value
+  //     }
+  //   }
+  // },
   methods: {
     addItem() {
       //const item = createItem(this.razdel, this.categoryId)
@@ -92,18 +92,18 @@ export default {
     },
     sortType(n, o) {
       //console.log('sortType n:', this.sortType)
-    },
-    procent(n, o) {
-      //console.log('procent n:', this.procent)
-      if (n !== this.materialProcent) {
-        const item = {
-          type: 'procent',
-          id: '1639495120848',
-          value: this.procent
-        }
-        this.$store.dispatch('updateItem', { item })
-      }
     }
+    // procent(n, o) {
+    //   console.log('procent n:', this.procent)
+    //   if (n !== this.materialProcent) {
+    //     const item = {
+    //       type: 'procent',
+    //       id: '1639495120848',
+    //       value: this.procent
+    //     }
+    //     this.$store.dispatch('updateItem', { item })
+    //   }
+    // }
   }
 }
 </script>

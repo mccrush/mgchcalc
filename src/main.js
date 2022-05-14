@@ -26,7 +26,7 @@ onAuthStateChanged(auth, (user) => {
     store.dispatch('getItems', { type: 'contact' })
     store.dispatch('getItems', { type: 'company' })
     store.dispatch('getItems', { type: 'postavshik' })
-    store.dispatch('getItems', { type: 'procent' })
+    //store.dispatch('getItems', { type: 'procent' })
     store.dispatch('getItemsRT', { type: 'order' })
     store.dispatch('getItemsRT', { type: 'nafrezer' })
   } else {

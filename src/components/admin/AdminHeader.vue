@@ -29,7 +29,7 @@
           {{ cat.title }}
         </option>
       </select>
-      <div v-if="razdel === 'materialvid'" class="d-flex">
+      <!-- <div v-if="razdel === 'materialvid'" class="d-flex">
         <div class="small text-end w-50 me-2 pt-1">Наценка&nbsp;%</div>
         <div class="w-50">
           <input
@@ -42,7 +42,7 @@
             @change="$emit('update:procent', $event.target.value)"
           />
         </div>
-      </div>
+      </div> -->
     </div>
     <!---->
     <div class="col-3 col-sm-4 col-md-2 col-lg-1 mt-2 mt-md-0 pe-0">
