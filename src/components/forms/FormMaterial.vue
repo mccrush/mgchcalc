@@ -77,10 +77,13 @@
     </div>
     <!-- История поступлений -->
     <div class="col-12 mt-2">
-      <button class="btn btn-sm btn-outline-success" @click="addNewPostuplenie">
+      <button
+        class="btn btn-sm btn-outline-success disabled"
+        @click="addNewPostuplenie"
+      >
         Добавить поступление
       </button>
-      <ui v-if="item.postuplenie.length" class="list-group">
+      <ul v-if="item.postuplenie" class="list-group">
         <li
           v-for="postup in item.postuplenie"
           :key="postup.id"
@@ -89,7 +92,7 @@
           {{ postup.dateCreate }} {{ postup.obyom }} {{ postup.cena }}
           {{ postup.summa }} {{ getPostavshik(postup.postavshikId) }}
         </li>
-      </ui>
+      </ul>
       <p v-else>Поступлений еще не было</p>
     </div>
   </div>
