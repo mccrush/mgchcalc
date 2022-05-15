@@ -15,7 +15,8 @@ export default {
     company: [],
     user: [], /* ?? */
     postavshik: [],
-    postuplenie: []
+    postuplenie: [],
+    undergroup: [{ id: '27', title: 'First Undergroup' }, { id: '42', title: 'Second Undergroup' }]
   },
   mutations: {
     removeItem(state, { type, id }) {
@@ -95,6 +96,7 @@ export default {
     company: state => state.company,
     user: state => state.user,
     postavshik: state => state.postavshik,
-    postuplenie: state => state.postuplenie
+    postuplenie: state => state.postuplenie,
+    undergroup: state => state.undergroup
   }
 }
