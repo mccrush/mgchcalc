@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     groups() {
-      return this.$store.getters.materialvid
+      return this.$store.getters.group
     },
     materials() {
       if (this.group) {

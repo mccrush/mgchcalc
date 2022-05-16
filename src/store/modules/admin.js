@@ -16,7 +16,8 @@ export default {
     user: [], /* ?? */
     postavshik: [],
     postuplenie: [],
-    undergroup: [{ id: '27', title: 'First Undergroup' }, { id: '42', title: 'Second Undergroup' }]
+    group: [],
+    undergroup: []
   },
   mutations: {
     removeItem(state, { type, id }) {

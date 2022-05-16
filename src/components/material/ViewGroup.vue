@@ -16,6 +16,7 @@
           type="button"
           id="createNewGroup"
           title="Добавить группу"
+          @click="addNewGroup"
         >
           &nbsp;+&nbsp;
         </button>
@@ -25,6 +26,7 @@
 </template>
 
 <script>
+import Group from './../../classes/groupClass'
 import ListGroup from './ListGroup.vue'
 
 export default {
@@ -34,6 +36,16 @@ export default {
   data() {
     return {
       titleNewGroup: ''
+    }
+  },
+  methods: {
+    addNewGroup() {
+      if (this.titleNewGroup) {
+        const item = Object.assign({}, new Group(this.titleNewGroup))
+        //console.log('item in ViewGroup.vue:', item)
+        this.$store.dispatch('addItem', { item })
+        this.titleNewGroup = ''
+      }
     }
   }
 }

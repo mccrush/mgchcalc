@@ -9,7 +9,22 @@
           v-model.trim="item.title"
           @change="$emit('save-item')"
         />
-        <label for="inputTitle">Название группы</label>
+        <label for="inputTitle">Название</label>
+      </form>
+    </div>
+    <div class="col-12 mt-2">
+      <form class="form-floating">
+        <select
+          class="form-select"
+          id="inputGroup"
+          v-model="item.groupId"
+          @change="$emit('save-item')"
+        >
+          <option v-for="group in groups" :key="group.id" :value="group.id">
+            {{ group.title }}
+          </option>
+        </select>
+        <label for="inputGroup">Группа</label>
       </form>
     </div>
     <!-- <div class="col-6 mt-2 pe-0">
@@ -65,6 +80,11 @@
 <script>
 export default {
   props: ['item'],
-  emits: ['save-item']
+  emits: ['save-item'],
+  computed: {
+    groups() {
+      return this.$store.getters.group
+    }
+  }
 }
 </script>

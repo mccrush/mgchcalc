@@ -39,6 +39,25 @@
       >
         <div class="accordion-body p-1">
           <ListUndergroup :groupId="group.id" />
+          <div class="input-group input-group-sm mt-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Новая подгруппа"
+              aria-describedby="createNewGroup"
+              v-model.trim="titleNewUndergroup"
+              @keyup.enter="addNewUndergroup(group.id)"
+            />
+            <button
+              class="btn btn-outline-success"
+              type="button"
+              id="createNewGroup"
+              title="Добавить подгруппу"
+              @click="addNewUndergroup(group.id)"
+            >
+              &nbsp;+&nbsp;
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -63,6 +82,7 @@
 <script>
 import 'bootstrap/js/dist/collapse'
 
+import Undergroup from './../../classes/undergroupClass'
 import ListUndergroup from './ListUndergroup.vue'
 import ButtonEdit from './../buttons/ButtonEdit.vue'
 import ButtonTrash from './../buttons/ButtonTrash.vue'
@@ -73,9 +93,27 @@ export default {
     ButtonEdit,
     ButtonTrash
   },
+  data() {
+    return {
+      titleNewUndergroup: ''
+    }
+  },
   computed: {
     groups() {
       return this.$store.getters.materialvid
+    }
+  },
+  methods: {
+    addNewUndergroup(groupId) {
+      if (this.titleNewUndergroup) {
+        const item = Object.assign(
+          {},
+          new Undergroup(this.titleNewUndergroup, groupId)
+        )
+        //console.log('item in ListGroup.vue:', item)
+        this.$store.dispatch('addItem', { item })
+        this.titleNewUndergroup = ''
+      }
     }
   }
 }
