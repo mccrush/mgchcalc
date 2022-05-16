@@ -98,6 +98,7 @@ export default {
     user: state => state.user,
     postavshik: state => state.postavshik,
     postuplenie: state => state.postuplenie,
+    group: state => state.group,
     undergroup: state => state.undergroup
   }
 }

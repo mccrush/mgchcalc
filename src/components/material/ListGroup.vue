@@ -17,29 +17,40 @@
       @click.stop="selectGroup(group)"
     > -->
 
-  <div class="accordion" id="accordionGroup">
+  <div class="accordion accordion-flush" id="accordionGroup">
     <div v-for="group in groups" :key="group.id" class="accordion-item">
       <h2 class="accordion-header" :id="'heading' + group.id">
         <button
-          class="accordion-button collapsed p-2"
+          class="
+            accordion-button
+            collapsed
+            shadow-0
+            d-flex
+            justify-content-between
+            p-2
+          "
           type="button"
           data-bs-toggle="collapse"
           :data-bs-target="'#collapse' + group.id"
           aria-expanded="true"
-          aria-controls="collapseOne"
+          :aria-controls="'collapse' + group.id"
         >
-          {{ group.title }}
+          <span class="small">{{ group.title }}</span>
+          <div class="d-flex align-items-center">
+            <ButtonEdit class="my-btn-hide border-0 me-1" />
+            <ButtonTrash @click.stop class="my-btn-hide border-0" />
+          </div>
         </button>
       </h2>
       <div
         :id="'collapse' + group.id"
         class="accordion-collapse collapse"
-        :aria-labelledby="'headingOne' + group.id"
+        :aria-labelledby="'heading' + group.id"
         data-bs-parent="#accordionGroup"
       >
         <div class="accordion-body p-1">
           <ListUndergroup :groupId="group.id" />
-          <div class="input-group input-group-sm mt-3">
+          <div class="input-group input-group-sm mt-2">
             <input
               type="text"
               class="form-control"
@@ -100,7 +111,7 @@ export default {
   },
   computed: {
     groups() {
-      return this.$store.getters.materialvid
+      return this.$store.getters.group
     }
   },
   methods: {
@@ -118,3 +129,21 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+/* .my-btn-hide {
+  visibility: hidden;
+} */
+
+.accordion-button::after {
+  content: none;
+}
+
+.accordion-button.collapsed .my-btn-hide {
+  visibility: hidden;
+}
+
+.accordion-button .my-btn-hide {
+  visibility: visible;
+}
+</style>

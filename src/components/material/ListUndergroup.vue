@@ -6,12 +6,13 @@
       class="
         cursor-pointer
         list-group-item list-group-item-action
+        border-0
         d-flex
         justify-content-between
         align-items-center
         lh-1
         p-1
-        ps-3
+        ps-4
       "
       :class="{ active: undergroup.id === groupId }"
     >
@@ -46,3 +47,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.my-btn-hide {
+  visibility: hidden;
+}
+
+.list-group-item.active .my-btn-hide {
+  visibility: visible;
+}
+</style>
