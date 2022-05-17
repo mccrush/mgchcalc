@@ -5,7 +5,8 @@
       :key="undergroup.id"
       class="
         cursor-pointer
-        list-group-item list-group-item-action
+        list-group-item
+        bg-light
         border-0
         d-flex
         justify-content-between
@@ -36,13 +37,10 @@ export default {
   },
   props: ['groupId'],
   computed: {
-    undergroups0() {
+    undergroups() {
       return this.$store.getters.undergroup.filter(
         item => item.groupId === this.groupId
       )
-    },
-    undergroups() {
-      return this.$store.getters.undergroup
     }
   }
 }

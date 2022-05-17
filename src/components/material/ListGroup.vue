@@ -27,7 +27,8 @@
             shadow-0
             d-flex
             justify-content-between
-            p-2
+            p-1
+            ps-2
           "
           type="button"
           data-bs-toggle="collapse"
@@ -48,9 +49,9 @@
         :aria-labelledby="'heading' + group.id"
         data-bs-parent="#accordionGroup"
       >
-        <div class="accordion-body p-1">
+        <div class="accordion-body bg-light p-1">
           <ListUndergroup :groupId="group.id" />
-          <div class="input-group input-group-sm mt-2">
+          <div class="input-group input-group-sm mt-1">
             <input
               type="text"
               class="form-control"
@@ -134,6 +135,12 @@ export default {
 /* .my-btn-hide {
   visibility: hidden;
 } */
+
+.accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: #313a46;
+  /* box-shadow: inset 0 -1px 0 #313a46; */
+}
 
 .accordion-button::after {
   content: none;
