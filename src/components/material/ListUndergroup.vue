@@ -7,7 +7,7 @@
         cursor-pointer
         list-group-item
         bg-light
-        border-0
+        border-white
         d-flex
         justify-content-between
         align-items-center
@@ -15,7 +15,8 @@
         p-1
         ps-4
       "
-      :class="{ active: undergroup.id === groupId }"
+      :class="{ active: undergroup.id === materialUndergroupId }"
+      @click="setUndergroupId(undergroup.id)"
     >
       <span class="small">{{ undergroup.title }}</span>
       <div class="d-flex align-items-center">
@@ -35,18 +36,35 @@ export default {
     ButtonEdit,
     ButtonTrash
   },
-  props: ['groupId'],
   computed: {
+    materialGroupId() {
+      return this.$store.getters.materialGroupId
+    },
+    materialUndergroupId() {
+      return this.$store.getters.materialUndergroupId
+    },
     undergroups() {
       return this.$store.getters.undergroup.filter(
-        item => item.groupId === this.groupId
+        item => item.groupId === this.materialGroupId
       )
+    }
+  },
+  methods: {
+    setUndergroupId(id) {
+      this.$store.commit('setMaterialValue', {
+        type: 'materialUndergroupId',
+        value: id
+      })
     }
   }
 }
 </script>
 
 <style scoped>
+.list-group-item.active {
+  color: #212529;
+}
+
 .my-btn-hide {
   visibility: hidden;
 }

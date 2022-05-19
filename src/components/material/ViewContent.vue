@@ -4,7 +4,7 @@
       <div
         class="d-flex justify-content-between align-items-center mt-2 mt-md-0"
       >
-        <div>Free block</div>
+        <div>Кнопка Назад</div>
         <button
           class="btn btn-sm btn-outline-success"
           title="Добавить материал"
@@ -16,7 +16,7 @@
       <hr class="mt-2" />
     </div>
     <div class="col-12">
-      <ListMaterials :materials="materials" />
+      <component :is="showComponent" />
     </div>
   </div>
 </template>
@@ -34,6 +34,21 @@ export default {
   },
   props: ['group', 'materials', 'material', 'form'],
   emits: ['update:material', 'update:form'],
+  computed: {
+    materialMode() {
+      return this.$store.getters.materialMode
+    },
+    showComponent() {
+      switch (this.materialMode) {
+        case 'show':
+          return 'ListMaterials'
+        case 'edit':
+          return 'ViewForm'
+        default:
+          return 'ListMaterials'
+      }
+    }
+  },
   methods: {
     addNewMaterial() {
       const material = Object.assign({}, new Material('', this.group.id))

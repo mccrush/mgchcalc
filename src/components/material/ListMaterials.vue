@@ -46,8 +46,18 @@ export default {
     ButtonEdit,
     ButtonTrash
   },
-  props: ['materials', 'groupNacenka'],
+  props: ['groupNacenka'],
   emits: ['edit-material'],
+  computed: {
+    materialUndergroupId() {
+      return this.$store.getters.materialUndergroupId
+    },
+    materials() {
+      return this.$store.getters.material.filter(
+        item => item.undrgroupId === this.materialUndergroupId
+      )
+    }
+  },
   methods: {
     removeMaterial(type, id) {
       if (confirm('Точно удалить?')) {

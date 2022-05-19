@@ -25,8 +25,7 @@ export default {
     return {
       group: null,
       material: null,
-      formItem: null,
-      form: ''
+      formItem: null
     }
   },
   computed: {
@@ -49,15 +48,15 @@ export default {
     },
     material(newv, oldv) {
       console.log('new material in watch:', newv)
-    },
-    form(newv, oldv) {
-      console.log('new form in watch:', newv)
-      if (newv === 'group') {
-        this.formItem = this.group
-      } else if (newv === 'material') {
-        this.formItem = this.material
-      }
     }
+    // form(newv, oldv) {
+    //   console.log('new form in watch:', newv)
+    //   if (newv === 'group') {
+    //     this.formItem = this.group
+    //   } else if (newv === 'material') {
+    //     this.formItem = this.material
+    //   }
+    // }
   }
 }
 </script>

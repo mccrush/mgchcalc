@@ -35,6 +35,7 @@
           :data-bs-target="'#collapse' + group.id"
           aria-expanded="true"
           :aria-controls="'collapse' + group.id"
+          @click="setGroupId(group.id)"
         >
           <span class="small">{{ group.title }}</span>
           <div class="d-flex align-items-center">
@@ -116,6 +117,12 @@ export default {
     }
   },
   methods: {
+    setGroupId(id) {
+      this.$store.commit('setMaterialValue', {
+        type: 'materialGroupId',
+        value: id
+      })
+    },
     addNewUndergroup(groupId) {
       if (this.titleNewUndergroup) {
         const item = Object.assign(
