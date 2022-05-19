@@ -1,5 +1,4 @@
 <template>
-  <!-- <ButtonSettings data-bs-toggle="offcanvas" href="#settingsBar" /> -->
   <!-- <div class="m-auto shadow-sm bg-white rounded-3 mt-3" :class="widthBlock"> -->
   <div>
     <Navbar />
@@ -53,21 +52,20 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Offcanvas from 'bootstrap/js/dist/offcanvas'
 import Modal from 'bootstrap/js/dist/modal'
 
-import Navbar from '@/components/interface/Navbar'
-import Sidebar from '@/components/interface/Sidebar'
-import SidebarOffcanvas from '@/components/interface/SidebarOffcanvas'
-import Login from '@/views/Login'
-import Calc from '@/views/Calc'
-import Admin from '@/views/Admin'
-import KanbanBoard from '@/views/KanbanBoard'
-import Backup from '@/views/Backup'
-import Users from '@/views/Users'
+import Navbar from './components/interface/Navbar.vue'
+import Sidebar from './components/interface/Sidebar.vue'
+import SidebarOffcanvas from './components/interface/SidebarOffcanvas.vue'
+import Login from './pages/Login.vue'
+import Calc from './pages/Calc.vue'
+import Admin from './pages/Admin.vue'
+import KanbanBoard from './pages/KanbanBoard.vue'
+import Backup from './pages/Backup.vue'
+import Users from './pages/Users.vue'
 import Material from './pages/Material.vue'
 
-import ButtonSettings from '@/components/buttons/ButtonSettings'
-import ModalMain from '@/components/modal/ModalMain'
-import ModalCustomer from '@/components/modal/ModalCustomer'
-import ModalUser from '@/components/modal/ModalUser'
+import ModalMain from './components/modal/ModalMain.vue'
+import ModalCustomer from './components/modal/ModalCustomer.vue'
+import ModalUser from './components/modal/ModalUser.vue'
 
 export default {
   components: {
@@ -81,14 +79,12 @@ export default {
     Backup,
     Users,
     Material,
-    ButtonSettings,
     ModalMain,
     ModalCustomer,
     ModalUser
   },
   data() {
     return {
-      //order: { siryoArray: [], rabotaArray: [], dopuslugArray: [] },
       modalOrder: null,
       modalNafrezer: null,
       modalUserData: null,
@@ -96,20 +92,11 @@ export default {
       clearForm: ''
     }
   },
-  // mounted() {
-  //   let body = document.getElementsByTagName('body')[0]
-  //   body.style.backgroundColor = '#f8f9fa'
-  // },
   computed: {
     pathname() {
       this.modal = null
       return this.$store.getters.pathname
     },
-    // widthBlock() {
-    //   if (this.pathname === 'order' || this.pathname === 'nafrezer')
-    //     return 'max-width-100'
-    //   return 'max-width-900'
-    // },
     userId() {
       return this.$store.getters.userId
     },
