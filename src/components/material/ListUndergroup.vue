@@ -16,11 +16,14 @@
         ps-4
       "
       :class="{ active: undergroup.id === materialUndergroupId }"
-      @click="setUndergroupId(undergroup.id)"
+      @click="setMaterialUndergroupId(undergroup.id)"
     >
       <span class="small">{{ undergroup.title }}</span>
       <div class="d-flex align-items-center">
-        <ButtonEdit class="my-btn-hide border-0 me-1" />
+        <ButtonEdit
+          @click.stop="setMaterialMode"
+          class="my-btn-hide border-0 me-1"
+        />
         <ButtonTrash @click.stop class="my-btn-hide border-0" />
       </div>
     </li>
@@ -50,10 +53,20 @@ export default {
     }
   },
   methods: {
-    setUndergroupId(id) {
+    setMaterialUndergroupId(id) {
       this.$store.commit('setMaterialValue', {
         type: 'materialUndergroupId',
         value: id
+      })
+      this.$store.commit('setMaterialValue', {
+        type: 'materialMode',
+        value: 'show'
+      })
+    },
+    setMaterialMode() {
+      this.$store.commit('setMaterialValue', {
+        type: 'materialMode',
+        value: 'edit'
       })
     }
   }

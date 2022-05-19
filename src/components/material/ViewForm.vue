@@ -1,5 +1,6 @@
 <template>
   <div class="row">
+    <div class="col-12">ViewForm.vue</div>
     <div class="col-12">
       <component v-if="form" :is="form" :item="item" @save-item="saveItem" />
     </div>

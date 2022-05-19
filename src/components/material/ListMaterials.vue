@@ -1,5 +1,6 @@
 <template>
   <ul class="list-group">
+    <li class="list-group-item">ListMaterials.vue</li>
     <li
       v-for="material in materials"
       :key="material.id"

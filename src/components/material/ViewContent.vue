@@ -32,8 +32,8 @@ export default {
     ListMaterials,
     ViewForm
   },
-  props: ['group', 'materials', 'material', 'form'],
-  emits: ['update:material', 'update:form'],
+  props: ['material'],
+  emits: ['update:material'],
   computed: {
     materialMode() {
       return this.$store.getters.materialMode
@@ -58,7 +58,6 @@ export default {
     },
     editMaterial(material) {
       this.$emit('update:material', material)
-      this.$emit('update:form', 'material')
     }
   }
 }

@@ -35,11 +35,14 @@
           :data-bs-target="'#collapse' + group.id"
           aria-expanded="true"
           :aria-controls="'collapse' + group.id"
-          @click="setGroupId(group.id)"
+          @click.self="setMaterialGroupId(group.id)"
         >
           <span class="small">{{ group.title }}</span>
           <div class="d-flex align-items-center">
-            <ButtonEdit class="my-btn-hide border-0 me-1" />
+            <ButtonEdit
+              @click.stop="setMaterialMode"
+              class="my-btn-hide border-0 me-1"
+            />
             <ButtonTrash @click.stop class="my-btn-hide border-0" />
           </div>
         </button>
@@ -117,10 +120,16 @@ export default {
     }
   },
   methods: {
-    setGroupId(id) {
+    setMaterialGroupId(id) {
       this.$store.commit('setMaterialValue', {
         type: 'materialGroupId',
         value: id
+      })
+    },
+    setMaterialMode() {
+      this.$store.commit('setMaterialValue', {
+        type: 'materialMode',
+        value: 'edit'
       })
     },
     addNewUndergroup(groupId) {
