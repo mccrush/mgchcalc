@@ -9,6 +9,7 @@
           class="btn btn-sm btn-outline-success"
           title="Добавить материал"
           @click="addNewMaterial"
+          :class="{ disabled: !materialUndergroupId }"
         >
           Добавить &nbsp;+&nbsp;
         </button>
@@ -22,8 +23,6 @@
 </template>
 
 <script>
-import Material from './../../classes/materialClass'
-
 import ListMaterials from './ListMaterials.vue'
 import ViewForm from './ViewForm.vue'
 
@@ -32,9 +31,10 @@ export default {
     ListMaterials,
     ViewForm
   },
-  props: ['material'],
-  emits: ['update:material'],
   computed: {
+    materialUndergroupId() {
+      return this.$store.getters.materialUndergroupId
+    },
     materialMode() {
       return this.$store.getters.materialMode
     },
@@ -51,14 +51,24 @@ export default {
   },
   methods: {
     addNewMaterial() {
-      const material = Object.assign({}, new Material('', this.group.id))
-      console.log('new material:', material)
-      this.editMaterial(material)
-      this.$store.dispatch('addItem', { item: material })
-    },
-    editMaterial(material) {
-      this.$emit('update:material', material)
+      this.$store.commit('setMaterialValue', {
+        type: 'materialMode',
+        value: 'edit'
+      })
+      this.$store.commit('setMaterialValue', {
+        type: 'materialForm',
+        value: 'FormMaterial'
+      })
     }
+    // addNewMaterial_old() {
+    //   const material = Object.assign({}, new Material('', this.group.id))
+    //   console.log('new material:', material)
+    //   this.editMaterial(material)
+    //   this.$store.dispatch('addItem', { item: material })
+    // },
+    // editMaterial(material) {
+    //   this.$emit('update:material', material)
+    // }
   }
 }
 </script>

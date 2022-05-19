@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import Material from './../../classes/materialClass'
+
 import FormGroup from './FormGroup.vue'
 import FormUndergroup from './FormUndergroup.vue'
 import FormMaterial from './FormMaterial.vue'
@@ -29,6 +31,9 @@ export default {
     materialGroupId() {
       return this.$store.getters.materialGroupId
     },
+    materialMaterialId() {
+      return this.$store.getters.materialMaterialId
+    },
     materialUndergroupId() {
       return this.$store.getters.materialUndergroupId
     },
@@ -37,6 +42,9 @@ export default {
     },
     undergroups() {
       return this.$store.getters.undergroup
+    },
+    materials() {
+      return this.$store.getters.material
     },
     // form() {
     //   if (this.item) {
@@ -58,6 +66,17 @@ export default {
           return this.undergroups.find(
             item => item.id === this.materialUndergroupId
           )
+        case 'FormMaterial':
+          if (this.materialMaterialId) {
+            return this.materials.find(
+              item => item.id === this.materialMaterialId
+            )
+          } else {
+            return Object.assign(
+              {},
+              new Material('', this.materialUndergroupId)
+            )
+          }
       }
     }
   },
