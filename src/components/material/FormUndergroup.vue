@@ -9,7 +9,7 @@
           v-model.trim="item.title"
           @change="$emit('save-item')"
         />
-        <label for="inputTitle">Название</label>
+        <label for="inputTitle">Название подгруппы</label>
       </form>
     </div>
     <div class="col-12 mt-2">

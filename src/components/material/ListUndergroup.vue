@@ -68,6 +68,10 @@ export default {
         type: 'materialMode',
         value: 'edit'
       })
+      this.$store.commit('setMaterialValue', {
+        type: 'materialForm',
+        value: 'FormUndergroup'
+      })
     }
   }
 }

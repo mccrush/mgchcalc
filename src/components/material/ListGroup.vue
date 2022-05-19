@@ -131,6 +131,10 @@ export default {
         type: 'materialMode',
         value: 'edit'
       })
+      this.$store.commit('setMaterialValue', {
+        type: 'materialForm',
+        value: 'FormGroup'
+      })
     },
     addNewUndergroup(groupId) {
       if (this.titleNewUndergroup) {
