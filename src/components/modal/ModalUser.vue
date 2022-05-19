@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import { roles } from '@/data/roles'
+import { roles } from './../../data/roles'
 
 export default {
   props: ['user'],

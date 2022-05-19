@@ -43,10 +43,10 @@
 </template>
 
 <script>
-//import getDateNow from '@/scripts/getDateNow'
-import { getArraySum } from '@/scripts/getArraySum'
-import { formatMoney } from '@/scripts/formatMoney'
-import KanbanCard from '@/components/kanban/KanbanCard'
+import { getArraySum } from './../../scripts/getArraySum'
+import { formatMoney } from './../../scripts/formatMoney'
+
+import KanbanCard from './KanbanCard.vue'
 
 export default {
   components: {

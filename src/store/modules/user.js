@@ -1,4 +1,4 @@
-import fireApp from '@/firebase'
+import fireApp from './../../firebase'
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
 const auth = getAuth(fireApp)

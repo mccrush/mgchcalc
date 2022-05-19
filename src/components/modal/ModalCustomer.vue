@@ -93,9 +93,10 @@
 </template>
 
 <script>
-import createItem from '@/scripts/createItem'
-import FormContact from '@/components/admin/forms/FormContact'
-import FormCompany from '@/components/admin/forms/FormCompany'
+import createItem from './../../scripts/createItem'
+
+import FormContact from './../admin/forms/FormContact.vue'
+import FormCompany from './../admin/forms/FormCompany.vue'
 
 export default {
   components: {

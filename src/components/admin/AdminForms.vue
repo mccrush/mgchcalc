@@ -27,16 +27,16 @@
 </template>
 
 <script>
-import sortMethod from '@/scripts/sortMethod'
+import sortMethod from './../../scripts/sortMethod'
 
-import FormMaterialvid from '@/components/admin/forms/FormMaterialVid'
-import FormMaterial from '@/components/admin/forms/FormMaterial'
-import FormObrabotkavid from '@/components/admin/forms/FormObrabotkaVid'
-import FormObrabotkatolshina from '@/components/admin/forms/FormObrabotkaTolshina'
-import FormDopuslug from '@/components/admin/forms/FormDopuslug'
-import FormContact from '@/components/admin/forms/FormContact'
-import FormCompany from '@/components/admin/forms/FormCompany'
-import FormPostavshik from '@/components/admin/forms/FormPostavshik'
+import FormMaterialvid from './forms/FormMaterialVid.vue'
+import FormMaterial from './forms/FormMaterial.vue'
+import FormObrabotkavid from './forms/FormObrabotkaVid.vue'
+import FormObrabotkatolshina from './forms/FormObrabotkaTolshina.vue'
+import FormDopuslug from './forms/FormDopuslug.vue'
+import FormContact from './forms/FormContact.vue'
+import FormCompany from './forms/FormCompany.vue'
+import FormPostavshik from './forms/FormPostavshik.vue'
 
 export default {
   components: {

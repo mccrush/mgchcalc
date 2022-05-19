@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Calc from '@/views/Calc.vue'
+import Calc from './../../src/pages/Calc.vue'
 
 test('Add new Siryo Calc', async () => {
   const wrapper = mount(Calc)

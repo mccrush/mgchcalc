@@ -100,9 +100,10 @@
 </template>
 
 <script>
-import { roles } from '@/data/roles'
-import Progressbar from '@/components/interface/Progressbar'
-import ProgressbarOff from '@/components/interface/ProgressbarOff'
+import { roles } from './../../data/roles'
+
+import Progressbar from './Progressbar.vue'
+import ProgressbarOff from './ProgressbarOff.vue'
 
 export default {
   components: {

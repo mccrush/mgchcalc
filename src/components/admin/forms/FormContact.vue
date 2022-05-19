@@ -135,8 +135,9 @@
 
 
 <script>
-import messengers from '@/data/messengers'
-import ButtonTrash from '@/components/buttons/ButtonTrash'
+import messengers from './../../../data/messengers'
+
+import ButtonTrash from './../../elements/buttons/ButtonTrash.vue'
 
 export default {
   components: {

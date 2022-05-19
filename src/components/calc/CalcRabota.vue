@@ -59,9 +59,10 @@
 </template>
 
 <script>
-import sortMethod from '@/scripts/sortMethod'
-import ButtonTrash from '@/components/buttons/ButtonTrash'
-import KolichBut from '@/components/buttons/KolichBut'
+import sortMethod from './../../scripts/sortMethod'
+
+import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
+import KolichBut from './../elements/buttons/KolichBut.vue'
 
 export default {
   components: {

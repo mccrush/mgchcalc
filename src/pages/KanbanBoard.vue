@@ -18,9 +18,10 @@
 </template>
 
 <script>
-import voronkaOrders from '@/data/voronkaOrders'
-import voronkaNafrezer from '@/data/voronkaNafrezer'
-import KanbanList from '@/components/kanban/KanbanList'
+import voronkaOrders from './../data/voronkaOrders'
+import voronkaNafrezer from './../data/voronkaNafrezer'
+
+import KanbanList from './../components/kanban/KanbanList.vue'
 
 export default {
   components: {

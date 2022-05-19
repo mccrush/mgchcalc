@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import ButtonEdit from './../buttons/ButtonEdit.vue'
-import ButtonTrash from './../buttons/ButtonTrash.vue'
+import ButtonEdit from './../elements/buttons/ButtonEdit.vue'
+import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
 
 export default {
   components: {

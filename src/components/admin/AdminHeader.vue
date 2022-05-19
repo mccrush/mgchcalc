@@ -72,10 +72,11 @@
 </template>
 
 <script>
-import razdels from '@/data/razdels'
-import ButtonSort from '@/components/buttons/ButtonSort'
-import InputSearch from '@/components/inputs/InputSearch'
-import ButtonAdd from '@/components/buttons/ButtonAdd'
+import razdels from './../../data/razdels'
+
+import ButtonSort from './../elements/buttons/ButtonSort.vue'
+import InputSearch from './../elements/inputs/InputSearch.vue'
+import ButtonAdd from './../elements/buttons/ButtonAdd.vue'
 
 export default {
   components: {

@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
 
-import fireApp from '@/firebase'
+import fireApp from './firebase'
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 const auth = getAuth(fireApp)
 

@@ -1,4 +1,4 @@
-import fireApp from '@/firebase'
+import fireApp from './../../firebase'
 import { getFirestore, doc, setDoc, updateDoc, deleteDoc, collection, query, getDocs } from "firebase/firestore"
 const db = getFirestore(fireApp)
 

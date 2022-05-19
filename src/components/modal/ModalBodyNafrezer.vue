@@ -127,9 +127,10 @@
 </template>
 
 <script>
-import voronkaNafrezer from '@/data/voronkaNafrezer'
-import ModalBodyOrderNafrezerItem from '@/components/modal/ModalBodyOrderNafrezerItem'
-import ModalBodyFiles from '@/components/modal/ModalBodyFiles'
+import voronkaNafrezer from './../../data/voronkaNafrezer'
+
+import ModalBodyOrderNafrezerItem from './ModalBodyOrderNafrezerItem.vue'
+import ModalBodyFiles from './ModalBodyFiles.vue'
 
 export default {
   components: {

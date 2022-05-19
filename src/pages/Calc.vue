@@ -169,15 +169,15 @@
 </template>
 
 <script>
-import createCalc from '@/scripts/createCalc'
-import createOrder from '@/scripts/createOrder'
-import { formatMoney } from '@/scripts/formatMoney'
+import createCalc from './../scripts/createCalc'
+import createOrder from './../scripts/createOrder'
+import { formatMoney } from './../scripts/formatMoney'
 
-import CalcSiryo from '@/components/calc/CalcSiryo'
-import CalcRabota from '@/components/calc/CalcRabota'
-import CalcDopuslug from '@/components/calc/CalcDopuslug'
-import BlockAddCalc from '@/components/calc/BlockAddCalc'
-import BlockShowSum from '@/components/calc/BlockShowSum'
+import CalcSiryo from './../components/calc/CalcSiryo.vue'
+import CalcRabota from './../components/calc/CalcRabota.vue'
+import CalcDopuslug from './../components/calc/CalcDopuslug.vue'
+import BlockAddCalc from './../components/calc/BlockAddCalc.vue'
+import BlockShowSum from './../components/calc/BlockShowSum.vue'
 
 export default {
   components: {

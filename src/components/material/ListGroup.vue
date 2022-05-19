@@ -96,8 +96,8 @@ import 'bootstrap/js/dist/collapse'
 
 import Undergroup from './../../classes/undergroupClass'
 import ListUndergroup from './ListUndergroup.vue'
-import ButtonEdit from './../buttons/ButtonEdit.vue'
-import ButtonTrash from './../buttons/ButtonTrash.vue'
+import ButtonEdit from './../elements/buttons/ButtonEdit.vue'
+import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
 
 export default {
   components: {

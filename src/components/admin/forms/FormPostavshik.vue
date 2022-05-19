@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import ButtonTrash from '@/components/buttons/ButtonTrash'
+import ButtonTrash from './../../elements/buttons/ButtonTrash.vue'
 
 export default {
   components: {

@@ -210,13 +210,13 @@
 </template>
 
 <script>
-import voronkaOrders from '@/data/voronkaOrders'
-import { getArraySum } from '@/scripts/getArraySum'
-import { formatMoney } from '@/scripts/formatMoney'
-//import clients from '@/data/clients'
-import ModalBodyOrderNafrezerItem from '@/components/modal/ModalBodyOrderNafrezerItem'
-import ModalBodyOrderList from '@/components/modal/ModalBodyOrderList'
-import ModalBodyFiles from '@/components/modal/ModalBodyFiles'
+import voronkaOrders from './../../data/voronkaOrders'
+import { getArraySum } from './../../scripts/getArraySum'
+import { formatMoney } from './../../scripts/formatMoney'
+
+import ModalBodyOrderNafrezerItem from './ModalBodyOrderNafrezerItem.vue'
+import ModalBodyOrderList from './ModalBodyOrderList.vue'
+import ModalBodyFiles from './ModalBodyFiles.vue'
 
 export default {
   components: {

@@ -1,5 +1,4 @@
-import id from '@/scripts/getId'
-import getDateNow from '@/scripts/getDateNow'
+import getDateNow from './../scripts/getDateNow'
 
 export default (id, title, orderId, client, dateForReady, rabotaArray) => {
   return {

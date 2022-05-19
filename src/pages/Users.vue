@@ -29,8 +29,9 @@
 </template>
 
 <script>
-import { roles } from '@/data/roles'
-import ButtonEdit from '@/components/buttons/ButtonEdit'
+import { roles } from './../data/roles'
+
+import ButtonEdit from './../components/elements/buttons/ButtonEdit.vue'
 
 export default {
   components: {

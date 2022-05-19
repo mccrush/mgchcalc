@@ -54,9 +54,9 @@
 </template>
 
 <script>
-import Progressbar from '@/components/interface/Progressbar'
-import ProgressbarOff from '@/components/interface/ProgressbarOff'
-import ButtonTrash from '@/components/buttons/ButtonTrash'
+import Progressbar from './../interface/Progressbar.vue'
+import ProgressbarOff from './../interface/ProgressbarOff.vue'
+import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
 
 export default {
   components: {

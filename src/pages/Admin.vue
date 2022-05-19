@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import createItem from '@/scripts/createItem'
+import createItem from './../scripts/createItem'
 
-import AdminHeader from '@/components/admin/AdminHeader'
-import AdminForms from '@/components/admin/AdminForms'
+import AdminHeader from './../components/admin/AdminHeader.vue'
+import AdminForms from './../components/admin/AdminForms.vue'
 
 export default {
   components: {

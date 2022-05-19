@@ -106,8 +106,9 @@
 
 <script>
 import 'bootstrap/js/dist/dropdown'
-import sortMethod from '@/scripts/sortMethod'
-import ButtonTrash from '@/components/buttons/ButtonTrash'
+import sortMethod from './../../scripts/sortMethod'
+
+import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
 
 export default {
   components: {

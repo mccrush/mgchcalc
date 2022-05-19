@@ -1,6 +1,5 @@
-import id from '@/scripts/getId'
-import getWeek from '@/scripts/getWeek'
-import getDateNow from '@/scripts/getDateNow'
+import getWeek from './../scripts/getWeek'
+import getDateNow from './../scripts/getDateNow'
 
 const weekFormat = getWeek() < 10 ? '0' + getWeek() : getWeek()
 const titleFormar = '_' + weekFormat + '_'

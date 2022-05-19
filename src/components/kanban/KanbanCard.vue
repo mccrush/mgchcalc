@@ -49,13 +49,12 @@
 </template>
 
 <script>
-//import { getArraySum } from '@/scripts/getArraySum'
-import { formatMoney } from '@/scripts/formatMoney'
+import { formatMoney } from './../../scripts/formatMoney'
 
-import CalendarPlus from '@/components/icons/CalendarPlus.vue'
-import Clock from '@/components/icons/Clock.vue'
-import Cash from '@/components/icons/Cash.vue'
-import Inbox from '@/components/icons/Inbox.vue'
+import CalendarPlus from './../icons/CalendarPlus.vue'
+import Clock from './../icons/Clock.vue'
+import Cash from './../icons/Cash.vue'
+import Inbox from './../icons/Inbox.vue'
 
 export default {
   components: {

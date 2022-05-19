@@ -1,5 +1,5 @@
-import getWeek from '@/scripts/getWeek'
-import fireApp from '@/firebase'
+import getWeek from './../../scripts/getWeek'
+import fireApp from './../../firebase'
 import { getDatabase, ref, set, onValue, update, remove } from 'firebase/database'
 const db = getDatabase(fireApp)
 

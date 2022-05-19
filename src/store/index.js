@@ -1,4 +1,4 @@
-import getDateNow from '@/scripts/getDateNow'
+import getDateNow from './../scripts/getDateNow'
 import { createStore } from 'vuex'
 import user from './modules/user'
 import admin from './modules/admin'

@@ -24,8 +24,8 @@
 
 
 <script>
-import ButtonDrag from '@/components/buttons/ButtonDrag'
-import ButtonTrash from '@/components/buttons/ButtonTrash'
+import ButtonDrag from './../../elements/buttons/ButtonDrag.vue'
+import ButtonTrash from './../../elements/buttons/ButtonTrash.vue'
 
 export default {
   components: {

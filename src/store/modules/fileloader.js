@@ -1,4 +1,4 @@
-import fireApp from '@/firebase'
+import fireApp from './../../firebase'
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 const storage = getStorage(fireApp)
 const year = new Date().getFullYear()

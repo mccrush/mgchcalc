@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { formatMoney } from '@/scripts/formatMoney'
+import { formatMoney } from './../../scripts/formatMoney'
 
 export default {
   props: ['item', 'type', 'mod', 'checkvalue'],

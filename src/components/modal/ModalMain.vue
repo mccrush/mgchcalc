@@ -46,12 +46,13 @@
 </template>
 
 <script>
-import getDateNow from '@/scripts/getDateNow'
-import createNafrezer from '@/scripts/createNafrezer'
-import ModalHeader from '@/components/modal/ModalHeader'
-import ModalBodyOrder from '@/components/modal/ModalBodyOrder'
-import ModalBodyNafrezer from '@/components/modal/ModalBodyNafrezer'
-import ModalFooter from '@/components/modal/ModalFooter'
+import getDateNow from './../../scripts/getDateNow'
+import createNafrezer from './../../scripts/createNafrezer'
+
+import ModalHeader from './ModalHeader.vue'
+import ModalBodyOrder from './ModalBodyOrder.vue'
+import ModalBodyNafrezer from './ModalBodyNafrezer.vue'
+import ModalFooter from './ModalFooter.vue'
 
 export default {
   components: {
