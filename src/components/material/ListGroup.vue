@@ -43,7 +43,10 @@
               @click.stop="setMaterialMode"
               class="my-btn-hide border-0 me-1"
             />
-            <ButtonTrash @click.stop class="my-btn-hide border-0" />
+            <ButtonTrash
+              @click.stop="removeGroup(group.type, group.id)"
+              class="my-btn-hide border-0"
+            />
           </div>
         </button>
       </h2>
@@ -145,6 +148,47 @@ export default {
         //console.log('item in ListGroup.vue:', item)
         this.$store.dispatch('addItem', { item })
         this.titleNewUndergroup = ''
+      }
+    },
+    removeGroup(type, id) {
+      if (
+        confirm(
+          'Точно удалить? Также будут удалены все Подгруппы и Материалы принадлежащие этой Группе!'
+        )
+      ) {
+        // Сначала удалить все подгруппы, если они есть
+        const childArray = this.$store.getters.undergroup.filter(
+          item => item.groupId === id
+        )
+        console.log('В Группе столько Подгруп:', childArray.length)
+
+        // Перебирать массив Подгрупп и удалять каждый через forEach
+        if (childArray.length) {
+          childArray.forEach(item => {
+            // Здесь сначала удалить всех детей Подгруппы
+            const childArrayMaterial = this.$store.getters.material.filter(
+              mater => mater.undergroupId === item.id
+            )
+            console.log(
+              'В Подруппе столько Материалов:',
+              childArrayMaterial.length
+            )
+
+            if (childArrayMaterial.length) {
+              childArrayMaterial.forEach(item => {
+                this.$store.dispatch('removeItem', {
+                  type: item.type,
+                  id: item.id
+                })
+              })
+            }
+
+            this.$store.dispatch('removeItem', { type: item.type, id: item.id })
+          })
+        }
+
+        // Затем удалить сам объект Группы
+        this.$store.dispatch('removeItem', { type, id })
       }
     }
   }

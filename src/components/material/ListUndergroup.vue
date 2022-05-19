@@ -24,7 +24,10 @@
           @click.stop="setMaterialMode"
           class="my-btn-hide border-0 me-1"
         />
-        <ButtonTrash @click.stop class="my-btn-hide border-0" />
+        <ButtonTrash
+          @click.stop="removeUndergroup(undergroup.type, undergroup.id)"
+          class="my-btn-hide border-0"
+        />
       </div>
     </li>
   </ul>
@@ -72,6 +75,28 @@ export default {
         type: 'materialForm',
         value: 'FormUndergroup'
       })
+    },
+    removeUndergroup(type, id) {
+      if (
+        confirm(
+          'Точно удалить? Будут удалены и все материалы принадлежащие этой подгруппе!'
+        )
+      ) {
+        // Сначала удалить всех детей, если они есть
+        const childArray = this.$store.getters.material.filter(
+          item => item.undergroupId === id
+        )
+        console.log('В подгруппе столько детей:', childArray.length)
+        // Перебирать массив детей и удалять каждый через forEach
+        if (childArray.length) {
+          childArray.forEach(item => {
+            this.$store.dispatch('removeItem', { type: item.type, id: item.id })
+          })
+        }
+
+        // Затем удалить сам объект
+        this.$store.dispatch('removeItem', { type, id })
+      }
     }
   }
 }
