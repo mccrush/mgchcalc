@@ -7,12 +7,14 @@
 </template>
 
 <script>
-import FormMaterialvid from './../forms/FormGroup.vue'
-import FormMaterial from './../forms/FormMaterial.vue'
+import FormGroup from './FormGroup.vue'
+import FormUndergroup from './FormUndergroup.vue'
+import FormMaterial from './FormMaterial.vue'
 
 export default {
   components: {
-    FormMaterialvid,
+    FormGroup,
+    FormUndergroup,
     FormMaterial
   },
   props: ['item'],

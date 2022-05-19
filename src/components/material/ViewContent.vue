@@ -4,12 +4,7 @@
       <div
         class="d-flex justify-content-between align-items-center mt-2 mt-md-0"
       >
-        <div>
-          <span v-if="group" class="small"
-            >Наценка группы: {{ group.nacenka }}%, норма отхода:
-            {{ group.othody }}%</span
-          >
-        </div>
+        <div>Free block</div>
         <button
           class="btn btn-sm btn-outline-success"
           title="Добавить материал"
@@ -21,22 +16,21 @@
       <hr class="mt-2" />
     </div>
     <div class="col-12">
-      <ListMaterials
-        :materials="materials"
-        :groupNacenka="group.nacenka"
-        @edit-material="editMaterial"
-      />
+      <ListMaterials :materials="materials" />
     </div>
   </div>
 </template>
 
 <script>
 import Material from './../../classes/materialClass'
+
 import ListMaterials from './ListMaterials.vue'
+import ViewForm from './ViewForm.vue'
 
 export default {
   components: {
-    ListMaterials
+    ListMaterials,
+    ViewForm
   },
   props: ['group', 'materials', 'material', 'form'],
   emits: ['update:material', 'update:form'],

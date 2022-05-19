@@ -2,38 +2,24 @@
   <div class="width-960 bg-white shadow-sm rounded-3 mt-4 m-auto p-3">
     <div class="row">
       <div class="col-12 col-md-4 col-lg-3">
-        <ListMaterialGroups
-          :groups="groups"
-          v-model:group="group"
-          v-model:form="form"
-        />
+        <ViewMenu />
       </div>
 
       <div class="col-12 col-md-8 col-lg-9 ps-md-0">
-        <ViewListMaterial
-          v-if="group && !form"
-          :group="group"
-          v-model:material="material"
-          v-model:form="form"
-          :materials="materials"
-        />
-        <ViewForm v-if="form && formItem" :item="formItem" />
+        <ViewContent />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ListMaterialGroups from './../components/material/ListMaterialGroups.vue'
-import ViewListMaterial from './../components/material/ViewListMaterial.vue'
-
-import ViewForm from './../components/material/ViewForm.vue'
+import ViewMenu from '../components/material/ViewMenu.vue'
+import ViewContent from '../components/material/ViewContent.vue'
 
 export default {
   components: {
-    ListMaterialGroups,
-    ViewListMaterial,
-    ViewForm
+    ViewMenu,
+    ViewContent
   },
   data() {
     return {
@@ -45,7 +31,7 @@ export default {
   },
   computed: {
     groups() {
-      return this.$store.getters.materialvid
+      return this.$store.getters.group
     },
     materials() {
       if (this.group) {
