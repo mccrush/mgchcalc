@@ -13,7 +13,7 @@
         align-items-center
         lh-1
         p-1
-        ps-4
+        ps-2
       "
       :class="{ active: undergroup.id === materialUndergroupId }"
       @click="setMaterialUndergroupId(undergroup.id)"

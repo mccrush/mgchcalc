@@ -11,9 +11,9 @@ export default class Material {
     this.categoryId = categoryId
     this.price = 0
     this.ed = ''
-    this.normaothoda = 0
-    this.ves = 0
-    this.objom = 0
-    this.postavchikId = ''
+    this.normaothoda = ''
+    this.ves = ''
+    this.objom = ''
+    this.postavshikId = ''
   }
 }

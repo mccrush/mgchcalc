@@ -41,7 +41,7 @@
       </form>
     </div>
 
-    <div class="col-6 mt-2 pe-0">
+    <div class="col-6 mt-2 pe-1">
       <form class="form-floating">
         <select
           class="form-select"
@@ -55,7 +55,7 @@
       </form>
     </div>
 
-    <div class="col-6 mt-2">
+    <div class="col-6 mt-2 ps-1">
       <form class="form-floating">
         <input
           type="number"
@@ -68,7 +68,7 @@
       </form>
     </div>
 
-    <div class="col-6 mt-2 pe-0">
+    <div class="col-6 mt-2 pe-1">
       <form class="form-floating">
         <input
           type="number"
@@ -81,7 +81,7 @@
       </form>
     </div>
 
-    <div class="col-6 mt-2">
+    <div class="col-6 mt-2 ps-1">
       <form class="form-floating">
         <input
           type="number"
@@ -98,19 +98,19 @@
       <form class="form-floating">
         <select
           class="form-select"
-          id="inputPostavchikId"
+          id="inputPostavshikId"
           v-model="item.postavchikId"
           @change="$emit('save-item')"
         >
           <option
-            v-for="postavchik in postavchiks"
-            :key="postavchik.id"
-            :value="postavchik.id"
+            v-for="postavshik in postavshiks"
+            :key="postavshik.id"
+            :value="postavshik.id"
           >
-            {{ postavchik.title }}
+            {{ postavshik.title }}
           </option>
         </select>
-        <label for="inputPostavchikId">Основной поставщик</label>
+        <label for="inputPostavshikId">Основной поставщик</label>
       </form>
     </div>
   </div>
@@ -130,8 +130,8 @@ export default {
     undergroups() {
       return this.$store.getters.undergroup
     },
-    postavchiks() {
-      return this.$store.getters.postavchik
+    postavshiks() {
+      return this.$store.getters.postavshik
     }
   }
 }
