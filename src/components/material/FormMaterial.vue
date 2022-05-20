@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <div class="col-4"><FormMaterialInfo /></div>
-    <div class="col-8"><FormMaterialVkladki /></div>
+    <div class="col-5"><FormMaterialInfo v-if="item" :item="item" /></div>
+    <div class="col-7"><FormMaterialVkladki /></div>
   </div>
 </template>
 

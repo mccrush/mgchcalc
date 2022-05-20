@@ -74,7 +74,7 @@ export default {
           } else {
             return Object.assign(
               {},
-              new Material('', this.materialUndergroupId)
+              new Material('', '', this.materialUndergroupId)
             )
           }
       }
