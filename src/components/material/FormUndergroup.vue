@@ -1,6 +1,13 @@
 <template>
   <div class="row">
     <div class="col-12">
+      <div class="d-flex justify-content-start align-items-center mt-2 mt-md-0">
+        <ButtonBack />
+        <h4 v-if="item" class="m-0 ms-2">{{ item.title }}</h4>
+      </div>
+      <hr class="mt-2" />
+    </div>
+    <div class="col-12">
       <form class="form-floating">
         <input
           type="text"
@@ -12,7 +19,7 @@
         <label for="inputTitle">Название подгруппы</label>
       </form>
     </div>
-    <div class="col-12 mt-2">
+    <div class="col-6 mt-2 pe-1">
       <form class="form-floating">
         <select
           class="form-select"
@@ -51,7 +58,7 @@
         <label for="inputNacenka">Отход %</label>
       </form>
     </div> -->
-    <div class="col-12 mt-2">
+    <div class="col-6 mt-2 ps-1">
       <form class="form-floating">
         <input
           type="number"
@@ -78,7 +85,12 @@
 </template>
 
 <script>
+import ButtonBack from './../elements/buttons/ButtonBack.vue'
+
 export default {
+  components: {
+    ButtonBack
+  },
   props: ['item'],
   emits: ['save-item'],
   computed: {
