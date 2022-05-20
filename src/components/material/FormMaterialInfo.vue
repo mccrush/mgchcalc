@@ -64,7 +64,7 @@
           v-model.number="item.normaothoda"
           @blur="$emit('save-item')"
         />
-        <label for="inputNormaothoda">Норма отхода %</label>
+        <label for="inputNormaothoda">Нор. отх. %</label>
       </form>
     </div>
 
