@@ -42,16 +42,14 @@ export default {
     ButtonEdit,
     ButtonTrash
   },
+  props: ['groupId'],
   computed: {
-    materialGroupId() {
-      return this.$store.getters.materialGroupId
-    },
     materialUndergroupId() {
       return this.$store.getters.materialUndergroupId
     },
     undergroups() {
       return this.$store.getters.undergroup.filter(
-        item => item.groupId === this.materialGroupId
+        item => item.groupId === this.groupId
       )
     }
   },

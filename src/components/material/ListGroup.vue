@@ -23,13 +23,13 @@
         <button
           class="
             accordion-button
-            collapsed
             shadow-0
             d-flex
             justify-content-between
             p-1
             ps-2
           "
+          :class="{ collapsed: group.id !== materialGroupId }"
           type="button"
           data-bs-toggle="collapse"
           :data-bs-target="'#collapse' + group.id"
@@ -53,6 +53,7 @@
       <div
         :id="'collapse' + group.id"
         class="accordion-collapse collapse"
+        :class="{ show: group.id === materialGroupId }"
         :aria-labelledby="'heading' + group.id"
         data-bs-parent="#accordionGroup"
       >
@@ -102,6 +103,7 @@
 import 'bootstrap/js/dist/collapse'
 
 import Undergroup from './../../classes/undergroupClass'
+
 import ListUndergroup from './ListUndergroup.vue'
 import ButtonEdit from './../elements/buttons/ButtonEdit.vue'
 import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
@@ -120,6 +122,9 @@ export default {
   computed: {
     groups() {
       return this.$store.getters.group
+    },
+    materialGroupId() {
+      return this.$store.getters.materialGroupId
     }
   },
   methods: {
