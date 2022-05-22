@@ -53,9 +53,12 @@
 </template>
 
 <script>
+import Material from './../../classes/materialClass'
+
 import ButtonAdd from './../elements/buttons/ButtonAdd.vue'
 import ButtonEdit from './../elements/buttons/ButtonEdit.vue'
 import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
+
 export default {
   components: {
     ButtonAdd,
@@ -70,7 +73,7 @@ export default {
     },
     materials() {
       return this.$store.getters.material.filter(
-        item => item.undrgroupId === this.materialUndergroupId
+        item => item.undergroupId === this.materialUndergroupId
       )
     }
   },
@@ -81,6 +84,15 @@ export default {
       }
     },
     addNewMaterial() {
+      const item = Object.assign(
+        {},
+        new Material('', '', this.materialUndergroupId)
+      )
+      this.$store.dispatch('addItem', { item })
+      this.$store.commit('setMaterialValue', {
+        type: 'materialMaterialId',
+        value: item.id
+      })
       this.$store.commit('setMaterialValue', {
         type: 'materialMode',
         value: 'edit'

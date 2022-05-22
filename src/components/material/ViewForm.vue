@@ -67,16 +67,9 @@ export default {
             item => item.id === this.materialUndergroupId
           )
         case 'FormMaterial':
-          if (this.materialMaterialId) {
-            return this.materials.find(
-              item => item.id === this.materialMaterialId
-            )
-          } else {
-            return Object.assign(
-              {},
-              new Material('', '', this.materialUndergroupId)
-            )
-          }
+          return this.materials.find(
+            item => item.id === this.materialMaterialId
+          )
       }
     }
   },
