@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import Material from './../../classes/materialClass'
-
 import FormGroup from './FormGroup.vue'
 import FormUndergroup from './FormUndergroup.vue'
 import FormMaterial from './FormMaterial.vue'
@@ -74,9 +72,9 @@ export default {
     }
   },
   methods: {
-    saveItem() {
-      console.log('have item for update = ', this.item)
-      this.$store.dispatch('updateItem', { item: this.item })
+    saveItem({ item }) {
+      console.log('ViewForm.vue: have item for update = ', item)
+      this.$store.dispatch('updateItem', { item })
     }
   }
 }

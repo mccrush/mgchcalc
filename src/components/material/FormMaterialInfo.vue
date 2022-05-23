@@ -9,7 +9,7 @@
       />
     </div>
     <div class="col-12 mt-2">
-      <form class="form-floating">
+      <form @submit.prevent class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -22,7 +22,7 @@
     </div>
 
     <div class="col-12 mt-2">
-      <form class="form-floating">
+      <form @submit.prevent class="form-floating">
         <select
           class="form-select"
           id="inputUndergroup"
@@ -42,7 +42,7 @@
     </div>
 
     <div class="col-6 mt-2 pe-1">
-      <form class="form-floating">
+      <form @submit.prevent class="form-floating">
         <select
           class="form-select"
           id="inputEd"
@@ -56,7 +56,7 @@
     </div>
 
     <div class="col-6 mt-2 ps-1">
-      <form class="form-floating">
+      <form @submit.prevent class="form-floating">
         <input
           type="number"
           class="form-control form-control-sm"
@@ -69,7 +69,7 @@
     </div>
 
     <div class="col-6 mt-2 pe-1">
-      <form class="form-floating">
+      <form @submit.prevent class="form-floating">
         <input
           type="number"
           class="form-control form-control-sm"
@@ -82,7 +82,7 @@
     </div>
 
     <div class="col-6 mt-2 ps-1">
-      <form class="form-floating">
+      <form @submit.prevent class="form-floating">
         <input
           type="number"
           class="form-control form-control-sm"
@@ -95,7 +95,7 @@
     </div>
 
     <div class="col-12 mt-2">
-      <form class="form-floating">
+      <form @submit.prevent class="form-floating">
         <select
           class="form-select"
           id="inputPostavshikId"
@@ -121,6 +121,7 @@ import ed from './../../data/ed'
 
 export default {
   props: ['item'],
+  emits: ['save-item'],
   data() {
     return {
       ed

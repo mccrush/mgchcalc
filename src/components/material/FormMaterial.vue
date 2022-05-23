@@ -7,7 +7,9 @@
       </div>
       <hr class="mt-2" />
     </div>
-    <div class="col-5"><FormMaterialInfo v-if="item" :item="item" /></div>
+    <div class="col-5">
+      <FormMaterialInfo v-if="item" :item="item" @save-item="saveItem" />
+    </div>
     <div class="col-7"><FormMaterialVkladki /></div>
   </div>
 </template>
@@ -23,6 +25,12 @@ export default {
     FormMaterialInfo,
     FormMaterialVkladki
   },
-  props: ['item']
+  props: ['item'],
+  emits: ['save-item'],
+  methods: {
+    saveItem() {
+      this.$emit('save-item', { item: this.item })
+    }
+  }
 }
 </script>

@@ -35,11 +35,13 @@
               {{ material.price }}
             </span>
             <span class="badge text-dark border border-warning me-2">{{
-              Math.ceil(material.price + (material.price * groupNacenka) / 100)
+              Math.ceil(
+                material.price + (material.price * material.nacenka) / 100
+              )
             }}</span>
             <ButtonEdit
               class="border-0 me-1"
-              @click.stop="$emit('edit-material', material)"
+              @click.stop="editMaterial(material.id)"
             />
             <ButtonTrash
               class="border-0"
@@ -92,6 +94,20 @@ export default {
       this.$store.commit('setMaterialValue', {
         type: 'materialMaterialId',
         value: item.id
+      })
+      this.$store.commit('setMaterialValue', {
+        type: 'materialMode',
+        value: 'edit'
+      })
+      this.$store.commit('setMaterialValue', {
+        type: 'materialForm',
+        value: 'FormMaterial'
+      })
+    },
+    editMaterial(id) {
+      this.$store.commit('setMaterialValue', {
+        type: 'materialMaterialId',
+        value: id
       })
       this.$store.commit('setMaterialValue', {
         type: 'materialMode',
