@@ -10,7 +10,7 @@
       <hr class="mt-2" />
     </div>
     <div class="col-12">
-      <ul class="list-group">
+      <ul class="list-group list-group-flush">
         <li class="list-group-item">ListMaterials.vue</li>
         <li
           v-for="material in materials"

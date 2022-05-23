@@ -6,7 +6,6 @@
       class="
         cursor-pointer
         list-group-item
-        bg-light
         border-white
         d-flex
         justify-content-between
@@ -103,6 +102,8 @@ export default {
 <style scoped>
 .list-group-item.active {
   color: #212529;
+  /* background-color: #bccee4; */
+  background-color: #fff;
 }
 
 .my-btn-hide {

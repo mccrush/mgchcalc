@@ -57,7 +57,7 @@
         :aria-labelledby="'heading' + group.id"
         data-bs-parent="#accordionGroup"
       >
-        <div class="accordion-body bg-light p-1">
+        <div class="accordion-body p-1">
           <ListUndergroup :groupId="group.id" />
           <div class="input-group input-group-sm mt-1">
             <input
