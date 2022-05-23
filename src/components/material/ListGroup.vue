@@ -209,6 +209,16 @@ export default {
   visibility: hidden;
 } */
 
+.accordion-item {
+  border: none;
+}
+
+.accordion-button {
+  color: #212529;
+  background-color: #bccee4;
+  /* box-shadow: inset 0 -1px 0 #313a46; */
+}
+
 .accordion-button:not(.collapsed) {
   color: #fff;
   background-color: #313a46;
