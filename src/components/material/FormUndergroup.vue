@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-start align-items-center mt-2 mt-md-0">
-        <ButtonBack />
+        <!-- <ButtonBack /> -->
         <h4 v-if="item" class="m-0 ms-2">{{ item.title }}</h4>
       </div>
       <hr class="mt-2" />

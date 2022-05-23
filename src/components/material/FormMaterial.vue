@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-start align-items-center mt-2 mt-md-0">
-        <ButtonBack />
+        <ButtonBack @click="showListMaterial" />
         <h4 v-if="item" class="m-0 ms-2">{{ item.title }}</h4>
       </div>
       <hr class="mt-2" />
@@ -32,6 +32,12 @@ export default {
   methods: {
     saveItem() {
       this.$emit('save-item', { item: this.item })
+    },
+    showListMaterial() {
+      this.$store.commit('setMaterialValue', {
+        type: 'materialMode',
+        value: 'show'
+      })
     }
   }
 }

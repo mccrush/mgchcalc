@@ -7,11 +7,10 @@
           :class="{ disabled: !materialUndergroupId }"
         />
       </div>
-      <hr class="mt-2" />
+      <hr class="mt-2 mb-0" />
     </div>
     <div class="col-12">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">ListMaterials.vue</li>
         <li
           v-for="material in materials"
           :key="material.id"
