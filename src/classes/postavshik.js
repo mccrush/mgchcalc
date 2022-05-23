@@ -6,7 +6,11 @@ export default (id) => {
     description: '',
     position: 0,
     address: '',
+    contact: '',
     phone: '',
-    email: ''
+    phone2: '',
+    email: '',
+    whatsapp: '',
+    telegram: ''
   }
 }

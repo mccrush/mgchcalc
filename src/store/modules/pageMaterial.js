@@ -4,7 +4,8 @@ export default {
     materialGroupId: localStorage.getItem('cl-materialGroupId') || '',
     materialUndergroupId: localStorage.getItem('cl-materialUndergroupId') || '',
     materialMaterialId: localStorage.getItem('cl-materialMaterialId') || '',
-    materialForm: localStorage.getItem('cl-materialForm') || 'material'
+    materialForm: localStorage.getItem('cl-materialForm') || 'material',
+    materialPostavshikId: localStorage.getItem('cl-materialPostavshikId') || ''
   },
   mutations: {
     setMaterialValue(state, { type, value }) {
@@ -17,6 +18,7 @@ export default {
     materialGroupId: state => state.materialGroupId,
     materialUndergroupId: state => state.materialUndergroupId,
     materialMaterialId: state => state.materialMaterialId,
-    materialForm: state => state.materialForm
+    materialForm: state => state.materialForm,
+    materialPostavshikId: state => state.materialPostavshikId
   }
 }
