@@ -40,7 +40,7 @@
           <span class="small">{{ group.title }}</span>
           <div class="d-flex align-items-center">
             <ButtonEdit
-              @click.stop="setMaterialMode"
+              @click.stop="editGroup(group.id)"
               class="my-btn-hide border-0 me-1"
             />
             <ButtonTrash
@@ -134,7 +134,11 @@ export default {
         value: id
       })
     },
-    setMaterialMode() {
+    editGroup(id) {
+      this.$store.commit('setMaterialValue', {
+        type: 'materialGroupId',
+        value: id
+      })
       this.$store.commit('setMaterialValue', {
         type: 'materialMode',
         value: 'edit'

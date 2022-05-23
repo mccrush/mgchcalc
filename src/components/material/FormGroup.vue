@@ -8,7 +8,7 @@
       <hr class="mt-2" />
     </div>
     <div class="col-6 pe-1">
-      <form class="form-floating">
+      <form @submit.prevent class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -44,7 +44,7 @@
       </form>
     </div> -->
     <div class="col-6 ps-1">
-      <form class="form-floating">
+      <form @submit.prevent class="form-floating">
         <input
           type="number"
           class="form-control form-control-sm"
@@ -56,7 +56,7 @@
       </form>
     </div>
     <div class="col-12 mt-2">
-      <form class="form-floating">
+      <form @submit.prevent class="form-floating">
         <textarea
           class="form-control form-control-sm"
           id="inputDescription"

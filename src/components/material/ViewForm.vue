@@ -72,9 +72,9 @@ export default {
     }
   },
   methods: {
-    saveItem({ item }) {
-      console.log('ViewForm.vue: have item for update = ', item)
-      this.$store.dispatch('updateItem', { item })
+    saveItem() {
+      console.log('ViewForm.vue: have item for update = ', this.item)
+      this.$store.dispatch('updateItem', { item: this.item })
     }
   }
 }
