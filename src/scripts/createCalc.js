@@ -3,6 +3,7 @@ export default () => {
     id: Date.now().toString(),
     type: 'calc',
     groupId: '',
+    undergroupId: '',
     elemId: '',
     typeArray: '',
     title: '',

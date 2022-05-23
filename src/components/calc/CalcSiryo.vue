@@ -134,25 +134,29 @@ export default {
     //   }
     // },
     categorySiryos() {
-      return this.$store.getters.materialvid
+      //return this.$store.getters.materialvid
+      return this.$store.getters.undergroup
     },
-    nacenka() {
-      if (this.categorySiryoId) {
-        const procent =
-          this.categorySiryos.find(item => item.id === this.categorySiryoId)
-            .nacenka / 100
-        console.log('nacenka:', procent)
-        return procent
-      } else {
-        return 0
-      }
-    },
+    // nacenka() {
+    //   if (this.categorySiryoId) {
+    //     const procent =
+    //       this.categorySiryos.find(item => item.id === this.categorySiryoId)
+    //         .nacenka / 100
+    //     console.log('nacenka:', procent)
+    //     return procent
+    //   } else {
+    //     return 0
+    //   }
+    // },
     categorySiryosSort() {
       return sortMethod(this.categorySiryos, 'asc', 'position')
     },
     siryos() {
+      // return this.$store.getters.material.filter(
+      //   item => item.categoryId === this.categorySiryoId
+      // )
       return this.$store.getters.material.filter(
-        item => item.categoryId === this.categorySiryoId
+        item => item.undergroupId === this.categorySiryoId
       )
     },
     siryosSort() {
@@ -175,7 +179,9 @@ export default {
     },
     siryoPrice() {
       if (this.enableProcent) {
-        return Math.ceil(this.siryo.price + this.siryo.price * this.nacenka)
+        return Math.ceil(
+          this.siryo.price + (this.siryo.price * this.siryo.nacenka) / 100
+        )
       } else {
         return this.siryo.price
       }
@@ -201,6 +207,7 @@ export default {
         type: 'task',
         id: this.id,
         groupId: this.categorySiryoId,
+        undergroupId: this.categorySiryoId,
         elemId: this.siryoSelectId,
         typeArray: this.type,
         title: this.siryo.title,
