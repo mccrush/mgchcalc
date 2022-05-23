@@ -11,7 +11,7 @@
         justify-content-between
         align-items-center
         lh-1
-        p-1
+        p-0
         ps-2
       "
       :class="{ active: undergroup.id === materialUndergroupId }"

@@ -6,7 +6,7 @@
     <div class="position-block border small text-center rounded p-0 pt-1">
       {{ item.position }}
     </div>
-    <div class="col-10 col-sm-5 col-md-4 ps-1 pe-sm-0">
+    <div class="col-10 col-sm-5 col-md-2 ps-1 pe-sm-0">
       <input
         type="text"
         class="form-control form-control-sm"
@@ -15,6 +15,7 @@
         draggable="true"
       />
     </div>
+
     <div class="col-12 col-sm-5 col-md-2 mt-2 mt-sm-0 pe-md-0">
       <select
         class="form-select form-select-sm w-100"
@@ -24,6 +25,23 @@
       >
         <option v-for="cat in categorys" :key="cat.id" :value="cat.id">
           {{ cat.title }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-12 col-sm-5 col-md-2 mt-2 mt-sm-0 pe-md-0">
+      <select
+        class="form-select form-select-sm w-100 border border-warning"
+        aria-label="Select resourse"
+        v-model="item.undergroupId"
+        @change="$emit('save-item', { item })"
+      >
+        <option
+          v-for="undergroup in undergroups"
+          :key="undergroup.id"
+          :value="undergroup.id"
+        >
+          {{ undergroup.title }}
         </option>
       </select>
     </div>
@@ -73,6 +91,11 @@ export default {
   data() {
     return {
       ed
+    }
+  },
+  computed: {
+    undergroups() {
+      return this.$store.getters.undergroup
     }
   }
 }
