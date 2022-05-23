@@ -193,7 +193,8 @@ body {
 }
 
 .width-960 {
-  max-width: 960px;
+  /* max-width: 960px; */
+  max-width: 1200px;
 }
 
 .fade-enter-active,

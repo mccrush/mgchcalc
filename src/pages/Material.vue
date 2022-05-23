@@ -1,11 +1,11 @@
 <template>
   <div class="width-960 bg-white shadow-sm rounded-3 mt-4 m-auto p-3">
     <div class="row">
-      <div class="col-12 col-md-3 col-lg-3">
+      <div class="col-12 col-md-3 col-lg-3 col-xl-2">
         <ViewMenu />
       </div>
 
-      <div class="col-12 col-md-9 col-lg-9 ps-md-0">
+      <div class="col-12 col-md-9 col-lg-9 col-xl-10 ps-md-0">
         <ViewContent />
       </div>
     </div>
