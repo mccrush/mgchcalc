@@ -34,7 +34,7 @@
       >
         <img
           v-if="passType"
-          src="images/work_icons/eye-slash.svg"
+          src="/images/work_icons/eye-slash.svg"
           width="24"
           height="24"
           alt="Show password"
@@ -42,7 +42,7 @@
         />
         <img
           v-else
-          src="images/work_icons/eye.svg"
+          src="/images/work_icons/eye.svg"
           width="24"
           height="24"
           alt="Hide password"
