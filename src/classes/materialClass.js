@@ -10,8 +10,9 @@ export default class Material {
     this.undergroupId = undergroupId
     this.categoryId = categoryId
     this.price = 0
-    this.minprice = 1
-    this.nacenka = 1
+    this.nacenka = 0
+    this.minprice = 0
+    this.nacenkaMinPrice = 0
     this.ed = ''
     this.normaothoda = ''
     this.ves = ''

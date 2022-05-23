@@ -10,7 +10,9 @@
     <div class="col-5 col-xl-3 pe-0">
       <FormMaterialInfo v-if="item" :item="item" @save-item="saveItem" />
     </div>
-    <div class="col-7 col-xl-9"><FormMaterialVkladki /></div>
+    <div class="col-7 col-xl-9">
+      <FormMaterialVkladki v-if="item" :item="item" @save-item="saveItem" />
+    </div>
   </div>
 </template>
 

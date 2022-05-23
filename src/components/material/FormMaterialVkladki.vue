@@ -34,7 +34,12 @@
           :aria-labelledby="'pills-' + tab.alias + '-tab'"
           tabindex="0"
         >
-          <component :is="'Tab' + tab.aliasUp" />
+          <component
+            v-if="item"
+            :is="'Tab' + tab.aliasUp"
+            :item="item"
+            @save-item="saveItem"
+          />
         </div>
       </div>
     </div>
@@ -60,9 +65,15 @@ export default {
     TabRealization
   },
   props: ['item'],
+  emits: ['save-item'],
   data() {
     return {
       materialTabs
+    }
+  },
+  methods: {
+    saveItem() {
+      this.$emit('save-item', { item: this.item })
     }
   }
 }
