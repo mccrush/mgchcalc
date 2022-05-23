@@ -5,9 +5,11 @@
         src="/images/work_icons/image.svg"
         class="w-100 border rounded"
         alt="Изображение материала"
-        height="50"
+        height="53"
       />
     </div>
+
+    <!-- Название материала -->
     <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <input
@@ -21,6 +23,7 @@
       </form>
     </div>
 
+    <!-- Подгруппа -->
     <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <select
@@ -41,6 +44,7 @@
       </form>
     </div>
 
+    <!-- Единицы & Нор. отх. % -->
     <div class="col-6 mt-2 pe-1">
       <form @submit.prevent class="form-floating">
         <select
@@ -68,6 +72,7 @@
       </form>
     </div>
 
+    <!-- Вес кг & Объем м2 -->
     <div class="col-6 mt-2 pe-1">
       <form @submit.prevent class="form-floating">
         <input
@@ -94,6 +99,7 @@
       </form>
     </div>
 
+    <!-- Основной поставщик -->
     <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <select
@@ -111,6 +117,20 @@
           </option>
         </select>
         <label for="inputPostavshikId">Основной поставщик</label>
+      </form>
+    </div>
+
+    <!-- Минимальный остаток склада -->
+    <div class="col-12 mt-2">
+      <form @submit.prevent class="form-floating">
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          id="inputMinOstatokSklada"
+          v-model.number="item.minOstatokSklada"
+          @blur="$emit('save-item')"
+        />
+        <label for="inputMinOstatokSklada">Минимал. остаток склада</label>
       </form>
     </div>
   </div>

@@ -71,14 +71,13 @@
 
     <!-- Комментарий -->
     <div class="col-12 mt-2">
-      <form @submit.prevent class="form-floating">
-        <input
-          type="number"
-          class="form-control form-control-sm"
+      <form class="form-floating">
+        <textarea
+          class="textarea-height form-control form-control-sm"
           id="inputDescription"
-          v-model.number="item.description"
-          @blur="$emit('save-item')"
-        />
+          v-model.trim="item.description"
+          @change="$emit('save-item')"
+        ></textarea>
         <label for="inputDescription">Комментарий</label>
       </form>
     </div>
@@ -91,3 +90,9 @@ export default {
   emits: ['save-item']
 }
 </script>
+
+<style scoped>
+.textarea-height {
+  height: 190px;
+}
+</style>

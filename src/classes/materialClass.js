@@ -18,5 +18,6 @@ export default class Material {
     this.ves = ''
     this.objom = ''
     this.postavshikId = ''
+    this.minOstatokSklada = ''
   }
 }
