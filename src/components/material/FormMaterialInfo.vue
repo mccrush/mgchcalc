@@ -5,12 +5,12 @@
         src="/images/work_icons/image.svg"
         class="w-100 border rounded"
         alt="Изображение материала"
-        height="53"
+        height="119"
       />
     </div>
 
     <!-- Название материала -->
-    <div class="col-12 mt-2">
+    <!-- <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <input
           type="text"
@@ -21,7 +21,7 @@
         />
         <label for="inputTitle">Название материала</label>
       </form>
-    </div>
+    </div> -->
 
     <!-- Подгруппа -->
     <div class="col-12 mt-2">

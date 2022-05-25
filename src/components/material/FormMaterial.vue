@@ -3,7 +3,13 @@
     <div class="col-12">
       <div class="d-flex justify-content-start align-items-center mt-2 mt-md-0">
         <ButtonBack @click="showListMaterial" />
-        <h4 v-if="item" class="m-0 ms-2">{{ item.title }}</h4>
+        <input
+          type="text"
+          class="form-control border-0 fw-bold fs-5 p-0 ps-2"
+          v-model.trim="item.title"
+          @change="saveItem"
+        />
+        <!-- <h4 v-if="item" class="m-0 ms-2">{{ item.title }}</h4> -->
       </div>
       <hr class="mt-2" />
     </div>
