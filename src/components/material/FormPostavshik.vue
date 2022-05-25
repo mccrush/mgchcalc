@@ -96,26 +96,92 @@
       </form>
     </div>
 
-    <!-- Telegram Поставщика -->
+    <!-- Список Форм Контактов -->
+    <div v-if="this.item.contacts && this.item.contacts.length">
+      <div
+        v-for="formContact in this.item.contacts"
+        :key="formContact.id"
+        class="col-12 mt-2"
+      >
+        <form @submit.prevent class="form-floating">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            :id="'input' + formContact.title"
+            v-model.trim="formContact.description"
+            @change="$emit('save-item')"
+          />
+          <label :for="'input' + formContact.title">{{
+            formContact.title
+          }}</label>
+        </form>
+      </div>
+    </div>
+
+    <!-- Добавление нового поля контакта -->
     <div class="col-12 mt-2">
-      <form @submit.prevent class="form-floating">
+      <div class="input-group input-group-sm">
+        <select
+          v-model="fieldTitle"
+          class="form-select rounded-0 rounded-top w-100"
+        >
+          <option selected>Выберите поле</option>
+          <option
+            v-for="field in contactFields"
+            :key="'key' + field"
+            :value="field"
+          >
+            {{ field }}
+          </option>
+        </select>
         <input
           type="text"
-          class="form-control form-control-sm"
-          id="inputTelegram"
-          v-model.trim="item.telegram"
-          @change="$emit('save-item')"
+          class="form-control w-100"
+          placeholder="Введите значение"
+          v-model.trim="fieldDescription"
         />
-        <label for="inputEmail">Telegram</label>
-      </form>
+        <button
+          class="btn btn-outline-success rounded-0 rounded-bottom w-100"
+          type="button"
+          @click="addNewContactField"
+        >
+          Добавить поле
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 
 <script>
+import { contactFields } from './../../data/contactFields'
+import Contact from './../../classes/ContactClass'
+
 export default {
   props: ['item'],
-  emits: ['save-item']
+  emits: ['save-item'],
+  data() {
+    return {
+      contactFields,
+      fieldTitle: 'Выберите поле',
+      fieldDescription: ''
+    }
+  },
+  methods: {
+    addNewContactField() {
+      if (this.fieldDescription) {
+        const newContactField = Object.assign(
+          {},
+          new Contact(this.fieldTitle, this.fieldDescription)
+        )
+
+        this.item.contacts.push(newContactField)
+        this.fieldTitle = 'Выберите поле'
+        this.fieldDescription = ''
+
+        this.$emit('save-item')
+      }
+    }
+  }
 }
 </script>

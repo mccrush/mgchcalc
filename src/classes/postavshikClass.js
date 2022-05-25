@@ -7,9 +7,12 @@ export default class Postavshik {
     this.title = title
     this.description = ''
     this.position = 0
+    this.contacts = []
     this.address = ''
+    this.addressArr = []
     this.contact = ''
     this.phone = ''
+    this.phoneArr = []
     this.phone2 = ''
     this.email = ''
     this.whatsapp = ''
