@@ -24,6 +24,7 @@
           class="
             accordion-button
             shadow-0
+            rounded-0
             d-flex
             justify-content-between
             p-1
