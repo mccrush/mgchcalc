@@ -125,6 +125,7 @@
                 pe-1
               "
               title="Копировать"
+              @click="copyInBuffer(formContact.description)"
             >
               &#10063;
             </button>
@@ -303,6 +304,15 @@ export default {
       let inputDescription = this.$refs.inputDescription
       const newHeight = inputDescription.scrollHeight
       inputDescription.style.height = newHeight + 'px'
+    },
+
+    async copyInBuffer(text) {
+      try {
+        await navigator.clipboard.writeText(text)
+        console.log('Async: Copying to clipboard was successful!', text)
+      } catch (err) {
+        console.error('Async: Could not copy text: ', err)
+      }
     }
   }
 }
