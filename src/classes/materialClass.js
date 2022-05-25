@@ -1,12 +1,12 @@
 import getId from './../scripts/getId'
 
 export default class Material {
-  constructor(title = '', categoryId = '', undergroupId = '') {
+  constructor(title = '', categoryId = '', undergroupId = '', position = 1) {
     this.id = getId()
     this.type = 'material'
     this.title = title
     this.description = ''
-    this.position = 0
+    this.position = position
     this.undergroupId = undergroupId
     this.categoryId = categoryId
     this.price = 0

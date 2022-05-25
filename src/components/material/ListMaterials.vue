@@ -12,7 +12,7 @@
     <div class="col-12">
       <ul class="list-group list-group-flush">
         <li
-          v-for="material in materials"
+          v-for="material in sortMaterials(materials)"
           :key="material.id"
           class="
             list-group-item
@@ -21,26 +21,41 @@
             align-items-center
             lh-1
             p-1
-            ps-3
-            pe-2
+            ps-1
+            pe-1
           "
         >
-          <span class="small">{{ material.title }}</span>
+          <span class="small"
+            ><span class="text-muted me-2">{{ material.position }}</span
+            >{{ material.title }}</span
+          >
           <div class="d-flex align-items-center mt-1 mt-sm-0">
-            <span class="badge text-dark me-2">
+            <!-- <span class="badge text-dark me-2">
               {{ material.ed }}
-            </span>
-            <span class="badge text-dark border border-success me-2">
+            </span> -->
+            <span class="badge text-dark border border-success ms-2 me-1">
               {{ material.price }}
             </span>
-            <span class="badge text-dark border border-warning me-2">{{
+            <span class="badge text-dark border border-warning me-1">{{
               Math.ceil(
                 material.price + (material.price * material.nacenka) / 100
               )
             }}</span>
+            <ButtonUp
+              class="border-0"
+              @click.stop="updateItemPositionUp(material.id)"
+            />
+            <ButtonDown
+              class="border-0"
+              @click.stop="updateItemPositionDown(material.id)"
+            />
             <ButtonEdit
-              class="border-0 me-1"
+              class="border-0"
               @click.stop="editMaterial(material.id)"
+            />
+            <ButtonCopy
+              class="border-0"
+              @click.stop="copyItemTitle(material.title)"
             />
             <ButtonTrash
               class="border-0"
@@ -54,14 +69,21 @@
 </template>
 
 <script>
+import sortMethod from './../../scripts/sortMethod'
 import Material from './../../classes/materialClass'
 
+import ButtonUp from './../elements/buttons/ButtonUp.vue'
+import ButtonDown from './../elements/buttons/ButtonDown.vue'
+import ButtonCopy from './../elements/buttons/ButtonCopy.vue'
 import ButtonAdd from './../elements/buttons/ButtonAdd.vue'
 import ButtonEdit from './../elements/buttons/ButtonEdit.vue'
 import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
 
 export default {
   components: {
+    ButtonUp,
+    ButtonDown,
+    ButtonCopy,
     ButtonAdd,
     ButtonEdit,
     ButtonTrash
@@ -79,6 +101,9 @@ export default {
     }
   },
   methods: {
+    sortMaterials(materialsArray) {
+      return sortMethod(materialsArray, 'asc', 'position')
+    },
     removeMaterial(type, id) {
       if (confirm('Точно удалить?')) {
         this.$store.dispatch('removeItem', { type, id })
