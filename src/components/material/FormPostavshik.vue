@@ -15,7 +15,7 @@
     </div>
 
     <!-- Адрес Поставщика -->
-    <div class="col-12 mt-2">
+    <!-- <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <input
           type="text"
@@ -26,10 +26,10 @@
         />
         <label for="inputAddress">Адрес</label>
       </form>
-    </div>
+    </div> -->
 
     <!-- Контакт Поставщика -->
-    <div class="col-12 mt-2">
+    <!-- <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <input
           type="text"
@@ -40,10 +40,10 @@
         />
         <label for="inputContact">Контакт</label>
       </form>
-    </div>
+    </div> -->
 
     <!-- Телефоны Поставщика -->
-    <div class="col-6 mt-2 pe-1">
+    <!-- <div class="col-6 mt-2 pe-1">
       <form @submit.prevent class="form-floating">
         <input
           type="text"
@@ -66,10 +66,10 @@
         />
         <label for="inputPhone2">Телефон 2</label>
       </form>
-    </div>
+    </div> -->
 
     <!-- Email Поставщика -->
-    <div class="col-12 mt-2">
+    <!-- <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <input
           type="text"
@@ -80,10 +80,10 @@
         />
         <label for="inputEmail">Email</label>
       </form>
-    </div>
+    </div> -->
 
     <!-- Whatsapp Поставщика -->
-    <div class="col-12 mt-2">
+    <!-- <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <input
           type="text"
@@ -94,7 +94,7 @@
         />
         <label for="inputEmail">Whatsapp</label>
       </form>
-    </div>
+    </div> -->
 
     <!-- Список Форм Контактов -->
     <div v-if="this.item.contacts && this.item.contacts.length">
@@ -179,6 +179,7 @@
                 ps-1
                 pe-1
               "
+              title="Удалить поле"
               @click="removeFormContact(formContact.id)"
             >
               &#215;
@@ -195,7 +196,7 @@
           v-model="fieldTitle"
           class="form-select rounded-0 rounded-top w-100"
         >
-          <option selected>Выберите поле</option>
+          <option selected>Выберите тип поля</option>
           <option
             v-for="field in contactFields"
             :key="'key' + field"
@@ -219,6 +220,19 @@
         </button>
       </div>
     </div>
+
+    <!-- Комментарий -->
+    <div class="col-12 mt-2">
+      <form class="form-floating">
+        <textarea
+          class="textarea-height form-control form-control-sm"
+          id="inputDescription"
+          v-model.trim="item.description"
+          @change="$emit('save-item')"
+        ></textarea>
+        <label for="inputDescription">Комментарий</label>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -234,7 +248,7 @@ export default {
   data() {
     return {
       contactFields,
-      fieldTitle: 'Выберите поле',
+      fieldTitle: 'Выберите тип поля',
       fieldDescription: ''
     }
   },
@@ -251,7 +265,7 @@ export default {
         )
 
         this.item.contacts.push(newContactField)
-        this.fieldTitle = 'Выберите поле'
+        this.fieldTitle = 'Выберите тип поля'
         this.fieldDescription = ''
 
         this.$emit('save-item')
@@ -294,5 +308,9 @@ export default {
 
 .form-floating:hover > span.label-edit-buttons {
   visibility: visible;
+}
+
+.textarea-height {
+  height: 80px;
 }
 </style>

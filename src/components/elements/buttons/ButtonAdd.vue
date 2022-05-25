@@ -1,8 +1,5 @@
 <template>
-  <button
-    class="btn btn-sm btn-outline-success lh-sm p-2"
-    title="Добавить материал"
-  >
+  <button class="btn btn-sm btn-outline-success lh-sm p-2" title="Добавить">
     Добавить
     <svg
       xmlns="http://www.w3.org/2000/svg"
