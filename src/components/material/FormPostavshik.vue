@@ -242,7 +242,7 @@
 
 <script>
 import { contactFields } from './../../data/contactFields'
-import Contact from './../../classes/ContactClass'
+import Contact from './../../classes/contactClass'
 import sortMethod from './../../scripts/sortMethod'
 
 export default {
