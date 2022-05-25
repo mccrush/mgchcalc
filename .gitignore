@@ -3,6 +3,7 @@ node_modules
 /dist
 /dist_21
 /dist_vite
+/dist_22-rc1
 
 
 # local env files
