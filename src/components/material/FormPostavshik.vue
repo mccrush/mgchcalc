@@ -254,6 +254,9 @@ export default {
       fieldDescription: ''
     }
   },
+  mounted() {
+    this.updateTextareaHeight()
+  },
   methods: {
     sortContactForms(itemContacts) {
       return sortMethod(itemContacts, 'asc', 'position')
