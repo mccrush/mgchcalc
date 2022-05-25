@@ -73,9 +73,11 @@
     <div class="col-12 mt-2">
       <form class="form-floating">
         <textarea
-          class="textarea-height form-control form-control-sm"
+          class="form-control form-control-sm border-0"
+          ref="inputDescription"
           id="inputDescription"
           v-model.trim="item.description"
+          @input="updateTextareaHeight"
           @change="$emit('save-item')"
         ></textarea>
         <label for="inputDescription">Комментарий</label>
@@ -87,7 +89,17 @@
 <script>
 export default {
   props: ['item'],
-  emits: ['save-item']
+  emits: ['save-item'],
+  mounted() {
+    this.updateTextareaHeight()
+  },
+  methods: {
+    updateTextareaHeight() {
+      let inputDescription = this.$refs.inputDescription
+      const newHeight = inputDescription.scrollHeight
+      inputDescription.style.height = newHeight + 'px'
+    }
+  }
 }
 </script>
 

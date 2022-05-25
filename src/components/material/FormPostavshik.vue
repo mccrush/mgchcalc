@@ -225,9 +225,11 @@
     <div class="col-12 mt-2">
       <form class="form-floating">
         <textarea
-          class="textarea-height form-control form-control-sm"
+          class="form-control form-control-sm border-0"
           id="inputDescription"
+          ref="inputDescription"
           v-model.trim="item.description"
+          @input="updateTextareaHeight"
           @change="$emit('save-item')"
         ></textarea>
         <label for="inputDescription">Комментарий</label>
@@ -256,6 +258,7 @@ export default {
     sortContactForms(itemContacts) {
       return sortMethod(itemContacts, 'asc', 'position')
     },
+
     addNewContactField() {
       if (this.fieldDescription) {
         const position = this.item.contacts.length + 1
@@ -271,10 +274,12 @@ export default {
         this.$emit('save-item')
       }
     },
+
     removeFormContact(id) {
       this.item.contacts = this.item.contacts.filter(item => item.id !== id)
       this.$emit('save-item')
     },
+
     updateFormContactPositionUp(id) {
       const formItemIndex = this.item.contacts.findIndex(item => item.id === id)
       let formItem = this.item.contacts[formItemIndex]
@@ -282,12 +287,19 @@ export default {
       this.item.contacts[formItemIndex] = formItem
       this.$emit('save-item')
     },
+
     updateFormContactPositionDown(id) {
       const formItemIndex = this.item.contacts.findIndex(item => item.id === id)
       let formItem = this.item.contacts[formItemIndex]
       formItem.position = formItem.position + 1
       this.item.contacts[formItemIndex] = formItem
       this.$emit('save-item')
+    },
+
+    updateTextareaHeight() {
+      let inputDescription = this.$refs.inputDescription
+      const newHeight = inputDescription.scrollHeight
+      inputDescription.style.height = newHeight + 'px'
     }
   }
 }
@@ -308,9 +320,5 @@ export default {
 
 .form-floating:hover > span.label-edit-buttons {
   visibility: visible;
-}
-
-.textarea-height {
-  height: 80px;
 }
 </style>
