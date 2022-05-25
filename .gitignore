@@ -1,9 +1,8 @@
 .DS_Store
 node_modules
 /dist
-/dist2
-/dist_work
-/dist2_vite
+/dist_21
+/dist_vite
 
 
 # local env files
