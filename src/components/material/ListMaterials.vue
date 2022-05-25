@@ -101,18 +101,37 @@ export default {
     }
   },
   methods: {
+    updateItemPositionUp(id) {
+      let materialItem = this.materials.find(item => item.id === id)
+      materialItem.position = materialItem.position - 1
+      this.$store.dispatch('updateItem', { item: materialItem })
+    },
+
+    updateItemPositionDown(id) {
+      let materialItem = this.materials.find(item => item.id === id)
+      materialItem.position = materialItem.position + 1
+      this.$store.dispatch('updateItem', { item: materialItem })
+    },
+
     sortMaterials(materialsArray) {
       return sortMethod(materialsArray, 'asc', 'position')
     },
+
     removeMaterial(type, id) {
       if (confirm('Точно удалить?')) {
         this.$store.dispatch('removeItem', { type, id })
       }
     },
+
     addNewMaterial() {
       const item = Object.assign(
         {},
-        new Material('', '', this.materialUndergroupId)
+        new Material(
+          '',
+          '',
+          this.materialUndergroupId,
+          this.materials.length + 1
+        )
       )
       this.$store.dispatch('addItem', { item })
       this.$store.commit('setMaterialValue', {
@@ -128,6 +147,7 @@ export default {
         value: 'FormMaterial'
       })
     },
+
     editMaterial(id) {
       this.$store.commit('setMaterialValue', {
         type: 'materialMaterialId',
