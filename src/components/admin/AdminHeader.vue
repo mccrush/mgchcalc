@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import razdels from './../../data/razdels'
+import razdels from './../../data/razdelsForAdmin'
 
 import ButtonSort from './../elements/buttons/ButtonSort.vue'
 import InputSearch from './../elements/inputs/InputSearch.vue'

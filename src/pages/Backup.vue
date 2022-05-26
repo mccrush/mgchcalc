@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import razdels from './../data/razdels'
+import razdels from './../data/razdelsForBackup'
 
 export default {
   data() {
