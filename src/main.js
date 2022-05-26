@@ -18,7 +18,8 @@ onAuthStateChanged(auth, (user) => {
     console.log('main.js : Пользователь авторизован')
     store.commit('setUserId', user.uid)
     store.dispatch('getUserData', user.uid)
-    store.dispatch('getItems', { type: 'materialvid' })
+    store.dispatch('getItems', { type: 'group' })
+    store.dispatch('getItems', { type: 'undergroup' })
     store.dispatch('getItems', { type: 'material' })
     store.dispatch('getItems', { type: 'obrabotkavid' })
     store.dispatch('getItems', { type: 'obrabotkatolshina' })
@@ -26,8 +27,6 @@ onAuthStateChanged(auth, (user) => {
     store.dispatch('getItems', { type: 'contact' })
     store.dispatch('getItems', { type: 'company' })
     store.dispatch('getItems', { type: 'postavshik' })
-    store.dispatch('getItems', { type: 'group' })
-    store.dispatch('getItems', { type: 'undergroup' })
     store.dispatch('getItemsRT', { type: 'order' })
     store.dispatch('getItemsRT', { type: 'nafrezer' })
   } else {

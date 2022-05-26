@@ -3,7 +3,6 @@ export default [
   { id: '02', title: 'Контакт', alias: 'contact' },
   { id: '03', title: 'Дополнительные услуги', alias: 'dopuslug' },
   { id: '04', title: 'Материал', alias: 'material' },
-  { id: '05', title: 'Группа материалов', alias: 'materialvid' },
   { id: '06', title: 'Фрезеровка', alias: 'nafrezer' },
   { id: '07', title: 'Тип обработки', alias: 'obrabotkatolshina' },
   { id: '08', title: 'Вид обработки', alias: 'obrabotkavid' },

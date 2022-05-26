@@ -134,7 +134,6 @@ export default {
     //   }
     // },
     categorySiryos() {
-      //return this.$store.getters.materialvid
       return this.$store.getters.undergroup
     },
     // nacenka() {

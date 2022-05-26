@@ -1,6 +1,5 @@
 // Import all Domains
 import getId from './getId.js'
-import materialvid from './../classes/materialvid.js'
 import material from './../classes/material.js'
 import obrabotkavid from './../classes/obrabotkavid.js'
 import obrabotkatolshina from './../classes/obrabotkatolshina.js'
@@ -15,8 +14,6 @@ export default (type, categoryId) => {
   const id = getId()
 
   switch (type) {
-    case 'materialvid':
-      return materialvid(id)
     case 'material':
       return material(id, categoryId)
     case 'obrabotkavid':

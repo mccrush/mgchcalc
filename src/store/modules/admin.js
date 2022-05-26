@@ -6,7 +6,6 @@ export default {
   state: {
     loading: false,
     procent: [{ value: 0 }],
-    materialvid: [],
     material: [],
     obrabotkavid: [],
     obrabotkatolshina: [],
@@ -88,7 +87,6 @@ export default {
   getters: {
     loading: state => state.loading,
     procent: state => state.procent,
-    materialvid: state => state.materialvid,
     material: state => state.material,
     obrabotkavid: state => state.obrabotkavid,
     obrabotkatolshina: state => state.obrabotkatolshina,

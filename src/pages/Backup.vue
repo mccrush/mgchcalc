@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       razdels,
-      razdel: 'materialvid',
+      razdel: 'obrabotkavid',
       backup: []
     }
   },

@@ -29,8 +29,6 @@
 <script>
 import sortMethod from './../../scripts/sortMethod'
 
-import FormMaterialvid from './forms/FormMaterialVid.vue'
-import FormMaterial from './forms/FormMaterial.vue'
 import FormObrabotkavid from './forms/FormObrabotkaVid.vue'
 import FormObrabotkatolshina from './forms/FormObrabotkaTolshina.vue'
 import FormDopuslug from './forms/FormDopuslug.vue'
@@ -40,8 +38,6 @@ import FormPostavshik from './forms/FormPostavshik.vue'
 
 export default {
   components: {
-    FormMaterialvid,
-    FormMaterial,
     FormObrabotkavid,
     FormObrabotkatolshina,
     FormDopuslug,
@@ -60,14 +56,12 @@ export default {
       return form
     },
     categorys() {
-      if (this.type === 'material') {
-        return this.$store.getters.materialvid
-      } else if (this.type === 'obrabotkatolshina') {
+      if (this.type === 'obrabotkatolshina') {
         return this.$store.getters.obrabotkavid
       }
     },
     items() {
-      if (this.type === 'obrabotkatolshina' || this.type === 'material') {
+      if (this.type === 'obrabotkatolshina') {
         return this.$store.getters[this.type].filter(
           item => item.categoryId === this.categoryId
         )

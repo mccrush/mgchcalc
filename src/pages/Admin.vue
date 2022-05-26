@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      razdel: localStorage.getItem('cl-razdel') || 'materialvid',
+      razdel: localStorage.getItem('cl-razdel') || 'obrabotkavid',
       categoryId: localStorage.getItem('cl-categoryId') || '',
       searchText: '',
       sortType: 'asc',
