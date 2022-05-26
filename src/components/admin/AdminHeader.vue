@@ -67,13 +67,12 @@ export default {
     InputSearch,
     ButtonAdd
   },
-  props: ['razdel', 'categoryId', 'searchText', 'sortType', 'procent'],
+  props: ['razdel', 'categoryId', 'searchText', 'sortType'],
   emits: [
     'update:razdel',
     'update:categoryId',
     'update:searchText',
     'update:sortType',
-    'update:procent',
     'add-item'
   ],
   data() {

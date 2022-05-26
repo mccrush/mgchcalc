@@ -128,32 +128,13 @@ export default {
     }
   },
   computed: {
-    // siryoProcent() {
-    //   if (this.$store.getters.procent.length) {
-    //     return this.$store.getters.procent[0].value / 100
-    //   }
-    // },
     categorySiryos() {
       return this.$store.getters.undergroup
     },
-    // nacenka() {
-    //   if (this.categorySiryoId) {
-    //     const procent =
-    //       this.categorySiryos.find(item => item.id === this.categorySiryoId)
-    //         .nacenka / 100
-    //     console.log('nacenka:', procent)
-    //     return procent
-    //   } else {
-    //     return 0
-    //   }
-    // },
     categorySiryosSort() {
       return sortMethod(this.categorySiryos, 'asc', 'position')
     },
     siryos() {
-      // return this.$store.getters.material.filter(
-      //   item => item.categoryId === this.categorySiryoId
-      // )
       return this.$store.getters.material.filter(
         item => item.undergroupId === this.categorySiryoId
       )

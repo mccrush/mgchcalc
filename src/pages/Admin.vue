@@ -5,7 +5,6 @@
       v-model:categoryId="categoryId"
       v-model:searchText="searchText"
       v-model:sortType="sortType"
-      v-model:procent="procent"
       @add-item="addItem"
     />
     <AdminForms
@@ -35,30 +34,12 @@ export default {
       razdel: localStorage.getItem('cl-razdel') || 'obrabotkavid',
       categoryId: localStorage.getItem('cl-categoryId') || '',
       searchText: '',
-      sortType: 'asc',
-      procent: 0
+      sortType: 'asc'
     }
   },
-  mounted() {
-    // console.log('mn razdel:', this.razdel)
-    // console.log('mn categoryId:', this.categoryId)
-    // console.log('mn searchText:', this.searchText)
-    // console.log('mn sortType:', this.sortType)
-    // setTimeout(() => {
-    //   this.procent = this.materialProcent
-    // }, 1000)
-  },
-  // computed: {
-  //   materialProcent() {
-  //     if (this.$store.getters.procent.length) {
-  //       return this.$store.getters.procent[0].value
-  //     }
-  //   }
-  // },
+  mounted() {},
   methods: {
     addItem() {
-      //const item = createItem(this.razdel, this.categoryId)
-      //const item = Object.assign({}, createItem(this.razdel, this.categoryId))
       const item = createItem(this.razdel, this.categoryId)
       console.log('addItem new item:', item)
       this.$store.dispatch('addItem', { item })
@@ -93,17 +74,6 @@ export default {
     sortType(n, o) {
       //console.log('sortType n:', this.sortType)
     }
-    // procent(n, o) {
-    //   console.log('procent n:', this.procent)
-    //   if (n !== this.materialProcent) {
-    //     const item = {
-    //       type: 'procent',
-    //       id: '1639495120848',
-    //       value: this.procent
-    //     }
-    //     this.$store.dispatch('updateItem', { item })
-    //   }
-    // }
   }
 }
 </script>
