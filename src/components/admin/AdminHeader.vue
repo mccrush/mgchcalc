@@ -32,16 +32,16 @@
     </div>
     <!---->
     <div class="col-3 col-sm-4 col-md-2 col-lg-1 mt-2 mt-md-0 pe-0">
-      <ButtonSort
+      <!-- <ButtonSort
         v-model:sortType="sortType"
         @click="$emit('update:sortType', sortType)"
-      />
+      /> -->
     </div>
     <div class="col-9 col-sm-4 col-md-3 mt-2 mt-md-0 pe-sm-0">
-      <InputSearch
+      <!-- <InputSearch
         v-model:searchText="searchText"
         @input="$emit('update:searchText', searchText)"
-      />
+      /> -->
     </div>
     <div class="col-12 col-sm-4 col-md-2 mt-2 mt-md-0">
       <ButtonAdd
@@ -57,14 +57,12 @@
 <script>
 import razdels from './../../data/razdelsForAdmin'
 
-import ButtonSort from './../elements/buttons/ButtonSort.vue'
-import InputSearch from './../elements/inputs/InputSearch.vue'
+//import ButtonSort from './../elements/buttons/ButtonSort.vue'
+//import InputSearch from './../elements/inputs/InputSearch.vue'
 import ButtonAdd from './../elements/buttons/ButtonAdd.vue'
 
 export default {
   components: {
-    ButtonSort,
-    InputSearch,
     ButtonAdd
   },
   props: ['razdel', 'categoryId', 'searchText', 'sortType'],
