@@ -15,6 +15,10 @@
             <div class="d-flex align-items-center mt-1 mt-sm-0">
               <ButtonEdit
                 class="border-0"
+                :class="{
+                  'bg-warning':
+                    showForm && modification.id === selectModificationId
+                }"
                 @click.stop="editModification(modification.id)"
               />
               <ButtonCopy
@@ -67,7 +71,7 @@ export default {
   },
   methods: {
     getPostavshikTitle(id) {
-      if (id) {
+      if (id && this.$store.getters.postavshik.length) {
         return this.$store.getters.postavshik.find(item => item.id === id).title
       } else {
         return 'Нет поставщика'

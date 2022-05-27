@@ -103,7 +103,7 @@
     <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <select
-          class="form-select"
+          class="form-select form-select-sm"
           id="inputPostavshikId"
           v-model="item.postavchikId"
           @change="$emit('save-item')"
