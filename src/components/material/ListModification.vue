@@ -7,13 +7,16 @@
           :key="modification.id"
           class="list-group-item lh-1 p-1 ps-1 pe-1"
         >
-          <div class="d-flex justify-content-between align-items-center mb-1">
+          <div class="d-flex justify-content-between align-items-center">
             <span class="small"
               >{{ getPostavshikTitle(modification.postavshikId) }} -
               {{ modification.title }}</span
             >
             <div class="d-flex align-items-center mt-1 mt-sm-0">
-              <ButtonEdit class="border-0" @click.stop="showForm = !showForm" />
+              <ButtonEdit
+                class="border-0"
+                @click.stop="editModification(modification.id)"
+              />
               <ButtonCopy
                 class="border-0"
                 @click.stop="copyInBuffer(modification.title)"
@@ -25,7 +28,7 @@
             </div>
           </div>
           <FormModification
-            v-show="showForm"
+            v-show="showForm && modification.id === selectModificationId"
             :modification="modification"
             :ed="ed"
             @update-modification="updateModification"
@@ -58,7 +61,8 @@ export default {
   data() {
     return {
       ed,
-      showForm: false
+      showForm: false,
+      selectModificationId: ''
     }
   },
   methods: {
@@ -68,6 +72,11 @@ export default {
       } else {
         return 'Нет поставщика'
       }
+    },
+
+    editModification(id) {
+      this.showForm = !this.showForm
+      this.selectModificationId = id
     },
 
     updateModification() {

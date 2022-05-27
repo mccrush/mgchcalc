@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row mt-1">
     <!-- Название Модификации -->
     <div class="col-12">
       <form @submit.prevent class="form-floating">
@@ -39,7 +39,7 @@
     <div class="col-4 mt-2 ps-1 pe-1">
       <form @submit.prevent class="form-floating">
         <select
-          class="form-select"
+          class="form-select form-select-sm"
           id="inputEd"
           v-model="modification.ed"
           @change="$emit('update-modification')"

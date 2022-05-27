@@ -27,7 +27,7 @@
     <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <select
-          class="form-select"
+          class="form-select form-select-sm"
           id="inputUndergroup"
           v-model="item.undergroupId"
           @change="$emit('save-item')"
@@ -48,7 +48,7 @@
     <div class="col-6 mt-2 pe-1">
       <form @submit.prevent class="form-floating">
         <select
-          class="form-select"
+          class="form-select form-select-sm"
           id="inputEd"
           v-model="item.ed"
           @change="$emit('save-item')"
