@@ -50,8 +50,8 @@
         <select
           class="form-select"
           id="inputEd"
-          v-model.number="item.ed"
-          @blur="$emit('save-item')"
+          v-model="item.ed"
+          @change="$emit('save-item')"
         >
           <option v-for="e in ed" :key="e" :value="e">{{ e }}</option>
         </select>

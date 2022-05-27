@@ -1,41 +1,34 @@
 <template>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 d-flex justify-content-end">
       <ButtonAdd @click="addNewModification" />
     </div>
-    <div v-if="showForm" class="col-12">
-      <FormModification />
-    </div>
     <div class="col-12">
-      <ListModification />
+      <ListModification :item="this.item" />
     </div>
   </div>
 </template>
 
 <script>
-import ButtonAdd from './../elements/buttons/ButtonAdd.vue'
-import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
+import Modification from './../../classes/modificationClass'
 
+import ButtonAdd from './../elements/buttons/ButtonAdd.vue'
 import ListModification from './ListModification.vue'
-import FormModification from './FormModification.vue'
 
 export default {
   components: {
     ButtonAdd,
-    ButtonTrash,
-    ListModification,
-    FormModification
+    ListModification
   },
   props: ['item'],
-  emits: ['save-item'],
-  data() {
-    return {
-      showForm: false
-    }
-  },
   methods: {
     addNewModification() {
-      this.showForm = true
+      if (!this.item.modifications) {
+        this.item.modifications = []
+      }
+      const newModification = Object.assign({}, new Modification())
+      this.item.modifications.push(newModification)
+      this.$store.dispatch('updateItem', { item: this.item })
     }
   }
 }
