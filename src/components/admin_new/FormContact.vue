@@ -52,11 +52,12 @@
     <!-- Список Форм Контактов -->
     <div
       v-if="this.item.contacts && this.item.contacts.length"
-      class="col-12 col-xxl-6 mt-2 ps-xxl-1"
+      class="col-12 col-xxl-6 ps-xxl-1"
     >
       <div
         v-for="formContact in sortContactForms(this.item.contacts)"
         :key="formContact.id"
+        class="mt-2"
       >
         <form @submit.prevent class="form-floating">
           <input

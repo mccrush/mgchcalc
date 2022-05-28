@@ -6,7 +6,12 @@
         <component :is="adminList" />
       </div>
       <div class="col-9 ps-0 mt-2">
-        <component v-if="item" :item="item" :is="adminForm" />
+        <component
+          v-if="item"
+          :item="item"
+          :is="adminForm"
+          @save-item="saveItem"
+        />
       </div>
     </div>
   </div>
@@ -58,17 +63,15 @@ export default {
         return null
       }
     }
-  }
-  // methods: {
-  //   saveItem({ item }) {
-  //     if (item.title || item.name) {
-  //       this.$store.dispatch('updateItem', { item })
-  //     }
-  //   },
+  },
+  methods: {
+    saveItem() {
+      this.$store.dispatch('updateItem', { item: this.item })
+    }
 
-  //   removeItem(id) {
-  //     this.$store.dispatch('removeItem', { type: this.type, id })
-  //   }
-  // }
+    // removeItem(id) {
+    //   this.$store.dispatch('removeItem', { type: this.type, id })
+    // }
+  }
 }
 </script>
