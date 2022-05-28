@@ -242,7 +242,7 @@
 
 <script>
 import { contactFields } from './../../data/contactFields'
-import Contact from './../../classes/contactClass'
+import ContactField from './../../classes/contactFieldClass'
 import sortMethod from './../../scripts/sortMethod'
 
 export default {
@@ -268,7 +268,7 @@ export default {
         const position = this.item.contacts.length + 1
         const newContactField = Object.assign(
           {},
-          new Contact(this.fieldTitle, this.fieldDescription, position)
+          new ContactField(this.fieldTitle, this.fieldDescription, position)
         )
 
         this.item.contacts.push(newContactField)

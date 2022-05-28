@@ -34,7 +34,6 @@ import FormObrabotkatolshina from './forms/FormObrabotkaTolshina.vue'
 import FormDopuslug from './forms/FormDopuslug.vue'
 import FormContact from './forms/FormContact.vue'
 import FormCompany from './forms/FormCompany.vue'
-import FormPostavshik from './forms/FormPostavshik.vue'
 
 export default {
   components: {
@@ -42,8 +41,7 @@ export default {
     FormObrabotkatolshina,
     FormDopuslug,
     FormContact,
-    FormCompany,
-    FormPostavshik
+    FormCompany
   },
   props: ['type', 'categoryId', 'searchText', 'sortType'],
   emits: ['save-item', 'remove-item'],
