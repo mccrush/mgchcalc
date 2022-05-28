@@ -37,10 +37,6 @@ export default {
       return this.$store.getters.adminRazdel
     },
 
-    adminList() {
-      return this.$store.getters.adminList
-    },
-
     adminForm() {
       return this.$store.getters.adminForm
     },

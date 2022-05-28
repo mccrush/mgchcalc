@@ -35,7 +35,8 @@ export default {
   data() {
     return {
       razdels,
-      newAdminRazdel: ''
+      newAdminRazdel: '',
+      adminClass: ''
     }
   },
   mounted() {
@@ -54,12 +55,19 @@ export default {
       })
 
       this.$store.commit('setAdminValue', {
-        type: 'adminList',
+        type: 'adminClass',
         value:
-          'List' +
           this.newAdminRazdel.substring(0, 1).toUpperCase() +
           this.newAdminRazdel.substring(1)
       })
+
+      // this.$store.commit('setAdminValue', {
+      //   type: 'adminList',
+      //   value:
+      //     'List' +
+      //     this.newAdminRazdel.substring(0, 1).toUpperCase() +
+      //     this.newAdminRazdel.substring(1)
+      // })
 
       this.$store.commit('setAdminValue', {
         type: 'adminForm',
@@ -68,10 +76,14 @@ export default {
           this.newAdminRazdel.substring(0, 1).toUpperCase() +
           this.newAdminRazdel.substring(1)
       })
+
+      this.adminClass =
+        this.newAdminRazdel.substring(0, 1).toUpperCase() +
+        this.newAdminRazdel.substring(1)
     },
 
     addNewItem() {
-      const item = Object.assign({}, new Contact())
+      const item = Object.assign({}, createAdminItem())
       this.$store.dispatch('addItem', { item })
     }
   }
