@@ -18,7 +18,11 @@
     > -->
 
   <div class="accordion accordion-flush" id="accordionGroup">
-    <div v-for="group in groups" :key="group.id" class="accordion-item">
+    <div
+      v-for="group in sortGroups(groups)"
+      :key="group.id"
+      class="accordion-item"
+    >
       <h2 class="accordion-header" :id="'heading' + group.id">
         <button
           class="
@@ -103,6 +107,7 @@
 <script>
 import 'bootstrap/js/dist/collapse'
 
+import sortMethod from './../../scripts/sortMethod'
 import Undergroup from './../../classes/undergroupClass'
 
 import ListUndergroup from './ListUndergroup.vue'
@@ -129,6 +134,9 @@ export default {
     }
   },
   methods: {
+    sortGroups(groups) {
+      return sortMethod(groups, 'asc', 'position')
+    },
     setMaterialGroupId(id) {
       this.$store.commit('setMaterialValue', {
         type: 'materialGroupId',
