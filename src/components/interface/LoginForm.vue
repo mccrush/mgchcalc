@@ -25,6 +25,7 @@
         v-model="password"
         ref="pass"
         maxlength="20"
+        @keyup.enter="login"
       />
 
       <button
