@@ -104,7 +104,7 @@ export default {
       return this.$store.getters.userData
     },
     myComponent() {
-      if (this.userId) {
+      if (this.userId && this.userData) {
         if (this.pathname === 'admin' && this.userData.role === '1') {
           return 'Admin'
         } else if (this.pathname === 'calc') {
