@@ -3,7 +3,6 @@
     <div class="row">
       <div class="col-12"><AdminHeader /></div>
       <div class="col-3 mt-2">
-        <!-- <component :is="adminList" /> -->
         <AdminList />
       </div>
       <div class="col-9 ps-0 mt-2">
@@ -67,10 +66,6 @@ export default {
     saveItem() {
       this.$store.dispatch('updateItem', { item: this.item })
     }
-
-    // removeItem(id) {
-    //   this.$store.dispatch('removeItem', { type: this.type, id })
-    // }
   }
 }
 </script>
