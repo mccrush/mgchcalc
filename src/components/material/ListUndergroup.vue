@@ -1,7 +1,7 @@
 <template>
   <ul class="list-group list-group-flush">
     <li
-      v-for="undergroup in undergroups"
+      v-for="undergroup in sortUndergroup(undergroups)"
       :key="undergroup.id"
       class="
         cursor-pointer
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import sortMethod from './../../scripts/sortMethod'
+
 import ButtonEdit from './../elements/buttons/ButtonEdit.vue'
 import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
 
@@ -53,6 +55,10 @@ export default {
     }
   },
   methods: {
+    sortUndergroup(undergroups) {
+      return sortMethod(undergroups, 'asc', 'position')
+    },
+
     setMaterialUndergroupId(id) {
       this.$store.commit('setMaterialValue', {
         type: 'materialUndergroupId',
@@ -63,6 +69,7 @@ export default {
         value: 'show'
       })
     },
+
     setMaterialMode() {
       this.$store.commit('setMaterialValue', {
         type: 'materialMode',
@@ -73,6 +80,7 @@ export default {
         value: 'FormUndergroup'
       })
     },
+
     removeUndergroup(type, id) {
       if (
         confirm(
