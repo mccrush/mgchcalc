@@ -132,7 +132,7 @@ export default {
       return this.$store.getters.undergroup
     },
     categorySiryosSort() {
-      return sortMethod(this.categorySiryos, 'asc', 'position')
+      return sortMethod(this.categorySiryos, 'asc', 'title')
     },
     siryos() {
       return this.$store.getters.material.filter(
