@@ -10,5 +10,6 @@ export default class Contact {
     this.contactName = ''
     this.contactNickname = ''
     this.contacts = []
+    this.companyId = ''
   }
 }

@@ -265,6 +265,9 @@ export default {
 
     addNewContactField() {
       if (this.fieldDescription) {
+        if (!this.item.contacts) {
+          this.item.contacts = []
+        }
         const position = this.item.contacts.length + 1
         const newContactField = Object.assign(
           {},
