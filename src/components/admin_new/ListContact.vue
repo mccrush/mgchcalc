@@ -6,6 +6,7 @@
           v-for="contact in contacts"
           :key="contact.id"
           class="cursor-pointer list-group-item small lh-1"
+          :class="{ active: contact.id === adminItemId }"
           @click="setAdminItemId(contact.id)"
         >
           {{ contact.title }}
@@ -20,6 +21,9 @@ export default {
   computed: {
     contacts() {
       return this.$store.getters.contact
+    },
+    adminItemId() {
+      return this.$store.getters.adminItemId
     }
   },
   methods: {
@@ -32,3 +36,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.list-group-item.active {
+  color: #212529;
+  background-color: #bccee4;
+  border-color: #bccee4;
+}
+</style>
