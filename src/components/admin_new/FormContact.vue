@@ -6,11 +6,11 @@
         <input
           type="text"
           class="form-control form-control-sm"
-          id="inputContactName"
-          v-model.trim="item.contactName"
+          id="inputTitle"
+          v-model.trim="item.title"
           @change="$emit('save-item')"
         />
-        <label for="inputContactName">Имя контакта</label>
+        <label for="inputTitle">Имя контакта</label>
       </form>
     </div>
 

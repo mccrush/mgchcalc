@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col-12"><AdminHeader /></div>
       <div class="col-3 mt-2">
-        <component :is="adminList" />
+        <!-- <component :is="adminList" /> -->
+        <AdminList />
       </div>
       <div class="col-9 ps-0 mt-2">
         <component
@@ -19,16 +20,14 @@
 
 <script>
 import AdminHeader from './../components/admin_new/AdminHeader.vue'
-import ListContact from './../components/admin_new/ListContact.vue'
-import ListObrabotkavid from './../components/admin_new/ListObrabotkavid.vue'
+import AdminList from './../components/admin_new/AdminList.vue'
 
 import FormContact from './../components/admin_new/FormContact.vue'
 
 export default {
   components: {
     AdminHeader,
-    ListContact,
-    ListObrabotkavid,
+    AdminList,
     FormContact
   },
   data() {

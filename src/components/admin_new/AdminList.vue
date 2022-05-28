@@ -3,8 +3,8 @@
     <div class="col-12">
       <ul class="list-group">
         <li
-          v-for="contact in contacts"
-          :key="contact.id"
+          v-for="adminItem in adminItems"
+          :key="adminItem.id"
           class="
             cursor-pointer
             list-group-item
@@ -16,13 +16,13 @@
             p-1
             ps-2
           "
-          :class="{ active: contact.id === adminItemId }"
-          @click="setAdminItemId(contact.id)"
+          :class="{ active: adminItem.id === adminItemId }"
+          @click="setAdminItemId(adminItem.id)"
         >
-          <span>{{ contact.contactName }}</span>
+          <span>{{ adminItem.title }}</span>
           <div>
             <ButtonTrash
-              @click.stop="removeContact(contact.type, contact.id)"
+              @click.stop="removeContact(adminItem.type, adminItem.id)"
               class="my-btn-hide border-0"
             />
           </div>
@@ -40,9 +40,14 @@ export default {
     ButtonTrash
   },
   computed: {
-    contacts() {
-      return this.$store.getters.contact
+    adminRazdel() {
+      return this.$store.getters.adminRazdel
     },
+
+    adminItems() {
+      return this.$store.getters[this.adminRazdel]
+    },
+
     adminItemId() {
       return this.$store.getters.adminItemId
     }
