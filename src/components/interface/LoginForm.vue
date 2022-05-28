@@ -53,16 +53,34 @@
     </div>
 
     <button class="btn btn-success w-100 mt-3" @click="login">Войти</button>
+    <transition name="fade" mode="out-in">
+      <LoginMessage
+        v-if="showMessage"
+        :message="loginMessage.text"
+        :class="loginMessage.type"
+      />
+    </transition>
   </div>
 </template>
 
 <script>
+import LoginMessage from './LoginMessage.vue'
+
 export default {
+  components: {
+    LoginMessage
+  },
   data() {
     return {
       email: '',
       password: '',
-      passType: true
+      passType: true,
+      showMessage: false
+    }
+  },
+  computed: {
+    loginMessage() {
+      return this.$store.getters.loginMessage || ''
     }
   },
   methods: {
@@ -73,8 +91,37 @@ export default {
       }
 
       if (this.email && this.password) {
-        await this.$store.dispatch('logIn', formData)
-        // this.$emit('log-in')
+        try {
+          await this.$store.dispatch('logIn', formData)
+        } catch (err) {
+          if (err.code === 'auth/invalid-email') {
+            this.$store.commit('addMessage', 'lee')
+          } else if (err.code === 'auth/invalid-password') {
+            this.$store.commit('addMessage', 'lpi')
+          } else if (err.code === 'auth/wrong-password') {
+            this.$store.commit('addMessage', 'lpw')
+          } else if (err.code === 'auth/user-not-found') {
+            this.$store.commit('addMessage', 'lun')
+          } else if (err.code === 'auth/too-many-requests') {
+            this.$store.commit('addMessage', 'tmr')
+          } else {
+            this.$store.commit('addMessage', 'err'),
+              console.log('Ошибка:', err.code)
+          }
+        }
+      } else {
+        this.$store.commit('addMessage', 'fin')
+      }
+    }
+  },
+  watch: {
+    loginMessage() {
+      if (this.loginMessage) {
+        this.showMessage = true
+        setTimeout(() => {
+          this.showMessage = false
+          this.$store.commit('addMessage', 'null')
+        }, 3600)
       }
     }
   }

@@ -24,7 +24,7 @@ export default {
         const user = await getDoc(docRef)
         commit('setUserData', user.data())
       } catch (err) {
-        console.log('user.js getUserData(): Ошибка при получении данных пользователя, err:', error)
+        console.error('user.js getUserData(): Ошибка при получении данных пользователя, err:', err)
         throw err
       }
     },
@@ -32,15 +32,15 @@ export default {
       try {
         await signInWithEmailAndPassword(auth, email, password)
       } catch (err) {
-        console.log('user.js logIn(): Ошибка при входе в систему, err:', error)
+        console.error('user.js logIn(): Ошибка при входе в систему, err:', err)
         throw err
       }
     },
     async logOut({ commit }) {
       try {
         await signOut(auth)
-      } catch (error) {
-        console.log('user.js logOut(): Ошибка при выходе из системы, err:', error)
+      } catch (err) {
+        console.error('user.js logOut(): Ошибка при выходе из системы, err:', err)
       }
     }
   },

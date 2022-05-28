@@ -7,6 +7,7 @@ import realtime from './modules/realtime'
 import fileloader from './modules/fileloader'
 import showarchive from './modules/showarchive'
 import pageMaterial from './modules/pageMaterial'
+import loginMessage from './modules/loginMessage'
 
 export default createStore({
   modules: {
@@ -16,7 +17,8 @@ export default createStore({
     realtime,
     fileloader,
     showarchive,
-    pageMaterial
+    pageMaterial,
+    loginMessage
   },
   actions: {
     updateItemStatus({ dispatch, getters }, { item }) {
