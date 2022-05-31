@@ -102,7 +102,13 @@ export default {
   methods: {
     getPostavshikTitle(id) {
       if (id && this.$store.getters.postavshik.length) {
-        return this.$store.getters.postavshik.find(item => item.id === id).title
+        const postavshik =
+          this.$store.getters.postavshik.find(item => item.id === id) || null
+        if (postavshik) {
+          return postavshik.title
+        } else {
+          return 'Нет поставщика'
+        }
       } else {
         return 'Нет поставщика'
       }
