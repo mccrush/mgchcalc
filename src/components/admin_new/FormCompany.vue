@@ -14,8 +14,8 @@
       </form>
     </div>
 
-    <div class="col-6 d-flex align-items-center ps-1">
-      <h5 class="text-center">Список сотрудников</h5>
+    <div class="col-6 d-flex align-items-center justify-content-center ps-1">
+      <h6>Список сотрудников</h6>
     </div>
 
     <div class="col-12">
@@ -150,7 +150,60 @@
             </div>
           </div>
         </div>
-        <div class="col-6 ps-1"></div>
+
+        <div class="col-6 ps-1">
+          <!-- Список Сотрудников -->
+          <ul class="list-group">
+            <li
+              v-for="sotrudnik in sotrudniks"
+              :key="sotrudnik.id"
+              class="
+                list-group-item
+                d-flex
+                justify-content-between
+                align-items-center
+                small
+                lh-1
+                p-1
+                ps-2
+              "
+            >
+              <span>{{ sotrudnik.title }}</span>
+              <div>
+                <ButtonTrash
+                  @click.stop="removeSotrudnik(sotrudnik.type, sotrudnik.id)"
+                  class="my-btn-hide border-0"
+                />
+              </div>
+            </li>
+          </ul>
+
+          <!-- Добавление нового Сотрудника (контакта) -->
+          <div class="col-12 mt-2">
+            <div class="input-group input-group-sm">
+              <select
+                v-model="newSotrudnikId"
+                class="form-select rounded-0 rounded-top w-100"
+              >
+                <option selected>Выберите сотрудника</option>
+                <option
+                  v-for="contact in contacts"
+                  :key="'key' + contact"
+                  :value="contact.id"
+                >
+                  {{ contact.title }}
+                </option>
+              </select>
+              <button
+                class="btn btn-outline-success rounded-0 rounded-bottom w-100"
+                type="button"
+                @click="addNewSotrudnik"
+              >
+                Добавить сотрудника
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -178,20 +231,26 @@ import { fieldsCompany } from './../../data/fieldsCompany'
 import FieldClass from './../../classes/fieldClass'
 import sortMethod from './../../scripts/sortMethod'
 
+import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
+
 export default {
-  components: {},
+  components: { ButtonTrash },
   props: ['item'],
   emits: ['save-item'],
   data() {
     return {
       fieldsContact: fieldsContact.concat(fieldsCompany),
       fieldTitle: 'Выберите тип поля',
-      fieldDescription: ''
+      fieldDescription: '',
+      newSotrudnikId: ''
     }
   },
   computed: {
     contacts() {
       return this.$store.getters.contact
+    },
+    sotrudniks() {
+      return this.contacts.filter(item => item.companyId === this.item.id)
     }
   },
   mounted() {
@@ -202,6 +261,15 @@ export default {
       return sortMethod(itemContacts, 'asc', 'position')
     },
 
+    // Методы работы с Сотрудниками
+    addNewSotrudnik() {
+      const id = this.newSotrudnikId
+      const newSotrudnik = this.contacts.find(item => item.id === id) || null
+      newSotrudnik.companyId = this.item.id
+      this.$store.dispatch('updateItem', { item: newSotrudnik })
+    },
+
+    // Методы добавления Полей
     addNewContactField() {
       if (this.fieldDescription) {
         if (!this.item.fields) {
