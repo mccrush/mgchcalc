@@ -83,7 +83,8 @@ export default {
     },
 
     addNewItem() {
-      const item = Object.assign({}, createAdminItem())
+      // Здесь необходим универсальный метод для создания всех типов данных
+      const item = Object.assign({}, new Contact())
       this.$store.dispatch('addItem', { item })
     }
   }

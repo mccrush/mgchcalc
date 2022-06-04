@@ -171,7 +171,7 @@
               <span>{{ sotrudnik.title }}</span>
               <div>
                 <ButtonTrash
-                  @click.stop="removeSotrudnik(sotrudnik.type, sotrudnik.id)"
+                  @click.stop="removeSotrudnikFromCompany(sotrudnik.id)"
                   class="my-btn-hide border-0"
                 />
               </div>
@@ -185,7 +185,6 @@
                 v-model="newSotrudnikId"
                 class="form-select rounded-0 rounded-top w-100"
               >
-                <option selected>Выберите сотрудника</option>
                 <option
                   v-for="contact in contacts"
                   :key="'key' + contact"
@@ -267,6 +266,12 @@ export default {
       const newSotrudnik = this.contacts.find(item => item.id === id) || null
       newSotrudnik.companyId = this.item.id
       this.$store.dispatch('updateItem', { item: newSotrudnik })
+    },
+
+    removeSotrudnikFromCompany(id) {
+      const sotrudnik = this.contacts.find(item => item.id === id) || null
+      sotrudnik.companyId = ''
+      this.$store.dispatch('updateItem', { item: sotrudnik })
     },
 
     // Методы добавления Полей
