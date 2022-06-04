@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <!-- Имя Кнтакта -->
+    <!-- Название компании -->
     <div class="col-6 pe-1">
       <form @submit.prevent class="form-floating">
         <input
@@ -10,52 +10,17 @@
           v-model.trim="item.title"
           @change="$emit('save-item')"
         />
-        <label for="inputTitle">Имя контакта</label>
-      </form>
-    </div>
-
-    <!-- Псевдоним Кнтакта -->
-    <div class="col-6 ps-1">
-      <form @submit.prevent class="form-floating">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          id="inputContactNickname"
-          v-model.trim="item.contactNickname"
-          @change="$emit('save-item')"
-        />
-        <label for="inputContactNickname">Псевдоним контакта</label>
-      </form>
-    </div>
-
-    <!-- Компания -->
-    <div class="col-12 col-xxl-6 mt-2 pe-xxl-1">
-      <form @submit.prevent class="form-floating">
-        <select
-          class="form-select form-select-sm"
-          id="inputCompany"
-          v-model="item.companyId"
-          @change="$emit('save-item')"
-        >
-          <option
-            v-for="company in companys"
-            :key="company.id"
-            :value="company.id"
-          >
-            {{ company.title }}
-          </option>
-        </select>
-        <label for="inputCompany">Компания</label>
+        <label for="inputTitle">Название компании</label>
       </form>
     </div>
 
     <!-- Список Форм Контактов -->
     <div
-      v-if="this.item.contacts && this.item.contacts.length"
+      v-if="this.item.field && this.item.field.length"
       class="col-12 col-xxl-6 ps-xxl-1"
     >
       <div
-        v-for="formContact in sortContactForms(this.item.contacts)"
+        v-for="formContact in sortContactForms(this.item.field)"
         :key="formContact.id"
         class="mt-2"
       >
@@ -155,7 +120,7 @@
         >
           <option selected>Выберите тип поля</option>
           <option
-            v-for="field in contactFields"
+            v-for="field in fieldsContact"
             :key="'key' + field"
             :value="field"
           >
@@ -197,8 +162,9 @@
 
 
 <script>
-import { contactFields } from './../../data/contactFields'
-import ContactField from './../../classes/contactFieldClass'
+import { fieldsContact } from './../../data/fieldsContact'
+import { fieldsCompany } from './../../data/fieldsCompany'
+import FieldClass from './../../classes/fieldClass'
 import sortMethod from './../../scripts/sortMethod'
 
 export default {
@@ -207,14 +173,14 @@ export default {
   emits: ['save-item'],
   data() {
     return {
-      contactFields,
+      fieldsContact: fieldsContact.concat(fieldsCompany),
       fieldTitle: 'Выберите тип поля',
       fieldDescription: ''
     }
   },
   computed: {
-    companys() {
-      return this.$store.getters.company
+    contacts() {
+      return this.$store.getters.contact
     }
   },
   mounted() {
@@ -227,16 +193,16 @@ export default {
 
     addNewContactField() {
       if (this.fieldDescription) {
-        if (!this.item.contacts) {
-          this.item.contacts = []
+        if (!this.item.field) {
+          this.item.field = []
         }
-        const position = this.item.contacts.length + 1
+        const position = this.item.field.length + 1
         const newContactField = Object.assign(
           {},
-          new ContactField(this.fieldTitle, this.fieldDescription, position)
+          new FieldClass(this.fieldTitle, this.fieldDescription, position)
         )
 
-        this.item.contacts.push(newContactField)
+        this.item.field.push(newContactField)
         this.fieldTitle = 'Выберите тип поля'
         this.fieldDescription = ''
 
@@ -245,23 +211,23 @@ export default {
     },
 
     removeFormContact(id) {
-      this.item.contacts = this.item.contacts.filter(item => item.id !== id)
+      this.item.field = this.item.field.filter(item => item.id !== id)
       this.$emit('save-item')
     },
 
     updateFormContactPositionUp(id) {
-      const formItemIndex = this.item.contacts.findIndex(item => item.id === id)
-      let formItem = this.item.contacts[formItemIndex]
+      const formItemIndex = this.item.field.findIndex(item => item.id === id)
+      let formItem = this.item.field[formItemIndex]
       formItem.position = formItem.position - 1
-      this.item.contacts[formItemIndex] = formItem
+      this.item.field[formItemIndex] = formItem
       this.$emit('save-item')
     },
 
     updateFormContactPositionDown(id) {
-      const formItemIndex = this.item.contacts.findIndex(item => item.id === id)
-      let formItem = this.item.contacts[formItemIndex]
+      const formItemIndex = this.item.field.findIndex(item => item.id === id)
+      let formItem = this.item.field[formItemIndex]
       formItem.position = formItem.position + 1
-      this.item.contacts[formItemIndex] = formItem
+      this.item.field[formItemIndex] = formItem
       this.$emit('save-item')
     },
 

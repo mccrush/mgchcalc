@@ -22,12 +22,14 @@ import AdminHeader from './../components/admin_new/AdminHeader.vue'
 import AdminList from './../components/admin_new/AdminList.vue'
 
 import FormContact from './../components/admin_new/FormContact.vue'
+import FormCompany from './../components/admin_new/FormCompany.vue'
 
 export default {
   components: {
     AdminHeader,
     AdminList,
-    FormContact
+    FormContact,
+    FormCompany
   },
   data() {
     return {}
