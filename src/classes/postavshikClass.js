@@ -8,5 +8,6 @@ export default class Postavshik {
     this.description = ''
     this.position = 1
     this.contacts = []
+    this.fields = []
   }
 }

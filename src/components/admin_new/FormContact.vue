@@ -28,153 +28,160 @@
       </form>
     </div>
 
-    <!-- Компания -->
-    <div class="col-12 col-xxl-6 mt-2 pe-xxl-1">
-      <form @submit.prevent class="form-floating">
-        <select
-          class="form-select form-select-sm"
-          id="inputCompany"
-          v-model="item.companyId"
-          @change="$emit('save-item')"
-        >
-          <option
-            v-for="company in companys"
-            :key="company.id"
-            :value="company.id"
+    <div class="col-12">
+      <div class="row">
+        <div class="col-6 pe-1">
+          <!-- Список Форм Контактов -->
+          <div
+            v-if="this.item.fields && this.item.fields.length"
+            class="col-12"
           >
-            {{ company.title }}
-          </option>
-        </select>
-        <label for="inputCompany">Компания</label>
-      </form>
-    </div>
-
-    <!-- Список Форм Контактов -->
-    <div
-      v-if="this.item.field && this.item.field.length"
-      class="col-12 col-xxl-6 ps-xxl-1"
-    >
-      <div
-        v-for="formContact in sortContactForms(this.item.field)"
-        :key="formContact.id"
-        class="mt-2"
-      >
-        <form @submit.prevent class="form-floating">
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            :id="'input' + formContact.title"
-            v-model.trim="formContact.description"
-            @change="$emit('save-item')"
-          />
-          <label :for="'input' + formContact.title">{{
-            formContact.title
-          }}</label>
-          <span class="label-edit-buttons">
-            <button
-              class="
-                btn btn-sm btn-outline-light
-                text-secondary
-                lh-1
-                p-1
-                ps-1
-                pe-1
-              "
-              title="Копировать"
-              @click="copyInBuffer(formContact.description)"
+            <div
+              v-for="formContact in sortContactForms(this.item.fields)"
+              :key="formContact.id"
+              class="mt-2"
             >
-              &#10063;
-            </button>
-            <button
-              class="
-                btn btn-sm btn-outline-light
-                text-secondary
-                lh-1
-                p-1
-                ps-1
-                pe-1
-              "
-              @click="updateFormContactPositionUp(formContact.id)"
-            >
-              &#8743;
-            </button>
+              <form @submit.prevent class="form-floating">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  :id="'input' + formContact.title"
+                  v-model.trim="formContact.description"
+                  @change="$emit('save-item')"
+                />
+                <label :for="'input' + formContact.title">{{
+                  formContact.title
+                }}</label>
+                <span class="label-edit-buttons">
+                  <button
+                    class="
+                      btn btn-sm btn-outline-light
+                      text-secondary
+                      lh-1
+                      p-1
+                      ps-1
+                      pe-1
+                    "
+                    title="Копировать"
+                    @click="copyInBuffer(formContact.description)"
+                  >
+                    &#10063;
+                  </button>
+                  <button
+                    class="
+                      btn btn-sm btn-outline-light
+                      text-secondary
+                      lh-1
+                      p-1
+                      ps-1
+                      pe-1
+                    "
+                    @click="updateFormContactPositionUp(formContact.id)"
+                  >
+                    &#8743;
+                  </button>
 
-            <button
-              class="
-                btn btn-sm btn-outline-light
-                text-secondary
-                lh-1
-                p-1
-                ps-1
-                pe-1
-                disabled
-              "
-            >
-              {{ formContact.position }}
-            </button>
+                  <button
+                    class="
+                      btn btn-sm btn-outline-light
+                      text-secondary
+                      lh-1
+                      p-1
+                      ps-1
+                      pe-1
+                      disabled
+                    "
+                  >
+                    {{ formContact.position }}
+                  </button>
 
-            <button
-              class="
-                btn btn-sm btn-outline-light
-                text-secondary
-                lh-1
-                p-1
-                ps-1
-                pe-1
-              "
-              @click="updateFormContactPositionDown(formContact.id)"
-            >
-              &#8744;
-            </button>
+                  <button
+                    class="
+                      btn btn-sm btn-outline-light
+                      text-secondary
+                      lh-1
+                      p-1
+                      ps-1
+                      pe-1
+                    "
+                    @click="updateFormContactPositionDown(formContact.id)"
+                  >
+                    &#8744;
+                  </button>
 
-            <button
-              class="
-                btn btn-sm btn-outline-light
-                text-secondary
-                lh-1
-                p-1
-                ps-1
-                pe-1
-              "
-              title="Удалить поле"
-              @click="removeFormContact(formContact.id)"
-            >
-              &#215;
-            </button>
-          </span>
-        </form>
-      </div>
-    </div>
+                  <button
+                    class="
+                      btn btn-sm btn-outline-light
+                      text-secondary
+                      lh-1
+                      p-1
+                      ps-1
+                      pe-1
+                    "
+                    title="Удалить поле"
+                    @click="removeFormContact(formContact.id)"
+                  >
+                    &#215;
+                  </button>
+                </span>
+              </form>
+            </div>
+          </div>
 
-    <!-- Добавление нового поля контакта -->
-    <div class="col-12 col-xxl-6 mt-2 pe-xxl-1">
-      <div class="input-group input-group-sm">
-        <select
-          v-model="fieldTitle"
-          class="form-select rounded-0 rounded-top w-100"
-        >
-          <option selected>Выберите тип поля</option>
-          <option
-            v-for="field in fieldsContact"
-            :key="'key' + field"
-            :value="field"
-          >
-            {{ field }}
-          </option>
-        </select>
-        <input
-          type="text"
-          class="form-control w-100"
-          placeholder="Введите значение"
-          v-model.trim="fieldDescription"
-        />
-        <button
-          class="btn btn-outline-success rounded-0 rounded-bottom w-100"
-          type="button"
-          @click="addNewContactField"
-        >
-          Добавить поле
-        </button>
+          <!-- Добавление нового поля контакта -->
+          <div class="col-12 mt-2">
+            <div class="input-group input-group-sm">
+              <select
+                v-model="fieldTitle"
+                class="form-select rounded-0 rounded-top w-100"
+              >
+                <option selected>Выберите тип поля</option>
+                <option
+                  v-for="field in fieldsContact"
+                  :key="'key' + field"
+                  :value="field"
+                >
+                  {{ field }}
+                </option>
+              </select>
+              <input
+                type="text"
+                class="form-control w-100"
+                placeholder="Введите значение"
+                v-model.trim="fieldDescription"
+              />
+              <button
+                class="btn btn-outline-success rounded-0 rounded-bottom w-100"
+                type="button"
+                @click="addNewContactField"
+              >
+                Добавить поле
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 ps-1">
+          <!-- Компания -->
+          <div class="col-12 mt-2">
+            <form @submit.prevent class="form-floating">
+              <select
+                class="form-select form-select-sm"
+                id="inputCompany"
+                v-model="item.companyId"
+                @change="$emit('save-item')"
+              >
+                <option
+                  v-for="company in companys"
+                  :key="company.id"
+                  :value="company.id"
+                >
+                  {{ company.title }}
+                </option>
+              </select>
+              <label for="inputCompany">Компания</label>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -227,16 +234,16 @@ export default {
 
     addNewContactField() {
       if (this.fieldDescription) {
-        if (!this.item.field) {
-          this.item.field = []
+        if (!this.item.fields) {
+          this.item.fields = []
         }
-        const position = this.item.field.length + 1
+        const position = this.item.fields.length + 1
         const newContactField = Object.assign(
           {},
           new FieldClass(this.fieldTitle, this.fieldDescription, position)
         )
 
-        this.item.field.push(newContactField)
+        this.item.fields.push(newContactField)
         this.fieldTitle = 'Выберите тип поля'
         this.fieldDescription = ''
 
@@ -245,23 +252,23 @@ export default {
     },
 
     removeFormContact(id) {
-      this.item.field = this.item.field.filter(item => item.id !== id)
+      this.item.fields = this.item.fields.filter(item => item.id !== id)
       this.$emit('save-item')
     },
 
     updateFormContactPositionUp(id) {
-      const formItemIndex = this.item.field.findIndex(item => item.id === id)
-      let formItem = this.item.field[formItemIndex]
+      const formItemIndex = this.item.fields.findIndex(item => item.id === id)
+      let formItem = this.item.fields[formItemIndex]
       formItem.position = formItem.position - 1
-      this.item.field[formItemIndex] = formItem
+      this.item.fields[formItemIndex] = formItem
       this.$emit('save-item')
     },
 
     updateFormContactPositionDown(id) {
-      const formItemIndex = this.item.field.findIndex(item => item.id === id)
-      let formItem = this.item.field[formItemIndex]
+      const formItemIndex = this.item.fields.findIndex(item => item.id === id)
+      let formItem = this.item.fields[formItemIndex]
       formItem.position = formItem.position + 1
-      this.item.field[formItemIndex] = formItem
+      this.item.fields[formItemIndex] = formItem
       this.$emit('save-item')
     },
 
