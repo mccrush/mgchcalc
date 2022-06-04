@@ -1,1 +1,0 @@
-export const contactFields = ['Адрес', 'Контакт', 'Телефон', 'Email', 'WhatsApp', 'Telegram']

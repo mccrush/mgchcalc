@@ -8,7 +8,7 @@ export default class Contact {
     this.description = ''
     this.position = 1
     this.contactNickname = ''
-    this.contacts = []
+    this.fields = []
     this.companyId = ''
   }
 }

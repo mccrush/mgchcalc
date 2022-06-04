@@ -1,0 +1,1 @@
+export const fieldsCompany = ['ИНН', 'КПП', 'ОГРН', 'БИК', 'Р/С', 'К/С']

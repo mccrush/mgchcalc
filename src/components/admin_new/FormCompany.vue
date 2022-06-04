@@ -51,11 +51,11 @@
 
     <!-- Список Форм Контактов -->
     <div
-      v-if="this.item.field && this.item.field.length"
+      v-if="this.item.contacts && this.item.contacts.length"
       class="col-12 col-xxl-6 ps-xxl-1"
     >
       <div
-        v-for="formContact in sortContactForms(this.item.field)"
+        v-for="formContact in sortContactForms(this.item.contacts)"
         :key="formContact.id"
         class="mt-2"
       >
@@ -155,7 +155,7 @@
         >
           <option selected>Выберите тип поля</option>
           <option
-            v-for="field in fieldsContact"
+            v-for="field in contactFields"
             :key="'key' + field"
             :value="field"
           >
@@ -197,8 +197,8 @@
 
 
 <script>
-import { fieldsContact } from './../../data/fieldsContact'
-import FieldClass from './../../classes/fieldClass'
+import { contactFields } from './../../data/contactFields'
+import ContactField from './../../classes/contactFieldClass'
 import sortMethod from './../../scripts/sortMethod'
 
 export default {
@@ -207,7 +207,7 @@ export default {
   emits: ['save-item'],
   data() {
     return {
-      fieldsContact,
+      contactFields,
       fieldTitle: 'Выберите тип поля',
       fieldDescription: ''
     }
@@ -227,16 +227,16 @@ export default {
 
     addNewContactField() {
       if (this.fieldDescription) {
-        if (!this.item.field) {
-          this.item.field = []
+        if (!this.item.contacts) {
+          this.item.contacts = []
         }
-        const position = this.item.field.length + 1
+        const position = this.item.contacts.length + 1
         const newContactField = Object.assign(
           {},
-          new FieldClass(this.fieldTitle, this.fieldDescription, position)
+          new ContactField(this.fieldTitle, this.fieldDescription, position)
         )
 
-        this.item.field.push(newContactField)
+        this.item.contacts.push(newContactField)
         this.fieldTitle = 'Выберите тип поля'
         this.fieldDescription = ''
 
@@ -245,23 +245,23 @@ export default {
     },
 
     removeFormContact(id) {
-      this.item.field = this.item.field.filter(item => item.id !== id)
+      this.item.contacts = this.item.contacts.filter(item => item.id !== id)
       this.$emit('save-item')
     },
 
     updateFormContactPositionUp(id) {
-      const formItemIndex = this.item.field.findIndex(item => item.id === id)
-      let formItem = this.item.field[formItemIndex]
+      const formItemIndex = this.item.contacts.findIndex(item => item.id === id)
+      let formItem = this.item.contacts[formItemIndex]
       formItem.position = formItem.position - 1
-      this.item.field[formItemIndex] = formItem
+      this.item.contacts[formItemIndex] = formItem
       this.$emit('save-item')
     },
 
     updateFormContactPositionDown(id) {
-      const formItemIndex = this.item.field.findIndex(item => item.id === id)
-      let formItem = this.item.field[formItemIndex]
+      const formItemIndex = this.item.contacts.findIndex(item => item.id === id)
+      let formItem = this.item.contacts[formItemIndex]
       formItem.position = formItem.position + 1
-      this.item.field[formItemIndex] = formItem
+      this.item.contacts[formItemIndex] = formItem
       this.$emit('save-item')
     },
 
