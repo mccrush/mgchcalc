@@ -24,7 +24,9 @@
 
 <script>
 import razdels from './../../data/razdelsForAdmin'
-import Contact from './../../classes/contactClass'
+//import Contact from './../../classes/contactClass'
+
+import createAdminItem from './../../scripts/createAdminItem'
 
 import ButtonAddSmall from './../elements/buttons/ButtonAddSmall.vue'
 
@@ -84,7 +86,7 @@ export default {
 
     addNewItem() {
       // Здесь необходим универсальный метод для создания всех типов данных
-      const item = Object.assign({}, new Contact())
+      const item = Object.assign({}, createAdminItem(this.adminRazdel))
       this.$store.dispatch('addItem', { item })
     }
   }
