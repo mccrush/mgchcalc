@@ -24,6 +24,7 @@ import AdminList from './../components/admin_new/AdminList.vue'
 import FormContact from './../components/admin_new/FormContact.vue'
 import FormCompany from './../components/admin_new/FormCompany.vue'
 import FormObrabotkavid from './../components/admin_new/FormObrabotkavid.vue'
+import FormObrabotkatolshina from './../components/admin_new/FormObrabotkatolshina.vue'
 
 export default {
   components: {
@@ -31,7 +32,8 @@ export default {
     AdminList,
     FormContact,
     FormCompany,
-    FormObrabotkavid
+    FormObrabotkavid,
+    FormObrabotkatolshina
   },
   data() {
     return {}

@@ -48,11 +48,21 @@ export default {
     },
 
     adminItems() {
-      return this.$store.getters[this.adminRazdel]
+      if (this.adminRazdel !== 'obrabotkatolshina') {
+        return this.$store.getters[this.adminRazdel]
+      } else {
+        return this.$store.getters[this.adminRazdel].filter(
+          item => item.categoryId === this.categoryId
+        )
+      }
     },
 
     adminItemId() {
       return this.$store.getters.adminItemId
+    },
+
+    categoryId() {
+      return this.$store.getters.categoryId
     }
   },
   methods: {

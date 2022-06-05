@@ -15,7 +15,24 @@
         </option>
       </select>
     </div>
-    <div class="col-6"></div>
+    <div class="col-3 ps-0">
+      <select
+        v-if="adminRazdel === 'obrabotkatolshina'"
+        class="form-select form-select-sm"
+        v-model="categoryId"
+        @change="setCategoryId"
+      >
+        <option
+          v-for="obrabotkavid in obrabotkavids"
+          :key="obrabotkavid.id"
+          :value="obrabotkavid.id"
+          :selected="{ true: obrabotkavid.id === categoryId }"
+        >
+          {{ obrabotkavid.title }}
+        </option>
+      </select>
+    </div>
+    <div class="col-3"></div>
     <div class="col-3">
       <ButtonAddSmall class="w-100" @click="addNewItem" />
     </div>
@@ -24,8 +41,6 @@
 
 <script>
 import razdels from './../../data/razdelsForAdmin'
-//import Contact from './../../classes/contactClass'
-
 import createAdminItem from './../../scripts/createAdminItem'
 
 import ButtonAddSmall from './../elements/buttons/ButtonAddSmall.vue'
@@ -38,7 +53,8 @@ export default {
     return {
       razdels,
       newAdminRazdel: '',
-      adminClass: ''
+      adminClass: '',
+      categoryId: ''
     }
   },
   mounted() {
@@ -47,6 +63,10 @@ export default {
   computed: {
     adminRazdel() {
       return this.$store.getters.adminRazdel
+    },
+
+    obrabotkavids() {
+      return this.$store.getters.obrabotkavid
     }
   },
   methods: {
@@ -63,14 +83,6 @@ export default {
           this.newAdminRazdel.substring(1)
       })
 
-      // this.$store.commit('setAdminValue', {
-      //   type: 'adminList',
-      //   value:
-      //     'List' +
-      //     this.newAdminRazdel.substring(0, 1).toUpperCase() +
-      //     this.newAdminRazdel.substring(1)
-      // })
-
       this.$store.commit('setAdminValue', {
         type: 'adminForm',
         value:
@@ -84,8 +96,19 @@ export default {
         this.newAdminRazdel.substring(1)
     },
 
+    setCategoryId() {
+      this.$store.commit('setAdminValue', {
+        type: 'categoryId',
+        value: this.categoryId
+      })
+
+      this.$store.commit('setAdminValue', {
+        type: 'adminItemId',
+        value: ''
+      })
+    },
+
     addNewItem() {
-      // Здесь необходим универсальный метод для создания всех типов данных
       const item = Object.assign({}, createAdminItem(this.adminRazdel))
       this.$store.dispatch('addItem', { item })
     }
