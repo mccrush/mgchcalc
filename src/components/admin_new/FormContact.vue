@@ -215,7 +215,6 @@ import { mixinUpdateTextareaHeight } from './../../mixins/mixinUpdateTextareaHei
 import { mixinCopyInBuffer } from './../../mixins/mixinCopyInBuffer'
 
 export default {
-  components: {},
   props: ['item'],
   emits: ['save-item'],
   mixins: [
