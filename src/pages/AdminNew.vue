@@ -23,13 +23,15 @@ import AdminList from './../components/admin_new/AdminList.vue'
 
 import FormContact from './../components/admin_new/FormContact.vue'
 import FormCompany from './../components/admin_new/FormCompany.vue'
+import FormObrabotkavid from './../components/admin_new/FormObrabotkavid.vue'
 
 export default {
   components: {
     AdminHeader,
     AdminList,
     FormContact,
-    FormCompany
+    FormCompany,
+    FormObrabotkavid
   },
   data() {
     return {}
