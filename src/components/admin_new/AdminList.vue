@@ -3,7 +3,7 @@
     <div class="col-12">
       <ul class="list-group">
         <li
-          v-for="adminItem in adminItems"
+          v-for="adminItem in sortMethod(adminItems, 'asc', 'position')"
           :key="adminItem.id"
           class="
             cursor-pointer
@@ -33,12 +33,15 @@
 </template>
 
 <script>
+import { mixinSortMethod } from './../../mixins/mixinSortMethod'
+
 import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
 
 export default {
   components: {
     ButtonTrash
   },
+  mixins: [mixinSortMethod],
   computed: {
     adminRazdel() {
       return this.$store.getters.adminRazdel
