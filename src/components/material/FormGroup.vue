@@ -2,11 +2,12 @@
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-start align-items-center mt-2 mt-md-0">
-        <!-- <ButtonBack /> -->
         <h4 v-if="item" class="m-0 ms-2">{{ item.title }}</h4>
       </div>
       <hr class="mt-2" />
     </div>
+
+    <!-- Название -->
     <div class="col-6 pe-1">
       <form @submit.prevent class="form-floating">
         <input
@@ -19,42 +20,22 @@
         <label for="inputTitle">Название группы</label>
       </form>
     </div>
-    <!-- <div class="col-6 mt-2 pe-0">
-      <form class="form-floating">
-        <input
-          type="number"
-          class="form-control form-control-sm"
-          id="inputNacenka"
-          v-model.number="item.nacenka"
-          @blur="$emit('save-item')"
-        />
-        <label for="inputNacenka">Наценка %</label>
-      </form>
-    </div> -->
-    <!-- <div class="col-6 mt-2">
-      <form class="form-floating">
-        <input
-          type="number"
-          class="form-control form-control-sm"
-          id="inputNacenka"
-          v-model.number="item.othody"
-          @blur="$emit('save-item')"
-        />
-        <label for="inputNacenka">Отход %</label>
-      </form>
-    </div> -->
+
+    <!-- Позиция -->
     <div class="col-6 ps-1">
       <form @submit.prevent class="form-floating">
         <input
           type="number"
           class="form-control form-control-sm"
-          id="inputTitle"
+          id="inputPosition"
           v-model.number="item.position"
           @blur="$emit('save-item')"
         />
-        <label for="inputTitle">Позиция</label>
+        <label for="inputPosition">Позиция</label>
       </form>
     </div>
+
+    <!-- Комментарий -->
     <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <textarea
