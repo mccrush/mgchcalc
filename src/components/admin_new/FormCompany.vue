@@ -27,7 +27,11 @@
             class="col-12"
           >
             <div
-              v-for="formContact in sortContactForms(this.item.fields)"
+              v-for="formContact in sortMethod(
+                this.item.fields,
+                'asc',
+                'position'
+              )"
               :key="formContact.id"
               class="mt-2"
             >
@@ -66,7 +70,7 @@
                       ps-1
                       pe-1
                     "
-                    @click="updateFormContactPositionUp(formContact.id)"
+                    @click="updatePositionFieldUp(formContact.id)"
                   >
                     &#8743;
                   </button>
@@ -94,7 +98,7 @@
                       ps-1
                       pe-1
                     "
-                    @click="updateFormContactPositionDown(formContact.id)"
+                    @click="updatePositionFieldDown(formContact.id)"
                   >
                     &#8744;
                   </button>
@@ -109,7 +113,7 @@
                       pe-1
                     "
                     title="Удалить поле"
-                    @click="removeFormContact(formContact.id)"
+                    @click="removeField(formContact.id)"
                   >
                     &#215;
                   </button>
@@ -143,7 +147,7 @@
               <button
                 class="btn btn-outline-success rounded-0 rounded-bottom w-100"
                 type="button"
-                @click="addNewContactField"
+                @click="addField(item, fieldTitle, fieldDescription)"
               >
                 Добавить поле
               </button>
@@ -227,8 +231,10 @@
 <script>
 import { fieldsContact } from './../../data/fieldsContact'
 import { fieldsCompany } from './../../data/fieldsCompany'
-import FieldClass from './../../classes/fieldClass'
-import sortMethod from './../../scripts/sortMethod'
+import { mixinFieldMethods } from './../../mixins/mixinFieldMethods'
+import { mixinSortMethod } from './../../mixins/mixinSortMethod'
+import { mixinUpdateTextareaHeight } from './../../mixins/mixinUpdateTextareaHeight'
+import { mixinCopyInBuffer } from './../../mixins/mixinCopyInBuffer'
 
 import ButtonTrash from './../elements/buttons/ButtonTrash.vue'
 
@@ -236,6 +242,12 @@ export default {
   components: { ButtonTrash },
   props: ['item'],
   emits: ['save-item'],
+  mixins: [
+    mixinFieldMethods,
+    mixinSortMethod,
+    mixinUpdateTextareaHeight,
+    mixinCopyInBuffer
+  ],
   data() {
     return {
       fieldsContact: fieldsContact.concat(fieldsCompany),
@@ -252,14 +264,7 @@ export default {
       return this.contacts.filter(item => item.companyId === this.item.id)
     }
   },
-  mounted() {
-    this.updateTextareaHeight()
-  },
   methods: {
-    sortContactForms(itemContacts) {
-      return sortMethod(itemContacts, 'asc', 'position')
-    },
-
     // Методы работы с Сотрудниками
     addNewSotrudnik() {
       const id = this.newSotrudnikId
@@ -272,62 +277,6 @@ export default {
       const sotrudnik = this.contacts.find(item => item.id === id) || null
       sotrudnik.companyId = ''
       this.$store.dispatch('updateItem', { item: sotrudnik })
-    },
-
-    // Методы добавления Полей
-    addNewContactField() {
-      if (this.fieldDescription) {
-        if (!this.item.fields) {
-          this.item.fields = []
-        }
-        const position = this.item.fields.length + 1
-        const newContactField = Object.assign(
-          {},
-          new FieldClass(this.fieldTitle, this.fieldDescription, position)
-        )
-
-        this.item.fields.push(newContactField)
-        this.fieldTitle = 'Выберите тип поля'
-        this.fieldDescription = ''
-
-        this.$emit('save-item')
-      }
-    },
-
-    removeFormContact(id) {
-      this.item.fields = this.item.fields.filter(item => item.id !== id)
-      this.$emit('save-item')
-    },
-
-    updateFormContactPositionUp(id) {
-      const formItemIndex = this.item.fields.findIndex(item => item.id === id)
-      let formItem = this.item.fields[formItemIndex]
-      formItem.position = formItem.position - 1
-      this.item.fields[formItemIndex] = formItem
-      this.$emit('save-item')
-    },
-
-    updateFormContactPositionDown(id) {
-      const formItemIndex = this.item.fields.findIndex(item => item.id === id)
-      let formItem = this.item.fields[formItemIndex]
-      formItem.position = formItem.position + 1
-      this.item.fields[formItemIndex] = formItem
-      this.$emit('save-item')
-    },
-
-    updateTextareaHeight() {
-      let inputDescription = this.$refs.inputDescription
-      const newHeight = inputDescription.scrollHeight
-      inputDescription.style.height = newHeight + 'px'
-    },
-
-    async copyInBuffer(text) {
-      try {
-        await navigator.clipboard.writeText(text)
-        console.log('Async: Copying to clipboard was successful!', text)
-      } catch (err) {
-        console.error('Async: Could not copy text: ', err)
-      }
     }
   }
 }
