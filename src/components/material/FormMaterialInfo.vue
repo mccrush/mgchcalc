@@ -9,20 +9,6 @@
       />
     </div>
 
-    <!-- Название материала -->
-    <!-- <div class="col-12 mt-2">
-      <form @submit.prevent class="form-floating">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          id="inputTitle"
-          v-model.trim="item.title"
-          @change="$emit('save-item')"
-        />
-        <label for="inputTitle">Название материала</label>
-      </form>
-    </div> -->
-
     <!-- Подгруппа -->
     <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">

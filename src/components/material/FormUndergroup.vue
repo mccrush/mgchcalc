@@ -7,6 +7,8 @@
       </div>
       <hr class="mt-2" />
     </div>
+
+    <!-- Название подгруппы -->
     <div class="col-12">
       <form @submit.prevent class="form-floating">
         <input
@@ -19,6 +21,8 @@
         <label for="inputTitle">Название подгруппы</label>
       </form>
     </div>
+
+    <!-- Группа -->
     <div class="col-6 mt-2 pe-1">
       <form @submit.prevent class="form-floating">
         <select
@@ -34,30 +38,8 @@
         <label for="inputGroup">Группа</label>
       </form>
     </div>
-    <!-- <div class="col-6 mt-2 pe-0">
-      <form class="form-floating">
-        <input
-          type="number"
-          class="form-control form-control-sm"
-          id="inputNacenka"
-          v-model.number="item.nacenka"
-          @blur="$emit('save-item')"
-        />
-        <label for="inputNacenka">Наценка %</label>
-      </form>
-    </div> -->
-    <!-- <div class="col-6 mt-2">
-      <form class="form-floating">
-        <input
-          type="number"
-          class="form-control form-control-sm"
-          id="inputNacenka"
-          v-model.number="item.othody"
-          @blur="$emit('save-item')"
-        />
-        <label for="inputNacenka">Отход %</label>
-      </form>
-    </div> -->
+
+    <!-- Позиция -->
     <div class="col-6 mt-2 ps-1">
       <form @submit.prevent class="form-floating">
         <input
@@ -70,6 +52,8 @@
         <label for="inputTitle">Позиция</label>
       </form>
     </div>
+
+    <!-- Комментарий -->
     <div class="col-12 mt-2">
       <form @submit.prevent class="form-floating">
         <textarea

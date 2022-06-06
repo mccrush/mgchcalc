@@ -1,22 +1,4 @@
 <template>
-  <!-- <ul class="list-group">
-    <li
-      v-for="group in groups"
-      :key="group.id"
-      class="
-        cursor-pointer
-        list-group-item list-group-item-action
-        d-flex
-        justify-content-between
-        align-items-center
-        lh-1
-        p-1
-        ps-2
-      "
-      :class="{ active: group.id === groupId }"
-      @click.stop="selectGroup(group)"
-    > -->
-
   <div class="accordion accordion-flush" id="accordionGroup">
     <div
       v-for="group in sortGroups(groups)"
@@ -87,21 +69,6 @@
       </div>
     </div>
   </div>
-
-  <!-- <span class="small">{{ group.title }}</span>
-      <div class="d-flex align-items-center">
-        <ButtonEdit
-          @click.stop="$emit('update:form', 'group')"
-          class="my-btn-hide border-0 me-1"
-        />
-        <ButtonTrash
-          @click.stop
-          class="my-btn-hide border-0"
-          @click="removeGroup(group.type, group.id)"
-        />
-      </div>
-    </li>
-  </ul> -->
 </template>
 
 <script>
