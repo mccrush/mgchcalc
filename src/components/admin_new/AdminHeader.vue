@@ -19,14 +19,13 @@
       <select
         v-if="adminRazdel === 'obrabotkatolshina'"
         class="form-select form-select-sm"
-        v-model="categoryId"
+        v-model="newCategoryId"
         @change="setCategoryId"
       >
         <option
           v-for="obrabotkavid in obrabotkavids"
           :key="obrabotkavid.id"
           :value="obrabotkavid.id"
-          :selected="{ true: obrabotkavid.id === categoryId }"
         >
           {{ obrabotkavid.title }}
         </option>
@@ -54,15 +53,20 @@ export default {
       razdels,
       newAdminRazdel: '',
       adminClass: '',
-      categoryId: ''
+      newCategoryId: ''
     }
   },
   mounted() {
     this.newAdminRazdel = this.adminRazdel || ''
+    this.newCategoryId = this.categoryId || ''
   },
   computed: {
     adminRazdel() {
       return this.$store.getters.adminRazdel
+    },
+
+    categoryId() {
+      return this.$store.getters.categoryId
     },
 
     obrabotkavids() {
@@ -99,7 +103,7 @@ export default {
     setCategoryId() {
       this.$store.commit('setAdminValue', {
         type: 'categoryId',
-        value: this.categoryId
+        value: this.newCategoryId
       })
 
       this.$store.commit('setAdminValue', {

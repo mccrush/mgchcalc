@@ -14,22 +14,8 @@
       </form>
     </div>
 
-    <!-- Позиция -->
-    <div class="col-6 ps-1">
-      <form @submit.prevent class="form-floating">
-        <input
-          type="number"
-          class="form-control form-control-sm"
-          id="inputPosition"
-          v-model.number="item.position"
-          @blur="$emit('save-item')"
-        />
-        <label for="inputPosition">Позиция</label>
-      </form>
-    </div>
-
     <!-- Вид обработки -->
-    <div class="col-3 mt-2 pe-1">
+    <div class="col-6 ps-1">
       <form @submit.prevent class="form-floating">
         <select
           class="form-select"
@@ -49,6 +35,20 @@
       </form>
     </div>
 
+    <!-- Позиция -->
+    <div class="col-3 mt-2 pe-1">
+      <form @submit.prevent class="form-floating">
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          id="inputPosition"
+          v-model.number="item.position"
+          @blur="$emit('save-item')"
+        />
+        <label for="inputPosition">Позиция</label>
+      </form>
+    </div>
+
     <!-- Стоимости -->
     <div class="col-3 mt-2 ps-1 pe-1">
       <form @submit.prevent class="form-floating">
@@ -59,7 +59,7 @@
           v-model.number="item.priceS"
           @blur="$emit('save-item')"
         />
-        <label for="inputS">До 100</label>
+        <label for="inputS">Цена для &lt;100</label>
       </form>
     </div>
 
@@ -72,11 +72,11 @@
           v-model.number="item.priceM"
           @blur="$emit('save-item')"
         />
-        <label for="inputM">От 101 до 1000</label>
+        <label for="inputM">Цена для &gt;100</label>
       </form>
     </div>
 
-    <div class="col-3 mt-2 pe-1">
+    <div class="col-3 mt-2 ps-1">
       <form @submit.prevent class="form-floating">
         <input
           type="number"
@@ -85,7 +85,7 @@
           v-model.number="item.priceL"
           @blur="$emit('save-item')"
         />
-        <label for="inputL">От 1001</label>
+        <label for="inputL">Цена для &gt;500</label>
       </form>
     </div>
 
@@ -113,6 +113,11 @@ import { mixinUpdateTextareaHeight } from './../../mixins/mixinUpdateTextareaHei
 export default {
   props: ['item'],
   emits: ['save-item'],
-  mixins: [mixinUpdateTextareaHeight]
+  mixins: [mixinUpdateTextareaHeight],
+  computed: {
+    obrabotkavids() {
+      return this.$store.getters.obrabotkavid
+    }
+  }
 }
 </script>

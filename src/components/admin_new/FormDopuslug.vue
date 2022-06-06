@@ -50,8 +50,8 @@
           type="number"
           class="form-control form-control-sm"
           id="inputPrice"
-          v-model.number="zakup.price"
-          @blur="$emit('update-zakup')"
+          v-model.number="item.price"
+          @blur="$emit('save-item')"
         />
         <label for="inputPrice">Цена</label>
       </form>
