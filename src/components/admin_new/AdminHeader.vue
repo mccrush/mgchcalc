@@ -113,7 +113,10 @@ export default {
     },
 
     addNewItem() {
-      const item = Object.assign({}, createAdminItem(this.adminRazdel))
+      const item = Object.assign(
+        {},
+        createAdminItem(this.adminRazdel, this.categoryId)
+      )
       this.$store.dispatch('addItem', { item })
     }
   }
