@@ -22,7 +22,7 @@
           <span>{{ adminItem.title }}</span>
           <div>
             <ButtonTrash
-              @click.stop="removeContact(adminItem.type, adminItem.id)"
+              @click.stop="removeAdminItem(adminItem.type, adminItem.id)"
               class="my-btn-hide border-0"
             />
           </div>
@@ -73,8 +73,24 @@ export default {
       })
     },
 
-    removeContact(type, id) {
+    removeAdminItem(type, id) {
       if (confirm('Точно удалить?')) {
+        if (this.adminRazdel === 'obrabotkavid') {
+          // То сначала удалить всех его детей obrabotkatolshina
+          const childArray = this.$store.getters.obrabotkatolshina.filter(
+            item => item.categoryId === id
+          )
+          console.log('В подгруппе столько детей:', childArray.length)
+          // Перебирать массив детей и удалять каждый через forEach
+          if (childArray.length) {
+            childArray.forEach(item => {
+              this.$store.dispatch('removeItem', {
+                type: item.type,
+                id: item.id
+              })
+            })
+          }
+        }
         this.$store.dispatch('removeItem', { type, id })
       }
     }
