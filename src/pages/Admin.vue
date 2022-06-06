@@ -1,78 +1,74 @@
 <template>
-  <div class="width-960 bg-white shadow-sm rounded-3 mt-4 m-auto p-3 pb-1">
-    <AdminHeader
-      v-model:razdel="razdel"
-      v-model:categoryId="categoryId"
-      v-model:searchText="searchText"
-      v-model:sortType="sortType"
-      @add-item="addItem"
-    />
-    <AdminForms
-      :type="razdel"
-      :categoryId="categoryId"
-      :searchText="searchText"
-      :sortType="sortType"
-      @save-item="saveItem"
-      @remove-item="removeItem"
-    />
+  <div class="width-960 bg-white shadow-sm rounded-3 mt-4 m-auto p-3">
+    <div class="row">
+      <div class="col-12"><AdminHeader /></div>
+      <div class="col-3 mt-2">
+        <AdminList />
+      </div>
+      <div class="col-9 ps-0 mt-2">
+        <component
+          v-if="item"
+          :item="item"
+          :is="adminForm"
+          @save-item="saveItem"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import createItem from './../scripts/createItem'
+import AdminHeader from './../components/admin_new/AdminHeader.vue'
+import AdminList from './../components/admin_new/AdminList.vue'
 
-import AdminHeader from './../components/admin/AdminHeader.vue'
-import AdminForms from './../components/admin/AdminForms.vue'
+import FormContact from './../components/admin_new/FormContact.vue'
+import FormCompany from './../components/admin_new/FormCompany.vue'
+import FormObrabotkavid from './../components/admin_new/FormObrabotkavid.vue'
+import FormObrabotkatolshina from './../components/admin_new/FormObrabotkatolshina.vue'
+import FormDopuslug from './../components/admin_new/FormDopuslug.vue'
 
 export default {
   components: {
     AdminHeader,
-    AdminForms
+    AdminList,
+    FormContact,
+    FormCompany,
+    FormObrabotkavid,
+    FormObrabotkatolshina,
+    FormDopuslug
   },
   data() {
-    return {
-      razdel: localStorage.getItem('cl-razdel') || 'obrabotkavid',
-      categoryId: localStorage.getItem('cl-categoryId') || '',
-      searchText: '',
-      sortType: 'asc'
+    return {}
+  },
+  computed: {
+    adminRazdel() {
+      return this.$store.getters.adminRazdel
+    },
+
+    adminForm() {
+      return this.$store.getters.adminForm
+    },
+
+    adminItemId() {
+      return this.$store.getters.adminItemId
+    },
+
+    item() {
+      if (this.adminRazdel) {
+        console.log('this.adminRazdel:', this.adminRazdel)
+        return (
+          this.$store.getters[this.adminRazdel].find(
+            item => item.id === this.adminItemId
+          ) || null
+        )
+      } else {
+        return null
+      }
     }
   },
-  mounted() {},
   methods: {
-    addItem() {
-      const item = createItem(this.razdel, this.categoryId)
-      console.log('addItem new item:', item)
-      this.$store.dispatch('addItem', { item })
-    },
-    saveItem({ item }) {
-      if (item.title || item.name) {
-        //console.log('saveItem 2 item:', item)
-        this.$store.dispatch('updateItem', { item })
-      }
-    },
-    removeItem(id) {
-      //console.log('removeItem item.id:', id)
-      this.$store.dispatch('removeItem', { type: this.razdel, id })
-    }
-  },
-  watch: {
-    razdel(n, o) {
-      //console.log('razdel n:', this.razdel)
-      localStorage.setItem('cl-razdel', this.razdel)
-      if (this.razdel === 'obrabotkatolshina' || this.razdel === 'material') {
-        this.categoryId = ''
-        localStorage.setItem('cl-categoryId', '')
-      }
-    },
-    categoryId(n, o) {
-      //console.log('categoryId n:', this.categoryId)
-      localStorage.setItem('cl-categoryId', this.categoryId)
-    },
-    searchText(n, o) {
-      //console.log('searchText n:', this.searchText)
-    },
-    sortType(n, o) {
-      //console.log('sortType n:', this.sortType)
+    saveItem() {
+      this.$store.dispatch('updateItem', { item: this.item })
     }
   }
 }
