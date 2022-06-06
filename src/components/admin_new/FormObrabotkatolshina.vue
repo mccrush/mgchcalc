@@ -53,11 +53,11 @@
     <div class="col-3 mt-2 ps-1 pe-1">
       <form @submit.prevent class="form-floating">
         <input
-          type="number"
+          type="text"
           class="form-control form-control-sm"
           id="inputS"
           v-model.number="item.priceS"
-          @blur="$emit('save-item')"
+          @change="$emit('save-item')"
         />
         <label for="inputS">Цена для &lt;100</label>
       </form>
@@ -66,11 +66,11 @@
     <div class="col-3 mt-2 ps-1 pe-1">
       <form @submit.prevent class="form-floating">
         <input
-          type="number"
+          type="text"
           class="form-control form-control-sm"
           id="inputM"
           v-model.number="item.priceM"
-          @blur="$emit('save-item')"
+          @change="$emit('save-item')"
         />
         <label for="inputM">Цена для &gt;100</label>
       </form>
@@ -79,11 +79,11 @@
     <div class="col-3 mt-2 ps-1">
       <form @submit.prevent class="form-floating">
         <input
-          type="number"
+          type="text"
           class="form-control form-control-sm"
           id="inputL"
           v-model.number="item.priceL"
-          @blur="$emit('save-item')"
+          @change="$emit('save-item')"
         />
         <label for="inputL">Цена для &gt;500</label>
       </form>
