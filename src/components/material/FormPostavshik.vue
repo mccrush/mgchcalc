@@ -14,92 +14,10 @@
       </form>
     </div>
 
-    <!-- Адрес Поставщика -->
-    <!-- <div class="col-12 mt-2">
-      <form @submit.prevent class="form-floating">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          id="inputAddress"
-          v-model.trim="item.address"
-          @change="$emit('save-item')"
-        />
-        <label for="inputAddress">Адрес</label>
-      </form>
-    </div> -->
-
-    <!-- Контакт Поставщика -->
-    <!-- <div class="col-12 mt-2">
-      <form @submit.prevent class="form-floating">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          id="inputContact"
-          v-model.trim="item.contact"
-          @change="$emit('save-item')"
-        />
-        <label for="inputContact">Контакт</label>
-      </form>
-    </div> -->
-
-    <!-- Телефоны Поставщика -->
-    <!-- <div class="col-6 mt-2 pe-1">
-      <form @submit.prevent class="form-floating">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          id="inputPhone"
-          v-model.trim="item.phone"
-          @change="$emit('save-item')"
-        />
-        <label for="inputPhone">Телефон</label>
-      </form>
-    </div>
-    <div class="col-6 mt-2 ps-1">
-      <form @submit.prevent class="form-floating">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          id="inputPhone2"
-          v-model.trim="item.phone2"
-          @change="$emit('save-item')"
-        />
-        <label for="inputPhone2">Телефон 2</label>
-      </form>
-    </div> -->
-
-    <!-- Email Поставщика -->
-    <!-- <div class="col-12 mt-2">
-      <form @submit.prevent class="form-floating">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          id="inputEmail"
-          v-model.trim="item.email"
-          @change="$emit('save-item')"
-        />
-        <label for="inputEmail">Email</label>
-      </form>
-    </div> -->
-
-    <!-- Whatsapp Поставщика -->
-    <!-- <div class="col-12 mt-2">
-      <form @submit.prevent class="form-floating">
-        <input
-          type="text"
-          class="form-control form-control-sm"
-          id="inputWhatsapp"
-          v-model.trim="item.whatsapp"
-          @change="$emit('save-item')"
-        />
-        <label for="inputEmail">Whatsapp</label>
-      </form>
-    </div> -->
-
     <!-- Список Форм Контактов -->
-    <div v-if="this.item.contacts && this.item.contacts.length">
+    <div v-if="this.item.fields && this.item.fields.length">
       <div
-        v-for="formContact in sortContactForms(this.item.contacts)"
+        v-for="formContact in sortContactForms(this.item.fields)"
         :key="formContact.id"
         class="col-12 mt-2"
       >
@@ -199,7 +117,7 @@
         >
           <option selected>Выберите тип поля</option>
           <option
-            v-for="field in contactFields"
+            v-for="field in fieldsContact"
             :key="'key' + field"
             :value="field"
           >
@@ -241,8 +159,8 @@
 
 
 <script>
-import { contactFields } from './../../data/contactFields'
-import Contact from './../../classes/contactClass'
+import { fieldsContact } from './../../data/fieldsContact'
+import FieldClass from './../../classes/fieldClass'
 import sortMethod from './../../scripts/sortMethod'
 
 export default {
@@ -250,7 +168,7 @@ export default {
   emits: ['save-item'],
   data() {
     return {
-      contactFields,
+      fieldsContact,
       fieldTitle: 'Выберите тип поля',
       fieldDescription: ''
     }
@@ -265,13 +183,16 @@ export default {
 
     addNewContactField() {
       if (this.fieldDescription) {
-        const position = this.item.contacts.length + 1
+        if (!this.item.fields) {
+          this.item.fields = []
+        }
+        const position = this.item.fields.length + 1
         const newContactField = Object.assign(
           {},
-          new Contact(this.fieldTitle, this.fieldDescription, position)
+          new FieldClass(this.fieldTitle, this.fieldDescription, position)
         )
 
-        this.item.contacts.push(newContactField)
+        this.item.fields.push(newContactField)
         this.fieldTitle = 'Выберите тип поля'
         this.fieldDescription = ''
 
@@ -280,23 +201,23 @@ export default {
     },
 
     removeFormContact(id) {
-      this.item.contacts = this.item.contacts.filter(item => item.id !== id)
+      this.item.fields = this.item.fields.filter(item => item.id !== id)
       this.$emit('save-item')
     },
 
     updateFormContactPositionUp(id) {
-      const formItemIndex = this.item.contacts.findIndex(item => item.id === id)
-      let formItem = this.item.contacts[formItemIndex]
+      const formItemIndex = this.item.fields.findIndex(item => item.id === id)
+      let formItem = this.item.fields[formItemIndex]
       formItem.position = formItem.position - 1
-      this.item.contacts[formItemIndex] = formItem
+      this.item.fields[formItemIndex] = formItem
       this.$emit('save-item')
     },
 
     updateFormContactPositionDown(id) {
-      const formItemIndex = this.item.contacts.findIndex(item => item.id === id)
-      let formItem = this.item.contacts[formItemIndex]
+      const formItemIndex = this.item.fields.findIndex(item => item.id === id)
+      let formItem = this.item.fields[formItemIndex]
       formItem.position = formItem.position + 1
-      this.item.contacts[formItemIndex] = formItem
+      this.item.fields[formItemIndex] = formItem
       this.$emit('save-item')
     },
 

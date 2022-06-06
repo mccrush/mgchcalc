@@ -7,6 +7,7 @@ import realtime from './modules/realtime'
 import fileloader from './modules/fileloader'
 import showarchive from './modules/showarchive'
 import pageMaterial from './modules/pageMaterial'
+import pageAdmin from './modules/pageAdmin'
 import loginMessage from './modules/loginMessage'
 
 export default createStore({
@@ -18,6 +19,7 @@ export default createStore({
     fileloader,
     showarchive,
     pageMaterial,
+    pageAdmin,
     loginMessage
   },
   actions: {

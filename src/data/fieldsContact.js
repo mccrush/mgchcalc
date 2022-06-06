@@ -1,0 +1,1 @@
+export const fieldsContact = ['Адрес', 'Контакт', 'Телефон', 'Email', 'WhatsApp', 'Telegram']

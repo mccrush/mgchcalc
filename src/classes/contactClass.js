@@ -1,10 +1,14 @@
 import getId from './../scripts/getId'
 
 export default class Contact {
-  constructor(title = 'Поле', description = 'Значение', position = 1) {
+  constructor(title = 'Новый контакт') {
     this.id = getId()
     this.title = title
-    this.description = description
-    this.position = position
+    this.type = 'contact'
+    this.description = ''
+    this.position = 1
+    this.contactNickname = ''
+    this.fields = []
+    this.companyId = ''
   }
 }

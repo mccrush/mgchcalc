@@ -1,13 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-12">
-      <div class="d-flex justify-content-start align-items-center mt-2 mt-md-0">
-        <h4 v-if="item" class="m-0 ms-2">{{ item.title }}</h4>
-      </div>
-      <hr class="mt-2" />
-    </div>
-
-    <!-- Название -->
+    <!-- Название Обработки -->
     <div class="col-6 pe-1">
       <form @submit.prevent class="form-floating">
         <input
@@ -17,7 +10,7 @@
           v-model.trim="item.title"
           @change="$emit('save-item')"
         />
-        <label for="inputTitle">Название группы</label>
+        <label for="inputTitle">Название обработки</label>
       </form>
     </div>
 
@@ -37,11 +30,13 @@
 
     <!-- Комментарий -->
     <div class="col-12 mt-2">
-      <form @submit.prevent class="form-floating">
+      <form class="form-floating">
         <textarea
-          class="form-control form-control-sm"
+          class="form-control form-control-sm border-0"
           id="inputDescription"
+          ref="inputDescription"
           v-model.trim="item.description"
+          @input="updateTextareaHeight"
           @change="$emit('save-item')"
         ></textarea>
         <label for="inputDescription">Комментарий</label>
@@ -50,14 +45,13 @@
   </div>
 </template>
 
+
 <script>
-import ButtonBack from './../elements/buttons/ButtonBack.vue'
+import { mixinUpdateTextareaHeight } from './../../mixins/mixinUpdateTextareaHeight'
 
 export default {
-  components: {
-    ButtonBack
-  },
   props: ['item'],
-  emits: ['save-item']
+  emits: ['save-item'],
+  mixins: [mixinUpdateTextareaHeight]
 }
 </script>
