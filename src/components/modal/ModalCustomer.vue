@@ -46,7 +46,6 @@
             :is="myForm"
             :item="item"
             @save-item="saveItem"
-            @remove-item="removeItem"
           />
         </div>
         <div class="modal-footer d-flex justify-content-between p-2">
@@ -73,7 +72,7 @@
             type="button"
             class="btn btn-outline-danger"
             data-bs-dismiss="modal"
-            @click="resetPharams"
+            @click="removeItem"
           >
             Удалить заказчика
           </button>
@@ -93,10 +92,10 @@
 </template>
 
 <script>
-import createItem from './../../scripts/createItem'
+import createAdminItem from './../../scripts/createAdminItem'
 
-import FormContact from './../admin/forms/FormContact.vue'
-import FormCompany from './../admin/forms/FormCompany.vue'
+import FormContact from './../admin_new/FormContact.vue'
+import FormCompany from './../admin_new/FormCompany.vue'
 
 export default {
   components: {
@@ -113,7 +112,7 @@ export default {
   methods: {
     createCustomer(type) {
       this.razdel = type
-      this.item = createItem(type)
+      this.item = Object.assign({}, createAdminItem(type))
       this.$store.dispatch('addItem', { item: this.item })
       switch (type) {
         case 'contact':
@@ -122,15 +121,19 @@ export default {
         case 'company':
           this.myForm = 'FormCompany'
       }
-      console.log('this.myForm:', this.myForm)
+      console.log('ModalCustomer.vue this.myForm:', this.myForm)
     },
-    saveItem({ item }) {
-      if (item.title) {
-        this.$store.dispatch('updateItem', { item })
+    saveItem() {
+      if (this.item.title) {
+        this.$store.dispatch('updateItem', { item: this.item })
       }
     },
-    removeItem(id) {
-      this.$store.dispatch('removeItem', { type: this.razdel, id })
+    removeItem() {
+      this.$store.dispatch('removeItem', {
+        type: this.razdel,
+        id: this.item.id
+      })
+      this.resetPharams()
     },
     resetPharams() {
       this.myForm = ''
