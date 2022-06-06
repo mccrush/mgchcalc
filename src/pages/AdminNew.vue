@@ -25,6 +25,7 @@ import FormContact from './../components/admin_new/FormContact.vue'
 import FormCompany from './../components/admin_new/FormCompany.vue'
 import FormObrabotkavid from './../components/admin_new/FormObrabotkavid.vue'
 import FormObrabotkatolshina from './../components/admin_new/FormObrabotkatolshina.vue'
+import FormDopuslug from './../components/admin_new/FormDopuslug.vue'
 
 export default {
   components: {
@@ -33,7 +34,8 @@ export default {
     FormContact,
     FormCompany,
     FormObrabotkavid,
-    FormObrabotkatolshina
+    FormObrabotkatolshina,
+    FormDopuslug
   },
   data() {
     return {}
