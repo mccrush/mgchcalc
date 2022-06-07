@@ -1,7 +1,7 @@
 <template>
   <div class="row mt-2">
     <div class="col-12 col-md-10 col-lg-8 col-xl-6 pe-md-0">
-      <ul class="list-group">
+      <ul v-if="item.files" class="list-group">
         <li class="list-group-item p-0 border-0 border-bottom">
           <div class="progressbar">
             <Progressbar v-if="loading" />
@@ -31,6 +31,8 @@
             </div>
           </div>
         </li>
+      </ul>
+      <ul class="list-group">
         <li class="list-group-item">
           <div class="row">
             <div class="col-12">
