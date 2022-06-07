@@ -29,7 +29,9 @@
           />
           <div
             v-if="
-              element.alias === 'shlifaner' || element.alias === 'obrabottorcov'
+              element.alias === 'shlifaner' ||
+              element.alias === 'obrabottorcov' ||
+              element.alias === 'viborka'
             "
             class="text-center pt-1"
           >
@@ -39,7 +41,9 @@
         <div class="col-3">
           <input
             v-if="
-              element.alias === 'shlifaner' || element.alias === 'obrabottorcov'
+              element.alias === 'shlifaner' ||
+              element.alias === 'obrabottorcov' ||
+              element.alias === 'viborka'
             "
             type="text"
             class="form-control form-control-sm"
@@ -106,6 +110,9 @@ export default {
         return Math.ceil(this.element.price * size)
       } else if (this.element.alias === 'vneochered') {
         return 'x2'
+      } else if (this.element.alias === 'viborka') {
+        let size = this.elementSize
+        return this.element.price * size
       }
     }
   },

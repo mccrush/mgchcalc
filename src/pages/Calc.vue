@@ -103,7 +103,7 @@
         <div class="col-12 col-md-6">
           <div class="row">
             <div class="col-5">Ед. / стоим.</div>
-            <div class="col-3">Размер</div>
+            <div class="col-3">Разм./кол.</div>
             <div class="col-2">Сумма</div>
             <div class="col-2">Удалить</div>
           </div>
