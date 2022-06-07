@@ -145,12 +145,19 @@ export default {
     'update-item-polka'
   ],
   computed: {
-    itogoZP() {
+    sumRabotaArray() {
       return this.item.rabotaArray
         .map(item => {
-          return Math.ceil(item.summa * 0.4)
+          return item.summa
         })
         .reduce((pre, next) => pre + next)
+    },
+    itogoZP() {
+      if (this.sumRabotaArray < 500) {
+        return 200
+      } else {
+        return Math.ceil(this.sumRabotaArray * 0.4)
+      }
     },
     parentOrder() {
       return this.$store.getters.order.find(

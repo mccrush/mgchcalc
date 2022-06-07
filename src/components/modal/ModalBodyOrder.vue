@@ -162,7 +162,7 @@
       <div v-if="item.rabotaArray && item.rabotaArray.length" class="row">
         <div class="col-12 text-end pt-2">
           <span class="badge bg-light text-dark align-self-center p-2"
-            >Итого: {{ itogSum(item.rabotaArray) }}</span
+            >Итого: {{ itogSumRabota(item.rabotaArray) }}</span
           >
         </div>
       </div>
@@ -257,6 +257,12 @@ export default {
       return formatMoney(sum)
     },
     itogSum(array) {
+      return formatMoney(getArraySum(array))
+    },
+    itogSumRabota(array) {
+      if (getArraySum(array) < 500) {
+        return formatMoney(500)
+      }
       return formatMoney(getArraySum(array))
     },
     createTZ() {
