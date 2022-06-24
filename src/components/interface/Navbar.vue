@@ -1,21 +1,18 @@
 <template>
-  <nav
-    class="
+  <nav class="
       z-index-1
       navbar navbar-expand-lg navbar-light
       bg-white
       flex-column
       pt-0
       pb-0
-    "
-  >
+    ">
     <div class="progressbar w-100">
       <Progressbar v-if="loading || loadingRT" />
       <ProgressbarOff v-else />
     </div>
     <div class="height-58 container-fluid p-0">
-      <div
-        class="
+      <div class="
           height-58
           logo-area
           navbar-brand
@@ -23,72 +20,41 @@
           col-lg-2 col-xxl-1
           me-0
           p-0
-          ps-3
-          pt-3
-          pe-3
-          pb-2
-        "
-      >
-        <img src="/images/logo2/favicon-32x32.png" width="32" alt="Calc logo" />
+          pt-2
+        ">
+        <img src="/images/logo/logo.svg" height="38" alt="Nafrezer logo" class="m-auto d-block" />
       </div>
       <div class="col-12 col-lg-10 col-xxl-11 shadow-sm m-0">
         <div class="height-58 row m-0 p-0">
           <div class="col-2 d-lg-none">
-            <button
-              v-if="userId"
-              class="navbar-toggler btn btn-outline-light border mt-2"
-              type="button"
-              data-bs-toggle="offcanvas"
-              href="#offcanvasExample"
-              aria-controls="offcanvasExample"
-              aria-expanded="false"
-            >
+            <button v-if="userId" class="navbar-toggler btn btn-outline-light border mt-2" type="button"
+              data-bs-toggle="offcanvas" href="#offcanvasExample" aria-controls="offcanvasExample"
+              aria-expanded="false">
               <span class="navbar-toggler-icon"></span>
             </button>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <div
-              v-if="pathname === 'order' || pathname === 'nafrezer'"
-              class="form-check form-switch"
-            >
-              <input
-                class="form-check-input"
-                type="checkbox"
-                role="switch"
-                id="flexSwitchCheckShowArchive"
-                :checked="showArchive"
-                @change="setShowArchive"
-              />
-              <label class="form-check-label" for="flexSwitchCheckShowArchive"
-                >Архивные</label
-              >
+            <div v-if="pathname === 'order' || pathname === 'nafrezer'" class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckShowArchive"
+                :checked="showArchive" @change="setShowArchive" />
+              <label class="form-check-label" for="flexSwitchCheckShowArchive">Архивные</label>
             </div>
           </div>
-          <div
-            class="
+          <div class="
               col-8 col-lg-10
               d-flex
               justify-content-end
               align-items-center
-            "
-          >
+            ">
             <div v-if="user" class="text-end lh-1 pe-3 pb-1">
-              <span
-                ><strong>{{ user.name }}</strong></span
-              >
+              <span><strong>{{ user.name }}</strong></span>
               <br />
-              <span
-                ><small>{{ user.roleTitle }}</small></span
-              >
+              <span><small>{{ user.roleTitle }}</small></span>
               <br />
             </div>
             <div>
-              <button
-                v-if="userId"
-                class="btn btn-outline-light border text-muted"
-                title="Выйти из аккаунта"
-                @click="logOut"
-              >
+              <button v-if="userId" class="btn btn-outline-light border text-muted" title="Выйти из аккаунта"
+                @click="logOut">
                 Выйти
               </button>
             </div>

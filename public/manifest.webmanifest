@@ -1,0 +1,21 @@
+{
+  "name": "Nafrezer",
+  "short_name": "Nafrezer",
+  "id": "/",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "Nafrezer - калькулятор",
+  "icons": [
+    {
+      "src": "/images/logo/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/logo/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
