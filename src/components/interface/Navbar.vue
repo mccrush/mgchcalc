@@ -153,7 +153,7 @@ export default {
 }
 
 .my-archive-check {
-  width: 178px;
+  width: 170px;
 }
 
 /* .btn {
