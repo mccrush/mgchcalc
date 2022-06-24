@@ -22,7 +22,7 @@
           p-0
           pt-2
         ">
-        <img src="/images/logo/logo.svg" height="38" alt="Nafrezer logo" class="m-auto d-block" />
+        <img src="/images/logo/logo.svg" height="36" alt="Nafrezer logo" class="m-auto d-block" />
       </div>
       <div class="col-12 col-lg-10 col-xxl-11 d-flex justify-content-between shadow-sm m-0">
         <div class="
@@ -49,7 +49,7 @@
         </div>
         <div class="height-58 d-flex justify-content-end m-0 p-0">
 
-          <div class=" d-flex align-items-center ps-1 pe-1">
+          <div class="my-archive-check d-flex align-items-center">
             <div v-if="pathname === 'order' || pathname === 'nafrezer'" class="form-check form-switch">
               <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckShowArchive"
                 :checked="showArchive" @change="setShowArchive" />
@@ -60,7 +60,7 @@
               d-flex
               justify-content-end
               align-items-center
-              ps-2 pe-1
+              pe-1
             ">
             <div v-if="user" class="text-end lh-1 pe-3 pb-1">
               <span><strong>{{ user.name }}</strong></span>
@@ -150,6 +150,10 @@ export default {
 
 .z-index-1 {
   z-index: 1;
+}
+
+.my-archive-check {
+  width: 178px;
 }
 
 /* .btn {
