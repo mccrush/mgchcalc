@@ -7,11 +7,11 @@
           <CalendarPlus />
           <span class="ms-1">
             {{
-              new Date(item.dateCreate).toLocaleDateString('ru-RU', {
-                day: '2-digit',
-                month: '2-digit',
-                year: '2-digit'
-              })
+                new Date(item.dateCreate).toLocaleDateString('ru-RU', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: '2-digit'
+                })
             }}
           </span>
         </div>
@@ -19,21 +19,18 @@
           <Clock />
           <span class="ms-1">
             {{
-              new Date(item.dateForReady).toLocaleDateString('ru-RU', {
-                day: '2-digit',
-                month: '2-digit',
-                year: '2-digit'
-              })
+                new Date(item.dateForReady).toLocaleDateString('ru-RU', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: '2-digit'
+                })
             }}
           </span>
         </div>
       </div>
 
       <div class="d-flex">
-        <div
-          v-if="item.type === 'order'"
-          class="d-flex align-items-center w-50 mt-2"
-        >
+        <div v-if="item.type === 'order'" class="d-flex align-items-center w-50 mt-2">
           <Cash />
           <!-- <span class="fw-bold ms-1">{{ getItogSum() }}</span
           ><br /> -->
@@ -66,29 +63,6 @@ export default {
   props: ['item'],
   methods: {
     formatMoney
-    // getItogSum() {
-    //   let sum = 0
-    //   let prioritet = false
-    //   if (this.item.siryoArray) {
-    //     sum += getArraySum(this.item.siryoArray)
-    //   }
-    //   if (this.item.rabotaArray) {
-    //     sum += getArraySum(this.item.rabotaArray)
-    //   }
-    //   if (this.item.dopuslugArray) {
-    //     sum += getArraySum(this.item.dopuslugArray)
-
-    //     if (this.item.dopuslugArray.some(ss => ss === 'x2')) {
-    //       prioritet = true
-    //     }
-    //   }
-
-    //   if (prioritet) {
-    //     return formatMoney(sum * 2)
-    //   } else {
-    //     return formatMoney(sum)
-    //   }
-    // }
   }
 }
 </script>
