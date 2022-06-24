@@ -1,42 +1,25 @@
 <template>
   <div>
-    <div
-      class="dropzone border rounded-3 p-1 pt-2"
-      :data-status="status"
-      @drop="onDrop($event, status)"
-      @dragover.prevent
-      @dragleave.prevent
-      @dragenter="onDragEnter($event)"
-    >
+    <div class="dropzone p-1 pt-2" :data-status="status" @drop="onDrop($event, status)" @dragover.prevent
+      @dragleave.prevent @dragenter="onDragEnter($event)">
       <div class="list-title text-center pt-0">
         <strong class="no-select">{{ title }}</strong>
-        <div
-          v-if="array.length && this.pathname === 'order'"
-          class="text-muted small"
-        >
+        <div v-if="array.length && this.pathname === 'order'" class="text-muted small">
           <span>{{ array.length }} шт, </span>
           <strong> {{ itogSum(array) }}</strong>
         </div>
       </div>
-      <div class="list-items p-1">
-        <KanbanCard
-          v-for="item in array"
-          :key="item.id"
-          :item="item"
-          class="
+      <div class="list-items p-1 pt-3">
+        <KanbanCard v-for="item in array" :key="item.id" :item="item" class="
             item
             bg-white
+            border
             shadow-sm
             rounded
-            border-bottom border-2
             lh-1
             mt-2
             p-2
-          "
-          draggable="true"
-          @click="editItem(item.id)"
-          @dragstart.stop="onDragStart($event, item)"
-        />
+          " draggable="true" @click="editItem(item.id)" @dragstart.stop="onDragStart($event, item)" />
       </div>
     </div>
   </div>
