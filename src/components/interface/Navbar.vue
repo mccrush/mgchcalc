@@ -31,7 +31,14 @@
               align-items-center
               ps-3 pe-1
             ">
-          <div class="lh-1 pb-1">
+          <div class="d-lg-none pe-2">
+            <button v-if="userId" class="navbar-toggler btn btn-outline-light border" type="button"
+              data-bs-toggle="offcanvas" href="#offcanvasExample" aria-controls="offcanvasExample"
+              aria-expanded="false">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div class="d-none d-sm-block lh-1 pb-1">
             <span class="fs-4"><strong>Неделя {{ getWeek() }}</strong></span>
             <br />
             <span><small>{{
@@ -41,13 +48,7 @@
           </div>
         </div>
         <div class="height-58 d-flex justify-content-end m-0 p-0">
-          <div class="d-lg-none ps-1 pe-1">
-            <button v-if="userId" class="navbar-toggler btn btn-outline-light border mt-2" type="button"
-              data-bs-toggle="offcanvas" href="#offcanvasExample" aria-controls="offcanvasExample"
-              aria-expanded="false">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </div>
+
           <div class=" d-flex align-items-center ps-1 pe-1">
             <div v-if="pathname === 'order' || pathname === 'nafrezer'" class="form-check form-switch">
               <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckShowArchive"
